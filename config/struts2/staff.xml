@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="staff" namespace="/staff" extends="struts-default">
+		<action name="staff_*" method="{1}" class="com.rlzy.action.staff.StaffAction">
+			<result name="navbar_">/WEB-INF/view/navbar.jsp</result>
+			<result name="intoIndex">/WEB-INF/view/index.jsp</result>
+			<result name="intoMain">/WEB-INF/view/user/user.jsp</result>
+			<result name="logoutSuccess">/login.jsp</result>
+			<result name="skipToUser">/WEB-INF/view/user/userManagerIndex.jsp</result>
+		</action>
+	</package>
+</struts>

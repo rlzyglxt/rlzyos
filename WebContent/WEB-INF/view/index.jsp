@@ -61,28 +61,28 @@
 							</template>
 						</ul>
 					</li>
-					<li><a class=""><i class="lnr lnr-users"></i> <span>人事调配</span></a>
+					<li><a class=""><i class="lnr lnr-users"></i> <span>**</span></a>
 						<ul class="nav" style="background-color: #13599d;">
 							<template v-if="user_army_manager_power">
 							<li><a href="<%=basePath%>team/Staff_page_staffList"><span></span></a></li>
 							</template>
 							<template v-if="user_army_manager_power">
-							<li><a href="<%=basePath%>scheduling/Scheduling_page_list"><span>值班管理</span></a></li>
+							<li><a href="<%=basePath%>scheduling/Scheduling_page_list"><span>**</span></a></li>
 							</template>
 							<template v-if="user_army_manager_power">
-							<li><a href="<%=basePath%>user/Meeting_skipToMeetRecords"><span>会议记录</span></a></li>
+							<li><a href="<%=basePath%>user/Meeting_skipToMeetRecords"><span>***</span></a></li>
 							</template>
 							<template v-if="user_army_manager_power">
 							<li><a
-								href="<%=basePath%>user/Memorabilia_skipToMemorabilia"><span>大事记</span></a></li>
+								href="<%=basePath%>user/Memorabilia_skipToMemorabilia"><span>***</span></a></li>
 							</template>
 						 </ul>
 					  </li>
-					<li><a class=""><i class="lnr lnr-license"></i> <span>技术信息</span></a>
+					<li><a class=""><i class="lnr lnr-license"></i> <span>***</span></a>
 						<ul class="nav" style="background-color:#13599d;">
 							<template v-if="user_technology_manager_power">
 							<li><a
-								href="<%=basePath%>DNA/DNAManagement_DNAManagementPage"><span>DNA/指纹录入</span></a></li>
+								href="<%=basePath%>DNA/DNAManagement_DNAManagementPage"><span>***</span></a></li>
 							</template>
 							<template v-if="user_technology_manager_power">
 							<li><a

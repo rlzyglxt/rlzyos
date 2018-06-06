@@ -43,48 +43,85 @@
 	src="<%=basePath%>js/jquery.datetimepicker.full.js"></script>
 <!--------------------------------------------------------------------------------->
 <script type="text/javascript"
-	src="<%=basePath%>js/user/updatePassword.js"></script>
+	src="<%=basePath%>js/User/Input_Select.js"></script>
+<!--------------------------------------------------------------------------------->
+<script type="text/javascript"
+	src="<%=basePath%>js/User/updatePasswd.js"></script>
+<%-- <script type="text/javascript" src="<%=basePath%>js/User/judgePower.js"></script> --%>
+<!--------------------------------------------------------------------------------->
 <title>Insert title here</title>
 </head>
 <body>
+	<script type="text/javascript">
+		document
+				.write('<div id="hideLayer" style="margin: 0 auto; background-color: white; position: fixed; width: 100%; height: 2000px; z-index: 9999999999999999999999999999999999999999;"><div style="width: 80px;height:79px; margin: 0 auto; margin-top: 200px;"><img alt=""src="/xsjsglxt/img/hui.png"><span style="color:black;">权限加载中</span></div></div>');
+	</script>
 	<div id="wrapper">
 		<nav id="navbar" class="navbar navbar-default navbar-fixed-top"
 			style=" background-color: #13599d;">
 		<div
 			style="width: auto; float: left; line-height: 78px; margin: 0 0 0 30px; font-size: 30px; color: white;">
-			人力资源管理</div>
+			<img alt="" src="<%=basePath%>img/hui.png">人力资源管理系统
+		</div>
 		<div id="navbar-menu">
 			<ul style="margin: 0 0 0 20px;" class="nav navbar-nav navbar-left">
 				<li class="dropdown" style="float: left;"><a
-					href="#"><span>首页</span> </a></li>
+					href="<%=basePath%>user/User_index"><span>首页</span> </a></li>
+				<li class="leader_control dropdown" style="float: left;"><a
+					href="#" class="dropdown-toggle" data-toggle="dropdown"> <span>系统管理</span>
+						<i class="icon-submenu lnr lnr-chevron-down"></i>
+				</a>
+					<ul class="dropdown-menu">
+						<li><a href="<%=basePath%>case/Case_page_SiteManagement">机构维护</a></li>
+						<li><a href="<%=basePath%>user/User_skipToTechnologyIndex">用户管理</a></li>
+					</ul></li>
+				<!--  -->
+				<template v-if="user_case_query_power">
+				<li class="dropdown" style="float: left;"><a href="#"
+					class="dropdown-toggle" data-toggle="dropdown"><span>侦查业务管理</span>
+						<i class="icon-submenu lnr lnr-chevron-down"></i> </a>
+					<ul class="dropdown-menu">
+						<li style="float: left;"><a
+							href="<%=basePath%>case/Case_page_Handle">办案管理</a></li>
+						<li class="teacher_control"><a
+							href="<%=basePath%>case/Handle_into_introduce_page">介绍信</a></li>
+					</ul></li>
+				</template>
+				<!--  -->
+				<!--  -->
+				<template v-if="user_user_manager_power">
 				<li class="dropdown" style="float: left;"><a
-					href="#"> <span>系统管理</span>
+					href="<%=basePath%>user/User_skipToUser"> <span>用户</span>
 				</a></li>
+				</template>
+				<!--  -->
 			</ul>
+			<!--  -->
 			<ul class="nav navbar-nav navbar-right" style="margin: 0 0px 0 0">
 				<!--  -->
-				
-				 <li class="dropdown"><a href="#" class="dropdown-toggle"
+				<!--  -->
+				<!--  -->
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown"> <i class="fa fa-user-circle"></i> <span
-						id="USER_NAME"><%=request.getSession().getAttribute("user_name")%></span> <i
-						class="icon-submenu lnr lnr-chevron-down"></i>
+						id="USER_NAME"><%=request.getSession().getAttribute("user_name")%></span>
+						<i class="icon-submenu lnr lnr-chevron-down"></i>
 				</a>
 					<ul class="dropdown-menu">
 						<li data-toggle="modal" data-target="#updatePassword"><a
 							href="#"> <i class="lnr lnr-lock"></i> <span>修改密码</span>
 						</a></li>
-
 						<li><a href="<%=basePath%>user/User_logout"> <i
-
 								class="lnr lnr-exit"></i> <span>退出登录</span>
 						</a></li>
 					</ul></li>
-				
+				<!--  -->
 			</ul>
 		</div>
 		</nav>
-	<!-------------------------------------------------修改密码---------------------------------------------------------------  -->
-		<!-- <div class="modal fade" id="updatePassword" tabindex="-1"
+
+
+		<!-------------------------------------------------修改密码---------------------------------------------------------------  -->
+		<div class="modal fade" id="updatePassword" tabindex="-1"
 			role="dialog" aria-labelledby="myModalLabel">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
@@ -119,12 +156,110 @@
 				<!-- /.modal-content -->
 			</div>
 			<!-- /.modal-dialog -->
-		</div> -->
-		
+		</div>
 
-		<!-- -------------------------------------------------修改密码成功--------------------------------------------------------------- -->		
-	</div>
+		<!-- -------------------------------------------------修改密码成功--------------------------------------------------------------- -->
+		<script type="text/javascript">
+			var userPowerDTO = {
+				'user_case_technology_power' : false, //案件技术
+				'user_case_query_power' : false, //案件侦查
+				'user_check_power' : false, //检验鉴定
+				'user_army_manager_power' : false, //队伍
+				'user_technology_manager_power' : false,//技术
+				'user_statistics_power' : false, //统计
+				'user_user_manager_power' : false,
+				'user_check_power_modified' : false,
+				'user_letter_power' : false
+			}
+
+			var powerNavVue = new Vue({
+				el : '#navbar-menu',
+				data : userPowerDTO
+			});
+			//jurisdiction_admin管理
+			//jurisdiction_none无
+			$
+					.ajax({
+						url : '/xsjsglxt/user/User_judgePower',
+						type : 'POST',
+						async : false,
+						success : function(data) {
+							if (data == 'exception') {
+								$
+										.confirm({
+											title : "请重新登录",
+											content : "登录验证不通过，可能是未操作时间太久或者为登录造成",
+											buttons : {
+												reLogin : {
+													text : "重新登录",
+													btnClass : "btn-blue",
+													action : function() {
+														window.location = "/xsjsglxt/login.jsp";
+													}
+												}
+											}
+										});
+								$("#hideLayer").hide();
+							} else {
+								var result = JSON.parse(data);
+								if (result.user_case_technology_power == 'jurisdiction_admin') {
+									userPowerDTO.user_case_technology_power = true;
+								} else {
+									userPowerDTO.user_case_technology_power = false;
+								}
+								if (result.user_case_query_power == 'letter_admin') {
+									userPowerDTO.user_letter_power = true;
+								} else {
+									userPowerDTO.user_letter_power = false;
+								}
+								if (result.user_case_query_power == 'jurisdiction_none') {
+									userPowerDTO.user_case_query_power = false;
+								} else {
+									userPowerDTO.user_case_query_power = true;
+								}
+								if (result.user_check_power == 'jurisdiction_none') {
+									userPowerDTO.user_check_power = false;
+								} else {
+									userPowerDTO.user_check_power = true;
+								}
+								if (result.user_check_power == 'jurisdiction_use') {
+									userPowerDTO.user_check_power_modified = false;
+								} else {
+									userPowerDTO.user_check_power_modified = true;
+								}
+								if (result.user_army_manager_power == 'jurisdiction_admin') {
+									userPowerDTO.user_army_manager_power = true;
+								} else {
+									userPowerDTO.user_army_manager_power = false;
+								}
+								if (result.user_statistics_power == 'jurisdiction_admin') {
+									userPowerDTO.user_statistics_power = true;
+								} else {
+									userPowerDTO.user_statistics_power = false;
+								}
+								if (result.user_user_manager_power == 'jurisdiction_admin') {
+									userPowerDTO.user_user_manager_power = true;
+								} else {
+									userPowerDTO.user_user_manager_power = false;
+								}
+								if (result.user_technology_manager_power == 'jurisdiction_admin') {
+									userPowerDTO.user_technology_manager_power = true;
+								} else {
+									userPowerDTO.user_technology_manager_power = false;
+								}
+								$("#hideLayer").hide();
+							}
+						}
+					});
+
+			jconfirm.defaults = {
+				smoothContent : false
+			}
+		</script>
 </body>
+<script type="text/javascript">
+	//getUserSessionForAjax();
+</script>
 <style>
 #wrapper nav>div>ul>li>a {
 	color: white;
