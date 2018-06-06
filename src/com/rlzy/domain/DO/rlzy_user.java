@@ -6,11 +6,20 @@ public class rlzy_user {
 	private String user_name;//用户名
 	private String user_username;//用户姓名
 	private String user_password;//用户密码
+	private String user_telephone;
 	private String user_gmt_create;//用户创建时间
 	private String user_gmt_modified;//用户修改时间
 	
 	
 	
+	public String getUser_telephone() {
+		return user_telephone;
+	}
+
+	public void setUser_telephone(String user_telephone) {
+		this.user_telephone = user_telephone;
+	}
+
 	public String getUser_gmt_create() {
 		return user_gmt_create;
 	}

@@ -10,7 +10,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<link rel="stylesheet" href="<%=basePath%>css/user/userIndex.css">
+<link rel="stylesheet" href="<%=basePath%>css/User/userIndex.css">
 <script type="text/javascript" src="<%=basePath%>js/user/getData.js"></script>
 <title>用户管理界面</title>
 </head>

@@ -48,7 +48,6 @@ function reLoadUser() {
 }
 
 function updateUser(event) {
-	alert(event.value);
 	$("#updateLoadingDiv").removeClass("hideDiv");
 	$("#updateContent").addClass("hideDiv");
 	getXmlHttp();
@@ -86,10 +85,10 @@ function getUserByIdBack() {
 		$("#user_username_update").val(result.user_username);
 		$("#user_name_update").val(result.user_name);
 		$("#user_telphone_update").val(result.user_telphone);;
-		$("#user_userRight_update").val(result.user_userRight);
+/*		$("#user_userRight_update").val(result.user_userRight);
 		$("#user_export_Right_update").val(result.user_export_Right);
-		$("#user_manage_Right_update").val(result.user_manage_Right);
-		$("#updateBtn").val(result.rctd_user_id);
+		$("#user_manage_Right_update").val(result.user_manage_Right);*/
+		$("#updateBtn").val(result.rlzy_user_id);
 		$("#updateLoadingDiv").addClass("hideDiv");
 		$("#updateContent").removeClass("hideDiv");
 	}
@@ -128,10 +127,10 @@ function loadUserBack() {
 		for (var i = 0; i < result.list.length; i++) {
 			userTable.innerHTML = userTable.innerHTML
 					+ "<tr class='trHover'><td>"
-					+ result.list[i].user_name
+					+ result.list[i].user_username
 					+ "</td>"
 					+ "<td>"
-					+ result.list[i].user_username
+					+ result.list[i].user_name
 					+ "</td>"
 					+ "<td>"
 					+ result.list[i].user_telphone
@@ -141,11 +140,11 @@ function loadUserBack() {
 					+ "</td>"
 					+ "<td>"
 					+ "<button onclick='deleteUser(this)' value='"
-					+ result.list[i].rctd_user_id
-					+ "' class='btn btn-danger mangepower'>删除</button>"
+					+ result.list[i].rlzy_user_id
+					+ "' class='btn btn-danger managerPower'>删除</button>"
 					+ "<button onclick='getUserById(this)' value='"
-					+ result.list[i].rctd_user_id
-					+ "' data-toggle='modal' data-target='#updateUser' style='margin-left: 5px;' class='btn btn-primary mangepower'>修改</button>"
+					+ result.list[i].rlzy_user_id
+					+ "' data-toggle='modal' data-target='#updateUser' style='margin-left: 5px;' class='btn btn-primary managerPower'>修改</button>"
 					+ "</td></tr>";
 		}
 		hideQueryString.value = result.queryString;

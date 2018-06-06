@@ -12,6 +12,9 @@ import com.rlzy.domain.DO.rlzy_user;
 import com.rlzy.domain.VO.showUserVO;
 import com.rlzy.service.user.UserService;
 
+import util.TeamUtil;
+import util.md5;
+
 public class UserAction extends ActionSupport{
 	private UserService userService;
 	
@@ -74,7 +77,31 @@ public class UserAction extends ActionSupport{
 				pw.flush();
 				pw.close();
 			}
-			
+			//添加用户
+			public void addUser() throws IOException{
+				System.out.println("1");
+				HttpServletResponse response=ServletActionContext.getResponse();
+				response.setContentType("text/html;charset=utf-8");
+				PrintWriter pw=response.getWriter();
+				rlzy_user ru=new rlzy_user();
+				ru.setRlzy_user_id(TeamUtil.getUuid());
+				ru.setUser_name(user_name);
+				ru.setUser_username(user_username);
+				ru.setUser_password(user_password);
+				/*md5.GetMD5Code(user_password)*/
+				if(userService.judgeUserByUsername(user_username)){
+					pw.write("用户名存在");
+					System.out.println("用户名存在");
+				}
+				else{
+					ru.setUser_username(user_username);
+					userService.addUser(ru);
+					System.out.println("添加成功");
+					pw.write("添加成功");
+				}
+				pw.flush();
+				pw.close();
+			}
 			// 修改密码
 			public void updatePassword() throws IOException {
 				HttpServletResponse response = ServletActionContext.getResponse();
@@ -111,17 +138,30 @@ public class UserAction extends ActionSupport{
 			public void getUser() throws IOException{
 				System.out.println("fdsjfkljsda1111");
 				showUserVO suv = userService.getUserByPage(queryString, currPage);
-				System.out.println("getuserAction");
 				System.out.println(suv);
 				Gson gson = new Gson();
 				String result = gson.toJson(suv);
 				HttpServletResponse response = ServletActionContext.getResponse();
 				response.setContentType("text/html;charset=utf-8");
 				PrintWriter pw = response.getWriter();
-				System.out.println("fdsjfkljsda");
 				pw.write(result);
 				pw.flush();
 				pw.close();
+			}
+			//修改用户
+			public void updateUser() throws IOException{
+				rlzy_user ru=new rlzy_user();
+				rlzy_user ruGet=userService.getUserById(user_id);
+				ru.setRlzy_user_id(user_id);
+				ru.setUser_username(user_username);
+				if (user_password == "" || user_password.equals("")) {
+					ru.setUser_password(ruGet.getUser_password());
+				} else {
+					ru.setUser_password(md5.GetMD5Code(user_password));
+				}
+//				ru.setUser_userRight(user_userRight);
+//				ru.setUser_export_Right(user_export_Right);
+				userService.updateUser(ru);
 			}
 			
 			
@@ -133,7 +173,7 @@ public class UserAction extends ActionSupport{
 		private String user_name; //用户姓名
 		private String user_username; //用户名
 		private String user_password; //用户密码
-		
+		private String user_telephone;
 		private String oldPassword;
 		private String newPassword;
 

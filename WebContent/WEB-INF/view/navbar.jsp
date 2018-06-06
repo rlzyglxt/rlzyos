@@ -43,11 +43,11 @@
 	src="<%=basePath%>js/jquery.datetimepicker.full.js"></script>
 <!--------------------------------------------------------------------------------->
 <script type="text/javascript"
-	src="<%=basePath%>js/User/Input_Select.js"></script>
+	src="<%=basePath%>js/user/Input_Select.js"></script>
 <!--------------------------------------------------------------------------------->
 <script type="text/javascript"
-	src="<%=basePath%>js/User/updatePasswd.js"></script>
-<%-- <script type="text/javascript" src="<%=basePath%>js/User/judgePower.js"></script> --%>
+	src="<%=basePath%>js/user/updatePasswd.js"></script>
+<%-- <script type="text/javascript" src="<%=basePath%>js/user/judgePower.js"></script> --%>
 <!--------------------------------------------------------------------------------->
 <title>Insert title here</title>
 </head>

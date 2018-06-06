@@ -4,9 +4,9 @@ public class rlzy_staff {
 	private String rlzy_staff_id;//员工id
 	private String staff_number;//员工工号
 	private String staff_name;//员工
-	private String staff_sex;
-	private String staff_birth;
-	private String staff_tel;
+	private String staff_sex;//员工性别
+	private String staff_birth;//员工出生日期
+	private String staff_tel;//电话
 	private String staff_address;
 	private String staff_record;
 	private String staff_depaterment;
