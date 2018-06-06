@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2018-6-6 9:55:33 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.rlzy.domain.DO.rlzy_staff" table="RLZY_STAFF">
+        <id name="rlzy_staff_id" type="java.lang.String">
+            <column name="RLZY_STAFF_ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="staff_number" type="java.lang.String">
+            <column name="STAFF_NUMBER" />
+        </property>
+        <property name="staff_name" type="java.lang.String">
+            <column name="STAFF_NAME" />
+        </property>
+        <property name="staff_sex" type="java.lang.String">
+            <column name="STAFF_SEX" />
+        </property>
+        <property name="staff_birth" type="java.lang.String">
+            <column name="STAFF_BIRTH" />
+        </property>
+        <property name="staff_tel" type="java.lang.String">
+            <column name="STAFF_TEL" />
+        </property>
+        <property name="staff_address" type="java.lang.String">
+            <column name="STAFF_ADDRESS" />
+        </property>
+        <property name="staff_record" type="java.lang.String">
+            <column name="STAFF_RECORD" />
+        </property>
+        <property name="staff_depaterment" type="java.lang.String">
+            <column name="STAFF_DEPATERMENT" />
+        </property>
+        <property name="staff_duty" type="java.lang.String">
+            <column name="STAFF_DUTY" />
+        </property>
+        <property name="staff_agreement_id" type="java.lang.String">
+            <column name="STAFF_AGREEMENT_ID" />
+        </property>
+        <property name="staff_status" type="java.lang.String">
+            <column name="STAFF_STATUS" />
+        </property>
+    </class>
+</hibernate-mapping>
