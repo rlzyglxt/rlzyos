@@ -18,23 +18,17 @@ function keyLogin(event) {
 //登录
 function login() {
 	getXmlHttp();
-
 	var user_username = document.getElementById("login_username").value;
 	var user_password = document.getElementById("login_password").value;
-	alert(user_username);
-	alert(user_password);
 	xmlHttp.open("POST","/rlzyos/user/user_login",true);
 	var formData = new FormData();
 	formData.append("user_username", user_username);
 	formData.append("user_password", user_password);
-	console.log(formData);
 	xmlHttp.send(formData);
-	
 	xmlHttp.onreadystatechange = function() {
 		if (isBack()) {
 			var result = xmlHttp.responseText;
-			console.log(result);
-			alert(result)
+			alert(result);
 			switch (result) {
 			case "userNoExist":
 				toastr.warning("用户名不存在！");

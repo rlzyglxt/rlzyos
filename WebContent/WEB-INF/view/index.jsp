@@ -43,8 +43,8 @@
 </head>
 <body>
 	<div id="wrapper">
-		<s:action name="User_implements_navbar" namespace="/user" executeResult="true" />
-		
+		<%-- <s:action name="user_implements_navbar" namespace="/user" executeResult="true" /> --%>
+		<s:action name="user_navbar" namespace="/user" executeResult="true" />
 		<div class="slimScrollDiv" id="slimScrollDiv" position: relative; overflow: hidden; width: auto; height: 100%;">
 		<!-- LEFT SIDEBAR -->
 		<div id="sidebar-nav" class="sidebar"

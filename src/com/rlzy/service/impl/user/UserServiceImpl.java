@@ -1,7 +1,10 @@
 package com.rlzy.service.impl.user;
 
+import java.util.List;
+
 import com.rlzy.dao.user.UserDao;
 import com.rlzy.domain.DO.rlzy_user;
+import com.rlzy.domain.VO.showUserVO;
 import com.rlzy.service.user.UserService;
 
 public class UserServiceImpl implements UserService{
@@ -59,5 +62,25 @@ public class UserServiceImpl implements UserService{
 		// TODO Auto-generated method stub
 		userDao.updatePassword(rlzy_user_id, newPassword);
 
+	}
+
+	@Override
+	public showUserVO getUserByPage(String queryString, int currPage) {
+		// TODO Auto-generated method stub
+		showUserVO suv = new showUserVO();
+		System.out.println("跳转到userserviceimpl");
+		suv.setCurrPage(currPage);
+		suv.setQueryString(queryString);
+		suv.setPageSize(10);
+		int count = userDao.getUserCount(queryString, currPage);
+		suv.setCount(count);
+		System.out.println("userservice,"+count);
+		double c = count;
+		int totalPage = (int) Math.ceil(c / 10);
+		suv.setTotalPage(totalPage);
+		List<rlzy_user> list = userDao.getUserByPage(queryString, currPage);
+		suv.setList(list);
+		System.out.println(suv);
+		return suv;
 	}
 }

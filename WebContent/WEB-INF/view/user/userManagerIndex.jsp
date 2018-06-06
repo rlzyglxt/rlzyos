@@ -9,18 +9,18 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="<%=basePath%>css/user/UserIndex.css">
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<link rel="stylesheet" href="<%=basePath%>css/user/userIndex.css">
 <script type="text/javascript" src="<%=basePath%>js/user/getData.js"></script>
 <title>用户管理界面</title>
 </head>
 <body>
 	<!----------------------------------------------- 隐藏信息开始 --------------------------------------------------->
-	<input id="hideQueryString" type="text" class="hideDiv">
-	<input id="hideCurrPage" type="text" class="hideDiv">
+	<input id="hideQueryString" type="text" class="hideDiv" />
+	<input id="hideCurrPage" type="text" class="hideDiv" />
 
 	<!-----------------------------------------引入导航条 ------------------------------------------------------>
-		<s:action name="User_implements_navbar" namespace="/user" executeResult="true" />
+		<s:action name="user_implements_navbar" namespace="/user" executeResult="true" />
 
 	<!----------------------------------------主体内容 -------------------------------------------------------- -->
 
@@ -116,7 +116,7 @@
 									<td><input id="user_telphone" name="user_telphone" type="text"
 										class="form-control" placeholder="请输入用户电话"></td>
 								</tr>
-								<tr>
+								<%-- <tr>
 									<td><label>用户权限：</label></td>
 									<td><select name="user_userRight"
 										class="form-control">
@@ -139,7 +139,7 @@
 									</select></td>
 									<td></td>
 									<td></td>
-								</tr>
+								</tr> --%>
 							</table>
 						</form>
 					</div>
@@ -193,7 +193,7 @@
 								</tr>
 									<!-- <input id="user_duty_update" name="user_duty"
 								type="text" class="form-control" placeholder="请输入用户职位"> -->
-								<tr>
+								<%-- <tr>
 									<td><label>用户权限：</label></td>
 									<td><select id="user_userRight_update"
 										name="user_userRight" class="form-control">
@@ -215,7 +215,7 @@
 											<option value="jurisdiction_none">无权限</option>
 											<option value="jurisdiction_admin">管理权限</option>
 									</select></td>
-								</tr>
+								</tr> --%>
 							</table>
 						</form>
 					</div>

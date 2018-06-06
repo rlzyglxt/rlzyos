@@ -86,18 +86,23 @@ public class UserDaoImpl implements UserDao{
 	public int getUserCount(String queryString, int currPage) {
 		// TODO Auto-generated method stub
 		String query = "%" + queryString + "%";
-		String hql = "select count(*) from rlzy_user where (user_name like '" + query + "' or user_telphone like '"
-				+ query + "' or user_gmt_create like '" + query + "' or user_name like '" + query + "')";
+		String hql = "select count(*) from rlzy_user where (user_name like '" + query + "' or user_gmt_create like '" + query + "' or user_username like '" + query + "')";
 		System.out.println(hql);
-		System.out.println("hql");
+		System.out.println("hqlcount");
 		int count = ((Number) getSession().createQuery(hql).uniqueResult()).intValue();
+		System.out.println(count);
+		System.out.println("getusercount");
 		return count;
 	}
 
 	@Override
 	public List<rlzy_user> getUserByPage(String queryString, int currPage) {
 		// TODO Auto-generated method stub
-		return null;
+		String query = "%" + queryString + "%";
+		String hql = "from rlzy_user where (user_name like '" + query + "' or user_username like '" + query + "') ";
+		System.out.println(hql+"page");
+		List<rlzy_user> list = getSession().createQuery(hql).setFirstResult((currPage - 1) * 10).setMaxResults(10).list();
+		return list;
 	}
 
 	

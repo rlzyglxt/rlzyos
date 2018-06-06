@@ -52,11 +52,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<script type="text/javascript">
-		document
-				.write('<div id="hideLayer" style="margin: 0 auto; background-color: white; position: fixed; width: 100%; height: 2000px; z-index: 9999999999999999999999999999999999999999;"><div style="width: 80px;height:79px; margin: 0 auto; margin-top: 200px;"><img alt=""src="/xsjsglxt/img/hui.png"><span style="color:black;">权限加载中</span></div></div>');
-	</script>
-	<div id="wrapper">
+<div id="wrapper">
 		<nav id="navbar" class="navbar navbar-default navbar-fixed-top"
 			style=" background-color: #13599d;">
 		<div
@@ -72,28 +68,15 @@
 						<i class="icon-submenu lnr lnr-chevron-down"></i>
 				</a>
 					<ul class="dropdown-menu">
-						<li><a href="<%=basePath%>case/Case_page_SiteManagement">机构维护</a></li>
-						<li><a href="<%=basePath%>user/User_skipToTechnologyIndex">用户管理</a></li>
+						<li><a href="<%=basePath%>">机构维护</a></li>
+						<li><a href="<%=basePath%>user/user_skipToUser">用户管理</a></li>
 					</ul></li>
-				<!--  -->
-				<template v-if="user_case_query_power">
-				<li class="dropdown" style="float: left;"><a href="#"
-					class="dropdown-toggle" data-toggle="dropdown"><span>侦查业务管理</span>
-						<i class="icon-submenu lnr lnr-chevron-down"></i> </a>
-					<ul class="dropdown-menu">
-						<li style="float: left;"><a
-							href="<%=basePath%>case/Case_page_Handle">办案管理</a></li>
-						<li class="teacher_control"><a
-							href="<%=basePath%>case/Handle_into_introduce_page">介绍信</a></li>
-					</ul></li>
-				</template>
-				<!--  -->
-				<!--  -->
-				<template v-if="user_user_manager_power">
+				
+				<%-- <template v-if="user_user_manager_power">
 				<li class="dropdown" style="float: left;"><a
 					href="<%=basePath%>user/User_skipToUser"> <span>用户</span>
 				</a></li>
-				</template>
+				</template> --%>
 				<!--  -->
 			</ul>
 			<!--  -->
@@ -159,7 +142,9 @@
 		</div>
 
 		<!-- -------------------------------------------------修改密码成功--------------------------------------------------------------- -->
-		<script type="text/javascript">
+	</div>
+	</body>	
+		<%-- <script type="text/javascript">
 			var userPowerDTO = {
 				'user_case_technology_power' : false, //案件技术
 				'user_case_query_power' : false, //案件侦查
@@ -255,8 +240,8 @@
 			jconfirm.defaults = {
 				smoothContent : false
 			}
-		</script>
-</body>
+		</script> --%>
+
 <script type="text/javascript">
 	//getUserSessionForAjax();
 </script>

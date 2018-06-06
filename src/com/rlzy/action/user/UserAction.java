@@ -9,9 +9,8 @@ import com.google.gson.Gson;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.rlzy.domain.DO.rlzy_user;
+import com.rlzy.domain.VO.showUserVO;
 import com.rlzy.service.user.UserService;
-
-import util.md5;
 
 public class UserAction extends ActionSupport{
 	private UserService userService;
@@ -104,6 +103,22 @@ public class UserAction extends ActionSupport{
 				rlzy_user ru = userService.getUserById(user_id);
 				Gson gson = new Gson();
 				String result = gson.toJson(ru);
+				pw.write(result);
+				pw.flush();
+				pw.close();
+			}
+			
+			public void getUser() throws IOException{
+				System.out.println("fdsjfkljsda1111");
+				showUserVO suv = userService.getUserByPage(queryString, currPage);
+				System.out.println("getuserAction");
+				System.out.println(suv);
+				Gson gson = new Gson();
+				String result = gson.toJson(suv);
+				HttpServletResponse response = ServletActionContext.getResponse();
+				response.setContentType("text/html;charset=utf-8");
+				PrintWriter pw = response.getWriter();
+				System.out.println("fdsjfkljsda");
 				pw.write(result);
 				pw.flush();
 				pw.close();

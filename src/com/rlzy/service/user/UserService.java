@@ -1,6 +1,7 @@
 package com.rlzy.service.user;
 
 import com.rlzy.domain.DO.rlzy_user;
+import com.rlzy.domain.VO.showUserVO;
 
 public interface UserService {
 	//判断用户是否存在
@@ -17,4 +18,6 @@ public interface UserService {
 	public void deleteUser(String user_id);
 	//修改密码
 	public void updatePassword(String user_id, String newPassword);
+
+	public showUserVO getUserByPage(String queryString, int currPage);
 }
