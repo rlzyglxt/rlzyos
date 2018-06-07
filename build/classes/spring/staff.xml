@@ -8,7 +8,7 @@
 	</bean>	
 	
 
-	<bean id="staffServiceimpl" class="com.rlzy.service.impl.staff.StaffServiceImpl">
+	<bean id="staffService" class="com.rlzy.service.impl.staff.StaffServiceImpl">
 		<property name="staffDao" ref="staffDao"></property>
 	</bean>
 

@@ -113,7 +113,7 @@
 									<td><input id="user_name" name="user_name" type="text"
 										class="form-control" placeholder="请输入用户姓名"></td>
 									<td><label>电话：</label></td>
-									<td><input id="user_telphone" name="user_telphone" type="text"
+									<td><input id="user_telephone" name="user_telephone" type="text"
 										class="form-control" placeholder="请输入用户电话"></td>
 								</tr>
 								<%-- <tr>
@@ -188,8 +188,8 @@
 									<td><input id="user_name_update" name="user_name"
 										type="text" class="form-control" placeholder="请输入用户姓名"></td>
 									<td><label>电话：</label></td>
-									<td><input id="user_telphone_update" name="user_telphone"
-										type="text" class="form-control" placeholder="请输入用户代码"></td>
+									<td><input id="user_telephone_update" name="user_telephone"
+										type="text" class="form-control" placeholder="请输入用户电话"></td>
 								</tr>
 									<!-- <input id="user_duty_update" name="user_duty"
 								type="text" class="form-control" placeholder="请输入用户职位"> -->

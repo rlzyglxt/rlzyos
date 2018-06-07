@@ -13,6 +13,7 @@ public class rlzy_staff {
 	private String staff_duty;
 	private String staff_agreement_id;
 	private String staff_status;
+	
 	public String getRlzy_staff_id() {
 		return rlzy_staff_id;
 	}

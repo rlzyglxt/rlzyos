@@ -26,7 +26,7 @@ public class UserDaoImpl implements UserDao{
 	//得到用户名
 	public rlzy_user getUserByUsername(String user_username) {
 		// TODO Auto-generated method stub
-		String hql = "from rlzy_user where user_name = '" + user_username + "'";
+		String hql = "from rlzy_user where user_username = '" + user_username + "'";
 		Query query = getSession().createQuery(hql);
 		List<rlzy_user> list = query.list();
 		return list.get(0);
@@ -35,7 +35,7 @@ public class UserDaoImpl implements UserDao{
 	// 判断用户是否存在
 	public boolean judgeUserByUsername(String user_username) {
 		// TODO Auto-generated method stub
-		String hql = "from rlzy_user where user_name='" + user_username + "'";
+		String hql = "from rlzy_user where user_username='" + user_username + "'";
 		System.out.println("judge1");
 		Query query =getSession().createQuery(hql);
 		System.out.println("judge2");
@@ -86,7 +86,7 @@ public class UserDaoImpl implements UserDao{
 	public int getUserCount(String queryString, int currPage) {
 		// TODO Auto-generated method stub
 		String query = "%" + queryString + "%";
-		String hql = "select count(*) from rlzy_user where (user_name like '" + query + "' or user_gmt_create like '" + query + "' or user_username like '" + query + "')";
+		String hql = "select count(*) from rlzy_user where (user_username like '" + query + "' or user_gmt_create like '" + query + "' or user_name like '" + query + "')";
 		System.out.println(hql);
 		System.out.println("hqlcount");
 		int count = ((Number) getSession().createQuery(hql).uniqueResult()).intValue();
@@ -99,7 +99,7 @@ public class UserDaoImpl implements UserDao{
 	public List<rlzy_user> getUserByPage(String queryString, int currPage) {
 		// TODO Auto-generated method stub
 		String query = "%" + queryString + "%";
-		String hql = "from rlzy_user where (user_name like '" + query + "' or user_username like '" + query + "') ";
+		String hql = "from rlzy_user where (user_name like '" + query + "' or user_username like '" + query + "'or user_telephone like '" + query + "') ";
 		System.out.println(hql+"page");
 		List<rlzy_user> list = getSession().createQuery(hql).setFirstResult((currPage - 1) * 10).setMaxResults(10).list();
 		return list;

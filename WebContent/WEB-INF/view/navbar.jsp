@@ -46,7 +46,7 @@
 	src="<%=basePath%>js/user/Input_Select.js"></script>
 <!--------------------------------------------------------------------------------->
 <script type="text/javascript"
-	src="<%=basePath%>js/user/updatePasswd.js"></script>
+	src="<%=basePath%>js/user/updatePassword.js"></script>
 <%-- <script type="text/javascript" src="<%=basePath%>js/user/judgePower.js"></script> --%>
 <!--------------------------------------------------------------------------------->
 <title>Insert title here</title>
@@ -62,13 +62,13 @@
 		<div id="navbar-menu">
 			<ul style="margin: 0 0 0 20px;" class="nav navbar-nav navbar-left">
 				<li class="dropdown" style="float: left;"><a
-					href="<%=basePath%>user/User_index"><span>首页</span> </a></li>
+					href="<%=basePath%>user/user_intoIndex"><span>首页</span> </a></li>
 				<li class="leader_control dropdown" style="float: left;"><a
 					href="#" class="dropdown-toggle" data-toggle="dropdown"> <span>系统管理</span>
 						<i class="icon-submenu lnr lnr-chevron-down"></i>
 				</a>
 					<ul class="dropdown-menu">
-						<li><a href="<%=basePath%>">机构维护</a></li>
+						<li><a href="">机构维护</a></li>
 						<li><a href="<%=basePath%>user/user_skipToUser">用户管理</a></li>
 					</ul></li>
 				

@@ -44,7 +44,7 @@
 <body>
 	<div id="wrapper">
 		<%-- <s:action name="user_implements_navbar" namespace="/user" executeResult="true" /> --%>
-		<s:action name="user_navbar" namespace="/user" executeResult="true" />
+		<s:action name="user_implements_navbar" namespace="/user" executeResult="true" />
 		<div class="slimScrollDiv" id="slimScrollDiv" position: relative; overflow: hidden; width: auto; height: 100%;">
 		<!-- LEFT SIDEBAR -->
 		<div id="sidebar-nav" class="sidebar"
@@ -55,7 +55,7 @@
 
 					<li><a class=""><i class="lnr lnr-file-add"></i> <span>人员档案</span></a>
 						<ul class="nav" style="background-color: #13599d;">
-							<li><a href="<%=basePath%>case/Case_page_SiteManagement"><span>人员基本信息</span></a></li>
+							<li><a href="<%=basePath%>staff/staff_page_StaffInfo"><span>人员基本信息</span></a></li>
 							<li><a href="<%=basePath%>case/Case_page_CaseMergerList"><span>员工履历</span></a></li>
 							<li><a href="<%=basePath%>case/BreakeCase_page_BreakCaseList"><span>员工合同</span></a></li>
 							</template>

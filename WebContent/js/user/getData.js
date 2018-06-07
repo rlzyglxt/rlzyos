@@ -84,7 +84,7 @@ function getUserByIdBack() {
 		result = JSON.parse(result);
 		$("#user_username_update").val(result.user_username);
 		$("#user_name_update").val(result.user_name);
-		$("#user_telphone_update").val(result.user_telphone);;
+		$("#user_telephone_update").val(result.user_telephone);;
 /*		$("#user_userRight_update").val(result.user_userRight);
 		$("#user_export_Right_update").val(result.user_export_Right);
 		$("#user_manage_Right_update").val(result.user_manage_Right);*/
@@ -116,6 +116,7 @@ function addUserBack() {
 function loadUserBack() {
 	if (isBack()) {
 		var result = xmlHttp.responseText;
+		alert(result);
 		result = JSON.parse(result);
 		var userTable = document.getElementById("userTable");
 		var hideQueryString = document.getElementById("hideQueryString");
@@ -133,7 +134,7 @@ function loadUserBack() {
 					+ result.list[i].user_name
 					+ "</td>"
 					+ "<td>"
-					+ result.list[i].user_telphone
+					+ result.list[i].user_telephone
 					+ "</td>"
 					+ "<td>"
 					+ result.list[i].user_gmt_create

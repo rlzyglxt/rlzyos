@@ -19,7 +19,7 @@ public class UserAction extends ActionSupport{
 	private UserService userService;
 	
 	public String implements_navbar() {
-		return "navbar_";
+		return "navbar";
 	}
 
 	public String intoIndex() {
@@ -37,7 +37,6 @@ public class UserAction extends ActionSupport{
 	// --------------------------以上为页面引入
 	// 登录
 		public void login() throws IOException {
-			System.out.println(user_username+"孙毅");
 			System.out.println(user_password);
 			HttpServletResponse response = ServletActionContext.getResponse();
 			response.setContentType("text/html;charset=utf-8");
@@ -87,7 +86,10 @@ public class UserAction extends ActionSupport{
 				ru.setRlzy_user_id(TeamUtil.getUuid());
 				ru.setUser_name(user_name);
 				ru.setUser_username(user_username);
+				ru.setUser_telephone(user_telephone);
 				ru.setUser_password(user_password);
+				ru.setUser_gmt_create(TeamUtil.getStringSecond());
+				ru.setUser_gmt_modified(TeamUtil.getStringSecond());
 				/*md5.GetMD5Code(user_password)*/
 				if(userService.judgeUserByUsername(user_username)){
 					pw.write("用户名存在");
@@ -136,9 +138,7 @@ public class UserAction extends ActionSupport{
 			}
 			
 			public void getUser() throws IOException{
-				System.out.println("fdsjfkljsda1111");
 				showUserVO suv = userService.getUserByPage(queryString, currPage);
-				System.out.println(suv);
 				Gson gson = new Gson();
 				String result = gson.toJson(suv);
 				HttpServletResponse response = ServletActionContext.getResponse();
@@ -154,13 +154,14 @@ public class UserAction extends ActionSupport{
 				rlzy_user ruGet=userService.getUserById(user_id);
 				ru.setRlzy_user_id(user_id);
 				ru.setUser_username(user_username);
+				ru.setUser_telephone(user_telephone);
+				ru.setUser_gmt_modified(TeamUtil.getStringSecond());
+				ru.setUser_name(user_name);
 				if (user_password == "" || user_password.equals("")) {
 					ru.setUser_password(ruGet.getUser_password());
 				} else {
 					ru.setUser_password(md5.GetMD5Code(user_password));
 				}
-//				ru.setUser_userRight(user_userRight);
-//				ru.setUser_export_Right(user_export_Right);
 				userService.updateUser(ru);
 			}
 			
@@ -177,6 +178,14 @@ public class UserAction extends ActionSupport{
 		private String oldPassword;
 		private String newPassword;
 
+
+		public String getUser_telephone() {
+			return user_telephone;
+		}
+
+		public void setUser_telephone(String user_telephone) {
+			this.user_telephone = user_telephone;
+		}
 
 		public UserService getUserService() {
 			return userService;

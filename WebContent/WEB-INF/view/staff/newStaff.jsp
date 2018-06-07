@@ -18,7 +18,7 @@
 
 </head>
 <body>
-	<s:action name="User_navbar" namespace="/user" executeResult="true" />
+	<s:action name="ser_navbar" namespace="/user" executeResult="true" />
 	<!---------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------->
@@ -299,7 +299,7 @@
 						</form>
 					</div>
 					<div style="background: #e7e6e6; width: 1000px; height: 1px;"></div>
-					<div class="long_tableBox">
+					u<div class="long_tableBox">
 						<span class="staff_info_title">家庭情况</span>
 						<button style="margin-left: 10px;" class="btn btn-default btn-xs"
 							type="button" data-toggle="modal" data-target="#addFamily_Modal"
