@@ -90,6 +90,14 @@
 
 							</template>
 						</ul></li>
+					<li><a class=""><i class="lnr lnr-license"></i> <span>周豪俊</span></a>
+						<ul class="nav" style="background-color:#13599d;">
+							<li><a
+								href="<%=basePath%>DNA/DNAManagement_DNAManagementPage"><span>部门列表</span></a></li>
+							<li><a
+								href=""><span>培训类别列表</span></a></li>
+						</ul>
+					</li>
 				</ul>
 				</nav>
 			</div>
