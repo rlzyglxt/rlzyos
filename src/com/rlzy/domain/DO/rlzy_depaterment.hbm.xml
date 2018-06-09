@@ -1,24 +1,24 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 2018-6-7 8:03:07 by Hibernate Tools 3.4.0.CR1 -->
+
 <hibernate-mapping>
-    <class name="com.rlzy.domain.DO.rlzy_depaterment" table="rlzy_depaterment">
-        <id name="rlzy_depaterment_id" type="java.lang.Integer">
-            <column name="rlzy_depaterment_id" />
+    <class name="com.rlzy.domain.DO.rlzy_depaterment" table="RLZY_DEPATERMENT">
+        <id name="rlzy_depaterment_id" type="java.lang.String">
+            <column name="RLZY_DEPATERMENT_ID" />
             <generator class="assigned" />
         </id>
         <property name="depaterment_name" type="java.lang.String">
-            <column name="depaterment_name" />
+            <column name="DEPATERMENT_NAME" />
         </property>
         <property name="depaterment_duty" type="java.lang.String">
-            <column name="depaterment_duty" />
+            <column name="DEPATERMENT_DUTY" />
         </property>
         <property name="depaterment_tel" type="java.lang.String">
-            <column name="depaterment_tel" />
+            <column name="DEPATERMENT_TEL" />
         </property>
-        <property name="depaterment_num" type="java.lang.Integer">
-            <column name="depaterment_num" />
+        <property name="depaterment_num" type="java.lang.String">
+            <column name="DEPATERMENT_NUM" />
         </property>
     </class>
 </hibernate-mapping>

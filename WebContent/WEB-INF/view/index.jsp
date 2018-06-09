@@ -43,8 +43,6 @@
 </head>
 <body>
 	<div id="wrapper">
-		<%-- <s:action name="user_implements_navbar" namespace="/user" executeResult="true" /> --%>
-		<s:action name="user_implements_navbar" namespace="/user" executeResult="true" />
 		<div class="slimScrollDiv" id="slimScrollDiv" position: relative; overflow: hidden; width: auto; height: 100%;">
 		<!-- LEFT SIDEBAR -->
 		<div id="sidebar-nav" class="sidebar"
@@ -52,7 +50,6 @@
 			<div class="sidebar-scroll" style="height: 100% !important;">
 				<nav>
 				<ul class="nav">
-
 					<li><a class=""><i class="lnr lnr-file-add"></i> <span>人员档案</span></a>
 						<ul class="nav" style="background-color: #13599d;">
 							<li><a href="<%=basePath%>staff/staff_page_StaffInfo"><span>人员基本信息</span></a></li>
@@ -93,9 +90,9 @@
 					<li><a class=""><i class="lnr lnr-license"></i> <span>周豪俊</span></a>
 						<ul class="nav" style="background-color:#13599d;">
 							<li><a
-								href="<%=basePath%>DNA/DNAManagement_DNAManagementPage"><span>部门列表</span></a></li>
+								href="<%=basePath%>train/train_toTrainlist"><span>培训列表</span></a></li>
 							<li><a
-								href=""><span>培训类别列表</span></a></li>
+								href="<%=basePath%>train/train_toNewlist"><span>培训类别列表</span></a></li>
 						</ul>
 					</li>
 				</ul>

@@ -1,16 +1,24 @@
 package com.rlzy.domain.DO;
 
 public class rlzy_depaterment {
-	private Integer rlzy_depaterment_id;//部门ID
+	private String rlzy_depaterment_id;//部门ID
 	private String depaterment_name;//部门名称
 	private String depaterment_duty;//部门职务
 	private String depaterment_tel;//部门电话
-	private Integer depaterment_num;//部门人数
-	public Integer getRlzy_depaterment_id() {
+	private String depaterment_num;//部门人数
+	
+	
+	public String getRlzy_depaterment_id() {
 		return rlzy_depaterment_id;
 	}
-	public void setRlzy_depaterment_id(Integer rlzy_depaterment_id) {
+	public void setRlzy_depaterment_id(String rlzy_depaterment_id) {
 		this.rlzy_depaterment_id = rlzy_depaterment_id;
+	}
+	public String getDepaterment_num() {
+		return depaterment_num;
+	}
+	public void setDepaterment_num(String depaterment_num) {
+		this.depaterment_num = depaterment_num;
 	}
 	public String getDepaterment_name() {
 		return depaterment_name;
@@ -30,12 +38,6 @@ public class rlzy_depaterment {
 	public void setDepaterment_tel(String depaterment_tel) {
 		this.depaterment_tel = depaterment_tel;
 	}
-	public Integer getDepaterment_num() {
-		return depaterment_num;
-	}
-	public void setDepaterment_num(Integer depaterment_num) {
-		this.depaterment_num = depaterment_num;
 	}
 	
-	
-}
+
