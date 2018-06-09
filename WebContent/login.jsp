@@ -16,10 +16,10 @@
 
 <title>登录页面</title>
 <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel="stylesheet" href="css/login.css">
+<link rel="stylesheet" href="<%=basePath%>css/login.css">
 <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="js/user/login.js"></script>
+<script type="text/javascript" src="<%=basePath%>js/user/login.js"></script>
 
 </head>
 <body>

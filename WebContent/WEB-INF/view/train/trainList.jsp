@@ -107,7 +107,7 @@
 									</td>
 									<td><label>开始时间：</label></td>
 									<td><input id="train_begintime" name="train_begintime"
-										type="text" class="form-control" placeholder="请输入开始时间"></td>
+										type="text" class="time" placeholder="请输入开始时间"></td>
 								</tr>
 								<tr>
 									<td><label>培训费用：</label></td>
@@ -115,7 +115,7 @@
 										class="form-control" placeholder="请输入培训费用"></td>
 									<td><label>结束时间：</label></td>
 									<td><input id="train_endtime" name="train_endtime" type="text"
-										class="form-control" placeholder="请输入结束时间"></td>
+										class="time" placeholder="请输入结束时间"></td>
 								</tr>
 								<tr>
 									<td><label>培训介绍：</label></td>
@@ -135,6 +135,7 @@
 			<!-- /.modal-content -->
 		</div>
 		<!-- /.modal-dialog -->
+		
 	</div>
 
 	<!-----------------------------------------------------------------修改模态框----------------------------------------------------  -->
@@ -163,7 +164,7 @@
 										type="text" class="form-control" placeholder="请输入培训名称"></td>
 									<td><label>开始时间：</label></td>
 									<td><input id="train_begintime_update" name="train_begintime"
-										type="text" class="form-control" placeholder="请输入开始时间"></td>
+										type="text" class="time" placeholder="请输入开始时间"></td>
 								</tr>
 								<tr>
 									<td><label>培训费用：</label></td>
@@ -171,7 +172,7 @@
 										type="text" class="form-control" placeholder="请输入培训费用"></td>
 									<td><label>结束时间：</label></td>
 									<td><input id="train_endtime_update" name="train_endtime"
-										type="text" class="form-control" placeholder="请输入结束时间"></td>
+										type="text" class="time" placeholder="请输入结束时间"></td>
 								</tr>
 								<tr>
 									<td><label>培训介绍：</label></td>
@@ -193,5 +194,16 @@
 		</div>
 		<!-- /.modal-dialog -->
 	</div>
+	<script type="text/javascript">
+		$('.time').datetimepicker({
+			yearStart : 1900, // 设置最小年份
+			yearEnd : 2100, // 设置最大年份
+			yearOffset : 0, // 年偏差
+			timepicker : false, // 关闭时间选项
+			format : 'Y-m-d', // 格式化日期年-月-日
+			minDate : '1900/01/01', // 设置最小日期
+			maxDate : '2100/01/01', // 设置最大日期
+		});
+	</script>
 </body>
 </html>
