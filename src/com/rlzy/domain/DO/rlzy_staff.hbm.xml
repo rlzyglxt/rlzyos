@@ -41,5 +41,6 @@
         <property name="staff_status" type="java.lang.String">
             <column name="STAFF_STATUS" />
         </property>
+        
     </class>
 </hibernate-mapping>

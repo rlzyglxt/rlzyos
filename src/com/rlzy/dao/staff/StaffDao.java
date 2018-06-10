@@ -14,4 +14,5 @@ public interface StaffDao {
 	
 	List<staffListDTO> getStaffByPage(showStaffVO showstaffVO);
 	
+	
 }

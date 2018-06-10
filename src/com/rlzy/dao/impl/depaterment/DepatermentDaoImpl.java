@@ -17,11 +17,7 @@ public class DepatermentDaoImpl implements DepatermentDao {
 	public int getDepatermentCount(String queryString, int currPage) {
 		String query = "%" + queryString + "%";
 		String hql = "select count(*) from rlzy_depaterment where (depaterment_name like '" + query + "')";
-		System.out.println(hql);
-		System.out.println("hqlcount");
 		int count = ((Number) getSession().createQuery(hql).uniqueResult()).intValue();
-		System.out.println(count);
-		System.out.println("getusercount");
 		return count;
 	}
 
@@ -29,7 +25,6 @@ public class DepatermentDaoImpl implements DepatermentDao {
 	public List<rlzy_depaterment> getDepatermentByPage(String queryString, int currPage) {
 		String query = "%" + queryString + "%";
 		String hql = "from rlzy_depaterment where (depaterment_name like '" + query + "') ";
-		System.out.println(hql+"page");
 		List<rlzy_depaterment> list = getSession().createQuery(hql).setFirstResult((currPage - 1) * 10).setMaxResults(10).list();
 		return list;
 	}
@@ -37,11 +32,8 @@ public class DepatermentDaoImpl implements DepatermentDao {
 	// 判断用户是否存在
 	public boolean judgeDepatermentByDepatermentname(String depaterment_name) {
 		String hql = "from rlzy_depaterment where depaterment_name='" + depaterment_name + "'";
-		System.out.println("judge1");
 		Query query =getSession().createQuery(hql);
-		System.out.println("judge2");
 		List<rlzy_depaterment> list=query.list();
-		System.out.println("judge3");
 		if(list.size() <= 0){
 			return false;
 		}else{

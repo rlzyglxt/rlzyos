@@ -11,19 +11,16 @@ public class DepatermentServiceImpl implements DepatermentService {
 	//分页查询部门
 	public showDepatermentVO getDepatermentByPage(String queryString, int currPage) {
 		showDepatermentVO suv = new showDepatermentVO();
-		System.out.println("跳转到depatermentserviceimpl");
 		suv.setCurrPage(currPage);
 		suv.setQueryString(queryString);
 		suv.setPageSize(10);
 		int count = depatermentDao.getDepatermentCount(queryString, currPage);
 		suv.setCount(count);
-		System.out.println("userservice,"+count);
 		double c = count;
 		int totalPage = (int) Math.ceil(c / 10);
 		suv.setTotalPage(totalPage);
 		List<rlzy_depaterment> list = depatermentDao.getDepatermentByPage(queryString, currPage);
 		suv.setList(list);
-		System.out.println(suv);
 		return suv;
 	}
 	

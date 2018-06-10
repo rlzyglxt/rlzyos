@@ -28,7 +28,6 @@ function login() {
 	xmlHttp.onreadystatechange = function() {
 		if (isBack()) {
 			var result = xmlHttp.responseText;
-			alert(result);
 			switch (result) {
 			case "userNoExist":
 				toastr.warning("用户名不存在！");
@@ -37,7 +36,6 @@ function login() {
 				toastr.error("密码错误！若忘记密码请联系管理员更改");
 				break;
 			case "loginSuccess":
-
 				window.location = "/rlzyos/user/user_intoIndex";
 
 			}

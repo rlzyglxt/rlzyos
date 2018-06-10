@@ -21,9 +21,7 @@ public class DepatermentAction extends ActionSupport{
 	
 	//获取所有部门
 		public void getDepatermentByPage() throws IOException{
-			System.out.println("fdsljfldsk");
 			showDepatermentVO suv = depatermentService.getDepatermentByPage(queryString, currPage);
-			System.out.println("wewewewewe");
 			Gson gson = new Gson();
 			String result = gson.toJson(suv);
 			HttpServletResponse response = ServletActionContext.getResponse();
@@ -37,7 +35,6 @@ public class DepatermentAction extends ActionSupport{
 		
 		//添加用户
 		public void addDepaterment() throws IOException{
-			System.out.println("1");
 			HttpServletResponse response=ServletActionContext.getResponse();
 			response.setContentType("text/html;charset=utf-8");
 			PrintWriter pw=response.getWriter();
@@ -47,15 +44,12 @@ public class DepatermentAction extends ActionSupport{
 			ru.setDepaterment_duty(depaterment_duty);
 			ru.setDepaterment_tel(depaterment_tel);
 			ru.setDepaterment_num(depaterment_num);
-			/*md5.GetMD5Code(user_password)*/
 			if(depatermentService.judgeDepatermentByDepatermentname(depaterment_name)){
 				pw.write("部门名称存在");
-				System.out.println("部门名称存在");
 			}
 			else{
 				ru.setDepaterment_name(depaterment_name);
 				depatermentService.addDepaterment(ru);
-				System.out.println("添加成功");
 				pw.write("添加成功");
 			}
 			pw.flush();
@@ -64,7 +58,6 @@ public class DepatermentAction extends ActionSupport{
 		
 		//删除用户
 		public void deleteDepaterment() throws IOException{
-			System.out.println(depaterment_id);
 			HttpServletResponse response=ServletActionContext.getResponse();
 			response.setContentType("text/html;charset=utf-8");
 			PrintWriter pw=response.getWriter();

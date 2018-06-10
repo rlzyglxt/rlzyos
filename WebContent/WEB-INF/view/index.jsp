@@ -92,7 +92,7 @@
 							<li><a
 								href="<%=basePath%>train/train_toTrainlist"><span>培训列表</span></a></li>
 							<li><a
-								href="<%=basePath%>train/train_toNewlist"><span>培训类别列表</span></a></li>
+								href="<%=basePath%>trainrecord/trainrecord_toTrainrecordlist"><span>培训记录</span></a></li>
 						</ul>
 					</li>
 				</ul>
