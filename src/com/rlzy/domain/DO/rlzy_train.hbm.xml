@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.rlzy.domain.DO.rlzy_train" table="RLZY_TRAIN">
+        <id name="rlzy_train_id" type="java.lang.String">
+            <column name="RLZY_TRAIN_ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="train_name" type="java.lang.String">
+            <column name="TRAIN_NAME" />
+        </property>
+        <property name="train_begintime" type="java.lang.String">
+            <column name="TRAIN_BEGINTIME" />
+        </property>
+        <property name="train_endtime" type="java.lang.String">
+            <column name="TRAIN_ENDTIME" />
+        </property>
+        <property name="train_cost" type="java.lang.String">
+            <column name="TRAIN_COST" />
+        </property>
+        <property name="train_content" type="java.lang.String">
+            <column name="TRAIN_CONTENT" />
+        </property>
+    </class>
+</hibernate-mapping>

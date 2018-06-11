@@ -13,6 +13,7 @@ public interface StaffDao {
 	int getStaffCount(showStaffVO showstaffVO);
 	//得到员工bypage
 	List<staffListDTO> getStaffByPage(showStaffVO showstaffVO);
+<<<<<<< HEAD
 	//删除员工
 	void deleteStaff(rlzy_staffinfo staff);
 	//修改员工
@@ -21,4 +22,8 @@ public interface StaffDao {
 	void addStaff(rlzy_staffinfo staff);
 	//得到员工byid
 	rlzy_staffinfo getStaffById(String rlzy_staff_id);
+=======
+	
+	
+>>>>>>> zhj
 }

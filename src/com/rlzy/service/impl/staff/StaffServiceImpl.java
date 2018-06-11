@@ -36,6 +36,7 @@ public class StaffServiceImpl implements StaffService {
 //		return staffVO.getStaffs();
 	}
 
+<<<<<<< HEAD
 	@Override
 	public void addStaff(rlzy_staffinfo staff) {
 		// TODO Auto-generated method stub
@@ -62,4 +63,6 @@ public class StaffServiceImpl implements StaffService {
 		return staffDao.getStaffById(rlzy_staff_id);
 	}
 	
+=======
+>>>>>>> zhj
 }		

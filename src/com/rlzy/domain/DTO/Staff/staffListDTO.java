@@ -68,6 +68,7 @@ public class staffListDTO {
 	}
 	@Override
 	public String toString() {
+		System.out.println("这里");
 		return "staffListDTO [rlzy_staff_id=" + rlzy_staff_id + ", staff_name=" + staff_name + ", staff_birth="
 				+ staff_birth + ", staff_status=" + staff_status + ", staff_tel=" + staff_tel + ", staff_sex="
 				+ staff_sex + ", staff_record=" + staff_record + ", staff_address=" + staff_address
@@ -89,6 +90,7 @@ public class staffListDTO {
 		this.staff_record = staff_record;
 		this.staff_address = staff_address;
 		this.staff_depaterment = staff_depaterment;
+		System.out.println("哪里");
 	}
 	
 }

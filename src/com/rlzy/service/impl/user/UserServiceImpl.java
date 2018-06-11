@@ -34,7 +34,6 @@ public class UserServiceImpl implements UserService{
 	
 	//判断用户是否存在
 	public boolean judgeUserByUsername(String user_username) {
-		// TODO Auto-generated method stub
 		return userDao.judgeUserByUsername(user_username);
 	}
 	

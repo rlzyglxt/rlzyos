@@ -55,7 +55,7 @@
 						<i class="icon-submenu lnr lnr-chevron-down"></i>
 				</a>
 					<ul class="dropdown-menu">
-						<li><a href="">机构维护</a></li>
+						<li><a href="<%=basePath%>depaterment/depaterment_toDepatermentlist">机构维护</a></li>
 						<li><a href="<%=basePath%>user/user_skipToUser">用户管理</a></li>
 					</ul></li>
 				
@@ -77,7 +77,12 @@
 						<li data-toggle="modal" data-target="#updatePassword"><a
 							href="#"> <i class="lnr lnr-lock"></i> <span>修改密码</span>
 						</a></li>
+<<<<<<< HEAD
 						<li><a href="<%=basePath%>user/user_logout"> <i	class="lnr lnr-exit"></i> <span>退出登录</span>
+=======
+						<li><a href="<%=basePath%>user/user_logout"> <i
+								class="lnr lnr-exit"></i> <span>退出登录</span>
+>>>>>>> zhj
 						</a></li>
 					</ul></li>
 				<!--  -->

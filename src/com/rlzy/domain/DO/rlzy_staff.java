@@ -1,5 +1,8 @@
 package com.rlzy.domain.DO;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class rlzy_staff {
 	private String rlzy_staff_id;//员工id
 	private String staff_number;//员工工号

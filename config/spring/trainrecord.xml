@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="trainrecordAction" class="com.rlzy.action.trainrecord.TrainrecordAction" scope="prototype">
+		<property name="trainrecordService" ref="trainrecordService"></property>
+	</bean>	
+	
+
+	<bean id="trainrecordService" class="com.rlzy.service.impl.trainrecord.TrainrecordServiceImpl">
+		<property name="trainrecordDao" ref="trainrecordDao"></property>
+	</bean>
+
+	<bean id="trainrecordDao" class="com.rlzy.dao.impl.trainrecord.TrainrecordDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+</beans>

@@ -108,6 +108,7 @@ public class UserAction extends ActionSupport{
 				pw.close();
 			}
 			// 修改密码
+			@SuppressWarnings("unused")
 			public void updatePassword() throws IOException {
 				HttpServletResponse response = ServletActionContext.getResponse();
 				response.setContentType("text/html；charset=utf-8");
@@ -118,7 +119,6 @@ public class UserAction extends ActionSupport{
 					if (ru.getUser_password().equals(oldPassword)) {
 						System.out.println(rlzy_user_id);
 						userService.updatePassword(rlzy_user_id, newPassword);
-						
 						pw.write("updateSuccess");
 					} else {
 						pw.write("oldPasswordError");
@@ -127,7 +127,7 @@ public class UserAction extends ActionSupport{
 					pw.write("updateFail");
 				}
 			}
-			//
+			//通过用户ID查询用户
 			public void getUserById() throws IOException {
 				HttpServletResponse response = ServletActionContext.getResponse();
 				response.setContentType("text/html;charset=utf-8");
