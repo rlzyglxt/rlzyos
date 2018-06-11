@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="paperAction" class="com.rlzy.action.paper.PaperAction" scope="prototype">
+		<property name="paperService" ref="paperService"></property>
+	</bean>	
+	
+
+	<bean id="paperService" class="com.rlzy.service.impl.paper.PaperServiceImpl">
+		<property name="paperDao" ref="paperDao"></property>
+	</bean>
+
+	<bean id="paperDao" class="com.rlzy.dao.impl.paper.PaperDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+</beans>
