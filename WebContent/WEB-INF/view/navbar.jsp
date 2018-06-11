@@ -11,14 +11,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-<!--------------------------------------------------------------------------------->
 <script src="<%=basePath%>js/jquery-3.1.1.min.js"></script>
 <script src="<%=basePath%>js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="<%=basePath%>css/bootstrap.min.css">
-<!--------------------------------------------------------------------------------->
 <link rel="stylesheet" href="<%=basePath%>css/bootstrap-select.min.css">
 <script src="<%=basePath%>js/bootstrap-select.js"></script>
-<!--------------------------------------------------------------------------------->
 <link rel="stylesheet"
 	href="<%=basePath%>css/navbar/chartist-custom.css">
 <link rel="stylesheet" href="<%=basePath%>css/navbar/main.css">
@@ -26,29 +23,19 @@
 	href="<%=basePath%>css/navbar/font-awesome.min.css">
 <link rel="stylesheet" href="<%=basePath%>css/navbar/style.css">
 <link rel="stylesheet" href="<%=basePath%>css/table.css">
-<!--------------------------------------------------------------------------------->
 <link rel="stylesheet" href="<%=basePath%>css/toastr.css" />
 <script src="<%=basePath%>js/toastr.js"></script>
-<!--------------------------------------------------------------------------------->
 <link rel="stylesheet" href="<%=basePath%>css/jquery-confirm.css" />
 <script src="<%=basePath%>js/jquery-confirm.js"></script>
-<!--------------------------------------------------------------------------------->
 <script src="<%=basePath%>js/jquery.bootstrap.wizard.js"></script>
 <script src="<%=basePath%>js/vue.js"></script>
 <script src="<%=basePath%>js/jquery.slimscroll.min.js"></script>
 <script src="<%=basePath%>js/klorofil-common.js"></script>
-<!--------------------------------------------------------------------------------->
 <link rel="stylesheet" href="<%=basePath%>css/jquery.datetimepicker.css" />
-<script type="text/javascript"
-	src="<%=basePath%>js/jquery.datetimepicker.full.js"></script>
-<!--------------------------------------------------------------------------------->
-<script type="text/javascript"
-	src="<%=basePath%>js/user/Input_Select.js"></script>
-<!--------------------------------------------------------------------------------->
-<script type="text/javascript"
-	src="<%=basePath%>js/user/updatePassword.js"></script>
+<script type="text/javascript" src="<%=basePath%>js/jquery.datetimepicker.full.js"></script>
+<script type="text/javascript" src="<%=basePath%>js/user/Input_Select.js"></script>
+<script type="text/javascript" src="<%=basePath%>js/user/updatePassword.js"></script>
 <%-- <script type="text/javascript" src="<%=basePath%>js/user/judgePower.js"></script> --%>
-<!--------------------------------------------------------------------------------->
 <title>Insert title here</title>
 </head>
 <body>
@@ -81,9 +68,6 @@
 			</ul>
 			<!--  -->
 			<ul class="nav navbar-nav navbar-right" style="margin: 0 0px 0 0">
-				<!--  -->
-				<!--  -->
-				<!--  -->
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown"> <i class="fa fa-user-circle"></i> <span
 						id="USER_NAME"><%=request.getSession().getAttribute("user_name")%></span>
@@ -93,8 +77,7 @@
 						<li data-toggle="modal" data-target="#updatePassword"><a
 							href="#"> <i class="lnr lnr-lock"></i> <span>修改密码</span>
 						</a></li>
-						<li><a href="<%=basePath%>user/User_logout"> <i
-								class="lnr lnr-exit"></i> <span>退出登录</span>
+						<li><a href="<%=basePath%>user/user_logout"> <i	class="lnr lnr-exit"></i> <span>退出登录</span>
 						</a></li>
 					</ul></li>
 				<!--  -->

@@ -9,6 +9,8 @@
 			
 			<result name="intoIndex">/WEB-INF/view/index.jsp</result>
 			
+			<result name="LeftIndex">/WEB-INF/view/indexLeft.jsp</result>
+			
 			<result name="intoMain">/WEB-INF/view/user/user.jsp</result>
 			<!-- 注销 -->
 			<result name="logoutSuccess">/login.jsp</result>

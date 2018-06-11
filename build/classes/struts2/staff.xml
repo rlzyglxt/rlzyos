@@ -5,7 +5,22 @@
 <struts>
 	<package name="staff" namespace="/staff" extends="struts-default">
 		<action name="staff_*" method="{1}" class="com.rlzy.action.staff.StaffAction">
+			<!-- 员工信息 -->
 			<result name="page_StaffInfo">/WEB-INF/view/staff/staffList.jsp</result>
+			<!-- 增加员工信息 -->
+			<result name="page_AddStaff">/WEB-INF/view/staff/addStaff.jsp</result>
+			<!-- 修改员工页面 -->
+			<result name="page_UpdataStaff">/WEB-INF/view/staff/updataStaff.jsp</result>
+			<!-- 员工履历信息staff_page_StaffExp -->
+			<result name="page_StaffExp">/WEB-INF/view/staff/staffExpList.jsp</result>
+			
+			
+		</action>
+		<action name="staffExp_*" method="{1}" class="com.rlzy.action.staff.StaffExpAction">
+		
+		</action>
+		<action name="staffAgreement_*" method="{1}" class="com.rlzy.action.staff.StaffAgreementAction">
+		
 		</action>
 	</package>
 </struts>

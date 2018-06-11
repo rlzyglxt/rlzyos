@@ -43,12 +43,16 @@ var changeSex = function(event) {
 	queryConditionTemp.currPage = "1";
 	loadData();
 }
-
-
-function enterRelivePage(event){
-	window.location = "/rlzyos/staff/Staff_intoUpdate?rlzy_staff_id="
-		+ event.id;
+//进入修改页面
+function createConfirmUpdata(event){
+	alert("进入修改页面");
+	enterUpdataPage(event);
 }
+
+function enterUpdataPage(event){
+	window.location = "/rlzyos/staff/staff_page_UpdataStaff?rlzy_staff_id=" + event.id;
+}
+//显示数据
 var loadData = function() {
 	$('#mainPanel').hide();
 	$('#loadingLayer').show();
@@ -86,9 +90,49 @@ var loadData = function() {
 		}
 	});
 }
+//删除员工所有信息(在职，离职)
+var deleteStaff = function(event) {
+	//删除员工的基本信息
+	$.ajax({
+		url : '/rlzyos/staff/staff_deleteStaff',
+		type : 'POST',
+		data : {
+			'rlzy_staff_id' : event.id
+		}
+	});
+}
+	//删除员工的合同信息
+	//删除员工的工作履历
+	//删除员工的奖金记录
+//确认删除提示
+var createConfirmDelete = function(event) {
+	$.confirm({
+		title : '真的要删除吗？',
+		content : '',
+		type : 'red',
+		autoClose : 'closeAction|5000',
+		buttons : {
+			deleteAction : {
+				text : '确认',
+				btnClass : 'btn-blue',
+				action : function() {
+					deleteStaff(event);
+					alert(event);
+					loadData();
+				}
+			},
+			closeAction : {
+				text : '取消',
+				btnClass : 'btn-red',
+				action : function() {
 
-//相应分页
-
+				}
+			}
+		}
+	})
+}
+	
+//相应分页响应
 var firstPage = function() {
 	if (queryConditionTemp.currPage <= 1) {
 		toastr.error("已经是第一页");

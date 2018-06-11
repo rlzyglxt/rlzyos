@@ -1,5 +1,5 @@
 package com.rlzy.domain.DO;
-
+//用户登陆表
 public class rlzy_user {
 	
 	private String rlzy_user_id;//用户id

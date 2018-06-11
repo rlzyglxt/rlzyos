@@ -15,9 +15,9 @@
 <meta http-equiv="expires" content="0">
 <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 <meta http-equiv="description" content="This is my page">
-<link rel="stylesheet" href="<%=basePath%>css/Team/Team.css">
-<script type="text/javascript"
-	src="<%=basePath%>js/staff/showStaffInfor.js"></script>
+<link rel="stylesheet" href="<%=basePath%>css/Staff/Staff.css"> 
+<%-- <link rel="stylesheet" href="<%=basePath%>css/user/userIndex.css"> --%>
+<script type="text/javascript" src="<%=basePath%>js/staff/showStaffInfor.js"></script>
 <style type="text/css">
 #bottomPage:hover {
 	cursor: pointer;
@@ -25,9 +25,13 @@
 </style>
 </head>
 <body>
+	<input id="hideQueryString" type="text" class="hideDiv" />
+	<input id="hideCurrPage" type="text" class="hideDiv" />
+<div id="wrapper">
 	<s:action name="user_implements_navbar" namespace="/user" executeResult="true" />
 	
-	<div style="margin: 80px 0 0 0; float: left; width: 100%;">
+	<s:action name="user_LeftIndex" namespace="/user" executeResult="true" />
+	<div style="margin: 80px 0 0 20px; float: right; width: 82%;">
 		<div class="panel" style="width: 95%; margin: 20px auto;" id="allPage">
 			<!--  -->
 			<div class="panel-heading">
@@ -37,7 +41,7 @@
 				<div class="operation" style="margin: 0 0 6px 50px;">
 					<button style="margin-left: 15px;" type="button"
 						class="btn btn-default"
-						onclick="javascript:location.href='/'">
+						onclick="javascript:location.href='/rlzyos/staff/staff_page_AddStaff'">
 						<i class="fa fa-plus-square"></i> 新建人员
 					</button>
 					<input type="text" id="searchInput" class="form-control"
@@ -90,10 +94,9 @@
 										<td>
 										<a :id="staff.rlzy_staff_id" onclick="skipToDetails(this)">
 										<span v-html="staff.staff_name"></span></a>
-										</td> 
-										
+										</td>
 										<td>{{ staff.staff_sex }}</td>
-										
+								
 										<td>{{ staff.staff_depaterment }}</td>
 										<td>{{ staff.staff_birth }}</td>
 										<td>{{ staff.staff_status }}</td><!-- 员工状态-->
@@ -101,9 +104,9 @@
 										<td>{{ staff.staff_tel }}</td>
 										<td>{{ staff.staff_address }}</td>
 										<!-- <td>{{ staff.staff_theStaffTime }}</td>入职时间 -->
-										<td><button onclick="createConfirm_relive(this)"
+										<td><button onclick="createConfirmUpdata(this)"
 												:id="staff.rlzy_staff_id" class="btn btn-default"><i class="fa fa-pencil-square-o"></i>修改</button>
-											<button onclick="createConfirm(this)"
+											<button onclick="createConfirmDelete(this)"
 												:id="staff.rlzy_staff_id" class="btn btn-danger"><i class="fa fa-trash-o"></i>删除</button></td>
 									</tr>
 								</tbody>
@@ -144,6 +147,8 @@
 					</div>
 				</div>
 			</div>
+			</div>
 		</div>
+</div>
 </body>
 </html>

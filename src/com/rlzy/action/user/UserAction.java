@@ -26,6 +26,9 @@ public class UserAction extends ActionSupport{
 		return "intoIndex";
 	}
 
+	public String LeftIndex() {
+		return "LeftIndex";
+	}
 	public String intoMain() {
 		return "intoMain";
 	}
@@ -140,6 +143,7 @@ public class UserAction extends ActionSupport{
 			public void getUser() throws IOException{
 				showUserVO suv = userService.getUserByPage(queryString, currPage);
 				Gson gson = new Gson();
+				System.out.println("queryString的值"+queryString);
 				String result = gson.toJson(suv);
 				HttpServletResponse response = ServletActionContext.getResponse();
 				response.setContentType("text/html;charset=utf-8");

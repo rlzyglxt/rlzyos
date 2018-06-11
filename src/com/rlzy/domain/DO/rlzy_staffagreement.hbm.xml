@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2018-6-11 15:12:30 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.rlzy.domain.DO.rlzy_staffagreement" table="RLZY_STAFFAGREEMENT">
+        <id name="rlzy_agreement_id" type="java.lang.String">
+            <column name="RLZY_AGREEMENT_ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="agreement_startTime" type="java.lang.String">
+            <column name="AGREEMENT_STARTTIME" />
+        </property>
+        <property name="agreement_overtTime" type="java.lang.String">
+            <column name="AGREEMENT_OVERTTIME" />
+        </property>
+        <property name="agreement_duty" type="java.lang.String">
+            <column name="AGREEMENT_DUTY" />
+        </property>
+        <property name="agreement_agreement_content" type="java.lang.String">
+            <column name="AGREEMENT_AGREEMENT_CONTENT" />
+        </property>
+        <property name="agreement_department" type="java.lang.String">
+            <column name="AGREEMENT_DEPARTMENT" />
+        </property>
+        <property name="agreement_gmt_create" type="java.lang.String">
+            <column name="AGREEMENT_GMT_CREATE" />
+        </property>
+        <property name="agreement_gmt_modified" type="java.lang.String">
+            <column name="AGREEMENT_GMT_MODIFIED" />
+        </property>
+    </class>
+</hibernate-mapping>

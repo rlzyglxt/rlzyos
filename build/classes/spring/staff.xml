@@ -2,18 +2,36 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-
+	<!-- 员工基本信息的spring -->
 	<bean id="staffAction" class="com.rlzy.action.staff.StaffAction" scope="prototype">
 		<property name="staffService" ref="staffService"></property>
 	</bean>	
-	
-
 	<bean id="staffService" class="com.rlzy.service.impl.staff.StaffServiceImpl">
 		<property name="staffDao" ref="staffDao"></property>
 	</bean>
-
 	<bean id="staffDao" class="com.rlzy.dao.impl.staff.StaffDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
+	
+	<!-- 员工履历信息的spring -->
+	<bean id="staffExpAction" class="com.rlzy.action.staff.StaffExpAction" scope="prototype">
+		<property name="staffExpService" ref="staffExpService"></property>
+	</bean>	
+	<bean id="staffExpService" class="com.rlzy.service.impl.staff.StaffExpServiceImpl">
+		<property name="staffExpDao" ref="staffExpDao"></property>
+	</bean>
+	<bean id="staffExpDao" class="com.rlzy.dao.impl.staff.StaffExpDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
 
+	<!-- 员工合同信息的spring -->
+	<bean id="staffAgreementAction" class="com.rlzy.action.staff.StaffAgreementAction" scope="prototype">
+		<property name="staffAgreementService" ref="staffAgreementService"></property>
+	</bean>	
+	<bean id="staffAgreementService" class="com.rlzy.service.impl.staff.StaffAgreementServiceImpl">
+		<property name="staffAgreementDao" ref="staffAgreementDao"></property>
+	</bean>
+	<bean id="staffAgreementDao" class="com.rlzy.dao.impl.staff.StaffAgreementDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
 </beans>

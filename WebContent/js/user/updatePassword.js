@@ -17,7 +17,7 @@ function updatePw() {
 	} else {
 		getXmlHttp();
 		var oldPassword = $("#oldPassword").val();
-		xmlHttp.open("POST","/rctd/user/User_updatePassword",true);
+		xmlHttp.open("POST","/rlzyos/user/user_updatePassword",true);
 		var formData = new FormData();
 		formData.append("oldPassword",oldPassword);
 		formData.append("newPassword",newPassword);

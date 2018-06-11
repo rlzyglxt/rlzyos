@@ -2,7 +2,7 @@ package com.rlzy.domain.VO;
 
 import java.util.List;
 
-import com.rlzy.domain.DO.rlzy_staff;
+import com.rlzy.domain.DO.rlzy_staffinfo;
 import com.rlzy.domain.DTO.Staff.staffListDTO;
 
 

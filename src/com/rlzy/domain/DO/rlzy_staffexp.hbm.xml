@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2018-6-10 17:35:25 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.rlzy.domain.DO.rlzy_staffexp" table="RLZY_STAFFEXP">
+        <id name="rlzy_staffExp_id" type="java.lang.String">
+            <column name="RLZY_STAFFEXP_ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="staffExp_staff" type="java.lang.String">
+            <column name="STAFFEXP_STAFF" />
+        </property>
+        <property name="staffExp_address" type="java.lang.String">
+            <column name="STAFFEXP_ADDRESS" />
+        </property>
+        <property name="staffExp_startTime" type="java.lang.String">
+            <column name="STAFFEXP_STARTTIME" />
+        </property>
+        <property name="staffExp_overTime" type="java.lang.String">
+            <column name="STAFFEXP_OVERTIME" />
+        </property>
+        <property name="staffExp_remark" type="java.lang.String">
+            <column name="STAFFEXP_REMARK" />
+        </property>
+    </class>
+</hibernate-mapping>

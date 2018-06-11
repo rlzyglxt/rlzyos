@@ -3,12 +3,10 @@ var xmlHttp;
 window.onload = function() {
 	getXmlHttp();
 	xmlHttp.open("POST", "/rlzyos/user/user_getUser", true);
-	alert("onload");
 	var formData = new FormData();
 	formData.append("currPage", "1");
 	formData.append("queryString", "");
 	xmlHttp.send(formData);
-	alert("onload323");
 	xmlHttp.onreadystatechange = loadUserBack;
 }
 
@@ -25,17 +23,35 @@ function addUser() {
 		}
 	}
 	$("#addContent").addClass("hideDiv");
-	$("#addLoadingDiv").removeClass("hideDiv");
+	$("#addLoadingDiv").addClass("hideDiv");
 	xmlHttp.open("POST", "/rlzyos/user/user_addUser", true);
 	var formData = new FormData(document.getElementById("addUserForm"));
 	xmlHttp.send(formData);
 	xmlHttp.onreadystatechange = addUserBack;
 }
 
+function addUserBack() {
+	if (isBack()) {
+		var result = xmlHttp.responseText;
+		if (result == "用户名存在") {
+			toastr.error("用户名已经存在请重新填写用户名！");
+			$("#addLoadingDiv").addClass("hideDiv");
+			$("#addContent").removeClass("hideDiv");
+		} else {
+			toastr.success("上传成功！");
+			$("#addLoadingDiv").addClass("hideDiv");
+			$("#addContent").removeClass("hideDiv");
+			$("#addContent input").val("");
+			$("#addContent input[name='user_username']").focus();
+		}
+	}
+}
+
 function reLoadUser() {
 	$("#addContent input").val("");
 	$("#addContent input[name='user_username']").focus();
 	document.getElementById("userTable").innerHTML = "<tr style='background-color: #696969; color: white;'><td>账号</td><td>姓名</td><td>电话号码</td><td>注册时间</td><td>操作</td></tr>";
+	alert("000");
 	$("#loadingDiv").removeClass("hideDiv");
 	$("#tableDiv").addClass("hideDiv");
 	getXmlHttp();
@@ -46,6 +62,7 @@ function reLoadUser() {
 	xmlHttp.send(formData);
 	xmlHttp.onreadystatechange = loadUserBack;
 }
+
 
 function updateUser(event) {
 	$("#updateLoadingDiv").removeClass("hideDiv");
@@ -68,8 +85,8 @@ function updateUserBack() {
 }
 
 function getUserById(event) {
-	$("#updateContent").addClass("hideDiv");
-	$("#updateLoadingDiv").removeClass("hideDiv");
+	$("#updateContent").removeClass("hideDiv");
+	$("#updateLoadingDiv").addClass("hideDiv");
 	getXmlHttp();
 	xmlHttp.open("POST", "/rlzyos/user/user_getUserById", true);
 	var formData = new FormData();
@@ -94,29 +111,11 @@ function getUserByIdBack() {
 	}
 }
 
-function addUserBack() {
-	if (isBack()) {
-		var result = xmlHttp.responseText;
-		
-		alert("adduser")
-		if (result == "用户名存在") {
-			toastr.error("用户名已经存在请重新填写用户名！");
-			$("#addLoadingDiv").addClass("hideDiv");
-			$("#addContent").removeClass("hideDiv");
-		} else {
-			toastr.success("上传成功！");
-			$("#addLoadingDiv").addClass("hideDiv");
-			$("#addContent").removeClass("hideDiv");
-			$("#addContent input").val("");
-			$("#addContent input[name='user_username']").focus();
-		}
-	}
-}
+
 
 function loadUserBack() {
 	if (isBack()) {
 		var result = xmlHttp.responseText;
-		alert(result);
 		result = JSON.parse(result);
 		var userTable = document.getElementById("userTable");
 		var hideQueryString = document.getElementById("hideQueryString");

@@ -64,7 +64,7 @@ public class UserDaoImpl implements UserDao{
 	//更新用户
 	public void updateUser(rlzy_user ru) {
 		// TODO Auto-generated method stub
-		getSession().saveOrUpdate(ru);
+		getSession().update(ru);
 	}
 	//删除用户
 	public void deleteUser(String user_id) {
@@ -104,7 +104,4 @@ public class UserDaoImpl implements UserDao{
 		List<rlzy_user> list = getSession().createQuery(hql).setFirstResult((currPage - 1) * 10).setMaxResults(10).list();
 		return list;
 	}
-
-	
-	
 }
