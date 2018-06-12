@@ -13,7 +13,7 @@ import com.rlzy.service.depaterment.DepatermentService;
 import util.TeamUtil;
 
 public class DepatermentAction extends ActionSupport{
-	
+	private DepatermentService depatermentService;
 	//去到列表页面
 	public String toDepatermentlist() {
 		return "toDepatermentlist";
@@ -93,7 +93,7 @@ public class DepatermentAction extends ActionSupport{
 		}
 		
 //-------------------------------------分割线------------------------------------------------>
-	private DepatermentService depatermentService;
+	
 	private showDepatermentVO depatermentVO;
 	private String depatermentNumber;
 	private rlzy_depaterment depaterment;

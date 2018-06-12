@@ -77,7 +77,7 @@ public class StaffExpAction {
 		String result = gson.toJson(staffExpVO);
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setContentType("text/html;charset=utf-8");
-		System.out.println(result);
+		System.out.println("分页得到履历"+result);
 		PrintWriter pw =response.getWriter();
 		pw.write(result);
 		pw.flush();

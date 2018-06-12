@@ -36,7 +36,9 @@ public class StaffAction extends ActionSupport{
 	public String page_StaffExp(){
 		return "page_StaffExp";
 	}
-	
+	public String page_StaffAgreement(){
+		return "page_StaffAgreement";
+	}
 	
 	
 	//分页获取所有员工

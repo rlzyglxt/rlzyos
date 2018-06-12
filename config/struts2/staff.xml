@@ -12,9 +12,9 @@
 			<!-- 修改员工页面 -->
 			<result name="page_UpdataStaff">/WEB-INF/view/staff/updataStaff.jsp</result>
 			<!-- 员工履历信息staff_page_StaffExp -->
-			<result name="page_StaffExp">/WEB-INF/view/staff/staffExpList.jsp</result>
-			
-			
+			<result name="page_StaffExp">/WEB-INF/view/staff/staffExpList.jsp</result>	
+			<!-- 员工合同 -->
+			<result name="page_StaffAgreement">/WEB-INF/view/staff/staffAgreement.jsp</result>	
 		</action>
 		<action name="staffExp_*" method="{1}" class="com.rlzy.action.staff.StaffExpAction">
 		

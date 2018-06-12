@@ -77,20 +77,14 @@
 						<li data-toggle="modal" data-target="#updatePassword"><a
 							href="#"> <i class="lnr lnr-lock"></i> <span>修改密码</span>
 						</a></li>
-<<<<<<< HEAD
 						<li><a href="<%=basePath%>user/user_logout"> <i	class="lnr lnr-exit"></i> <span>退出登录</span>
-=======
-						<li><a href="<%=basePath%>user/user_logout"> <i
-								class="lnr lnr-exit"></i> <span>退出登录</span>
->>>>>>> zhj
+
 						</a></li>
 					</ul></li>
 				<!--  -->
 			</ul>
 		</div>
 		</nav>
-
-
 		<!-------------------------------------------------修改密码---------------------------------------------------------------  -->
 		<div class="modal fade" id="updatePassword" tabindex="-1"
 			role="dialog" aria-labelledby="myModalLabel">

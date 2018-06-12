@@ -1,16 +1,23 @@
 package com.rlzy.domain.DO;
 //员工合同表
 public class rlzy_staffagreement {
-	private String  rlzy_agreement_id;//合同id 
+	private String rlzy_agreement_id;//合同id 
+	private String agreement_staff;//员工id
 	private String agreement_startTime;//合同开始时间
 	private String agreement_overtTime;//合同结束时间
 	private String agreement_duty;//员工职务
-	private String agreement_agreement_content;//合同内容
+	private String agreement_content;//合同内容
 	private String agreement_department;//员工部门
 	private String agreement_gmt_create;//创建时间
 	private String agreement_gmt_modified;//修改时间
 	
-	
+
+	public String getAgreement_staff() {
+		return agreement_staff;
+	}
+	public void setAgreement_staff(String agreement_staff) {
+		this.agreement_staff = agreement_staff;
+	}
 	public String getAgreement_gmt_create() {
 		return agreement_gmt_create;
 	}
@@ -47,11 +54,11 @@ public class rlzy_staffagreement {
 	public void setAgreement_duty(String agreement_duty) {
 		this.agreement_duty = agreement_duty;
 	}
-	public String getAgreement_agreement_content() {
-		return agreement_agreement_content;
+	public String getAgreement_content() {
+		return agreement_content;
 	}
-	public void setAgreement_agreement_content(String agreement_agreement_content) {
-		this.agreement_agreement_content = agreement_agreement_content;
+	public void setAgreement_content(String agreement_content) {
+		this.agreement_content = agreement_content;
 	}
 	public String getAgreement_department() {
 		return agreement_department;

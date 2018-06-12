@@ -25,7 +25,8 @@
 						<ul class="nav" style="background-color: #13599d;">
 							<li><a href="<%=basePath%>staff/staff_page_StaffInfo"><span>人员基本信息</span></a></li>
 							<li><a href="<%=basePath%>staff/staff_page_StaffExp"><span>员工履历</span></a></li>
-							<li><a href="<%=basePath%>staff/BreakeCase_page_BreakCaseList"><span>员工合同</span></a></li>
+							<li><a href="<%=basePath%>staff/staff_page_StaffAgreement"><span>奖金发放</span></a></li>
+							<li><a href="<%=basePath%>staff/staff_page_StaffAgreement"><span>员工合同</span></a></li>
 							</template>
 						</ul>
 					</li>

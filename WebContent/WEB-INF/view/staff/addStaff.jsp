@@ -20,7 +20,7 @@
 	<s:action name="user_implements_navbar" namespace="/user" executeResult="true" />
 	<s:action name="user_LeftIndex" namespace="/user" executeResult="true" />
 	<!---------------------------------------------------------------------------------------------------->
-	<div style="margin: 80px 0 0 0; float: left; width: 82%; overflow: hidden;">
+	<div style="margin: 80px 0 0 0; float: right; width: 82%; overflow: hidden;">
 		<div class="panel" style="width: 1100px; margin: 20px auto; overflow: inherit; position: relative;">
 			<!--  -->
 			<div class="panel-heading">
