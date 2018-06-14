@@ -21,23 +21,19 @@ public class TrainAction extends ActionSupport{
 	
 	//获取所有培训
 		public void getTrainByPage() throws IOException{
-			System.out.println("fdsljfldsk");
-			showTrainVO suv = trainService.getTrainByPage(queryString, currPage);
-			System.out.println("wewewewewe");
+			trainService.getTrainByPage(trainVO);
 			Gson gson = new Gson();
-			String result = gson.toJson(suv);
+			String result = gson.toJson(trainVO);
 			HttpServletResponse response = ServletActionContext.getResponse();
 			response.setContentType("text/html;charset=utf-8");
 			PrintWriter pw = response.getWriter();
 			pw.write(result);
 			pw.flush();
 			pw.close();
-			
 		}
 		
 		//添加用户
 		public void addTrain() throws IOException{
-			System.out.println("1");
 			HttpServletResponse response=ServletActionContext.getResponse();
 			response.setContentType("text/html;charset=utf-8");
 			PrintWriter pw=response.getWriter();
@@ -49,13 +45,12 @@ public class TrainAction extends ActionSupport{
 			ru.setTrain_cost(train_cost);
 			ru.setTrain_content(train_content);
 			if(trainService.judgeTrainByTrainname(train_name)){
-				pw.write("培训名称存在");
-				System.out.println("培训名称存在");
+				pw.write("samename");
+				System.out.print("培训名称存在");
 			}
 			else{
 				ru.setTrain_name(train_name);
 				trainService.addTrain(ru);
-				System.out.println("添加成功");
 				pw.write("添加成功");
 			}
 			pw.flush();
@@ -64,7 +59,6 @@ public class TrainAction extends ActionSupport{
 		
 		//删除用户
 		public void deleteTrain() throws IOException{
-			System.out.println(train_id);
 			HttpServletResponse response=ServletActionContext.getResponse();
 			response.setContentType("text/html;charset=utf-8");
 			PrintWriter pw=response.getWriter();
@@ -89,8 +83,8 @@ public class TrainAction extends ActionSupport{
 		
 		//修改用户
 		public void updateTrain() throws IOException{
-			rlzy_train ru=new rlzy_train();
-			rlzy_train ruGet=trainService.getTrainById(train_id);
+			rlzy_train ru=trainService.getTrainById(train_id);
+			System.out.println("wewewewewe");
 			ru.setRlzy_train_id(train_id);
 			ru.setTrain_name(train_name);
 			ru.setTrain_begintime(train_begintime);
@@ -98,14 +92,18 @@ public class TrainAction extends ActionSupport{
 			ru.setTrain_cost(train_cost);
 			ru.setTrain_content(train_content);
 			trainService.updateTrain(ru);
+			HttpServletResponse response = ServletActionContext.getResponse();
+			response.setContentType("text/html;charset=utf-8");
+			PrintWriter pw = response.getWriter();
+			pw.write("updataSuccess");
+			pw.flush();
+			pw.close();
 		}
 		
 //-------------------------------------分割线------------------------------------------------>
 	private TrainService trainService;
 	private showTrainVO trainVO;
 	private rlzy_train train;
-	private String queryString;
-	private int currPage;
 	private String train_id;
 	private String train_name;
 	private String train_begintime;
@@ -148,19 +146,6 @@ public class TrainAction extends ActionSupport{
 	}
 	public void setTrain_content(String train_content) {
 		this.train_content = train_content;
-	}
-
-	public String getQueryString() {
-		return queryString;
-	}
-	public void setQueryString(String queryString) {
-		this.queryString = queryString;
-	}
-	public int getCurrPage() {
-		return currPage;
-	}
-	public void setCurrPage(int currPage) {
-		this.currPage = currPage;
 	}
 	
 	public showTrainVO getTrainVO() {

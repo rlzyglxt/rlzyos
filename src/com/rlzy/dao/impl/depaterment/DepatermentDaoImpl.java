@@ -8,24 +8,30 @@ import org.hibernate.SessionFactory;
 
 import com.rlzy.dao.depaterment.DepatermentDao;
 import com.rlzy.domain.DO.rlzy_depaterment;
-import com.rlzy.domain.DO.rlzy_user;
+import com.rlzy.domain.VO.showDepatermentVO;
 
 
 public class DepatermentDaoImpl implements DepatermentDao {
 	
 	//分页
-	public int getDepatermentCount(String queryString, int currPage) {
-		String query = "%" + queryString + "%";
-		String hql = "select count(*) from rlzy_depaterment where (depaterment_name like '" + query + "')";
-		int count = ((Number) getSession().createQuery(hql).uniqueResult()).intValue();
-		return count;
+	public int getDepatermentCount(showDepatermentVO depatermentVO) {
+		String hql="select count(*) from rlzy_depaterment where 1=1";
+		if(depatermentVO.getQueryString() !=null && depatermentVO.getQueryString().trim().length() > 0){
+			hql = hql + " and depaterment_name like '" + "%" + depatermentVO.getQueryString() + "%" + "'";
+		}
+		long count = (long) getSession().createQuery(hql).uniqueResult();
+		return (int) count;
 	}
 
 	//分页得到部门表
-	public List<rlzy_depaterment> getDepatermentByPage(String queryString, int currPage) {
-		String query = "%" + queryString + "%";
+	public List<rlzy_depaterment> getDepatermentByPage(showDepatermentVO depatermentVO) {
+		String query = "%" + depatermentVO.getQueryString() + "%";
 		String hql = "from rlzy_depaterment where (depaterment_name like '" + query + "') ";
-		List<rlzy_depaterment> list = getSession().createQuery(hql).setFirstResult((currPage - 1) * 10).setMaxResults(10).list();
+		Session session = this.getSession();
+		List<rlzy_depaterment> list = session.createQuery(hql)
+				.setFirstResult((depatermentVO.getCurrPage() - 1) * depatermentVO.getCount())
+				.setMaxResults(depatermentVO.getCount()).list();
+
 		return list;
 	}
 	

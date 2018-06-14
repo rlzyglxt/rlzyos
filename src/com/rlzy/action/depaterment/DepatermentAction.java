@@ -8,6 +8,7 @@ import org.apache.struts2.ServletActionContext;
 import com.google.gson.Gson;
 import com.opensymphony.xwork2.ActionSupport;
 import com.rlzy.domain.DO.rlzy_depaterment;
+import com.rlzy.domain.DO.rlzy_train;
 import com.rlzy.domain.VO.showDepatermentVO;
 import com.rlzy.service.depaterment.DepatermentService;
 import util.TeamUtil;
@@ -21,16 +22,16 @@ public class DepatermentAction extends ActionSupport{
 	
 	//获取所有部门
 		public void getDepatermentByPage() throws IOException{
-			showDepatermentVO suv = depatermentService.getDepatermentByPage(queryString, currPage);
+			depatermentService.getDepatermentByPage(depatermentVO);
 			Gson gson = new Gson();
-			String result = gson.toJson(suv);
+			String result = gson.toJson(depatermentVO);
 			HttpServletResponse response = ServletActionContext.getResponse();
 			response.setContentType("text/html;charset=utf-8");
 			PrintWriter pw = response.getWriter();
 			pw.write(result);
 			pw.flush();
 			pw.close();
-			
+
 		}
 		
 		//添加用户
@@ -45,7 +46,8 @@ public class DepatermentAction extends ActionSupport{
 			ru.setDepaterment_tel(depaterment_tel);
 			ru.setDepaterment_num(depaterment_num);
 			if(depatermentService.judgeDepatermentByDepatermentname(depaterment_name)){
-				pw.write("部门名称存在");
+				pw.write("samename");
+				System.out.print("培训名称存在");
 			}
 			else{
 				ru.setDepaterment_name(depaterment_name);
@@ -82,14 +84,19 @@ public class DepatermentAction extends ActionSupport{
 		
 		//修改用户
 		public void updateDepaterment() throws IOException{
-			rlzy_depaterment ru=new rlzy_depaterment();
-			rlzy_depaterment ruGet=depatermentService.getDepatermentById(depaterment_id);
+			rlzy_depaterment ru=depatermentService.getDepatermentById(depaterment_id);
 			ru.setRlzy_depaterment_id(depaterment_id);
 			ru.setDepaterment_name(depaterment_name);
 			ru.setDepaterment_duty(depaterment_duty);
 			ru.setDepaterment_tel(depaterment_tel);
 			ru.setDepaterment_num(depaterment_num);
 			depatermentService.updateDeapterment(ru);
+			HttpServletResponse response = ServletActionContext.getResponse();
+			response.setContentType("text/html;charset=utf-8");
+			PrintWriter pw = response.getWriter();
+			pw.write("updataSuccess");
+			pw.flush();
+			pw.close();
 		}
 		
 //-------------------------------------分割线------------------------------------------------>
@@ -97,8 +104,6 @@ public class DepatermentAction extends ActionSupport{
 	private showDepatermentVO depatermentVO;
 	private String depatermentNumber;
 	private rlzy_depaterment depaterment;
-	private String queryString;
-	private int currPage;
 	private String depaterment_id;
 	private String depaterment_name;
 	private String depaterment_duty;
@@ -135,19 +140,6 @@ public class DepatermentAction extends ActionSupport{
 	}
 	public void setDepaterment_num(String depaterment_num) {
 		this.depaterment_num = depaterment_num;
-	}
-
-	public String getQueryString() {
-		return queryString;
-	}
-	public void setQueryString(String queryString) {
-		this.queryString = queryString;
-	}
-	public int getCurrPage() {
-		return currPage;
-	}
-	public void setCurrPage(int currPage) {
-		this.currPage = currPage;
 	}
 	public showDepatermentVO getDepatermentVO() {
 		return depatermentVO;

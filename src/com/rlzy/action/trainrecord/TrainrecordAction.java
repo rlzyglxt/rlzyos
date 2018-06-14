@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletResponse;
+
 import org.apache.struts2.ServletActionContext;
+
 import com.google.gson.Gson;
 import com.opensymphony.xwork2.ActionSupport;
 import com.rlzy.domain.DO.rlzy_trainrecord;
@@ -15,109 +17,144 @@ import util.TeamUtil;
 
 public class TrainrecordAction extends ActionSupport{
 	
-	//去到列表页面
-	public String toTrainrecordlist() throws IOException{
-		return "toTrainrecordlist";
+	private TrainrecordService trainrecordService;
+
+	public TrainrecordService getTrainrecordService() {
+		return trainrecordService;
+	}
+
+	public void setTrainrecordService(TrainrecordService trainrecordService) {
+		this.trainrecordService = trainrecordService;
 	}
 	
-	//获取所有
-		public void getTrainrecordByPage() throws IOException{
-			System.out.println("fdsljfldsk");
-			showTrainrecordVO suv = trainrecordService.getTrainrecordByPage(queryString, currPage);
-			System.out.println("wewewewewe");
-			Gson gson = new Gson();
-			String result = gson.toJson(suv);
-			HttpServletResponse response = ServletActionContext.getResponse();
-			response.setContentType("text/html;charset=utf-8");
-			PrintWriter pw = response.getWriter();
-			pw.write(result);
-			pw.flush();
-			pw.close();
-			
+	//去到列表页面
+		public String toTrainrecordlist() throws IOException{
+			return "toTrainrecordlist";
 		}
-		
-		//添加
+	
+	//增加信息
 		public void addTrainrecord() throws IOException{
-			System.out.println("1");
+			HttpServletResponse response = ServletActionContext.getResponse();
+			response.setContentType("text/html;charset=utf-8");
+			PrintWriter pw =response.getWriter();
+			rlzy_trainrecord rs = new rlzy_trainrecord();
+			rs.setRlzy_record_id(TeamUtil.getUuid());
+			rs.setStaff_id(staff_id);
+			rs.setRecord_grade(record_grade);
+			rs.setTrain_id(train_id);
+			rs.setPaper_name(paper_name);
+			rs.setStaffTrain_gmt_create(TeamUtil.getStringSecond());
+			rs.setStaffTrain_gmt_modified(TeamUtil.getStringSecond());
+			trainrecordService.addTrainrecord(rs);
+			pw.write("addsuccess");
+			pw.flush();
+			pw.close();
+		}	
+		
+		//删除一个信息
+		public void deleteTrainrecord() throws IOException {
+			System.out.println("delete_id="+rlzy_record_id);
 			HttpServletResponse response=ServletActionContext.getResponse();
 			response.setContentType("text/html;charset=utf-8");
 			PrintWriter pw=response.getWriter();
-			rlzy_trainrecord ru=new rlzy_trainrecord();
-			ru.setRlzy_record_id(TeamUtil.getUuid());
-			ru.setStaff_number(staff_number);
-			ru.setStaff_name(staff_name);
-			ru.setRecord_grade(record_grade);
-			ru.setTrain_name(train_name);
-			ru.setPaper_name(paper_name);
-			trainrecordService.addTrainrecord(ru);
-			System.out.println("添加成功");
-			pw.write("添加成功");
+			trainrecordService.deleteTrainrecord(rlzy_record_id);
+			pw.write("delete");
 			pw.flush();
 			pw.close();
 		}
 		
-		//删除
-		public void deleteTrainrecord() throws IOException{
-			System.out.println(record_id);
-			HttpServletResponse response=ServletActionContext.getResponse();
-			response.setContentType("text/html;charset=utf-8");
-			PrintWriter pw=response.getWriter();
-			trainrecordService.deleteTrainrecord(record_id);
-			pw.write("删除成功");
-			pw.flush();
-			pw.close();
-		}
-		
-		//通过ID查询
-		public void getTrainrecordById() throws IOException {
+		//修改信息
+		public void updataTrainrecord() throws IOException{
+			rlzy_trainrecord trainrecord = trainrecordService.getTrainrecordById(rlzy_record_id);
+			trainrecord.setStaff_id(staff_id);
+			trainrecord.setRecord_grade(record_grade);
+			trainrecord.setTrain_id(train_id);
+			trainrecord.setPaper_name(paper_name);
+			trainrecord.setStaffTrain_gmt_modified(TeamUtil.getStringSecond());
+			trainrecordService.upadteTrainrecord(trainrecord);
 			HttpServletResponse response = ServletActionContext.getResponse();
 			response.setContentType("text/html;charset=utf-8");
 			PrintWriter pw = response.getWriter();
-			rlzy_trainrecord ru = trainrecordService.getTrainrecordById(record_id);
+			pw.write("updataSuccess");
+			pw.flush();
+			pw.close();
+		}
+		
+		//得到个人信息
+		public void getTrainrecordByExpId() throws IOException{
+			System.out.println("rlzy_record_id="+rlzy_record_id);
+			rlzy_trainrecord rs = trainrecordService.getTrainrecordById(rlzy_record_id);
+			HttpServletResponse response = ServletActionContext.getResponse();
+			System.out.println("rlzy_record_id"+rlzy_record_id);
+			response.setContentType("text/html;charset=utf-8");
 			Gson gson = new Gson();
-			String result = gson.toJson(ru);
+			String result = gson.toJson(rs);
+			PrintWriter pw =response.getWriter();
 			pw.write(result);
 			pw.flush();
 			pw.close();
 		}
 		
-		//修改
-		public void updateTrainrecord() throws IOException{
-			rlzy_trainrecord ru=new rlzy_trainrecord();
-			rlzy_trainrecord ruGet=trainrecordService.getTrainrecordById(record_id);
-			ru.setRlzy_record_id(record_id);
-			ru.setStaff_number(staff_number);
-			ru.setStaff_name(staff_name);
-			ru.setRecord_grade(record_grade);
-			ru.setTrain_name(train_name);
-			ru.setPaper_name(paper_name);
-			trainrecordService.updateTrainrecord(ru);
+		//通过工号得到姓名
+		public void getStaffNameByStaffNumber() throws IOException{
+			HttpServletResponse response = ServletActionContext.getResponse();
+			response.setContentType("text/html;charset=utf-8");
+			String relsult = trainrecordService.getStaffNameByStaffNumber(staff_id);
+			Gson gson = new Gson();
+			String result = gson.toJson(relsult);
+			PrintWriter pw =response.getWriter();
+			pw.write(result);
+			pw.flush();
+			pw.close();
 		}
+		
+		//得到信息
+		public void getTrainrecordByPage() throws IOException{
+			trainrecordService.getTrainrecordByPage(trainrecordVO);
+			Gson gson = new Gson();
+			String result = gson.toJson(trainrecordVO);
+			HttpServletResponse response = ServletActionContext.getResponse();
+			response.setContentType("text/html;charset=utf-8");
+			System.out.println("分页得到"+result);
+			PrintWriter pw =response.getWriter();
+			pw.write(result);
+			pw.flush();
+			pw.close();
+		}
+	
+	
+	
+	
 		
 //-------------------------------------分割线------------------------------------------------>
-	private TrainrecordService trainrecordService;
-	private showTrainrecordVO trainrecordVO;
 	private rlzy_trainrecord trainrecord;
-	private String queryString;
-	private int currPage;
-	private String record_id;
-	private String staff_number;
-	private String staff_name;
+	private showTrainrecordVO trainrecordVO;
+	private String rlzy_record_id;
+	private String staff_id;
 	private String record_grade;
-	private String train_name;
+	private String train_id;
 	private String paper_name;
+	private String staffTrain_gmt_create;
+	private String staffTrain_gmt_modified;
 	
-	public String getTrain_name() {
-		return train_name;
+
+	public rlzy_trainrecord getTrainrecord() {
+		return trainrecord;
 	}
-	public void setTrain_name(String train_name) {
-		this.train_name = train_name;
+	public void setTrainrecord(rlzy_trainrecord trainrecord) {
+		this.trainrecord = trainrecord;
 	}
-	public String getRecord_id() {
-		return record_id;
+	public showTrainrecordVO getTrainrecordVO() {
+		return trainrecordVO;
 	}
-	public void setRecord_id(String record_id) {
-		this.record_id = record_id;
+	public void setTrainrecordVO(showTrainrecordVO trainrecordVO) {
+		this.trainrecordVO = trainrecordVO;
+	}
+	public String getRlzy_record_id() {
+		return rlzy_record_id;
+	}
+	public void setRlzy_record_id(String rlzy_record_id) {
+		this.rlzy_record_id = rlzy_record_id;
 	}
 	public String getRecord_grade() {
 		return record_grade;
@@ -125,59 +162,38 @@ public class TrainrecordAction extends ActionSupport{
 	public void setRecord_grade(String record_grade) {
 		this.record_grade = record_grade;
 	}
+	public String getStaff_id() {
+		return staff_id;
+	}
+	public void setStaff_id(String staff_id) {
+		this.staff_id = staff_id;
+	}
+	public String getTrain_id() {
+		return train_id;
+	}
+	public void setTrain_id(String train_id) {
+		this.train_id = train_id;
+	}
+
 	public String getPaper_name() {
 		return paper_name;
 	}
 	public void setPaper_name(String paper_name) {
 		this.paper_name = paper_name;
 	}
-	public String getStaff_number() {
-		return staff_number;
+	public String getStaffTrain_gmt_create() {
+		return staffTrain_gmt_create;
 	}
-	public void setStaff_number(String staff_number) {
-		this.staff_number = staff_number;
+	public void setStaffTrain_gmt_create(String staffTrain_gmt_create) {
+		this.staffTrain_gmt_create = staffTrain_gmt_create;
 	}
-	public String getStaff_name() {
-		return staff_name;
+	public String getStaffTrain_gmt_modified() {
+		return staffTrain_gmt_modified;
 	}
-	public void setStaff_name(String staff_name) {
-		this.staff_name = staff_name;
-	}
-	
-	public String getQueryString() {
-		return queryString;
-	}
-	public void setQueryString(String queryString) {
-		this.queryString = queryString;
-	}
-	public int getCurrPage() {
-		return currPage;
-	}
-	public void setCurrPage(int currPage) {
-		this.currPage = currPage;
+	public void setStaffTrain_gmt_modified(String staffTrain_gmt_modified) {
+		this.staffTrain_gmt_modified = staffTrain_gmt_modified;
 	}
 	
-	public TrainrecordService getTrainrecordService() {
-		return trainrecordService;
-	}
-	public void setTrainrecordService(TrainrecordService trainrecordService) {
-		this.trainrecordService = trainrecordService;
-	}
-
-	public showTrainrecordVO getTrainrecordVO() {
-		return trainrecordVO;
-	}
-	public void setTrainrecordVO(showTrainrecordVO trainrecordVO) {
-		this.trainrecordVO = trainrecordVO;
-	}
-	public rlzy_trainrecord getTrainrecord() {
-		return trainrecord;
-	}
-	public void setTrainrecord(rlzy_trainrecord trainrecord) {
-		this.trainrecord = trainrecord;
-	}
-	
-
 
 	
 }

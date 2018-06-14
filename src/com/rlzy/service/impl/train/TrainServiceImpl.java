@@ -10,22 +10,13 @@ import com.rlzy.service.train.TrainService;
 public class TrainServiceImpl implements TrainService {
 
 	//分页查询培训
-	public showTrainVO getTrainByPage(String queryString, int currPage) {
-		showTrainVO suv = new showTrainVO();
-		System.out.println("跳转到Trainserviceimpl");
-		suv.setCurrPage(currPage);
-		suv.setQueryString(queryString);
-		suv.setPageSize(10);
-		int count = trainDao.getTrainCount(queryString, currPage);
-		suv.setCount(count);
-		System.out.println("userservice,"+count);
-		double c = count;
-		int totalPage = (int) Math.ceil(c / 10);
-		suv.setTotalPage(totalPage);
-		List<rlzy_train> list = trainDao.getTrainByPage(queryString, currPage);
-		suv.setList(list);
-		System.out.println(suv);
-		return suv;
+	public void getTrainByPage(showTrainVO trainVO) {
+		int count = trainDao.getTrainCount(trainVO);
+		trainVO.setTotalPage((int) Math.ceil((double) count / 10));
+		trainVO.setCount(count);
+		int a = trainVO.getTotalPage();
+		List<rlzy_train> list = trainDao.getTrainByPage(trainVO);
+		trainVO.setList(list);
 	}
 	
 	//判断培训名称是否存在

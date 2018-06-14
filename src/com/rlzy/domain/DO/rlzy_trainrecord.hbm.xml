@@ -8,20 +8,23 @@
             <column name="RLZY_RECORD_ID" />
             <generator class="assigned" />
         </id>
-        <property name="staff_number" type="java.lang.String">
-            <column name="STAFF_NUMBER" />
+        <property name="staff_id" type="java.lang.String">
+            <column name="STAFF_ID" />
         </property>
-        <property name="staff_name" type="java.lang.String">
-            <column name="STAFF_NAME" />
+        <property name="train_id" type="java.lang.String">
+            <column name="TRAIN_ID" />
         </property>
         <property name="record_grade" type="java.lang.String">
             <column name="RECORD_GRADE" />
         </property>
-        <property name="train_name" type="java.lang.String">
-            <column name="TRAIN_NAME" />
-        </property>
         <property name="paper_name" type="java.lang.String">
             <column name="PAPER_NAME" />
+        </property>
+        <property name="staffTrain_gmt_create" type="java.lang.String">
+            <column name="STAFFTRAIN_GMT_CREATE" />
+        </property>
+        <property name="staffTrain_gmt_modified" type="java.lang.String">
+            <column name="STAFFTRAIN_GMT_MODIFIED" />
         </property>
     </class>
 </hibernate-mapping>

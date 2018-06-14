@@ -6,8 +6,9 @@ var queryConditionTemp = {
 	"totalPage" : "",
 	"pageCount" : "10",
 	"totalCount" : "",
-	"staffExp_staff" : ""//查询工号
+	"staff_number" : ""//查询工号
 }
+
 window.onload = function() {
 	allPageVue = new Vue({
 		el : '#allPage',
@@ -16,15 +17,16 @@ window.onload = function() {
 			totalPage : '',
 			pageCount : '10',
 			totalCount : '',
-			staffExps : ''
+			list : ''
 		}
 	});
 	loadData();
 }
+
 //改变筛选条件
 //查询姓名
 var changeName = function(event) {
-	queryConditionTemp.staffExp_staff = event.value;
+	queryConditionTemp.staff_number = event.value;
 	queryConditionTemp.currPage = "1";
 	loadData();
 }
@@ -34,19 +36,19 @@ var loadData = function() {
 	$('#mainPanel').hide();
 	$('#loadingLayer').show();
 	var queryCondition = {
-		"staffExpVO.currPage" : queryConditionTemp.currPage,
-		"staffExpVO.totalPage" : queryConditionTemp.totalPage,
-		"staffExpVO.pageCount" : queryConditionTemp.pageCount,
-		"staffExpVO.totalCount" : queryConditionTemp.totalCount,
-		"staffExpVO.staffExp_staff" : queryConditionTemp.staffExp_staff,
+		"trainrecordVO.currPage" : queryConditionTemp.currPage,
+		"trainrecordVO.totalPage" : queryConditionTemp.totalPage,
+		"trainrecordVO.pageCount" : queryConditionTemp.pageCount,
+		"trainrecordVO.totalCount" : queryConditionTemp.totalCount,
+		"trainrecordVO.staff_number" : queryConditionTemp.staff_number,
 	}	
 	$.ajax({
-		url : '/rlzyos/staff/staffExp_getAllStaffExpByPage',
+		url : '/rlzyos/trainrecord/trainrecord_getTrainrecordByPage',
 		type : 'POST',
 		data : queryCondition,
 		success : function(data) {
 			var result = JSON.parse(data);
-			allPageVue.staffExps = result.staffExps;
+			allPageVue.list = result.list;
 			allPageVue.currPage = result.currPage;
 			allPageVue.totalPage = result.totalPage;
 			allPageVue.pageCount = result.pageCount;
@@ -56,57 +58,51 @@ var loadData = function() {
 			queryConditionTemp.totalPage = result.totalPage;
 			queryConditionTemp.pageCount = result.pageCount;
 			queryConditionTemp.totalCount = result.totalCount;
-			queryConditionTemp.staffExp_staff = result.staffExp_staff;
+			queryConditionTemp.staff_number = result.staff_number;
 			$('#loadingLayer').hide();
 			$('#mainPanel').show();
 		}
 	});
 }
 
-//跳转页面修改
-//function createConfirmUpdata(event){
-//	alert("进入修改页面");
-//	enterUpdataPage(event);
-//}
-//function enterUpdataPage(event){
-//	window.location = "/rlzyos/staff/staff_page_UpdataStaff?rlzy_staff_id=" + event.id;
-//}
 //进入修改员工履历模态框
 function createConfirmUpdata(event) {
 	$("#updateLoadingDiv").removeClass("hideDiv");
 	$("#updateContent").addClass("hideDiv");
 	getXmlHttp();
-	xmlHttp.open("POST", "/rlzyos/staff/staffExp_getStaffExpByExpId", true);
+	xmlHttp.open("POST", "/rlzyos/trainrecord/trainrecord_getTrainrecordByExpId", true);
 	var formData = new FormData();
-	formData.append("rlzy_staffExp_id", event.id);
+	formData.append("rlzy_record_id", event.id);
 	xmlHttp.send(formData);
-	xmlHttp.onreadystatechange = getStaffExpByIdBack;
+	xmlHttp.onreadystatechange = getTrainrecordByIdBack;
 }
 
 
 //通过Id得到履历回显
-function getStaffExpByIdBack() {
+function getTrainrecordByIdBack() {
 	if (isBack()) {
 		var result = xmlHttp.responseText;
 		result = JSON.parse(result);
-		$("#staffExp_staff").val(result.staffExp_staff);
-		$("#staffExp_address").val(result.staffExp_address);
-		$("#staffExp_startTime").val(result.staffExp_startTime);
-		$("#staffExp_overTime").val(result.staffExp_overTime);
-		$("#staffExp_remark").val(result.staffExp_remark);
-		$("#updateStaffExpBtn").val(result.rlzy_staffExp_id);
+		$("#staff_number").val(result.staff_number);
+		$("#staff_name").val(result.staff_name);
+		$("#record_grade").val(result.record_grade);
+		$("#train_name").val(result.train_name);
+		$("#paper_name").val(result.paper_name);
+		$("#updateTrainrecordBtn").val(result.rlzy_record_id);
 		$("#updateLoadingDiv").addClass("hideDiv");
 		$("#updateContent").removeClass("hideDiv");
 	}
+	getName(event);
 }
+
 //修改
-function updateStaffExp(event) {
+function updateTrainrecord(event) {
 	$("#updateLoadingDiv").removeClass("hideDiv");
 	$("#updateContent").addClass("hideDiv");
 	getXmlHttp();
-	xmlHttp.open("POST", "/rlzyos/staff/staffExp_updataStaffExp", true);
-	var formData = new FormData(updatestaffExpForm);
-	formData.append("rlzy_staffExp_id", event.value);
+	xmlHttp.open("POST", "/rlzyos/trainrecord/trainrecord_updataTrainrecord", true);
+	var formData = new FormData(updatetrainrecordForm);
+	formData.append("rlzy_record_id", event.value);
 	xmlHttp.send(formData);
 	xmlHttp.onreadystatechange = function() {
 		if (isBack()) {
@@ -117,41 +113,31 @@ function updateStaffExp(event) {
 	}
 }
 
-////工作经历添加一条
-//function add_oneStaffExp() {
-//	console.log("工作履历添加");
-//	// 添加一条数据
-//	var staffWork_address_val = $(".staffWork_address").val();
-//	var staffWork_duty_val = $(".staffWork_duty").val();
-//	var staffWork_startTime_val = $(".staffWork_startTime").val();
-//	var staffWork_stopTime_val = $(".staffWork_stopTime").val();
-//	var staffWork_remarks_val = $(".staffWork_remarks").val();
-//	
-//	$.ajax({
-//		type : "POST",
-//		url : "/xsjsglxt/team/StaffWork_saveWorks?works.staffWork_staff="
-//				+ staff_id,
-//		data : {
-//			"works[0].staffWork_address" : staffWork_address_val,
-//			"works[0].staffWork_duty" : staffWork_duty_val,
-//			"works[0].staffWork_startTime" : staffWork_startTime_val,
-//			"works[0].staffWork_stopTime" : staffWork_stopTime_val,
-//			"works[0].staffWork_remarks" : staffWork_remarks_val,
-//		},
-//		success : function(data) {
-//			toastr.success('添加工作成功！');
-//			show_workAjax(staff_id);
-//		}
-//	});
-//}
+//删除
+function createConfirmDelete(event) {
+	getXmlHttp();
+	xmlHttp.open("POST", "/rlzyos/trainrecord/trainrecord_deleteTrainrecord", true);
+	var formData = new FormData();
+	formData.append("rlzy_record_id", event.id);
+	xmlHttp.send(formData);
+	xmlHttp.onreadystatechange = function() {
+		if (isBack()) {
+			toastr.success("删除成功");
+			loadData();
+		}
+	}
+}
+
+
+
 //查询姓名
 function getName(event) {
 	$.ajax({
 			type : "POST",
-			url : "/rlzyos/staff/staffExp_getStaffNameByStaffNumber",
+			url : "/rlzyos/trainrecord/trainrecord_getStaffNameByStaffNumber",
 			data : {
-				"staffExp_staff": event.value,
-			},
+				"staff_number": event.value,
+			}, 
 			success : function(data) {
 				var result = JSON.parse(data);
 				var staff_name = $("#staff_addname");
@@ -160,44 +146,30 @@ function getName(event) {
 		});
 }
 
-function addStaffExp(){
-	for (var i = 0; i < document.addstaffExpForm.elements.length - 1; i++) {
-		if (document.addstaffExpForm.elements[i].value == "") {
+function addTrainrecord(){
+	for (var i = 0; i < document.addtrainrecordForm.elements.length - 1; i++) {
+		if (document.addtrainrecordForm.elements[i].value == "") {
 			toastr.error("当前表单不能有空项");
 			document.form.elements[i].focus();
 			return false;
 		}
 	}
 	getXmlHttp();
-	xmlHttp.open("POST", "/rlzyos/staff/staffExp_addStaffExp", true);
-	var formData = new FormData(document.getElementById("addstaffExpForm"));
+	xmlHttp.open("POST", "/rlzyos/trainrecord/trainrecord_addTrainrecord", true);
+	var formData = new FormData(document.getElementById("addtrainrecordForm"));
 	xmlHttp.send(formData);
 	xmlHttp.onreadystatechange = function (){
 		if(isBack())
 		var result = xmlHttp.responseText;
-		if(result == "addSuccess"){
+		if(result == "addsuccess"){
 			toastr.success('添加成功！')
+			$("#addLoadingDiv").addClass("hideDiv");
+			$("#addContent").removeClass("hideDiv");
+			$("#addContent input").val("");
 		}
 	}
 }
 
-
-
-//删除工作经历一条
-function delete_work(delete_button) {
-	//把td送页面上删
-	  var this_trId=delete_button.parentNode.parentNode.querySelector(".xsjsglxt_staffWork_id").getAttribute("id");
-	  console.log("本行的id"+this_trId);
-		//把这行td的数据数据库中删除
-		$.ajax({
-			url : '/xsjsglxt/team/StaffWork_deleteWork?work.xsjsglxt_staffWork_id='+this_trId,
-			type : 'POST',
-			success:function(data){
-				toastr.success('删除工作经历成功！');
-				show_workAjax(staff_id);
-			},
-		});
-}
 //相应分页响应
 var firstPage = function() {
 	if (queryConditionTemp.currPage <= 1) {

@@ -7,28 +7,30 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import com.rlzy.dao.train.TrainDao;
 import com.rlzy.domain.DO.rlzy_train;
+import com.rlzy.domain.DTO.Staff.staffTrainDTO;
+import com.rlzy.domain.VO.showTrainVO;
 
 
 public class TrainDaoImpl implements TrainDao {
 	
 	//分页
-	public int getTrainCount(String queryString, int currPage) {
-		String query = "%" + queryString + "%";
-		String hql = "select count(*) from rlzy_train where (train_name like '" + query + "')";
-		System.out.println(hql);
-		System.out.println("hqlcount");
-		int count = ((Number) getSession().createQuery(hql).uniqueResult()).intValue();
-		System.out.println(count);
-		System.out.println("getTraincount");
-		return count;
+	public int getTrainCount(showTrainVO trainVO) {
+		String hql="select count(*) from rlzy_train where 1=1";
+		if(trainVO.getQueryString() !=null && trainVO.getQueryString().trim().length() > 0){
+			hql = hql + " and train_name like '" + "%" + trainVO.getQueryString() + "%" + "'";
+		}
+		long count = (long) getSession().createQuery(hql).uniqueResult();
+		return (int) count;
 	}
 
 	//分页得到培训表
-	public List<rlzy_train> getTrainByPage(String queryString, int currPage) {
-		String query = "%" + queryString + "%";
+	public List<rlzy_train> getTrainByPage(showTrainVO trainVO) {
+		String query = "%" + trainVO.getQueryString() + "%";
 		String hql = "from rlzy_train where (train_name like '" + query + "') ";
-		System.out.println(hql+"page");
-		List<rlzy_train> list = getSession().createQuery(hql).setFirstResult((currPage - 1) * 10).setMaxResults(10).list();
+		Session session = this.getSession();
+		List<rlzy_train> list = session.createQuery(hql)
+				.setFirstResult((trainVO.getCurrPage() - 1) * trainVO.getCount())
+				.setMaxResults(trainVO.getCount()).list();
 		return list;
 	}
 	

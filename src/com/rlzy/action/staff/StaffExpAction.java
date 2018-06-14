@@ -40,8 +40,10 @@ public class StaffExpAction {
 		
 	}	
 	//删除一个工作履历信息
-	public void deleteStaffExp(){
-		
+	public void deleteStaffExp() throws IOException {
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("text/html;charset=utf-8");
+		staffExpService.deleteStaffExps(rlzy_staffExp_id);
 	}
 	//通过工号得到姓名
 	public void getStaffNameByStaffNumber() throws IOException{

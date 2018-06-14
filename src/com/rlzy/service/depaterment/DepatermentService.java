@@ -7,7 +7,7 @@ public interface DepatermentService {
 
 
 	//得到部门bypage
-	public showDepatermentVO getDepatermentByPage(String queryString, int currPage);
+	public void getDepatermentByPage(showDepatermentVO depatermentVO);
 	//判断用户是否存在
 	public boolean judgeDepatermentByDepatermentname(String depaterment_name);
 	//添加用户

@@ -9,19 +9,13 @@ import com.rlzy.service.depaterment.DepatermentService;
 public class DepatermentServiceImpl implements DepatermentService {
 
 	//分页查询部门
-	public showDepatermentVO getDepatermentByPage(String queryString, int currPage) {
-		showDepatermentVO suv = new showDepatermentVO();
-		suv.setCurrPage(currPage);
-		suv.setQueryString(queryString);
-		suv.setPageSize(10);
-		int count = depatermentDao.getDepatermentCount(queryString, currPage);
-		suv.setCount(count);
-		double c = count;
-		int totalPage = (int) Math.ceil(c / 10);
-		suv.setTotalPage(totalPage);
-		List<rlzy_depaterment> list = depatermentDao.getDepatermentByPage(queryString, currPage);
-		suv.setList(list);
-		return suv;
+	public void getDepatermentByPage(showDepatermentVO depatermentVO) {
+		int count = depatermentDao.getDepatermentCount(depatermentVO);
+		depatermentVO.setTotalPage((int) Math.ceil((double) count / 10));
+		depatermentVO.setCount(count);
+		List<rlzy_depaterment> list = depatermentDao.getDepatermentByPage(depatermentVO);
+		depatermentVO.setList(list);
+
 	}
 	
 	//判断用户是否存在
