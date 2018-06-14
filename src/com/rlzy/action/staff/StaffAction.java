@@ -12,6 +12,11 @@ import com.rlzy.service.staff.StaffService;
 
 public class StaffAction extends ActionSupport{
 	private StaffService staffService;
+	private showStaffVO staffVO;
+	private String staffNumber;
+	private rlzy_staffinfo staff;
+	private String rlzy_staff_id;
+	
 	public StaffService getStaffService() {
 		return staffService;
 	}
@@ -61,20 +66,20 @@ public class StaffAction extends ActionSupport{
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter pw = response.getWriter();
-		pw.write("deleteSuccess");
+		pw.write("deleteSuccess员工");
 		pw.flush();
 		pw.close();
 	}
 	//修改员工信息
 	public void updataStaff() throws IOException{
-
+		System.out.println("修改员工信息");
 		staff.setRlzy_staff_id(rlzy_staff_id);
 		System.out.println(staff);
 		staffService.updataStaff(staff);
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter pw = response.getWriter();
-		pw.write("updataSuccess");
+		pw.write("updataStaffSuccess");
 		pw.flush();
 		pw.close();
 	}
@@ -84,7 +89,7 @@ public class StaffAction extends ActionSupport{
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter pw = response.getWriter();
-		pw.write("addSuccess");
+		pw.write(staff.getRlzy_staff_id());
 		pw.flush();
 		pw.close();
 	}
@@ -104,20 +109,7 @@ public class StaffAction extends ActionSupport{
 		pw.close();
 	}
 	
-	private showStaffVO staffVO;
-	private String staffNumber;
-	private rlzy_staffinfo staff;
-	private String rlzy_staff_id;//
-//	private String staff_address;
-//	private String staff_agreement_id;
-//	private String staff_birth;
-//	private String staff_depaterment;
-//	private String staff_duty;
-//	private String staff_name;
-//	private String staff_number;
-//	private String staff_record;
-//	private String staff_sex;
-//	private String staff_status;
+
 	
 	
 	public showStaffVO getStaffVO() {

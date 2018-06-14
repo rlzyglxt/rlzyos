@@ -8,15 +8,19 @@ import com.rlzy.domain.VO.showAgreementVO;
 
 public interface StaffAgreementDao {
 	//添加合同
-	void addStaffAgreement(rlzy_staffagreement staffagreement);
-	//删除合同
-	void deleteStaffAgreement(String rlzy_agreement_id);
+	void addStaffAgreement(List<rlzy_staffagreement> staffagreement);
+	//删除所有合同
+	void deleteStaffAgreements(String agreement_staff);
 	//修改合同
 	void updataStaffAgreement(rlzy_staffagreement staffagreement);
 	//得到员工byID
-	rlzy_staffagreement getStaffAgreementById(String rlzy_agreement_id);
+	List<rlzy_staffagreement> getStaffAgreementByStaffId(String agreement_staff);
 	//分页显示
 	List<staffAgreementDTO> getStaffAgreementByPage(showAgreementVO showagreementVO);
 	//
 	int getStaffAgreementCount(showAgreementVO showagreementVO);
+	
+	rlzy_staffagreement getStaffAgreementById(String rlzy_agreement_id);
+	
+	void deleteStaffAgreement(String rlzy_agreement_id);
 }

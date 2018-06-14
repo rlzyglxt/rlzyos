@@ -14,9 +14,9 @@ public interface StaffExpService {
 	//修改该员工的信息
 	void upadteStaffExp(rlzy_staffexp staffexp);
 	//删除该员工所有履历
-	void deleteStaffExp(String staffExp_staff);
+	void deleteStaffExps(String staffExp_staff);
 	//删除该员工一条履历
-	void deleteStaffExps(String rlzy_staffExp_id);
+	void deleteStaffExp(String rlzy_staffExp_id);
 
 	void saveStaffExp(List<rlzy_staffexp> staffexps);
 	//分页得到工作履历
@@ -25,4 +25,5 @@ public interface StaffExpService {
 	String getStaffNameByStaffNumber(String staffExp_staff);
 
 	void addStaffExp(rlzy_staffexp rs);
+
 }

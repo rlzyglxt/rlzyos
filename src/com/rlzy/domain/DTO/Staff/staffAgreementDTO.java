@@ -1,7 +1,7 @@
 package com.rlzy.domain.DTO.Staff;
 
 public class staffAgreementDTO {
-	private String rlzy_agreement_id;//合同id
+	private String rlzy_agreement_id;//合同id 
 	private String staff_number;//员工工号
 	private String staff_name;//员工姓名
 	private String staff_duty;//员工职务

@@ -7,11 +7,17 @@ public class rlzy_staffagreement {
 	private String agreement_overtTime;//合同结束时间
 	private String agreement_duty;//员工职务
 	private String agreement_content;//合同内容
-	private String agreement_department;//员工部门
+	private String agreement_remark;
 	private String agreement_gmt_create;//创建时间
 	private String agreement_gmt_modified;//修改时间
 	
 
+	public String getAgreement_remark() {
+		return agreement_remark;
+	}
+	public void setAgreement_remark(String agreement_remark) {
+		this.agreement_remark = agreement_remark;
+	}
 	public String getAgreement_staff() {
 		return agreement_staff;
 	}
@@ -60,12 +66,5 @@ public class rlzy_staffagreement {
 	public void setAgreement_content(String agreement_content) {
 		this.agreement_content = agreement_content;
 	}
-	public String getAgreement_department() {
-		return agreement_department;
-	}
-	public void setAgreement_department(String agreement_department) {
-		this.agreement_department = agreement_department;
-	}
-	
 	
 }

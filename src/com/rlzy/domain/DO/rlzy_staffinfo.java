@@ -9,10 +9,14 @@ public class rlzy_staffinfo {
 	private String staff_tel;//电话
 	private String staff_address;//地址
 	private String staff_record;//学历
-	private String staff_depaterment;//部门
+	private String staff_depaterment;//部门id外键
 	private String staff_duty;//职务
 	private String staff_status;//工作状态
-	
+	private String staff_inTime;//入职时间
+	private String staff_leaveTime;//离职时间
+	private String staff_leaveReason;//离职原因
+	private String staff_gmt_create;//创建时间
+	private String staff_gmt_modified;//修改时间
 	public String getRlzy_staff_id() {
 		return rlzy_staff_id;
 	}
@@ -79,5 +83,37 @@ public class rlzy_staffinfo {
 	public void setStaff_status(String staff_status) {
 		this.staff_status = staff_status;
 	}
+	public String getStaff_inTime() {
+		return staff_inTime;
+	}
+	public void setStaff_inTime(String staff_inTime) {
+		this.staff_inTime = staff_inTime;
+	}
+	public String getStaff_leaveTime() {
+		return staff_leaveTime;
+	}
+	public void setStaff_leaveTime(String staff_leaveTime) {
+		this.staff_leaveTime = staff_leaveTime;
+	}
+	public String getStaff_leaveReason() {
+		return staff_leaveReason;
+	}
+	public void setStaff_leaveReason(String staff_leaveReason) {
+		this.staff_leaveReason = staff_leaveReason;
+	}
+	public String getStaff_gmt_create() {
+		return staff_gmt_create;
+	}
+	public void setStaff_gmt_create(String staff_gmt_create) {
+		this.staff_gmt_create = staff_gmt_create;
+	}
+	public String getStaff_gmt_modified() {
+		return staff_gmt_modified;
+	}
+	public void setStaff_gmt_modified(String staff_gmt_modified) {
+		this.staff_gmt_modified = staff_gmt_modified;
+	}
+	
+	
 	
 }

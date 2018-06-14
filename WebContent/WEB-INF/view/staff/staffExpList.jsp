@@ -75,7 +75,7 @@
 										<td>{{ staffExp.staffExp_remark }}</td>
 										<td><button onclick="createConfirmUpdata(this)" 
 												:id="staffExp.rlzy_staffExp_id" data-toggle='modal' data-target='#updateStaffExp' class='btn btn-primary'><i class="fa fa-pencil-square-o"></i>修改</button>
-											<button onclick="createConfirmDelete(this)"
+											<button onclick="createConfirmDeleteExp(this)"
 												:id="staffExp.rlzy_staffExp_id" class="btn btn-danger"><i class="fa fa-trash-o"></i>删除</button></td>
 									</tr>
 								</tbody>
@@ -181,24 +181,24 @@
 							<table class="table" style="margin: 0 auto;">
 								<tr>
 									<td><label>工号：</label></td>
-									<td><input id="staffExp_staff" name="staffExp_staff" oninput="getName(this)" 
+									<td><input id="staffExp_staff" name="staffExp.staffExp_staff" oninput="getName(this)" 
 									placeholder="请输入工号" type="text" class="form-control"></td>
 									<td><label>姓名：</label></td>
-									<td><input id="staff_addname" name="staff_addname" type="text" class="form-control"></td>
+									<td><input id="staff_addname" name="staffExp.staff_addname" type="text" value="没有发该员工" class="form-control"></td>
 								</tr>
 								<tr>
 									<td><label>工作地点：</label></td>
-									<td><input id="staffExp_address" name="staffExp_address"
+									<td><input id="staffExp_address" name="staffExp.staffExp_address"
 										type="text" class="form-control" placeholder="请输入工作地点"></td>
 									<td><label>开始时间：</label></td>
-									<td><input id="staffExp_startTime" name="staffExp_startTime"
+									<td><input id="staffExp_startTime" name="staffExp.staffExp_startTime"
 										type="text" class="staff_StartTime form-control" placeholder="请输入开始时间"></td>
 								</tr>
 								<tr><td><label>结束时间：</label></td>
-									<td><input id="staffExp_overTime" name="staffExp_overTime"
+									<td><input id="staffExp_overTime" name="staffExp.staffExp_overTime"
 										type="text" class="staff_OverTime form-control" placeholder="请输入结束时间"></td>
 									<td><label>备注：</label></td>
-									<td><input id="staffExp_remark" name="staffExp_remark"
+									<td><input id="staffExp_remark" name="staffExp.staffExp_remark"
 										type="text" class="form-control" placeholder="请输入备注"></td>
 								</tr>
 							</table>

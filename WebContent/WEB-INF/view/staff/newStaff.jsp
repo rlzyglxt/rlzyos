@@ -22,8 +22,7 @@
 	<!---------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------->
-	<div
-		style="margin: 80px 0 0 0; float: left; width: 100%; overflow: hidden;">
+	<div style="margin: 80px 0 0 0; float: left; width: 82%; overflow: hidden;">
 		<div class="panel"
 			style="width: 1100px; margin: 20px auto; overflow: inherit; position: relative;">
 			<!--  -->
@@ -299,7 +298,7 @@
 						</form>
 					</div>
 					<div style="background: #e7e6e6; width: 1000px; height: 1px;"></div>
-					u<div class="long_tableBox">
+						<div class="long_tableBox">
 						<span class="staff_info_title">家庭情况</span>
 						<button style="margin-left: 10px;" class="btn btn-default btn-xs"
 							type="button" data-toggle="modal" data-target="#addFamily_Modal"

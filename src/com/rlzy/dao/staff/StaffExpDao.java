@@ -15,7 +15,7 @@ public interface StaffExpDao {
 	//
 	void deleteStaffExps(String staffExp_staff);
 	
-	void addStaffExp(List<rlzy_staffexp> staffExp);
+	void addStaffExps(List<rlzy_staffexp> staffExp);
 	
 	void updataStaffExp(rlzy_staffexp staffExp);
 	//

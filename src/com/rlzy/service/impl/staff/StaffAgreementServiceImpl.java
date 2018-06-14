@@ -5,7 +5,6 @@ import java.util.List;
 import com.rlzy.dao.staff.StaffAgreementDao;
 import com.rlzy.domain.DO.rlzy_staffagreement;
 import com.rlzy.domain.DTO.Staff.staffAgreementDTO;
-import com.rlzy.domain.DTO.Staff.staffListDTO;
 import com.rlzy.domain.VO.showAgreementVO;
 import com.rlzy.service.staff.StaffAgreementService;
 
@@ -23,28 +22,38 @@ public class StaffAgreementServiceImpl implements StaffAgreementService {
 	}
 
 	@Override
-	public void addStaffAgreement(rlzy_staffagreement staffagreement) {
+	public void addStaffAgreement(List<rlzy_staffagreement> staffagreements) {
 		// TODO Auto-generated method stub
-		staffagreement.setRlzy_agreement_id(TeamUtil.getUuid());
-		staffAgreementDao.addStaffAgreement(staffagreement);
+		for(rlzy_staffagreement rlzy_staffagreement : staffagreements ){
+			rlzy_staffagreement.setRlzy_agreement_id(TeamUtil.getUuid());
+			rlzy_staffagreement.setAgreement_gmt_create(TeamUtil.getStringSecond());
+			rlzy_staffagreement.setAgreement_gmt_modified(TeamUtil.getStringSecond());
+		}
+		staffAgreementDao.addStaffAgreement(staffagreements);
 	}
 
 	@Override
-	public void deleteStaffAgreement(String rlzy_agreement_id) {
+	public void deleteStaffAgreements(String agreement_staff) {
 		// TODO Auto-generated method stub
-		staffAgreementDao.deleteStaffAgreement(rlzy_agreement_id);
+		staffAgreementDao.deleteStaffAgreements(agreement_staff);
 	}
 
 	@Override
 	public void updataStaffAgreement(rlzy_staffagreement staffagreement) {
 		// TODO Auto-generated method stub
-		staffAgreementDao.updataStaffAgreement(staffagreement);
+		rlzy_staffagreement rs = staffAgreementDao.getStaffAgreementById(staffagreement.getRlzy_agreement_id());
+		rs.setAgreement_content(staffagreement.getAgreement_content());
+		rs.setAgreement_gmt_modified(TeamUtil.getStringSecond());
+		rs.setAgreement_overtTime(staffagreement.getAgreement_overtTime());
+		rs.setAgreement_startTime(staffagreement.getAgreement_startTime());
+		rs.setAgreement_remark(staffagreement.getAgreement_remark());
+//		staffAgreementDao.updataStaffAgreement(rs);
 	}
 	
 	@Override
-	public rlzy_staffagreement getStaffAgreementById(String rlzy_agreement_id) {
+	public List<rlzy_staffagreement> getStaffAgreementByStaffId(String agreement_staff) {
 		// TODO Auto-generated method stub
-		return staffAgreementDao.getStaffAgreementById(rlzy_agreement_id);
+		return staffAgreementDao.getStaffAgreementByStaffId(agreement_staff);
 	}
 
 	@Override
@@ -56,6 +65,18 @@ public class StaffAgreementServiceImpl implements StaffAgreementService {
 		showagreementVO.setTotalCount(count);
 		List<staffAgreementDTO> staffAgreement = staffAgreementDao.getStaffAgreementByPage(showagreementVO);
 		showagreementVO.setStaffAgreements(staffAgreement);
+	}
+
+	@Override
+	public rlzy_staffagreement getStaffAgreementById(String rlzy_agreement_id) {
+		// TODO Auto-generated method stub
+		return staffAgreementDao.getStaffAgreementById(rlzy_agreement_id);
+	}
+
+	@Override
+	public void deleteStaffAgreement(String rlzy_agreement_id) {
+		// TODO Auto-generated method stub
+		staffAgreementDao.deleteStaffAgreement(rlzy_agreement_id);
 	}
 	
 }

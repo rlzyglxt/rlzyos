@@ -48,25 +48,30 @@ public class StaffExpDaoImpl implements StaffExpDao {
 		staffexp.setRlzy_staffExp_id(rlzy_staffExp_id);
 		getSession().delete(staffexp);
 	}
+	//删除该员工所有履历
+	@Override
+	public void deleteStaffExps(String staffExp_staff) {
+		// TODO Auto-generated method stub
+		String hql = "delete from rlzy_staffexp where staffExp_staff='" + staffExp_staff + "'";
+		getSession().createQuery(hql).executeUpdate();
+	}
+
+	
 	//保存员工履历
 	@Override
-	public void addStaffExp(List<rlzy_staffexp> staffExp) {
+	public void addStaffExps(List<rlzy_staffexp> staffExp) {
+		for (rlzy_staffexp rlzy_staffexp : staffExp) {
+
+			getSession().saveOrUpdate(rlzy_staffexp);
+		}
 		// TODO Auto-generated method stub
-		getSession().saveOrUpdate(staffExp);
+		
 	}
 	//修改员工履历
 	@Override
 	public void updataStaffExp(rlzy_staffexp staffExp) {
 		// TODO Auto-generated method stub
 		getSession().update(staffExp);
-	}
-	//删除该员工所有履历
-	@Override
-	public void deleteStaffExps(String staffExp_staff) {
-		// TODO Auto-generated method stub
-		rlzy_staffexp staffexps = new rlzy_staffexp();
-		staffexps.setStaffExp_staff(staffExp_staff);
-		getSession().delete(staffexps);
 	}
 
 	@Override

@@ -46,7 +46,6 @@
 		<div style="width: auto; float: left; line-height: 78px; margin: 0 0 0 30px; font-size: 30px; color: white;">
 			</div>
 	</nav>
-	
 	<!-- 左DIV -->
 	<div class="left">
 		<div class="login-left center-block">

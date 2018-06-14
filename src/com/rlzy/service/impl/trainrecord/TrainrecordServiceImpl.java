@@ -3,7 +3,7 @@ package com.rlzy.service.impl.trainrecord;
 import java.util.List;
 
 import com.rlzy.dao.trainrecord.TrainrecordDao;
-import com.rlzy.domain.DO.rlzy_trainrecord;
+import com.rlzy.domain.DO.rlzy_stafftrain;
 import com.rlzy.domain.VO.showTrainrecordVO;
 import com.rlzy.service.trainrecord.TrainrecordService;
 
@@ -22,14 +22,14 @@ public class TrainrecordServiceImpl implements TrainrecordService {
 		double c = count;
 		int totalPage = (int) Math.ceil(c / 10);
 		suv.setTotalPage(totalPage);
-		List<rlzy_trainrecord> list = trainrecordDao.getTrainrecordByPage(queryString, currPage);
+		List<rlzy_stafftrain> list = trainrecordDao.getTrainrecordByPage(queryString, currPage);
 		suv.setList(list);
 		System.out.println(suv);
 		return suv;
 	}
 	
 	//添加
-	public void addTrainrecord(rlzy_trainrecord ru) {
+	public void addTrainrecord(rlzy_stafftrain ru) {
 		trainrecordDao.addTrainrecord(ru);
 	}
 	
@@ -39,13 +39,13 @@ public class TrainrecordServiceImpl implements TrainrecordService {
 	}
 	
 	//ID得到
-	public rlzy_trainrecord getTrainrecordById(String rlzy_trainrecord_id) {
-		rlzy_trainrecord ru = trainrecordDao.getTrainrecordById(rlzy_trainrecord_id);
+	public rlzy_stafftrain getTrainrecordById(String rlzy_trainrecord_id) {
+		rlzy_stafftrain ru = trainrecordDao.getTrainrecordById(rlzy_trainrecord_id);
 		return ru;
 	}
 	
 	//修改信息
-	public void updateTrainrecord(rlzy_trainrecord ru) {
+	public void updateTrainrecord(rlzy_stafftrain ru) {
 		trainrecordDao.updateTrainrecord(ru);
 	}
 

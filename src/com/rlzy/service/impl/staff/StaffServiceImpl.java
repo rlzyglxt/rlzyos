@@ -39,6 +39,8 @@ public class StaffServiceImpl implements StaffService {
 	public void addStaff(rlzy_staffinfo staff) {
 		// TODO Auto-generated method stub
 		staff.setRlzy_staff_id(TeamUtil.getUuid());
+		staff.setStaff_gmt_create(TeamUtil.getStringSecond());
+		staff.setStaff_gmt_modified(TeamUtil.getStringSecond());
 		staffDao.addStaff(staff);;
 	}
 

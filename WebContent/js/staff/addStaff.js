@@ -1,3 +1,4 @@
+var newStaff = {};
 var xmlHttp;
 // addStaff新建人员
 function Add_Staff() {
@@ -11,7 +12,7 @@ function Add_Staff() {
 				},
 				确定 : {
 					action : function() {
-						// 判断身份证是否为空
+						// 判断是否为空
 						var number = document.getElementsByName("staff.staff_number")[0].value;
 						var name = document.getElementsByName("staff.staff_name")[0].value;
 						var duty = document.getElementsByName("staff.staff_duty")[0].value;
@@ -38,17 +39,215 @@ function addStaff_Info(url) {
 		console.log("c2");
 		if (isBack()) {
 			console.log(xmlHttp.responseText);
-			var id = xmlHttp.responseText;
-			switch (id) {
-			case "addSuccess":
-				toastr.success("新建成功");
+			var id = xmlHttp.responseText;//返回id
+			staffExp_ajax(id);
+			staffAgreement_ajax(id);
+			toastr.success("新建成功");
 			//返回修改页面(未做)	
-			window.location.href = '/rlzyos/staff/staff_page_StaffInfo';
-		}
+			/*window.location.href = '/rlzyos/staff/staff_page_StaffInfo';*/
+		
 	}
 	
 }
 }
+//添加员工履历
+function staffExp_ajax(id){	
+	getXmlHttp();
+	var formdata = new FormData();
+	// 得到每行
+	var s_tr = document.getElementById("staffExp_table").getElementsByTagName("tr");
+
+	for (var i = 1; i < s_tr.length; i++) {
+		// 得到每列
+		var s_td = s_tr[i].getElementsByTagName("td");
+		for (var j = 0; j < s_td.length; j++) {
+			// 得到每列的class名
+			if (s_td[j].innerHTML == "") {
+				s_td[j].innerHTML = "d";
+			}
+			var s_tdName = s_td[j].getAttribute("name");
+			console.log("列名" + s_tdName);
+			// 将每列的名和值放到formdata中
+			formdata.append(s_tdName, s_td[j].innerHTML);
+		}
+		alert(id);
+		// 将id放到每行中
+		formdata.append("staffExps.staffExp_staff", id);
+	}
+	xmlHttp.onreadystatechange = function() {
+		console.log("c3");
+		if (isBack()) {
+			// console.log("studyExp_ajax"+xmlHttp.responseText);
+		}
+
+	};
+	xmlHttp.open("post", "/rlzyos/staff/staffExp_addStaffExp", true);
+	// xmlHttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded;charset=utf-8");
+	xmlHttp.send(formdata);
+}
+//添加履历到表格
+var w = 0;
+function add_staffExp() {
+	console.log("add_workExperience start");
+	// 把表格的数据存到json中
+	var staffExp_address = document.querySelector(".staffExp_address").value;
+	var staffExp_startTime = document.querySelector(".staffExp_startTime").value;
+	var staffExp_overTime = document.querySelector(".staffExp_overTime").value;
+	var staffExp_remark = document.querySelector(".staffExp_remark").value;
+
+	console.log(staffExp_address);
+	newStaff['staffExp_address'] = staffExp_address;
+	newStaff['staffExp_startTime'] = staffExp_startTime;
+	newStaff['staffExp_overTime'] = staffExp_overTime;
+	newStaff['staffExp_remark'] = staffExp_remark;
+	console.log(newStaff['staffExp_address']);
+	// 动态创建表格
+	var staffExp_table = document.getElementById("staffExp_table");
+	staffExp_table.setAttribute("class", "long_table");
+
+	var exp_tr = document.createElement("tr");
+	//地址
+	var staffWork_address = document.createElement("td");
+	staffWork_address.innerHTML = newStaff['staffExp_address'];
+	staffWork_address.setAttribute("name", "staffExps[" + w + "].staffExp_address");
+	console.log(staffWork_address.innerHTML);
+	//开始时间
+	var staffExp_startTime = document.createElement("td");
+	staffExp_startTime.innerHTML = newStaff['staffExp_startTime'];
+	staffExp_startTime.setAttribute("name", "staffExps[" + w + "].staffExp_startTime");
+	console.log(staffExp_startTime.innerHTML);
+	//结束时间
+	var staffExp_overTime = document.createElement("td");
+	staffExp_overTime.innerHTML = newStaff['staffExp_overTime'];
+	staffExp_overTime.setAttribute("name", "staffExps[" + w	+ "].staffExp_overTime");
+	//备注
+	var staffExp_remark = document.createElement("td");
+	staffExp_remark.innerHTML = newStaff['staffExp_remark'];
+	staffExp_remark.setAttribute("name", "staffExps[" + w + "].staffExp_remark");
+
+	// 增加删除按钮的列
+	var reviseTd = document.createElement("td");
+	// 增加删除按钮及样式
+	var delete_button = document.createElement("button");
+	delete_button.className = 'btn btn-default btn-xs';
+	delete_button.setAttribute("type", "button");
+	delete_button.addEventListener('click', function() {
+		this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode);}, false);
+	delete_button.style['margin-left'] = "10px";
+	// 添加按钮里的图标
+	var delete_icon = document.createElement("i");
+	delete_icon.className = "fa fa-trash";
+	delete_button.append(delete_icon);
+	reviseTd.append(delete_button);
+
+	exp_tr.appendChild(staffWork_address);
+	exp_tr.appendChild(staffExp_startTime);
+	exp_tr.appendChild(staffExp_overTime);
+	exp_tr.appendChild(staffExp_remark);
+	exp_tr.appendChild(reviseTd);
+	staffExp_table.children[0].append(exp_tr);
+	w++;
+}
+
+//添加员工合同到表格
+function staffAgreement_ajax(id){	
+	getXmlHttp();
+	var formdata = new FormData();
+	// 得到每行
+	var s_tr = document.getElementById("staffAgreement_table").getElementsByTagName("tr");
+
+	for (var i = 1; i < s_tr.length; i++) {
+		// 得到每列
+		var s_td = s_tr[i].getElementsByTagName("td");
+		for (var j = 0; j < s_td.length; j++) {
+			// 得到每列的class名
+			if (s_td[j].innerHTML == "") {
+				s_td[j].innerHTML = "d";
+			}
+			var s_tdName = s_td[j].getAttribute("name");
+			console.log("列名" + s_tdName);
+			// 将每列的名和值放到formdata中
+			formdata.append(s_tdName, s_td[j].innerHTML);
+		}
+		alert(id);
+		// 将id放到每行中
+		formdata.append("staffagreements.agreement_staff", id);
+	}
+	xmlHttp.onreadystatechange = function() {
+		console.log("c3");
+		if (isBack()) {
+			// console.log("studyExp_ajax"+xmlHttp.responseText);
+		}
+
+	};
+	xmlHttp.open("post", "/rlzyos/staff/staffAgreement_addStaffAgreement", true);
+	// xmlHttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded;charset=utf-8");
+	xmlHttp.send(formdata);
+}
+var y = 0;
+function add_staffAgreement() {
+	console.log("add_workExperience start");
+	// 把表格的数据存到json中
+	var staffAgreement_startTime = document.querySelector(".agreement_startTime").value;
+	var staffAgreement_overtTime = document.querySelector(".agreement_overtTime").value;
+	var staffAgreement_content = document.querySelector(".agreement_content").value;
+	var staffAgreement_remark = document.querySelector(".agreement_remark").value;
+
+	console.log(staffAgreement_startTime);
+	newStaff['staffAgreement_startTime'] = staffAgreement_startTime;
+	newStaff['staffAgreement_overtTime'] = staffAgreement_overtTime;
+	newStaff['staffAgreement_content'] = staffAgreement_content;
+	newStaff['staffAgreement_remark'] = staffAgreement_remark;
+	console.log(newStaff['staffAgreement_startTime']);
+	// 动态创建表格
+	var staffAgreement_table = document.getElementById("staffAgreement_table");
+	staffAgreement_table.setAttribute("class", "long_table");
+
+	var agr_tr = document.createElement("tr");
+	//开始时间
+	var staffAgreement_startTime = document.createElement("td");
+	staffAgreement_startTime.innerHTML = newStaff['staffAgreement_startTime'];
+	staffAgreement_startTime.setAttribute("name", "staffagreements[" + y + "].agreement_startTime");
+	console.log(staffAgreement_startTime.innerHTML);
+	//结束时间
+	var staffAgreement_overtTime = document.createElement("td");
+	staffAgreement_overtTime.innerHTML = newStaff['staffAgreement_overtTime'];
+	staffAgreement_overtTime.setAttribute("name", "staffagreements[" + y + "].agreement_overtTime");
+	console.log(staffAgreement_overtTime.innerHTML);
+	//内容
+	var staffAgreement_content = document.createElement("td");
+	staffAgreement_content.innerHTML = newStaff['staffAgreement_content'];
+	staffAgreement_content.setAttribute("name", "staffagreements[" + y	+ "].agreement_content");
+	//备注
+	var staffAgreement_remark = document.createElement("td");
+	staffAgreement_remark.innerHTML = newStaff['staffAgreement_remark'];
+	staffAgreement_remark.setAttribute("name", "staffagreements[" + y + "].agreement_remark");
+
+	// 增加删除按钮的列
+	var reviseTd = document.createElement("td");
+	// 增加删除按钮及样式
+	var delete_button = document.createElement("button");
+	delete_button.className = 'btn btn-default btn-xs';
+	delete_button.setAttribute("type", "button");
+	delete_button.addEventListener('click', function() {
+		this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode);}, false);
+	delete_button.style['margin-left'] = "10px";
+	// 添加按钮里的图标
+	var delete_icon = document.createElement("i");
+	delete_icon.className = "fa fa-trash";
+	delete_button.append(delete_icon);
+	reviseTd.append(delete_button);
+
+	agr_tr.appendChild(staffAgreement_startTime);
+	agr_tr.appendChild(staffAgreement_overtTime);
+	agr_tr.appendChild(staffAgreement_content);
+	agr_tr.appendChild(staffAgreement_remark);
+	agr_tr.appendChild(reviseTd);
+	staffAgreement_table.children[0].append(agr_tr);
+	y++;
+}
+
+
 // 改变性别方法
 function changeSex(even) {
 	var sex = document.getElementById("staff_sex");
@@ -63,12 +262,6 @@ function delete_long() {
 	this_tbody.removeChild(this.parentNode.parentNode);
 }
 
-if (window.File && window.FileList && window.FileReader && window.Blob) {
-	document.querySelector(".photo-file").addEventListener('change',
-			photo_preview, false);
-} else {
-	document.write('您的浏览器不支持File Api');
-}
 function stopPropagation(e) {
 	if (e.stopPropagation)
 		e.stopPropagation();
@@ -85,8 +278,10 @@ function clear_iquery() {
 
 function getXmlHttp() {
 	if (window.XMLHttpRequest) {
+		// IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
 		xmlHttp=new XMLHttpRequest();
 	} else {
+		// IE6, IE5 浏览器执行代码
 		xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
 	}
 }

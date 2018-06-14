@@ -1,14 +1,29 @@
 package com.rlzy.domain.DO;
 
 public class rlzy_staffmove {
-	private String rlzy_staffMove_id;
-	private String staffMove_staff;
-	private String staffMove_time;
-	private String staffMove_bfdepartment;
-	private String staffMove_nowdepartment;
-	private String staffMove_bfduty;
-	private String staffMove_nowduty;
-	private String staffMove_remark;
+	private String rlzy_staffMove_id;//人员调动id
+	private String staffMove_staff;//调动人员id
+	private String staffMove_time;//调动时间
+	private String staffMove_bfdepartment;//原部门
+	private String staffMove_nowdepartment;//现部门
+	private String staffMove_bfduty;//原职务
+	private String staffMove_nowduty;//现职务
+	private String staffMove_remark;//备注
+	private String staffMove_gmt_create;//创建时间
+	private String staffMove_gmt_modified;//修改时间
+	
+	public String getStaffMove_gmt_create() {
+		return staffMove_gmt_create;
+	}
+	public void setStaffMove_gmt_create(String staffMove_gmt_create) {
+		this.staffMove_gmt_create = staffMove_gmt_create;
+	}
+	public String getStaffMove_gmt_modified() {
+		return staffMove_gmt_modified;
+	}
+	public void setStaffMove_gmt_modified(String staffMove_gmt_modified) {
+		this.staffMove_gmt_modified = staffMove_gmt_modified;
+	}
 	public String getRlzy_staffMove_id() {
 		return rlzy_staffMove_id;
 	}

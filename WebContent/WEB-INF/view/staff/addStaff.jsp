@@ -21,7 +21,7 @@
 	<s:action name="user_LeftIndex" namespace="/user" executeResult="true" />
 	<!---------------------------------------------------------------------------------------------------->
 	<div style="margin: 80px 0 0 0; float: right; width: 82%; overflow: hidden;">
-		<div class="panel" style="width: 1100px; margin: 20px auto; overflow: inherit; position: relative;">
+		<div class="panel" style="width: auto; margin: 20px auto; overflow: inherit; position: relative;">
 			<!--  -->
 			<div class="panel-heading">
 				<h3 class="panel-title">新增人员</h3>
@@ -72,7 +72,7 @@
 								
 								<td><label class="staff_info_label">出生年月</label></td>
 								<td><input name="staff.staff_birth" id="idNumber"
-									class="staff_birthTime" type="text"></td>
+									class="_Time form-control" type="text"></td>
 								
 							</tr>
 							<tr>
@@ -127,15 +127,191 @@
 							</tr>
 						</table>
 					</form>
+		</div>	</div>
+<!-- 长表格 -->
+				<div class="longBoxs">
+					<div class="long_tableBox">
+						<span class="staff_info_title">员工履历</span>
+						<button style="margin-right: 10px;float:right;" class="btn btn-default btn-xs"
+							type="button" data-toggle="modal" data-target="#addStaffExp_Modal" onclick="">
+							<i class="fa fa-plus-square"></i>添加履历
+						</button>
+
+						<form id="staff_exp">
+							<div class="long_tb">
+								<table id="staffExp_table">
+									<tbody>
+										<tr class="long_table">
+											<th>工作地址</th>
+											<th>开始时间</th>
+											<th>结束时间</th>
+											<th>备注</th>
+											<th>操作</th>
+										</tr>
+
+									</tbody>
+								</table>
+								<table id="staffExp_table">
+									<tbody>
+									
+									</tbody>
+								</table>
+
+							</div>
+						</form>
+					</div>		
+					<div style="background: #e7e6e6; width: 1000px; height: 1px;"></div>
+					<div class="long_tableBox">
+						<span class="staff_info_title">员工合同</span>
+						<button style="margin-left: 10px;float:right;" class="btn btn-default btn-xs"
+							type="button" data-toggle="modal" data-target="#addAgreement_Modal"
+							onclick="">
+							<i class="fa fa-plus-square"></i>添加合同
+						</button>
+						<form id="staff_agreement">
+							<div class="long_tb">
+								<table id="staffAgreement_table">
+									<tbody>
+										<tr class="long_table">
+											<th>合同开始时间</th>
+											<th>合同结束时间</th>
+											<th>合同内容</th>
+											<th>备注</th>
+											<th>操作</th>
+										</tr>
+									</tbody>
+								</table>
+								<table id="staffAgreement_table">
+									<tbody>
+
+									</tbody>
+								</table>
+							</div>
+						</form>
+					</div>		
+	
+			</div>
+				<button style="float: right;" type="button"	class="btn btn-default button" onclick="staff_relive()">
+					<i class="fa fa-pencil"></i> 保存
+				</button>
+			</div>
+		</div>
+</div>
+<!--添加添加员工履历模态框 start  -->
+	<div class="modal fade" id="addStaffExp_Modal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">添加履历</h4>
+				</div>
+				<div class="modal-body">
+
+					<form action="" id="studyExp_form" accept-charset="utf-8">
+
+						<table>
+							<tbody>
+								<tr>
+									<td><label class="staff_info_label">工作地址</label></td>
+									<td><input style="font-size: 12px;" id="staffExp_address"
+										class="staffExp_address" type="text"></td></td>
+								</tr>
+								<tr>
+									<td><label class="staff_info_label">开始时间</label></td>
+									<td><input style="font-size: 12px;" id="staffExp_startTime"
+										class="staffExp_startTime _Time" type="text"></td>
+								</tr>
+								<tr>
+									<td><label class="staff_info_label">结束时间</label></td>
+									<td><input style="font-size: 12px;" id="staffExp_overTime"
+										class="staffExp_overTime _Time"></td>
+								</tr>
+								<tr>
+									<td><label class="staff_info_label">备注</label></td>
+									<td colspan="6"><textarea id="staffExp_remark"
+											class="staffExp_remark"
+											style="width: 480px; border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
+											rows="3" cols="62"></textarea></td>
+								</tr>
+							</tbody>
+						</table>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default "
+						onclick="clear_iquery()" data-dismiss="modal">清空</button>
+					<button type="button" class="btn btn-primary"
+						onclick="add_staffExp()" data-dismiss='modal'>添加</button>
 				</div>
 			</div>
-		</div>	
-	</div>	
-</div>
+		</div>
+	</div>
+	<!--添加添加学习经历模态框 end  -->
+<!--添加添加员工合同模态框 start  -->
+	<div class="modal fade" id="addAgreement_Modal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">添加合同</h4>
+				</div>
+				<div class="modal-body">
+
+					<form action="" id="studyExp_form" accept-charset="utf-8">
+
+						<table>
+							<tbody>
+								
+								<tr>
+									<td><label class="staff_info_label">开始时间</label></td>
+									<td><input style="font-size: 12px;" id="agreement_startTime"
+										class="agreement_startTime _Time" type="text"></td>
+								</tr>
+								<tr>
+									<td><label class="staff_info_label">结束时间</label></td>
+									<td><input style="font-size: 12px;" id="agreement_overtTime"
+										class="agreement_overtTime _Time"></td>
+								</tr>
+								<tr>
+									<td><label class="staff_info_label">内容</label></td>
+										<td colspan="6"><textarea id="agreement_content"
+											class="agreement_content"
+											style="width: 480px; border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
+											rows="3" cols="62"></textarea></td>
+								</tr>
+								<tr>
+									<td><label class="staff_info_label">备注</label></td>
+									<td colspan="6"><textarea id="agreement_remark"
+											class="agreement_remark"
+											style="width: 480px; border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
+											rows="2" cols="62"></textarea></td>
+								</tr>
+							</tbody>
+						</table>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default "
+						onclick="clear_iquery()" data-dismiss="modal">清空</button>
+					<button type="button" class="btn btn-primary"
+						onclick="add_staffAgreement()" data-dismiss='modal'>添加</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--添加添加学习经历模态框 end  -->
 <!-- 时间javescript -->
 	<script type="text/javascript">
 		$.datetimepicker.setLocale('ch');
-		$('.staff_birthTime').datetimepicker({
+		$('._Time').datetimepicker({
 			yearStart : 1900, // 设置最小年份
 			yearEnd : 2100, // 设置最大年份
 			yearOffset : 0, // 年偏差

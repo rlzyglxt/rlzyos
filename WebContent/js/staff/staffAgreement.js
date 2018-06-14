@@ -54,15 +54,95 @@ var loadData = function() {
 		}
 	});
 }
+//进入修改员工合同模态框得到数据
+function createConfirmUpdataAgreement(event) {
+	$("#updateLoadingDiv").removeClass("hideDiv");
+	$("#updateContent").addClass("hideDiv");
+	getXmlHttp();
+	xmlHttp.open("POST", "/rlzyos/staff/staffAgreement_getStaffAgreementById", true);
+	var formData = new FormData();
+	formData.append("rlzy_agreement_id", event.id);
+	xmlHttp.send(formData);
+	xmlHttp.onreadystatechange = getStaffExpByIdBack;
+}
+//通过Id得到履历回显
+function getStaffExpByIdBack() {
+	if (isBack()) {
+		var result = xmlHttp.responseText;
+		result = JSON.parse(result);
+		$("#staffAgreement_StartTime").val(result.agreement_startTime);
+		$("#staffAgreement_OverTime").val(result.agreement_overtTime);
+		$("#staffAgreement_content").val(result.agreement_content);
+		$("#updateStaffAgreementBtn").val(result.rlzy_agreement_id);
+		$("#updateLoadingDiv").addClass("hideDiv");
+		$("#updateContent").removeClass("hideDiv");
+	}
+}
+//修改
+function updateStaffAgreement(event) {
+	$("#updateLoadingDiv").removeClass("hideDiv");
+	$("#updateContent").addClass("hideDiv");
+	getXmlHttp();
+	xmlHttp.open("POST", "/rlzyos/staff/staffAgreement_updataStaffAgreement", true);
+	var formData = new FormData(updateStaffAgreemenForm);
+	formData.append("rlzy_agreement_id", event.value);
+	alert(event.value);
+	xmlHttp.send(formData);
+	xmlHttp.onreadystatechange = function() {
+		if (isBack()) {
+			toastr.success("修改成功！");
+			$("#updateLoadingDiv").addClass("hideDiv");
+			$("#updateContent").removeClass("hideDiv");
+		}
+	}
+}
+
+function getName(event) {
+	$.ajax({
+			type : "POST",
+			url : "/rlzyos/staff/staffExp_getStaffNameByStaffNumber",
+			data : {
+				"staff_number": event.value,
+			},
+			success : function(data) {
+				var result = JSON.parse(data);
+				var staff_name = $("#staff_name");
+				staff_name.val(result);
+			}
+		});
+}
+
+//添加
+function addStaffStaffAgreement(){
+	for (var i = 0; i < document.addAgreementForm.elements.length - 1; i++) {
+		if (document.addAgreementForm.elements[i].value == "") {
+			toastr.error("当前表单不能有空项");
+			document.form.elements[i].focus();
+			return false;
+		}
+	}
+	getXmlHttp();
+	xmlHttp.open("POST", "/rlzyos/staff/staffAgreement_addStaffAgreement", true);
+	var formData = new FormData(document.getElementById("addAgreementForm"));
+	xmlHttp.send(formData);
+	xmlHttp.onreadystatechange = function (){
+		if(isBack())
+		var result = xmlHttp.responseText;
+		if(result == "addSuccess"){
+			toastr.success('添加成功！')
+		}
+	}
+}
+
 
 //删除员工所有信息(在职，离职)
-var deleteStaff = function(event) {
+var deleteStaffAgreement = function(event) {
 	//删除员工的基本信息
 	$.ajax({
-		url : '/rlzyos/staff/staff_deleteStaff',
+		url : '/rlzyos/staff/staffAgreement_deleteStaffAgreement',
 		type : 'POST',
 		data : {
-			'rlzy_staff_id' : event.id
+			'rlzy_agreement_id' : event.id
 		}
 	});
 }
@@ -70,7 +150,7 @@ var deleteStaff = function(event) {
 	//删除员工的工作履历
 	//删除员工的奖金记录
 //确认删除提示
-var createConfirmDelete = function(event) {
+var createConfirmDeleteAgreement = function(event) {
 	$.confirm({
 		title : '真的要删除吗？',
 		content : '',
@@ -81,7 +161,7 @@ var createConfirmDelete = function(event) {
 				text : '确认',
 				btnClass : 'btn-blue',
 				action : function() {
-					deleteStaff(event);
+					deleteStaffAgreement(event);
 					alert(event);
 					loadData();
 				}

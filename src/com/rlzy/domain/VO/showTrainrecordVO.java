@@ -1,7 +1,7 @@
 package com.rlzy.domain.VO;
 
 import java.util.List;
-import com.rlzy.domain.DO.rlzy_trainrecord;
+import com.rlzy.domain.DO.rlzy_stafftrain;
 
 
 public class showTrainrecordVO {
@@ -10,7 +10,7 @@ public class showTrainrecordVO {
 	private int count;
 	private int pageSize;
 	private String queryString;
-	private List<rlzy_trainrecord> list;
+	private List<rlzy_stafftrain> list;
 	public int getCurrPage() {
 		return currPage;
 	}
@@ -41,10 +41,10 @@ public class showTrainrecordVO {
 	public void setQueryString(String queryString) {
 		this.queryString = queryString;
 	}
-	public List<rlzy_trainrecord> getList() {
+	public List<rlzy_stafftrain> getList() {
 		return list;
 	}
-	public void setList(List<rlzy_trainrecord> list) {
+	public void setList(List<rlzy_stafftrain> list) {
 		this.list = list;
 	}
 	

@@ -167,34 +167,60 @@ function addStaffExp(){
 		}
 	}
 	getXmlHttp();
+	
+	
+	var addstaffExpForm=document.getElementById("addstaffExpForm");
+	var formData = new FormData(addstaffExpForm);
 	xmlHttp.open("POST", "/rlzyos/staff/staffExp_addStaffExp", true);
-	var formData = new FormData(document.getElementById("addstaffExpForm"));
 	xmlHttp.send(formData);
 	xmlHttp.onreadystatechange = function (){
 		if(isBack())
 		var result = xmlHttp.responseText;
-		if(result == "addSuccess"){
-			toastr.success('添加成功！')
+		if(result == "addsuccess"){
+			toastr.success('添加成功！');
 		}
 	}
 }
 
 
-
-//删除工作经历一条
-function delete_work(delete_button) {
-	//把td送页面上删
-	  var this_trId=delete_button.parentNode.parentNode.querySelector(".xsjsglxt_staffWork_id").getAttribute("id");
-	  console.log("本行的id"+this_trId);
-		//把这行td的数据数据库中删除
-		$.ajax({
-			url : '/xsjsglxt/team/StaffWork_deleteWork?work.xsjsglxt_staffWork_id='+this_trId,
-			type : 'POST',
-			success:function(data){
-				toastr.success('删除工作经历成功！');
-				show_workAjax(staff_id);
+//确认删除提示
+var createConfirmDeleteExp = function(event) {
+	$.confirm({
+		title : '真的要删除吗？',
+		content : '',
+		type : 'red',
+		autoClose : 'closeAction|5000',
+		buttons : {
+			deleteAction : {
+				text : '确认',
+				btnClass : 'btn-blue',
+				action : function() {
+					deleteStaffExp(event);
+					alert(event);
+					loadData();
+				}
 			},
-		});
+			closeAction : {
+				text : '取消',
+				btnClass : 'btn-red',
+				action : function() {
+
+				}
+			}
+		}
+	})
+}
+
+//删除员工履历
+var deleteStaffExp = function(event) {
+	//删除员工的基本信息
+	$.ajax({
+		url : '/rlzyos/staff/staffExp_deleteStaffExp',
+		type : 'POST',
+		data : {
+			'rlzy_staffExp_id' : event.id
+		}
+	});
 }
 //相应分页响应
 var firstPage = function() {

@@ -7,6 +7,21 @@ public class rlzy_staffaward {
 	private String award_provideTime;//奖金发放时间
 	private String award_provideReason;//发放理由
 	private String award_provideDepartment;//发放部门
+	private String award_gmt_create;//创建时间
+	private String award_gmt_modified;//修改时间
+	
+	public String getAward_gmt_create() {
+		return award_gmt_create;
+	}
+	public void setAward_gmt_create(String award_gmt_create) {
+		this.award_gmt_create = award_gmt_create;
+	}
+	public String getAward_gmt_modified() {
+		return award_gmt_modified;
+	}
+	public void setAward_gmt_modified(String award_gmt_modified) {
+		this.award_gmt_modified = award_gmt_modified;
+	}
 	public String getRlzy_staffAward_id() {
 		return rlzy_staffAward_id;
 	}

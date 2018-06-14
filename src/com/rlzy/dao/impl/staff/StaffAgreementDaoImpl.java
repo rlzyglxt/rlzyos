@@ -26,17 +26,20 @@ public class StaffAgreementDaoImpl implements StaffAgreementDao {
 	}
 
 	@Override
-	public void addStaffAgreement(rlzy_staffagreement staffagreement) {
+	public void addStaffAgreement(List<rlzy_staffagreement> staffagreement) {
 		// TODO Auto-generated method stub
-		 getSession().save(staffagreement);
+		for (rlzy_staffagreement rlzy_staffagreement : staffagreement) {
+
+			getSession().saveOrUpdate(rlzy_staffagreement);
+		}
 	}
 
 	@Override
-	public void deleteStaffAgreement(String rlzy_agreement_id) {
+	public void deleteStaffAgreements(String agreement_staff) {
 		// TODO Auto-generated method stub
-		rlzy_staffagreement rs = (rlzy_staffagreement) getSession().get(rlzy_staffagreement.class,rlzy_agreement_id);
-		getSession().delete(rs);
 		
+		String hql = "delete from rlzy_staffagreement where agreement_staff= '" + agreement_staff + "'";
+		getSession().createQuery(hql).executeUpdate();
 	}
 
 	@Override
@@ -46,9 +49,10 @@ public class StaffAgreementDaoImpl implements StaffAgreementDao {
 	}
 
 	@Override
-	public rlzy_staffagreement getStaffAgreementById(String rlzy_agreement_id) {
+	public List<rlzy_staffagreement> getStaffAgreementByStaffId(String agreement_staff) {
 		// TODO Auto-generated method stub
-		return (rlzy_staffagreement) getSession().get(rlzy_staffagreement.class, rlzy_agreement_id);
+		String hql="from rlzy_staffagreement where agreement_staff = '" + agreement_staff + "'";
+		return getSession().createQuery(hql).list();
 	}
 
 	@Override
@@ -77,5 +81,19 @@ public class StaffAgreementDaoImpl implements StaffAgreementDao {
 		
 		long count = (long) getSession().createQuery(hql).uniqueResult();
 		return (int) count;
+	}
+
+	@Override
+	public rlzy_staffagreement getStaffAgreementById(String rlzy_agreement_id) {
+		// TODO Auto-generated method stub
+		return (rlzy_staffagreement) this.getSession().get(rlzy_staffagreement.class, rlzy_agreement_id);
+	}
+
+	@Override
+	public void deleteStaffAgreement(String rlzy_agreement_id) {
+		// TODO Auto-generated method stub
+		rlzy_staffagreement rs = new rlzy_staffagreement();
+		rs.setRlzy_agreement_id(rlzy_agreement_id);
+		getSession().delete(rs);
 	}
 }
