@@ -1,18 +1,7 @@
 package com.rlzy.domain.VO;
 
 import java.util.List;
-<<<<<<< HEAD
-import com.rlzy.domain.DO.rlzy_stafftrain;
 
-
-public class showTrainrecordVO {
-	private int currPage;
-	private int totalPage;
-	private int count;
-	private int pageSize;
-	private String queryString;
-	private List<rlzy_stafftrain> list;
-=======
 import com.rlzy.domain.DTO.Staff.staffTrainDTO;
 
 
@@ -23,7 +12,7 @@ public class showTrainrecordVO {
 	private int pageCount;// 一页显示条数
 	private String staff_id;
 	private List<staffTrainDTO> list;
->>>>>>> zhj
+
 	public int getCurrPage() {
 		return currPage;
 	}
@@ -54,17 +43,12 @@ public class showTrainrecordVO {
 	public void setStaff_id(String staff_id) {
 		this.staff_id = staff_id;
 	}
-<<<<<<< HEAD
-	public List<rlzy_stafftrain> getList() {
-		return list;
-	}
-	public void setList(List<rlzy_stafftrain> list) {
-=======
+
 	public List<staffTrainDTO> getList() {
 		return list;
 	}
 	public void setList(List<staffTrainDTO> list) {
->>>>>>> zhj
+
 		this.list = list;
 	}
 	

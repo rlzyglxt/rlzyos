@@ -40,17 +40,17 @@ public class DepatermentAction extends ActionSupport{
 			response.setContentType("text/html;charset=utf-8");
 			PrintWriter pw=response.getWriter();
 			rlzy_depaterment ru=new rlzy_depaterment();
-			ru.setRlzy_depaterment_id(TeamUtil.getUuid());
-			ru.setDepaterment_name(depaterment_name);
-			ru.setDepaterment_duty(depaterment_duty);
-			ru.setDepaterment_tel(depaterment_tel);
-			ru.setDepaterment_num(depaterment_num);
+			ru.setRlzy_staffdepartment_id(TeamUtil.getUuid());
+			ru.setStaffdepartment_name(depaterment_name);
+			ru.setStaffdepartment_introduct(depaterment_duty);
+			ru.setStaffdepartment_tel(depaterment_tel);
+			ru.setStaffdepartment_amount(depaterment_num);
 			if(depatermentService.judgeDepatermentByDepatermentname(depaterment_name)){
 				pw.write("samename");
 				System.out.print("培训名称存在");
 			}
 			else{
-				ru.setDepaterment_name(depaterment_name);
+				ru.setStaffdepartment_name(depaterment_name);
 				depatermentService.addDepaterment(ru);
 				pw.write("添加成功");
 			}
@@ -85,11 +85,11 @@ public class DepatermentAction extends ActionSupport{
 		//修改用户
 		public void updateDepaterment() throws IOException{
 			rlzy_depaterment ru=depatermentService.getDepatermentById(depaterment_id);
-			ru.setRlzy_depaterment_id(depaterment_id);
-			ru.setDepaterment_name(depaterment_name);
-			ru.setDepaterment_duty(depaterment_duty);
-			ru.setDepaterment_tel(depaterment_tel);
-			ru.setDepaterment_num(depaterment_num);
+			ru.setRlzy_staffdepartment_id(depaterment_id);
+			ru.setStaffdepartment_name(depaterment_name);
+			ru.setStaffdepartment_introduct(depaterment_duty);
+			ru.setStaffdepartment_tel(depaterment_tel);
+			ru.setStaffdepartment_amount(depaterment_num);
 			depatermentService.updateDeapterment(ru);
 			HttpServletResponse response = ServletActionContext.getResponse();
 			response.setContentType("text/html;charset=utf-8");
