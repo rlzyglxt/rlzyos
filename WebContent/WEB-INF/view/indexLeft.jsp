@@ -59,6 +59,13 @@
 
 							</template>
 						</ul></li>
+						<li><a class=""><i class="lnr lnr-license"></i> <span>教育培训</span></a>
+						<ul class="nav" style="background-color:#13599d;">
+							<li><a
+								href="<%=basePath%>train/train_toTrainlist"><span>教育培训类别</span></a></li>
+							<li><a
+								href="<%=basePath%>trainrecord/trainrecord_toTrainrecordlist"><span>教育培训记录</span></a></li>
+						</ul></li>
 					</ul>
 				</nav>
 			</div>

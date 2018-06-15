@@ -6,6 +6,7 @@ import com.rlzy.domain.DO.rlzy_depaterment;
 
 
 public class showDepatermentVO {
+
 	private int currPage;
 	private int totalPage;
 	private int count;
@@ -13,6 +14,7 @@ public class showDepatermentVO {
 	private String queryString;
 	private List<rlzy_depaterment> list;
 	public int getCurrPage() {
+		System.out.println("VO");
 		return currPage;
 	}
 	public void setCurrPage(int currPage) {

@@ -1,6 +1,7 @@
 package com.rlzy.domain.VO;
 
 import java.util.List;
+<<<<<<< HEAD
 import com.rlzy.domain.DO.rlzy_stafftrain;
 
 
@@ -11,6 +12,18 @@ public class showTrainrecordVO {
 	private int pageSize;
 	private String queryString;
 	private List<rlzy_stafftrain> list;
+=======
+import com.rlzy.domain.DTO.Staff.staffTrainDTO;
+
+
+public class showTrainrecordVO {
+	private int currPage;// 当前页数
+	private int totalPage;// 总页数
+	private int totalCount;// 总记录数
+	private int pageCount;// 一页显示条数
+	private String staff_id;
+	private List<staffTrainDTO> list;
+>>>>>>> zhj
 	public int getCurrPage() {
 		return currPage;
 	}
@@ -23,28 +36,35 @@ public class showTrainrecordVO {
 	public void setTotalPage(int totalPage) {
 		this.totalPage = totalPage;
 	}
-	public int getCount() {
-		return count;
+	public int getTotalCount() {
+		return totalCount;
 	}
-	public void setCount(int count) {
-		this.count = count;
+	public void setTotalCount(int totalCount) {
+		this.totalCount = totalCount;
 	}
-	public int getPageSize() {
-		return pageSize;
+	public int getPageCount() {
+		return pageCount;
 	}
-	public void setPageSize(int pageSize) {
-		this.pageSize = pageSize;
+	public void setPageCount(int pageCount) {
+		this.pageCount = pageCount;
 	}
-	public String getQueryString() {
-		return queryString;
+	public String getStaff_id() {
+		return staff_id;
 	}
-	public void setQueryString(String queryString) {
-		this.queryString = queryString;
+	public void setStaff_id(String staff_id) {
+		this.staff_id = staff_id;
 	}
+<<<<<<< HEAD
 	public List<rlzy_stafftrain> getList() {
 		return list;
 	}
 	public void setList(List<rlzy_stafftrain> list) {
+=======
+	public List<staffTrainDTO> getList() {
+		return list;
+	}
+	public void setList(List<staffTrainDTO> list) {
+>>>>>>> zhj
 		this.list = list;
 	}
 	

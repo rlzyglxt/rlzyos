@@ -1,4 +1,4 @@
-package util;
+﻿package util;
 
 import org.apache.poi.xwpf.usermodel.*;
 import java.io.*;
@@ -24,7 +24,7 @@ public class XwpfTUtil {
 			para = iterator.next();
 			this.replaceInPara(para, params);
 		}
-	}
+}
 
 	/**
 	 * 替换段落里面的变量

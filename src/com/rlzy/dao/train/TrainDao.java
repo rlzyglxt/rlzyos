@@ -2,13 +2,14 @@ package com.rlzy.dao.train;
 
 import java.util.List;
 import com.rlzy.domain.DO.rlzy_train;
+import com.rlzy.domain.VO.showTrainVO;
 
 public interface TrainDao {
 	
 	//得到部门数
-	int getTrainCount(String queryString, int currPage);
+	int getTrainCount(showTrainVO trainVO);
 	//得到部门表
-	List<rlzy_train> getTrainByPage(String queryString, int currPage);
+	List<rlzy_train> getTrainByPage(showTrainVO trainVO);
 	//判断部门是否存在
 	public boolean judgeTrainByTrainname(String train_name);
 	//添加部门

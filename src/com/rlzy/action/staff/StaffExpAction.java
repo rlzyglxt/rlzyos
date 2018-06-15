@@ -40,6 +40,7 @@ public class StaffExpAction extends ActionSupport{
 		
 	}
 	//删除一个工作履历信息
+<<<<<<< HEAD
 	public void deleteStaffExp() throws IOException{
 			staffExpService.deleteStaffExp(staffExp.getRlzy_staffExp_id());
 			HttpServletResponse response = ServletActionContext.getResponse();
@@ -61,6 +62,12 @@ public class StaffExpAction extends ActionSupport{
 			pw.write("履历deleteSuccess履历");
 			pw.flush();
 			pw.close();
+=======
+	public void deleteStaffExp() throws IOException {
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("text/html;charset=utf-8");
+		staffExpService.deleteStaffExps(rlzy_staffExp_id);
+>>>>>>> zhj
 	}
 	//通过工号得到姓名
 	public void getStaffNameByStaffNumber() throws IOException{

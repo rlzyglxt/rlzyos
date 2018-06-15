@@ -9,7 +9,7 @@
 <html>
 <head>
 <base href="<%=basePath%>">
-<title>员工履历信息表</title>
+<title>员工合同信息表</title>
 <%-- <link rel="stylesheet" href="<%=basePath%>css/Staff/Staff.css"> --%>
 <%-- <link rel="stylesheet" href="<%=basePath%>css/user/userIndex.css"> --%>
 <script type="text/javascript" src="<%=basePath%>js/staff/staffAgreement.js"></script>

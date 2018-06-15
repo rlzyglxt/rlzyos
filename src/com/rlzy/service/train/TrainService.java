@@ -7,7 +7,7 @@ public interface TrainService {
 
 
 	//得到部门bypage
-	public showTrainVO getTrainByPage(String queryString, int currPage);
+	public void getTrainByPage(showTrainVO trainVO);
 	//判断用户是否存在
 	public boolean judgeTrainByTrainname(String train_name);
 	//添加用户
