@@ -13,7 +13,7 @@ public interface StaffAgreementDao {
 	void deleteStaffAgreements(String agreement_staff);
 	//修改合同
 	void updataStaffAgreement(rlzy_staffagreement staffagreement);
-	//得到员工byID
+	//得到个人员工byID
 	List<rlzy_staffagreement> getStaffAgreementByStaffId(String agreement_staff);
 	//分页显示
 	List<staffAgreementDTO> getStaffAgreementByPage(showAgreementVO showagreementVO);

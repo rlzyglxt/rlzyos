@@ -127,8 +127,10 @@
 							</tr>
 						</table>
 					</form>
-		</div>	</div>
-<!-- 长表格 -->
+				</div>	
+			</div>
+				<!-- 长表格 -->
+				<div style="background: #e7e6e6; width: 1000px; height: 5px;"></div>
 				<div class="longBoxs">
 					<div class="long_tableBox">
 						<span class="staff_info_title">员工履历</span>

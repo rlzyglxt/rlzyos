@@ -34,14 +34,14 @@
 	<bean id="staffAgreementDao" class="com.rlzy.dao.impl.staff.StaffAgreementDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
-	 	
+	
 	<bean id="staffAwardAction" class="com.rlzy.action.staff.StaffAwardAction" scope="prototype">
 		<property name="staffAwardService" ref="staffAwardService"></property>
-	</bean>
+	</bean>	
 	<bean id="staffAwardService" class="com.rlzy.service.impl.staff.StaffAwardServiceImpl">
 		<property name="staffAwardDao" ref="staffAwardDao"></property>
-	</bean> 
+	</bean>
 	<bean id="staffAwardDao" class="com.rlzy.dao.impl.staff.StaffAwardDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
-	</bean> 
+	</bean>	 	
 </beans>

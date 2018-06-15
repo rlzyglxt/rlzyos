@@ -78,7 +78,6 @@ public class StaffAgreementDaoImpl implements StaffAgreementDao {
 	public int getStaffAgreementCount(showAgreementVO showagreementVO) {
 		// TODO Auto-generated method stub
 		String hql = "select count(*) from rlzy_staffagreement where 1=1";
-		
 		long count = (long) getSession().createQuery(hql).uniqueResult();
 		return (int) count;
 	}

@@ -13,7 +13,10 @@ public class StaffAwardAction extends ActionSupport{
 	public void setStaffAwardService(StaffAwardService staffAwardService) {
 		this.staffAwardService = staffAwardService;
 	}
+	
 
-	
-	
+	//添加奖金
+	public void addStaffAward(){
+		
+	}
 }
