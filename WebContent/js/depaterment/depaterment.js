@@ -73,27 +73,24 @@ function createConfirmUpdata(event) {
 	getXmlHttp();
 	xmlHttp.open("POST", "/rlzyos/depaterment/depaterment_getDepatermentById", true);
 	var formData = new FormData();
-	formData.append("depaterment_id", event.id);
+	formData.append("rlzy_staffdepartment_id", event.id);
 	xmlHttp.send(formData);
 	xmlHttp.onreadystatechange = getDepatermentByIdBack;
 }
-
-
 //通过Id得到履历回显
 function getDepatermentByIdBack() {
 	if (isBack()) {
 		var result = xmlHttp.responseText;
 		result = JSON.parse(result);
-		$("#depaterment_name").val(result.depaterment_name);
-		$("#depaterment_duty").val(result.depaterment_duty);
-		$("#depaterment_tel").val(result.depaterment_tel);
-		$("#depaterment_num").val(result.depaterment_num);
-		$("#updateDepatermentBtn").val(result.rlzy_depaterment_id);
+		$("#updatastaffdepartment_name").val(result.staffdepartment_name);
+		$("#updatastaffdepartment_introduct").val(result.staffdepartment_introduct);
+		$("#updatastaffdepartment_tel").val(result.staffdepartment_tel);
+		$("#updatastaffdepartment_amount").val(result.staffdepartment_amount);
+		$("#updateDepatermentBtn").val(result.rlzy_staffdepartment_id);
 		$("#updateLoadingDiv").addClass("hideDiv");
 		$("#updateContent").removeClass("hideDiv");
 	}
 }
-
 //修改
 function updateDepaterment(event) {
 	$("#updateLoadingDiv").removeClass("hideDiv");
@@ -101,7 +98,7 @@ function updateDepaterment(event) {
 	getXmlHttp();
 	xmlHttp.open("POST", "/rlzyos/depaterment/depaterment_updateDepaterment", true);
 	var formData = new FormData(updatedepatermentForm);
-	formData.append("depaterment_id", event.value);
+	formData.append("rlzy_staffdepartment_id", event.value);
 	xmlHttp.send(formData);
 	xmlHttp.onreadystatechange = function() {
 		if (isBack()) {
@@ -117,7 +114,7 @@ function createConfirmDelete(event) {
 	getXmlHttp();
 	xmlHttp.open("POST", "/rlzyos/depaterment/depaterment_deleteDepaterment", true);
 	var formData = new FormData();
-	formData.append("depaterment_id", event.id);
+	formData.append("rlzy_staffdepartment_id", event.id);
 	xmlHttp.send(formData);
 	xmlHttp.onreadystatechange = function() {
 		if (isBack()) {
@@ -127,7 +124,7 @@ function createConfirmDelete(event) {
 	}
 }
 
-
+//添加部门
 function addDepaterment(){
 	for (var i = 0; i < document.adddepatermentForm.elements.length - 1; i++) {
 		if (document.adddepatermentForm.elements[i].value == "") {
@@ -139,12 +136,13 @@ function addDepaterment(){
 	getXmlHttp();
 	xmlHttp.open("POST", "/rlzyos/depaterment/depaterment_addDepaterment", true);
 	var formData = new FormData(document.getElementById("adddepatermentForm"));
+	alert("添加部门");
 	xmlHttp.send(formData);
 	xmlHttp.onreadystatechange = function (){
 		if (isBack()) {
 			var result = xmlHttp.responseText;
 			if (result == "samename") {
-				toastr.error("培训名称已经存在请重新填写培训名称！");
+				toastr.error("部门名称已经存在请重新填写！");
 				$("#addLoadingDiv").addClass("hideDiv");
 				$("#addContent").removeClass("hideDiv");
 			} else {

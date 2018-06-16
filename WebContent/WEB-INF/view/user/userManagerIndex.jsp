@@ -30,12 +30,14 @@
 		<!---------------------------------------------------------------------------------------------------->
 		<s:action name="user_implements_navbar" namespace="/user" executeResult="true" />
 	
-		<div><s:action name="user_LeftIndex" namespace="/user" executeResult="true" /></div>
+		<s:action name="user_LeftIndex" namespace="/user" executeResult="true" />
 		<!---------------------------------------------------------------------------------------------------->
 		<div style="margin: 80px 0 0 30px; float: right; width:82%;">
 		
 			<div class="panel" style="width: auto; margin: 20px auto;">
-			
+			<div class="panel-heading">
+							<h3 class="panel-title staff_title">用户表</h3>
+			</div>
 			<div id="" style="height: 80px; padding: 20px;">
 				<div class="managerClass" style="float: right; margin-left: 10px;">
 					<button onclick="cleanInput" data-toggle="modal"

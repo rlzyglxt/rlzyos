@@ -34,8 +34,7 @@ function add_oneStaffAgreement() {
 	var agreement_overtTime = $(".agreement_overtTime").val();
 	var agreement_content = $(".agreement_content").val();
 	var agreement_remark = $(".agreement_remark").val();
-	$
-			.ajax({
+	$.ajax({
 				type : "POST",
 				url : "/rlzyos/staff/staffAgreement_addStaffAgreement?staffagreements.agreement_staff="
 						+ staff_id,
@@ -48,6 +47,31 @@ function add_oneStaffAgreement() {
 				success : function(data) {
 					toastr.success('合同添加成功！');
 					show_staffAgreeAjax(staff_id);
+				}
+			});
+}
+//长表格添加员工奖金记录一条
+function add_oneStaffAward() {
+	console.log("员工奖金添加");
+	console.log(staff_id);
+	// 添加一条数据
+	var award_amount = $(".award_amount").val();
+	var award_provideTime = $(".award_provideTime").val();
+	var award_provideDepartment = $(".award_provideDepartment").val();
+	var award_provideReason = $(".award_provideReason").val();
+	$.ajax({
+				type : "POST",
+				url : "/rlzyos/staff/staffAward_addStaffAward?staffAwards.award_staff="
+						+ staff_id,
+				data : {
+					"staffAwards[0].award_amount" : award_amount,
+					"staffAwards[0].award_provideTime" : award_provideTime,
+					"staffAwards[0].award_provideDepartment" : award_provideDepartment,
+					"staffAwards[0].award_provideReason" : award_provideReason,
+				},
+				success : function(data) {
+					toastr.success('奖金发放成功！');
+					show_staffAwardAjax(staff_id);
 				}
 			});
 }

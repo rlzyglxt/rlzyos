@@ -98,11 +98,11 @@
 								</select></td>
 								
 								<td><label class="staff_info_label">现部门</label></td>
-								<td><select class="form-control"
+								<td><select class="form-control" id="rlzy_staffdepartment_id"
 									name="staff.staff_depaterment">
 										<option></option>
-										<option value="一部门">一部门</option>
-										<option value="二部门">二部门</option>
+										<!--<option value="一部门">一部门</option>
+										<option value="二部门">二部门</option> -->
 								</select></td>
 							</tr>	
 								
@@ -191,6 +191,36 @@
 							</div>
 						</form>
 					</div>		
+					<div style="background: #e7e6e6; width: 1000px; height: 1px;"></div>
+						<div class="long_tableBox">
+							<span class="staff_info_title">员工奖金</span>
+						<button style="margin-left: 10px;float:right;" class="btn btn-default btn-xs"
+							type="button" data-toggle="modal" data-target="#addAward_Modal"
+							onclick="">
+							<i class="fa fa-plus-square"></i>发放奖金
+						</button>
+						<form id="staff_agreement">
+							<div class="long_tb">
+								<table id="staffAward_table">
+									<tbody>
+										<tr class="long_table">
+											<th>发放金额</th>
+											<th>发放时间</th>
+											<th>发放原因</th>
+											<th>发放部门</th>
+											<th>操作</th>
+										</tr>
+									</tbody>
+								</table>
+								<table id="staffAward_table">
+									<tbody>
+
+									</tbody>
+								</table>
+							</div>
+						</form>
+					</div>		
+	
 	
 			</div>
 				<button style="float: right;" type="button"	class="btn btn-default button" onclick="staff_relive()">
@@ -252,7 +282,7 @@
 			</div>
 		</div>
 	</div>
-	<!--添加添加学习经历模态框 end  -->
+	<!--添加添加履历模态框 end  -->
 <!--添加添加员工合同模态框 start  -->
 	<div class="modal fade" id="addAgreement_Modal" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel">
@@ -309,7 +339,63 @@
 			</div>
 		</div>
 	</div>
-	<!--添加添加学习经历模态框 end  -->
+	<!--添加添加合同模态框 end  -->
+	
+	<!--添加添加奖金模态框 start  -->
+	<div class="modal fade" id="addAward_Modal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">发放奖金</h4>
+				</div>
+				<div class="modal-body">
+					<form action="" id="studyExp_form" accept-charset="utf-8">
+						<table>
+							<tbody>
+								<tr>
+									<td><label class="staff_info_label">发放金额</label></td>
+									<td><input style="font-size: 12px;" id="award_amount"
+										class="award_amount" type="text"></td>
+								</tr>
+								<tr>
+									<td><label class="staff_info_label">发放时间</label></td>
+									<td><input style="font-size: 12px;" id="award_provideTime"
+										class="award_provideTime _Time"></td>
+								</tr>
+								<tr>
+									<td><label class="staff_info_label">发放部门</label></td>
+									<td colspan="6"><textarea id="award_provideDepartment"
+											class="award_provideDepartment"
+											style="width: 480px; border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
+											rows="2" cols="62"></textarea></td>
+								</tr>
+								<tr>
+									<td><label class="staff_info_label">发放原因</label></td>
+										<td colspan="6"><textarea id="award_provideReason"
+											class="award_provideReason"
+											style="width: 480px; border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
+											rows="3" cols="62"></textarea></td>
+								</tr>
+								
+							</tbody>
+						</table>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default "
+						onclick="clear_iquery()" data-dismiss="modal">清空</button>
+					<button type="button" class="btn btn-primary"
+						onclick="add_staffAward()" data-dismiss='modal'>添加</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--添加添加奖金模态框 end  -->
 <!-- 时间javescript -->
 	<script type="text/javascript">
 		$.datetimepicker.setLocale('ch');

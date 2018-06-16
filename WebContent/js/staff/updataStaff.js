@@ -2,6 +2,25 @@
 window.onload = function() {
 	var url = window.location.href;
 	staff_id = url.substring(url.indexOf("=") + 1);
+	alert("获得部门");
+		$.ajax({
+			url : '/rlzyos/depaterment/depaterment_getAllDepaterment',
+			type : 'post',
+			success : function(data) {
+				var result = JSON.parse(data);
+				console.log(result);
+				console.log(result.length);
+				for (var i = 0; i < result.length; i++) {
+					document.getElementById("staff_depaterment").innerHTML = document
+							.getElementById("staff_depaterment").innerHTML
+							+ "<option value='"
+							+ result[i].rlzy_staffdepartment_id
+							+ "'>"
+							+ result[i].staffdepartment_name
+							+ "</option>";
+				}
+			}
+		});
 	console.log(staff_id);
 	alert(staff_id);
 	get_staffDetails(staff_id);
@@ -42,6 +61,7 @@ function get_staffDetails_Ajax(url,staff_id) {
 			
 			show_staffExpAjax(staff_id);
 			show_staffAgreeAjax(staff_id);
+			show_staffAwardAjax(staff_id);
 		}
 	}
 }
@@ -59,7 +79,7 @@ function show_staffExpAjax(staff_id) {
 	staffExp_xmlHttp.onreadystatechange = function() {
 		if (staffExp_xmlHttp.readyState == 4 && staffExp_xmlHttp.status == 200) {
 			var staff_Exp = staffExp_xmlHttp.responseText;
-			if(staff_Exp=="staffExpIsNull"){
+			if(staff_Exp=="null"){
 				$('#staffExperience_table tbody').html("");
 			}else{
 				staff_Exp = JSON.parse(staff_Exp);
@@ -107,7 +127,7 @@ function show_staffAgreeAjax(staff_id) {
 	staffAgree_xmlHttp.onreadystatechange = function() {
 		if (staffAgree_xmlHttp.readyState == 4 && staffAgree_xmlHttp.status == 200) {
 			var staff_Agree = staffAgree_xmlHttp.responseText;
-			if(staff_Agree=="studentIsNull"){
+			if(staff_Agree=="null"){
 				$('#staffAgreement_table tbody').html("");
 			}else{
 				console.log(staff_Agree);
@@ -142,6 +162,57 @@ function show_staffAgreeAjax(staff_id) {
 			+ staff_id, true);
 	staffAgree_xmlHttp.send();
 }
+//显示奖金信息
+function show_staffAwardAjax(staff_id) {
+	console.log("奖金信息");
+	var staffAward_xmlHttp;
+	if (window.XMLHttpRequest) {
+		staffAward_xmlHttp=new XMLHttpRequest();
+	} else {
+		// IE6, IE5 浏览器执行代码
+		staffAward_xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	staffAward_xmlHttp.onreadystatechange = function() {
+		if (staffAward_xmlHttp.readyState == 4 && staffAward_xmlHttp.status == 200) {
+			var staff_Award = staffAward_xmlHttp.responseText;
+			if(staff_Award=="null"){
+				$('#staffAward_table tbody').html("");
+			}else{
+				console.log(staff_Award);
+				staff_Award = JSON.parse(staff_Award);
+			var table_elements=$("#staffAward_table tbody");
+			for(var i=1;i<table_elements.length;i++){
+				table_elements.removeChild(table_elements.element[i]);
+			}
+			var str1 = '';
+			for (var len = 0; len < staff_Award.length; len++) {
+				var rlzy_staffAward_id = staff_Award[len].rlzy_staffAward_id;
+				str1 += '<tr>';
+				str1 += '<input type="hidden" class="rlzy_staffAward_id" id="'
+						+ rlzy_staffAward_id + '">';
+				str1 += '<td>' + staff_Award[len].award_amount
+				+ '</td>';
+				str1 += '<td>' + staff_Award[len].award_provideTime
+						+ '</td>';
+				str1 += '<td>' + staff_Award[len].award_provideReason
+						+ '</td>';
+				str1 += '<td>' + staff_Award[len].award_provideDepartment
+						+ '</td>';
+				str1 += '<td> <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#updataAward_Modal" onclick="show_staffaward(this)" type="button" ><i class="fa fa-pencil"></i></button><button class="btn btn-default btn-xs" onclick="delete_award(this)" type="button" ><i class="fa fa-trash"></i></button></td>';
+
+				str1 += '</tr>';
+			}
+			$('#staffAward_table tbody').html(str1);
+			}
+		}
+	}
+	staffAward_xmlHttp.open("POST","/rlzyos/staff/staffAward_getStaffAwardByStaffId?staffAward.award_staff="
+			+ staff_id, true);
+	staffAward_xmlHttp.send();
+}
+
+
+
 // staffDetail.jsp中的修改人员
 function staff_updata() {
 	$.confirm({

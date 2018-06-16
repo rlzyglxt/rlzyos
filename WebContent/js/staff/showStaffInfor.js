@@ -119,6 +119,15 @@ var deleteStaff = function(event) {
 	});
 	
 	//删除员工的奖金记录
+	console.log("删除奖金信息");
+	$.ajax({//删除员工的奖金信息
+		url : '/rlzyos/staff/staffAward_deleteStaffAwards',
+		type : 'POST',
+		data : {
+			'staffAward.award_staff' : event.id
+		}
+	});
+	
 }
 	
 //确认删除提示

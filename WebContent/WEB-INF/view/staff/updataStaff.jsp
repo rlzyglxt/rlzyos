@@ -91,9 +91,9 @@
 								<td><label class="staff_info_label">部门</label></td>
 								<td><select class="form-control" id="staff_depaterment"
 									name="staff.staff_depaterment">
-										<option></option>
-										<option value="一部门">一部门</option>
-										<option value="二部门">二部门</option>
+										<!-- <option></option> -->
+										<!-- <option value="一部门">一部门</option>
+										<option value="二部门">二部门</option> -->
 								</select></td>
 								
 							</tr>	
@@ -125,7 +125,7 @@
 				<div style="background: #e7e6e6; width: auto; height: 10px;"></div>
 				<div class="longBoxs">
 					<div class="long_tableBox">
-						<span class="staff_info_title">员工履历</span>
+						<span class="staff_info_title">员工履历表</span>
 						<button style="margin-left: 10px;" class="btn btn-default btn-xs"
 							type="button" data-toggle="modal" data-target="#addStaffExp_Modal"
 							onclick="">
@@ -156,7 +156,7 @@
 					</div>
  				<div style="background: #e7e6e6; width: 1000px; height: 1px;"></div>
 					<div class="long_tableBox">
-						<span class="staff_info_title">员工合同</span>
+						<span class="staff_info_title">员工合同表</span>
 						<button style="margin-left: 10px;" class="btn btn-default btn-xs"
 							type="button" data-toggle="modal" data-target="#addAgreement_Modal"
 							onclick="">
@@ -183,15 +183,15 @@
 							</div>
 						</form>
 					</div>
-<%--			 <div style="background: #e7e6e6; width: 1000px; height: 1px;"></div>
-					<div class="long_tableBox">
-						<span class="staff_info_title">奖金记录</span>
+					<div style="background: #e7e6e6; width: 1000px; height: 1px;"></div>
+						<div class="long_tableBox">
+							<span class="staff_info_title">员工奖金表</span>
 						<button style="margin-left: 10px;" class="btn btn-default btn-xs"
-							type="button" data-toggle="modal"
-							data-target="#addPoliceChange_Modal" onclick="">
-							<i class="fa fa-plus-square"></i> 奖金添加
+							type="button" data-toggle="modal" data-target="#addAward_Modal"
+							onclick="">
+							<i class="fa fa-plus-square"></i>发放奖金
 						</button>
-						<form id="police_move">
+						<form id="staff_agreement">
 							<div class="long_tb">
 								<table>
 									<tbody>
@@ -199,83 +199,19 @@
 											<th>发放金额</th>
 											<th>发放时间</th>
 											<th>发放原因</th>
-											<th>备注</th>
+											<th>发放部门</th>
 											<th>操作</th>
 										</tr>
 									</tbody>
 								</table>
-								<table id="policeChange_table">
+								<table id="staffAward_table">
 									<tbody>
 
 									</tbody>
 								</table>
 							</div>
 						</form>
-					</div>
-					<div style="background: #e7e6e6; width: 1000px; height: 1px;"></div>
-					<div class="long_tableBox">
-						<span class="staff_info_title">培训记录</span>
-						<button style="margin-left: 10px;" class="btn btn-default btn-xs"
-							type="button" data-toggle="modal" data-target="#addPrized_Modal"
-							onclick="">
-							<i class="fa fa-plus-square"></i> 添加培训记录
-						</button>
-						<form id="staffReward">
-							<div class="long_tb">
-								<table>
-									<tbody>
-										<tr class="long_table">
-											<th>培训名称</th>
-											<th>培训成绩</th>
-											<th>证书名称</th>
-											<th>备注</th>
-											<th>操作</th>
-										</tr>
-									</tbody>
-								</table>
-								<table id="prized_table">
-									<tbody>
-
-									</tbody>
-								</table>
-							</div>
-						</form>
-					</div>
-					<div style="background: #e7e6e6; width: 1000px; height: 1px;"></div>
-					<div class="long_tableBox">
-						<span class="staff_info_title">员工调动表</span>
-						<button style="margin-left: 10px;" class="btn btn-default btn-xs"
-							type="button" data-toggle="modal"
-							data-target="#addAgainstPrinciple_Modal" onclick="">
-							<i class="fa fa-plus-square"></i> 添加调动
-						</button>
-						<form id="againstPrinciple">
-							<div class="long_tb">
-								<table>
-									<tbody>
-										<tr class="long_table">
-											<th>调动时间</th>
-											<th>原部门</th>
-											<th>原职务</th>
-											<th>调入部门</th>
-											<th>调入部门</th>
-											<th>备注</th>
-											<th>操作</th>
-										</tr>
-									</tbody>
-									<table id="againstPrinciple_table">
-										<tbody>
-
-										</tbody>
-									</table>
-								</table>
-							</div>
-						</form>
-					</div>
-				<button style="float: right;" type="button"	class="btn btn-default button" onclick="staff_relive()">
-					<i class="fa fa-pencil"></i> 保存
-				</button>
-			</div> --%>
+					</div>	
 			</div>
 		</div>
 	</div>
@@ -390,6 +326,63 @@
 		</div>
 	</div>
 	<!--添加合同模态框 end  -->
+	<!--添加添加奖金模态框 start  -->
+	<div class="modal fade" id="addAward_Modal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">发放奖金</h4>
+				</div>
+				<div class="modal-body">
+					<form action="" id="studyExp_form" accept-charset="utf-8">
+						<table>
+							<tbody>
+								<tr>
+									<td><label class="staff_info_label">发放金额</label></td>
+									<td><input style="font-size: 12px;" id="award_amount"
+										class="award_amount" type="text"></td>
+								</tr>
+								<tr>
+									<td><label class="staff_info_label">发放时间</label></td>
+									<td><input style="font-size: 12px;" id="award_provideTime"
+										class="award_provideTime staff_Time"></td>
+								</tr>
+								<tr>
+									<td><label class="staff_info_label">发放部门</label></td>
+											<td><input style="font-size: 12px;" id="award_provideDepartment"
+										class="award_provideDepartments"></td>
+								</tr>
+								<tr>
+									<td><label class="staff_info_label">发放原因</label></td>
+										<td colspan="6"><textarea id="award_provideReason"
+											class="award_provideReason"
+											style="width: 480px; border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
+											rows="3" cols="62"></textarea></td>
+								</tr>
+								
+							</tbody>
+						</table>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default "
+						onclick="clear_iquery()" data-dismiss="modal">清空</button>
+					<button type="button" class="btn btn-primary"
+						onclick="add_oneStaffAward()" data-dismiss='modal'>添加</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--添加添加奖金模态框 end  -->
+	
+	
+	
+	
 <!--修改员工履历模态框 start  -->
 	<div class="modal fade" id="updataStaffExp_Modal" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel">
@@ -501,7 +494,59 @@
 		</div>
 	</div>
 	<!--修改合同模态框 end  -->
-
+	<!--修改奖金模态框 start  -->
+	<div class="modal fade" id="updataAward_Modal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">发放奖金</h4>
+				</div>
+				<div class="modal-body">
+					<form action="" id="studyExp_form" accept-charset="utf-8">
+						<table>
+							<tbody>
+								<tr>
+									<td><label class="staff_info_label">发放金额</label></td>
+									<td><input style="font-size: 12px;" id="updataaward_amount"
+										class="updataaward_amount" type="text"></td>
+								</tr>
+								<tr>
+									<td><label class="staff_info_label">发放时间</label></td>
+									<td><input style="font-size: 12px;" id="updataaward_provideTime"
+										class="updataaward_provideTime staff_Time"></td>
+								</tr>
+								<tr>
+									<td><label class="staff_info_label">发放部门</label></td>
+									<td><input style="font-size: 12px;" id="updataaward_provideDepartment"
+										class="updataaward_provideDepartment _Time"></td>
+								</tr>
+								<tr>
+									<td><label class="staff_info_label">发放原因</label></td>
+										<td colspan="6"><textarea id="updataaward_provideReason"
+											class="updataaward_provideReason"
+											style="width: 480px; border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
+											rows="3" cols="62"></textarea></td>
+								</tr>
+								
+							</tbody>
+						</table>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default "
+						onclick="clear_iquery()" data-dismiss="modal">清空</button>
+					<button type="button" class="btn btn-primary"
+						onclick="updata_Award()" data-dismiss='modal'>添加</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--修改奖金模态框 end  -->
 <!-- 时间javescript -->
 	<script type="text/javascript">
 		$.datetimepicker.setLocale('ch');

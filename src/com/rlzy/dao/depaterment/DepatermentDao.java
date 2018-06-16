@@ -21,5 +21,7 @@ public interface DepatermentDao {
 	public rlzy_depaterment getDepatermentById(String rlzy_depaterment_id);
 	//修改部门信息
 	public void updateDepaterment(rlzy_depaterment ru);
+	//得到所有部门
+	public List<rlzy_depaterment> getAllDepaterment();
 	
 }
