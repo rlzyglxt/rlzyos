@@ -24,9 +24,10 @@ public class StaffAwardServiceImpl implements StaffAwardService{
 	public void addStaffAward(List<rlzy_staffaward> staffawards) {
 		// TODO Auto-generated method stub
 		for(rlzy_staffaward rlzy_staffaward : staffawards ){
-			rlzy_staffaward.setRlzy_staffAward_id(TeamUtil.getUuid());
+			
 			rlzy_staffaward.setAward_gmt_create(TeamUtil.getStringSecond());
 			rlzy_staffaward.setAward_gmt_modified(TeamUtil.getStringSecond());
+			rlzy_staffaward.setRlzy_staffAward_id(TeamUtil.getUuid());
 		}
 		staffAwardDao.addStaffAward(staffawards);
 	}
@@ -51,7 +52,7 @@ public class StaffAwardServiceImpl implements StaffAwardService{
 		rs.setAward_gmt_modified(TeamUtil.getStringSecond());
 		rs.setAward_provideReason(staffaward.getAward_provideReason());
 		rs.setAward_provideDepartment(staffaward.getAward_provideDepartment());
-		rs.setAward_provideTime(TeamUtil.getStringSecond());
+		rs.setAward_provideTime(staffaward.getAward_provideTime());
 	}
 
 	@Override

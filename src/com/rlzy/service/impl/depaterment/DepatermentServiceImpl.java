@@ -7,7 +7,8 @@ import com.rlzy.domain.DO.rlzy_depaterment;
 import com.rlzy.domain.VO.showDepatermentVO;
 import com.rlzy.service.depaterment.DepatermentService;
 public class DepatermentServiceImpl implements DepatermentService {
-
+	private DepatermentDao depatermentDao;
+	
 	//分页查询部门
 	public void getDepatermentByPage(showDepatermentVO depatermentVO) {
 		int count = depatermentDao.getDepatermentCount(depatermentVO);
@@ -43,13 +44,16 @@ public class DepatermentServiceImpl implements DepatermentService {
 	public void updateDeapterment(rlzy_depaterment ru) {
 		depatermentDao.updateDepaterment(ru);
 	}
-
+	@Override
+	public List<rlzy_depaterment> getAllDepaterment() {
+		// TODO Auto-generated method stub
+		return depatermentDao.getAllDepaterment();
+	}
 	
 	
 	
 	
 //-------------------------------------分割线----------------------------------------->
-	private DepatermentDao depatermentDao;
 
 
 	public DepatermentDao getDepatermentDao() {
@@ -58,6 +62,8 @@ public class DepatermentServiceImpl implements DepatermentService {
 	public void setDepatermentDao(DepatermentDao depatermentDao) {
 		this.depatermentDao = depatermentDao;
 	}
+
+	
 
 
 	

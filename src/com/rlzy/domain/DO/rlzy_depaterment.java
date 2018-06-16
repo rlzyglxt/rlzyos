@@ -3,7 +3,7 @@ package com.rlzy.domain.DO;
 public class rlzy_depaterment {
 	private String rlzy_staffdepartment_id;//部门ID
 	private String staffdepartment_name;//部门名称
-	private String staffdepartment_introduct;//部门职务
+	private String staffdepartment_introduct;//部门简介
 	private String staffdepartment_tel;//部门电话
 	private String staffdepartment_amount;//部门人数
 	private String staffdepartment_gmt_create;

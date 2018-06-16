@@ -69,3 +69,39 @@ function updata_Agreement(){
 				},
 			});
 }
+
+//显示当前员工奖金在模态框中
+function show_staffaward(updata_button) {
+	 console.log("回显奖金");
+	 var this_tr=updata_button.parentNode.parentNode;
+	 console.log(this_tr.children[1].innerHTML);
+	 this_trId=this_tr.querySelector(".rlzy_staffAward_id").getAttribute("id");
+	 document.querySelector(".updataaward_amount").value=this_tr.children[1].innerHTML;
+	 document.querySelector(".updataaward_provideTime").value=this_tr.children[2].innerHTML;
+	 document.querySelector(".updataaward_provideDepartment").value=this_tr.children[3].innerHTML;
+	 document.querySelector(".updataaward_provideReason").value=this_tr.children[4].innerHTML;
+
+}
+//修改员工奖金
+function updata_Award(){
+	console.log("奖金修改");
+	// 修改一条数据
+	var award_amount=$(".updataaward_amount").val();
+	var award_provideTime=$(".updataaward_provideTime").val();
+	var award_provideDepartment=$(".updataaward_provideDepartment").val();
+	var award_provideReason=$(".updataaward_provideReason").val();
+	$.ajax({
+				type : "POST",
+				url : '/rlzyos/staff/staffAward_updataStaffAward?staffAward.rlzy_staffAward_id='+this_trId,
+				data :{
+					"staffAward.award_amount":award_amount,
+					"staffAward.award_provideTime":award_provideTime,
+					"staffAward.award_provideDepartment":award_provideDepartment,
+					"staffAward.award_provideReason":award_provideReason,
+				},
+				success:function(data){
+					toastr.success('修改奖金记录成功！');
+					show_staffAwardAjax(staff_id);
+				},
+			});
+}

@@ -1,5 +1,7 @@
 package com.rlzy.service.depaterment;
 
+import java.util.List;
+
 import com.rlzy.domain.DO.rlzy_depaterment;
 import com.rlzy.domain.VO.showDepatermentVO;
 
@@ -18,13 +20,7 @@ public interface DepatermentService {
 	public rlzy_depaterment getDepatermentById(String depaterment_id);
 	//修改部门信息
 	public void updateDeapterment(rlzy_depaterment ru);
-	
-	
-	//增加用户
-	
-
-	
-	//修改用户
-	
+	//得到所有部门
+	public List<rlzy_depaterment> getAllDepaterment();
 	
 }

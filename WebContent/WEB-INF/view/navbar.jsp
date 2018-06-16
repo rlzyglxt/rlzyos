@@ -41,7 +41,7 @@
 <body>
 <div id="wrapper">
 		<nav id="navbar" class="navbar navbar-default navbar-fixed-top"
-			style=" background-color: #13599d;">
+			style=" background-color: #303030;"><!-- #13599d -->
 		<div
 			style="width: auto; float: left; line-height: 78px; margin: 0 0 0 30px; font-size: 30px; color: white;">
 			<img alt="" src="<%=basePath%>img/hui.png">人力资源管理系统
@@ -50,20 +50,24 @@
 			<ul style="margin: 0 0 0 20px;" class="nav navbar-nav navbar-left">
 				<li class="dropdown" style="float: left;"><a
 					href="<%=basePath%>user/user_intoIndex"><span>首页</span> </a></li>
-				<li class="leader_control dropdown" style="float: left;"><a
-					href="#" class="dropdown-toggle" data-toggle="dropdown"> <span>系统管理</span>
+				<li class="leader_control dropdown" style="float: left;">
+				<%-- <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <span>系统管理</span>
 						<i class="icon-submenu lnr lnr-chevron-down"></i>
 				</a>
 					<ul class="dropdown-menu">
 						<li><a href="<%=basePath%>depaterment/depaterment_toDepatermentlist">机构维护</a></li>
 						<li><a href="<%=basePath%>user/user_skipToUser">用户管理</a></li>
-					</ul></li>
-				
-				<%-- <template v-if="user_user_manager_power">
+					</ul></li> --%>
+				<!-- <template v-if="user_user_manager_power"> -->
 				<li class="dropdown" style="float: left;"><a
-					href="<%=basePath%>user/User_skipToUser"> <span>用户</span>
+					href="<%=basePath%>depaterment/depaterment_toDepatermentlist"><span>机构维护</span>
 				</a></li>
-				</template> --%>
+			<!-- 	</template>
+				<template v-if="user_user_manager_power"> -->
+				<li class="dropdown" style="float: left;"><a
+					href="<%=basePath%>user/user_skipToUser"><span>用户管理</span>
+				</a></li>
+				<!-- </template> -->
 				<!--  -->
 			</ul>
 			<!--  -->

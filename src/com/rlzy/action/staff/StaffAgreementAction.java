@@ -45,9 +45,14 @@ public class StaffAgreementAction extends ActionSupport{
 	//得到员工个人合同
 		public void getStaffAgreementByStaffId() throws IOException{
 			List<rlzy_staffagreement> rs = staffAgreementService.getStaffAgreementByStaffId(agreement.getAgreement_staff());
-			Gson gson = new Gson();
-			System.out.println("得到合同");
-			String result = gson.toJson(rs);
+			String result;
+			if(rs.size() < 0){
+				result = "null";
+			}else{
+				Gson gson = new Gson();
+				System.out.println("得到合同");
+				result = gson.toJson(rs);
+			}
 			HttpServletResponse response = ServletActionContext.getResponse();
 			response.setContentType("text/html;charset=utf-8");
 			PrintWriter pw = response.getWriter();
@@ -78,6 +83,7 @@ public class StaffAgreementAction extends ActionSupport{
 			pw.flush();
 			pw.close();
 		}
+		//删除一个合同
 		public void deleteStaffAgreement() throws IOException{
 			staffAgreementService.deleteStaffAgreement(agreement.getRlzy_agreement_id());
 			HttpServletResponse response = ServletActionContext.getResponse();

@@ -23,11 +23,11 @@
 <body>
 <div id="wrapper">
 	<s:action name="user_implements_navbar" namespace="/user" executeResult="true" />
-	
+	<s:action name="user_LeftIndex" namespace="/user" executeResult="true" />
 <!----------------------------------------------- 隐藏信息开始 --------------------------------------------------->
 	<input id="hideQueryString" type="text" class="hideDiv" />
 	<input id="hideCurrPage" type="text" class="hideDiv" />
-	<s:action name="user_LeftIndex" namespace="/user" executeResult="true" />
+	
 	<div style="margin: 80px 0 0 0; float: right; width: 82%;">
 		<div class="panel" style="width: 95%; margin: 20px auto;" id="allPage">
 			<!--  -->
@@ -36,7 +36,7 @@
 			</div>
 			<div class="panel-body">
 				<div class="operation" style="margin: 0 0 6px 50px;">
-					<button style="margin-left: 15px;" type="button" class="btn btn-default" data-toggle='modal' data-target='#addDepaterment'>
+					<button style="margin-left: 15px;float: right;" type="button" class="btn btn-success" data-toggle='modal' data-target='#addDepaterment'>
 						<i class="fa fa-plus-square"></i>新增部门
 					</button>
 					<input type="text" id="searchInput" class="form-control"
@@ -48,15 +48,12 @@
 						<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
 					</div>
 					<div class="panel" id="mainPanel" style="display: none;">
-						<div class="panel-heading">
-							<h3 class="panel-title staff_title">部门表</h3>
-						</div>
 						<div class="panel-body">
-							<table class="table table-hover table-condensed staff_table_info">
+							<table class="table table-hover table-condensed staff_table_info"  style="text-align: center;">
 								<thead>
-									<tr>
+									<tr style="background-color: grey; color: white;">
 										<td>部门名称</td>
-										<td>部门职务</td>
+										<td>部门简介</td>
 										<td>部门电话</td>
 										<td>部门人数</td>
 										<td>操作</td>
@@ -64,18 +61,19 @@
 								</thead>
 								<tbody>
 									 <tr v-for="depaterment in list" style="text-align: center;"> 
-										<td>{{ depaterment.depaterment_name }}</td>
-										<td>{{ depaterment.depaterment_duty }}</td>
-										<td>{{ depaterment.depaterment_tel }}</td>
-										<td>{{ depaterment.depaterment_num }}</td>
+										<td>{{ depaterment.staffdepartment_name }}</td>
+										<td>{{ depaterment.staffdepartment_introduct }}</td>
+										<td>{{ depaterment.staffdepartment_tel }}</td>
+										<td>{{ depaterment.staffdepartment_amount }}</td>
 										<td><button onclick="createConfirmUpdata(this)" 
-												:id="depaterment.rlzy_depaterment_id" data-toggle='modal' data-target='#updateDepaterment' class='btn btn-primary'><i class="fa fa-pencil-square-o"></i>修改</button>
+												:id="depaterment.rlzy_staffdepartment_id" data-toggle='modal' data-target='#updateDepaterment' class='btn btn-primary'><i class="fa fa-pencil-square-o"></i>修改</button>
 											<button onclick="createConfirmDelete(this)"
-												:id="depaterment.rlzy_depaterment_id" class="btn btn-danger"><i class="fa fa-trash-o"></i>删除</button></td>
+												:id="depaterment.rlzy_staffdepartment_id" class="btn btn-danger"><i class="fa fa-trash-o"></i>删除</button></td>
 										</td>
 									</tr>
 								</tbody>
 							</table>
+							</div>
 							<div id="bottomPage" style="padding: 20px;">
 								<span>当前页数:<span id="currPage">{{ currPage }}</span></span> <span>共:<span
 									id="totalPage">{{ totalPage }}</span>页<span>共:<span
@@ -93,7 +91,7 @@
 										style="height: 30px;">跳转</button>
 								</span>
 							</div>
-						</div>
+						
 					</div>
 				</div>
 			</div>
@@ -121,18 +119,18 @@
 							<table class="table" style="margin: 0 auto;">
 								<tr>
 									<td><label>部门名称：</label></td>
-									<td><input id="depaterment_name" name="depaterment_name" 
+									<td><input id="updatastaffdepartment_name" name="staffdepartment_name" 
 										type="text" class="form-control" placeholder="请输入部门名称"></td>
 									<td><label>部门职务：</label></td>
-									<td><input id="depaterment_duty" name="depaterment_duty"
+									<td><input id="updatastaffdepartment_introduct" name="staffdepartment_introduct"
 										type="text" class="form-control" placeholder="请输入部门职务"></td>
 								</tr>
 								<tr>
 									<td><label>部门电话：</label></td>
-									<td><input id="depaterment_tel" name="depaterment_tel"
+									<td><input id="updatastaffdepartment_tel" name="staffdepartment_tel"
 										type="text" class="form-control" placeholder="请输入部门电话"></td>
 									<td><label>部门人数：</label></td>
-									<td><input id="depaterment_num" name="depaterment_num"
+									<td><input id="updatastaffdepartment_amount" name="staffdepartment_amount"
 										type="text" class="form-control" placeholder="请输入部门人数"></td>
 								</tr>
 							</table>
@@ -166,18 +164,18 @@
 							<table class="table" style="margin: 0 auto;">
 								<tr>
 									<td><label>部门名称：</label></td>
-									<td><input id="depaterment_name" name="depaterment_name" 
+									<td><input id="staffdepartment_name" name="staffdepartment_name" 
 										type="text" class="form-control" placeholder="请输入部门名称"></td>
-									<td><label>部门职务：</label></td>
-									<td><input id="depaterment_duty" name="depaterment_duty"
+									<td><label>部门简介：</label></td>
+									<td><input id="staffdepartment_introduct" name="staffdepartment_introduct"
 										type="text" class="form-control" placeholder="请输入部门职务"></td>
 								</tr>
 								<tr>
 									<td><label>部门电话：</label></td>
-									<td><input id="depaterment_tel" name="depaterment_tel"
+									<td><input id="staffdepartment_tel" name="staffdepartment_tel"
 										type="text" class="form-control" placeholder="请输入部门电话"></td>
 									<td><label>部门人数：</label></td>
-									<td><input id="depaterment_num" name="depaterment_num"
+									<td><input id="staffdepartment_amount" name="staffdepartment_amount"
 										type="text" class="form-control" placeholder="请输入部门人数"></td>
 								</tr>
 							</table>

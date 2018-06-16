@@ -21,8 +21,8 @@
 			<div class="sidebar-scroll" style="height: 100% !important;">
 				<nav>
 				<ul class="nav">
-					<li><a class=""><i class="lnr lnr-file-add"></i> <span>人员档案</span></a>
-						<ul class="nav" style="background-color: #13599d;">
+					<li><a class=""><i class="lnr lnr-users"></i> <span>人员档案</span></a>
+						<ul class="nav" style="background-color: #303030;">
 							<li><a href="<%=basePath%>staff/staff_page_StaffInfo"><span>人员基本信息</span></a></li>
 							<li><a href="<%=basePath%>staff/staff_page_StaffExp"><span>员工履历</span></a></li>
 							<li><a href="<%=basePath%>staff/staff_page_StaffAgreement"><span>奖金发放</span></a></li>
@@ -30,8 +30,8 @@
 							</template>
 						</ul>
 					</li>
-					<li><a class=""><i class="lnr lnr-users"></i> <span></span></a>
-						<ul class="nav" style="background-color: #13599d;">
+					<%-- <li><a class=""><i class="lnr lnr-file-add"></i> <span></span></a>
+						<ul class="nav" style="background-color: #303030;">
 							<template v-if="user_army_manager_power">
 							<li><a href="<%=basePath%>team/Staff_page_staffList"><span></span></a></li>
 							</template>
@@ -46,26 +46,14 @@
 								href="<%=basePath%>user/Memorabilia_skipToMemorabilia"><span>***</span></a></li>
 							</template>
 						 </ul>
-					  </li>
-					<li><a class=""><i class="lnr lnr-license"></i> <span>***</span></a>
-						<ul class="nav" style="background-color:#13599d;">
-							<template v-if="user_technology_manager_power">
-							<li><a
-								href="<%=basePath%>DNA/DNAManagement_DNAManagementPage"><span>***</span></a></li>
-							</template>
-							<template v-if="user_technology_manager_power">
-							<li><a
-								href="<%=basePath%>Equipment/EquipmentManagement_EquipmentManagementPage"><span>器材装备录入</span></a></li>
-
-							</template>
-						</ul></li>
-						<li><a class=""><i class="lnr lnr-license"></i> <span>教育培训</span></a>
-						<ul class="nav" style="background-color:#13599d;">
-							<li><a
-								href="<%=basePath%>train/train_toTrainlist"><span>教育培训类别</span></a></li>
-							<li><a
-								href="<%=basePath%>trainrecord/trainrecord_toTrainrecordlist"><span>教育培训记录</span></a></li>
-						</ul></li>
+					  </li><!-- #13599d --> --%>
+					<li><a class=""><i class="lnr lnr-license"></i> <span>教育培训</span></a>
+					<ul class="nav" style="background-color:#303030;">
+						<li><a
+							href="<%=basePath%>train/train_toTrainlist"><span>教育培训类别</span></a></li>
+						<li><a
+							href="<%=basePath%>trainrecord/trainrecord_toTrainrecordlist"><span>教育培训记录</span></a></li>
+					</ul></li>
 					</ul>
 				</nav>
 			</div>

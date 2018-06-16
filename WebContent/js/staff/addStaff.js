@@ -1,5 +1,27 @@
 var newStaff = {};
 var xmlHttp;
+window.onload = function() {
+	alert("获得部门");
+	$.ajax({
+		url : '/rlzyos/depaterment/depaterment_getAllDepaterment',
+		type : 'post',
+		success : function(data) {
+			var result = JSON.parse(data);
+			console.log(result);
+			console.log(result.length);
+			for (var i = 0; i < result.length; i++) {
+				document.getElementById("rlzy_staffdepartment_id").innerHTML = document
+						.getElementById("rlzy_staffdepartment_id").innerHTML
+						+ "<option value='"
+						+ result[i].rlzy_staffdepartment_id
+						+ "'>"
+						+ result[i].staffdepartment_name
+						+ "</option>";
+			}
+		}
+	});
+}
+
 // addStaff新建人员
 function Add_Staff() {
 	var url= "/rlzyos/staff/staff_addStaff";
@@ -28,10 +50,8 @@ function Add_Staff() {
 }
 // 员工基本信息表
 function addStaff_Info(url) {
-	alert("staffInfo")
 	getXmlHttp();
 	var staffDetails = document.getElementById("staffDetails");
-	alert(staffDetails.data)
 	var formData = new FormData(staffDetails);
 	xmlHttp.open("post", url, true);
 	xmlHttp.send(formData);
@@ -42,6 +62,7 @@ function addStaff_Info(url) {
 			var id = xmlHttp.responseText;//返回id
 			staffExp_ajax(id);
 			staffAgreement_ajax(id);
+			staffAward_ajax(id);
 			toastr.success("新建成功");
 			//返回修改页面(未做)	
 			/*window.location.href = '/rlzyos/staff/staff_page_StaffInfo';*/
@@ -70,7 +91,6 @@ function staffExp_ajax(id){
 			// 将每列的名和值放到formdata中
 			formdata.append(s_tdName, s_td[j].innerHTML);
 		}
-		alert(id);
 		// 将id放到每行中
 		formdata.append("staffExps.staffExp_staff", id);
 	}
@@ -149,7 +169,7 @@ function add_staffExp() {
 	w++;
 }
 
-//添加员工合同到表格
+//员工合同提交
 function staffAgreement_ajax(id){	
 	getXmlHttp();
 	var formdata = new FormData();
@@ -169,7 +189,6 @@ function staffAgreement_ajax(id){
 			// 将每列的名和值放到formdata中
 			formdata.append(s_tdName, s_td[j].innerHTML);
 		}
-		alert(id);
 		// 将id放到每行中
 		formdata.append("staffagreements.agreement_staff", id);
 	}
@@ -184,6 +203,7 @@ function staffAgreement_ajax(id){
 	// xmlHttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded;charset=utf-8");
 	xmlHttp.send(formdata);
 }
+//添加合同到表格
 var y = 0;
 function add_staffAgreement() {
 	console.log("add_workExperience start");
@@ -245,6 +265,104 @@ function add_staffAgreement() {
 	agr_tr.appendChild(reviseTd);
 	staffAgreement_table.children[0].append(agr_tr);
 	y++;
+}
+
+//员工奖金提交
+function staffAward_ajax(id){	
+	getXmlHttp();
+	var formdata = new FormData();
+	// 得到每行
+	var s_tr = document.getElementById("staffAward_table").getElementsByTagName("tr");
+
+	for (var i = 1; i < s_tr.length; i++) {
+		// 得到每列
+		var s_td = s_tr[i].getElementsByTagName("td");
+		for (var j = 0; j < s_td.length; j++) {
+			// 得到每列的class名
+			if (s_td[j].innerHTML == "") {
+				s_td[j].innerHTML = "d";
+			}
+			var s_tdName = s_td[j].getAttribute("name");
+			console.log("列名" + s_tdName);
+			// 将每列的名和值放到formdata中
+			formdata.append(s_tdName, s_td[j].innerHTML);
+		}
+		// 将id放到每行中
+		formdata.append("staffAwards.award_staff", id);
+	}
+	xmlHttp.onreadystatechange = function() {
+		console.log("c3");
+		if (isBack()) {
+			// console.log("studyExp_ajax"+xmlHttp.responseText);
+		}
+
+	};
+	xmlHttp.open("post", "/rlzyos/staff/staffAward_addStaffAward", true);
+	// xmlHttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded;charset=utf-8");
+	xmlHttp.send(formdata);
+}
+//添加奖金到表格
+var x = 0;
+function add_staffAward() {
+	console.log("add_award start");
+	// 把表格的数据存到json中
+	var staffAward_amount = document.querySelector(".award_amount").value;
+	var staffAward_provideTime = document.querySelector(".award_provideTime").value;
+	var staffAward_provideDepartment = document.querySelector(".award_provideDepartment").value;
+	var staffAward_provideReason = document.querySelector(".award_provideReason").value;
+
+	console.log(staffAward_provideReason);
+	newStaff['staffAward_amount'] = staffAward_amount;
+	newStaff['staffAward_provideTime'] = staffAward_provideTime;
+	newStaff['staffAward_provideDepartment'] = staffAward_provideDepartment;
+	newStaff['staffAward_provideReason'] = staffAward_provideReason;
+	console.log(newStaff['staffAward_provideReason']);
+	// 动态创建表格
+	var staffAward_table = document.getElementById("staffAward_table");
+	staffAward_table.setAttribute("class", "long_table");
+
+	var awa_tr = document.createElement("tr");
+	//开始时间
+	var staffAward_amount = document.createElement("td");
+	staffAward_amount.innerHTML = newStaff['staffAward_amount'];
+	staffAward_amount.setAttribute("name", "staffAwards[" + y + "].award_amount");
+	console.log(staffAward_amount.innerHTML);
+	//结束时间
+	var staffAward_provideTime = document.createElement("td");
+	staffAward_provideTime.innerHTML = newStaff['staffAward_provideTime'];
+	staffAward_provideTime.setAttribute("name", "staffAwards[" + y + "].award_provideTime");
+	console.log(staffAward_provideTime.innerHTML);
+	//内容
+	var staffAward_provideDepartment = document.createElement("td");
+	staffAward_provideDepartment.innerHTML = newStaff['staffAward_provideDepartment'];
+	staffAward_provideDepartment.setAttribute("name", "staffAwards[" + y	+ "].award_provideDepartment");
+	//备注
+	var staffAward_provideReason = document.createElement("td");
+	staffAward_provideReason.innerHTML = newStaff['staffAward_provideReason'];
+	staffAward_provideReason.setAttribute("name", "staffAwards[" + y + "].award_provideReason");
+
+	// 增加删除按钮的列
+	var reviseTd = document.createElement("td");
+	// 增加删除按钮及样式
+	var delete_button = document.createElement("button");
+	delete_button.className = 'btn btn-default btn-xs';
+	delete_button.setAttribute("type", "button");
+	delete_button.addEventListener('click', function() {
+		this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode);}, false);
+	delete_button.style['margin-left'] = "10px";
+	// 添加按钮里的图标
+	var delete_icon = document.createElement("i");
+	delete_icon.className = "fa fa-trash";
+	delete_button.append(delete_icon);
+	reviseTd.append(delete_button);
+
+	awa_tr.appendChild(staffAward_amount);
+	awa_tr.appendChild(staffAward_provideTime);
+	awa_tr.appendChild(staffAward_provideDepartment);
+	awa_tr.appendChild(staffAward_provideReason);
+	awa_tr.appendChild(reviseTd);
+	staffAward_table.children[0].append(awa_tr);
+	x++;
 }
 
 
