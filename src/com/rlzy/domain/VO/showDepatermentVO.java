@@ -14,7 +14,6 @@ public class showDepatermentVO {
 	private String queryString;
 	private List<rlzy_depaterment> list;
 	public int getCurrPage() {
-		System.out.println("VO");
 		return currPage;
 	}
 	public void setCurrPage(int currPage) {

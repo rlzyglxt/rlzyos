@@ -51,10 +51,7 @@ public class StaffExpAction extends ActionSupport{
 	}
 	//删除全部该人工作履历信息
 	public void deleteStaffExps() throws IOException{
-		
 			staffExpService.deleteStaffExps(staffExp.getStaffExp_staff());
-			System.out.println("得到id"+staffExp.getStaffExp_staff());
-			System.out.println("删除多个履历");
 			HttpServletResponse response = ServletActionContext.getResponse();
 			response.setContentType("text/html;charset=utf-8");
 			PrintWriter pw = response.getWriter();

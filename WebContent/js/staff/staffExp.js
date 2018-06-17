@@ -170,7 +170,6 @@ function addStaffExp(){
 	}
 	getXmlHttp();
 	
-	
 	var addstaffExpForm=document.getElementById("addstaffExpForm");
 	var formData = new FormData(addstaffExpForm);
 	xmlHttp.open("POST", "/rlzyos/staff/staffExp_addStaffExp", true);

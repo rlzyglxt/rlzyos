@@ -34,7 +34,7 @@
 	<bean id="staffAgreementDao" class="com.rlzy.dao.impl.staff.StaffAgreementDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
-	
+	<!-- 员工奖金信息 -->
 	<bean id="staffAwardAction" class="com.rlzy.action.staff.StaffAwardAction" scope="prototype">
 		<property name="staffAwardService" ref="staffAwardService"></property>
 	</bean>	
@@ -43,5 +43,5 @@
 	</bean>
 	<bean id="staffAwardDao" class="com.rlzy.dao.impl.staff.StaffAwardDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
-	</bean>	 	
+	</bean>	 
 </beans>

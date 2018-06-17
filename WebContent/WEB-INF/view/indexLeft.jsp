@@ -21,7 +21,7 @@
 			<div class="sidebar-scroll" style="height: 100% !important;">
 				<nav>
 				<ul class="nav">
-					<li><a class=""><i class="lnr lnr-users"></i> <span>人员档案</span></a>
+					<li><a class=""><i class="lnr lnr-file-add"></i> <span>人员档案</span></a>
 						<ul class="nav" style="background-color: #303030;">
 							<li><a href="<%=basePath%>staff/staff_page_StaffInfo"><span>人员基本信息</span></a></li>
 							<li><a href="<%=basePath%>staff/staff_page_StaffExp"><span>员工履历</span></a></li>
@@ -47,6 +47,14 @@
 							</template>
 						 </ul>
 					  </li><!-- #13599d --> --%>
+					<li><a class=""><i class="lnr lnr-users"></i> <span>人事调动</span></a>
+					<ul class="nav" style="background-color:#303030;">
+						<li><a
+							href="<%=basePath%>staff/staff_page_StaffMove"><span>员工调配</span></a></li>
+						<li><a
+							href="<%=basePath%>"><span>新进员工栏</span></a></li>
+						<li><a href="<%=basePath%>"><span>离退员工栏</span></a></li>
+					</ul></li>
 					<li><a class=""><i class="lnr lnr-license"></i> <span>教育培训</span></a>
 					<ul class="nav" style="background-color:#303030;">
 						<li><a
@@ -54,7 +62,7 @@
 						<li><a
 							href="<%=basePath%>trainrecord/trainrecord_toTrainrecordlist"><span>教育培训记录</span></a></li>
 					</ul></li>
-					</ul>
+				</ul>
 				</nav>
 			</div>
 		</div>
