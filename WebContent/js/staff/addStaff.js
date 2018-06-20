@@ -10,10 +10,10 @@ window.onload = function() {
 			console.log(result);
 			console.log(result.length);
 			for (var i = 0; i < result.length; i++) {
-				document.getElementById("rlzy_staffdepartment_id").innerHTML = document
-						.getElementById("rlzy_staffdepartment_id").innerHTML
+				document.getElementById("staffdepartment_name").innerHTML = document
+						.getElementById("staffdepartment_name").innerHTML
 						+ "<option value='"
-						+ result[i].rlzy_staffdepartment_id
+						+ result[i].staffdepartment_name
 						+ "'>"
 						+ result[i].staffdepartment_name
 						+ "</option>";

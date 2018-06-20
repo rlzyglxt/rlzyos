@@ -50,9 +50,11 @@
 					<li><a class=""><i class="lnr lnr-license"></i> <span>教育培训</span></a>
 					<ul class="nav" style="background-color:#303030;">
 						<li><a
-							href="<%=basePath%>train/train_toTrainlist"><span>教育培训类别</span></a></li>
+							href="<%=basePath%>train/train_toTrainList"><span>教育培训类别</span></a></li>
 						<li><a
-							href="<%=basePath%>trainrecord/trainrecord_toTrainrecordlist"><span>教育培训记录</span></a></li>
+							href="<%=basePath%>train/train_toStaffTrainList"><span>教育培训记录</span></a></li>
+						<li><a
+							href="<%=basePath%>paper/paper_toPaperlist"><span>证书记录</span></a></li>
 					</ul></li>
 					</ul>
 				</nav>

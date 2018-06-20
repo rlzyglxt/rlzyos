@@ -4,8 +4,8 @@ package com.rlzy.domain.DO;
 public class rlzy_stafftrain {
 	private String rlzy_stafftrain_id;//培训记录ID
 	private String stafftrain_staff;//员工id
-	private String stafftrain_train;//培训类别id
 	private String stafftrain_score;//成绩
+	private String stafftrain_train;//培训类别
 	private String stafftrain_certificate;//证书
 	private String stafftrain_gmt_create;//创建时间
 	private String stafftrain_gmt_modified;//修改时间

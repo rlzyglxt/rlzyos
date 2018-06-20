@@ -98,7 +98,7 @@
 								</select></td>
 								
 								<td><label class="staff_info_label">现部门</label></td>
-								<td><select class="form-control" id="rlzy_staffdepartment_id"
+								<td><select class="form-control" id="staffdepartment_name"
 									name="staff.staff_depaterment">
 										<option></option>
 										<!--<option value="一部门">一部门</option>

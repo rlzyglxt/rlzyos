@@ -1,25 +1,24 @@
-package com.rlzy.dao.train;
+package com.rlzy.service.train;
 
 import java.util.List;
 import com.rlzy.domain.DO.rlzy_train;
 import com.rlzy.domain.VO.showTrainVO;
 
-public interface TrainDao {
 
-	//
+public interface TrainService {
+	
+
 	public rlzy_train getTrainById(String rlzy_train_id);
-	//
+	//修改该员工的信息
+	public void upadteTrain(rlzy_train train);
+	//删除该员工
 	public void deleteTrain(String rlzy_train_id);
 
-	public void addTrain(rlzy_train train);
-	
-	public void updataTrain(rlzy_train train);
-	//
-	List<rlzy_train> getTrainByPage(showTrainVO trainVO);
-	//得到总数
-	int getTrainCount(showTrainVO trainVO);
+	public void saveTrain(rlzy_train ru);
+	//分页得到
+	public void getTrainByPage(showTrainVO trainVO);
 	
 	public boolean judgeTrainByTrainname(String train_name);
-
 	
+
 }

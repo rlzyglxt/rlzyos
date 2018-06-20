@@ -14,7 +14,7 @@ window.onload = function() {
 					document.getElementById("staff_depaterment").innerHTML = document
 							.getElementById("staff_depaterment").innerHTML
 							+ "<option value='"
-							+ result[i].rlzy_staffdepartment_id
+							+ result[i].staffdepartment_name
 							+ "'>"
 							+ result[i].staffdepartment_name
 							+ "</option>";
