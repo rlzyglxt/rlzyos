@@ -6,7 +6,7 @@ var queryConditionTemp = {
 	"totalPage" : "",
 	"pageCount" : "10",
 	"totalCount" : "",
-	"train_name" : ""//查询
+	"staffTrain_staff" : ""//查询
 }
 
 window.onload = function() {
@@ -17,8 +17,44 @@ window.onload = function() {
 			totalPage : '',
 			pageCount : '10',
 			totalCount : '',
-			train_name : '',
+			staffTrain_staff : '',
 			list : ''
+		}
+	});
+	$.ajax({
+		url : '/rlzyos/train/stafftrain_getTrainName',
+		type : 'post',
+		success : function(data) {
+			var result = JSON.parse(data);
+			console.log(result);
+			console.log(result.length);
+			for (var i = 0; i < result.length; i++) {
+				document.getElementById("stafftrain_train").innerHTML = document
+						.getElementById("stafftrain_train").innerHTML
+						+ "<option value='"
+						+ result[i].train_name
+						+ "'>"
+						+ result[i].train_name
+						+ "</option>";
+			}
+		}
+	});
+	$.ajax({
+		url : '/rlzyos/train/stafftrain_getTrainName',
+		type : 'post',
+		success : function(data) {
+			var result = JSON.parse(data);
+			console.log(result);
+			console.log(result.length);
+			for (var i = 0; i < result.length; i++) {
+				document.getElementById("rlzy_train_id").innerHTML = document
+						.getElementById("rlzy_train_id").innerHTML
+						+ "<option value='"
+						+ result[i].train_name
+						+ "'>"
+						+ result[i].train_name
+						+ "</option>";
+			}
 		}
 	});
 	loadData();
@@ -27,7 +63,7 @@ window.onload = function() {
 //改变筛选条件
 //查询姓名
 var changeName = function(event) {
-	queryConditionTemp.train_name = event.value;
+	queryConditionTemp.staffTrain_staff = event.value;
 	queryConditionTemp.currPage = "1";
 	loadData();
 }
@@ -37,14 +73,14 @@ var loadData = function() {
 	$('#mainPanel').hide();
 	$('#loadingLayer').show();
 	var queryCondition = {
-		"trainVO.currPage" : queryConditionTemp.currPage,
-		"trainVO.totalPage" : queryConditionTemp.totalPage,
-		"trainVO.pageCount" : queryConditionTemp.pageCount,
-		"trainVO.totalCount" : queryConditionTemp.totalCount,
-		"trainVO.train_name" : queryConditionTemp.train_name,
+		"staffTrainVO.currPage" : queryConditionTemp.currPage,
+		"staffTrainVO.totalPage" : queryConditionTemp.totalPage,
+		"staffTrainVO.pageCount" : queryConditionTemp.pageCount,
+		"staffTrainVO.totalCount" : queryConditionTemp.totalCount,
+		"staffTrainVO.staffTrain_staff" : queryConditionTemp.staffTrain_staff,
 	}	
 	$.ajax({
-		url : '/rlzyos/train/train_getAllByPage',
+		url : '/rlzyos/train/stafftrain_getAllStaffTrainByPage',
 		type : 'POST',
 		data : queryCondition,
 		success : function(data) {
@@ -59,7 +95,7 @@ var loadData = function() {
 			queryConditionTemp.totalPage = result.totalPage;
 			queryConditionTemp.pageCount = result.pageCount;
 			queryConditionTemp.totalCount = result.totalCount;
-			queryConditionTemp.train_name = result.train_name;
+			queryConditionTemp.staffTrain_staff = result.staffTrain_staff;
 			$('#loadingLayer').hide();
 			$('#mainPanel').show();
 		}
@@ -71,38 +107,38 @@ function createConfirmUpdata(event) {
 	$("#updateLoadingDiv").removeClass("hideDiv");
 	$("#updateContent").addClass("hideDiv");
 	getXmlHttp();
-	xmlHttp.open("POST", "/rlzyos/train/train_getTrainById", true);
+	xmlHttp.open("POST", "/rlzyos/train/stafftrain_getStaffTrainById", true);
 	var formData = new FormData();
-	formData.append("rlzy_train_id", event.id);
+	formData.append("rlzy_stafftrain_id", event.id);
 	xmlHttp.send(formData);
-	xmlHttp.onreadystatechange = getTrainByIdBack;
+	xmlHttp.onreadystatechange = getStaffTrainByIdBack;
 }
 
 
 //通过Id得到履历回显
-function getTrainByIdBack() {
+function getStaffTrainByIdBack() {
 	if (isBack()) {
 		var result = xmlHttp.responseText;
 		result = JSON.parse(result);
-		$("#train_name").val(result.train_name);
-		$("#train_startTime").val(result.train_startTime);
-		$("#train_overTime").val(result.train_overTime);
-		$("#train_pay").val(result.train_pay);
-		$("#train_content").val(result.train_content);
-		$("#updateTrainBtn").val(result.rlzy_train_id);
+		$("#stafftrain_staff").val(result.stafftrain_staff);
+		$("#stafftrain_train").val(result.stafftrain_train);
+		$("#stafftrain_score").val(result.stafftrain_score);
+		$("#stafftrain_certificate").val(result.stafftrain_certificate);
+		$("#updateStaffTrainBtn").val(result.rlzy_stafftrain_id);
 		$("#updateLoadingDiv").addClass("hideDiv");
 		$("#updateContent").removeClass("hideDiv");
 	}
 }
 
+
 //修改
-function updateTrain(event) {
+function updateStaffTrain(event) {
 	$("#updateLoadingDiv").removeClass("hideDiv");
 	$("#updateContent").addClass("hideDiv");
 	getXmlHttp();
-	xmlHttp.open("POST", "/rlzyos/train/train_updateTrain", true);
-	var formData = new FormData(updatetrainForm);
-	formData.append("rlzy_train_id", event.value);
+	xmlHttp.open("POST", "/rlzyos/train/stafftrain_updateStaffTrain", true);
+	var formData = new FormData(updatestafftrainForm);
+	formData.append("rlzy_stafftrain_id", event.value);
 	xmlHttp.send(formData);
 	xmlHttp.onreadystatechange = function() {
 		if (isBack()) {
@@ -114,26 +150,31 @@ function updateTrain(event) {
 	}
 }
 
-//删除
-var deleteTrain = function(event) {
+//查询姓名
+function getName(event) {
 	$.ajax({
-		url : '/rlzyos/train/train_deleteTrain',
+			type : "POST",
+			url : "/rlzyos/train/stafftrain_getStaffNameByStaffNumber",
+			data : {
+				"stafftrain_staff": event.value,
+			},
+			success : function(data) {
+				var result = JSON.parse(data);
+				var staff_name = $("#staff_addname");
+				staff_name.val(result);
+			}
+		});
+}
+
+//删除
+var deleteStaffTrain = function(event) {
+	$.ajax({
+		url : '/rlzyos/train/stafftrain_deleteStaffTrain',
 		type : 'POST',
 		data : {
-			'rlzy_train_id' : event.id
+			'rlzy_stafftrain_id' : event.id
 		}
 	});
-//	getXmlHttp();
-//	xmlHttp.open("POST", "/rlzyos/train/train_deleteTrain", true);
-//	var formData = new FormData();
-//	formData.append("rlzy_train_id", event.id);
-//	xmlHttp.send(formData);
-//	xmlHttp.onreadystatechange = function() {
-//		if (isBack()) {
-//			toastr.success("删除成功");
-//			loadData();
-//		}
-//	}
 }
 
 //确认删除提示
@@ -148,7 +189,7 @@ function createConfirmDelete(event) {
 				text : '确认',
 				btnClass : 'btn-blue',
 				action : function() {
-					deleteTrain(event);
+					deleteStaffTrain(event);
 					console.log("删除全部信息"+event);
 					loadData();
 				}
@@ -164,32 +205,25 @@ function createConfirmDelete(event) {
 	})
 }
 
-function addTrain(){
-	for (var i = 0; i < document.addtrainForm.elements.length - 1; i++) {
-		if (document.addtrainForm.elements[i].value == "") {
+function addStaffTrain(){
+	for (var i = 0; i < document.addstafftrainForm.elements.length - 1; i++) {
+		if (document.addstafftrainForm.elements[i].value == "") {
 			toastr.error("当前表单不能有空项");
 			document.form.elements[i].focus();
 			return false;
 		}
 	}
 	getXmlHttp();
-	xmlHttp.open("POST", "/rlzyos/train/train_addTrain", true);
-	var formData = new FormData(document.getElementById("addtrainForm"));
+	xmlHttp.open("POST", "/rlzyos/train/stafftrain_addStaffTrain", true);
+	var formData = new FormData(document.getElementById("addstafftrainForm"));
 	xmlHttp.send(formData);
 	xmlHttp.onreadystatechange = function (){
 		if (isBack()) {
-			var result = xmlHttp.responseText;
-			if (result == "samename") {
-				toastr.error("培训名称已经存在请重新填写培训名称！");
-				$("#addLoadingDiv").addClass("hideDiv");
-				$("#addContent").removeClass("hideDiv");
-			} else {
 				toastr.success("上传成功！");
 				$("#addLoadingDiv").addClass("hideDiv");
 				$("#addContent").removeClass("hideDiv");
 				$("#addContent input").val("");
 				loadData();
-			}
 		}
 	}
 }

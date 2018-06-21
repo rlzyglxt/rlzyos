@@ -98,7 +98,11 @@
 								</select></td>
 								
 								<td><label class="staff_info_label">现部门</label></td>
+<<<<<<< HEAD
 								<td><select class="form-control" id="staff_depaterment"
+=======
+								<td><select class="form-control" id="staffdepartment_name"
+>>>>>>> zhj
 									name="staff.staff_depaterment">
 										<option></option>
 										<!--<option value="一部门">一部门</option>

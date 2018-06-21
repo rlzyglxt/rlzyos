@@ -1,6 +1,7 @@
 package com.rlzy.domain.DTO.Staff;
 
 public class staffTrainDTO {
+	private String rlzy_stafftrain_id;//记录id 
 	private String staff_number;//员工工号
 	private String staff_name;//员工姓名
 	private String record_grade;//成绩
@@ -9,6 +10,13 @@ public class staffTrainDTO {
 	private String staffTrain_gmt_create;//创建时间
 	private String staffTrain_gmt_modified;//修改时间
 	
+	public String getRlzy_stafftrain_id() {
+		System.out.println("3.1");
+		return rlzy_stafftrain_id;
+	}
+	public void setRlzy_stafftrain_id(String rlzy_stafftrain_id) {
+		this.rlzy_stafftrain_id = rlzy_stafftrain_id;
+	}
 	public String getStaff_number() {
 		return staff_number;
 	}
@@ -51,17 +59,17 @@ public class staffTrainDTO {
 	public void setStaffTrain_gmt_modified(String staffTrain_gmt_modified) {
 		this.staffTrain_gmt_modified = staffTrain_gmt_modified;
 	}
-
+	@Override
 	public String toString() {
-		return "staffTrainDTO [staff_number=" + staff_number + ", staff_name=" + staff_name + ", record_grade="
-				+ record_grade + ", train_name=" + train_name + ", paper_name=" + paper_name
-				+ ", staffTrain_gmt_create=" + staffTrain_gmt_create + ", staffTrain_gmt_modified="
-				+ staffTrain_gmt_modified + "]";
+		return "staffTrainDTO [rlzy_stafftrain_id=" + rlzy_stafftrain_id + ", staff_number=" + staff_number
+				+ ", staff_name=" + staff_name + ", record_grade=" + record_grade + ", train_name=" + train_name
+				+ ", paper_name=" + paper_name + ", staffTrain_gmt_create=" + staffTrain_gmt_create
+				+ ", staffTrain_gmt_modified=" + staffTrain_gmt_modified + "]";
 	}
-	
-	public staffTrainDTO(String staff_number, String staff_name, String record_grade, String train_name,
-			String paper_name, String staffTrain_gmt_create, String staffTrain_gmt_modified) {
+	public staffTrainDTO(String rlzy_stafftrain_id, String staff_number, String staff_name, String record_grade,
+			String train_name, String paper_name, String staffTrain_gmt_create, String staffTrain_gmt_modified) {
 		super();
+		this.rlzy_stafftrain_id = rlzy_stafftrain_id;
 		this.staff_number = staff_number;
 		this.staff_name = staff_name;
 		this.record_grade = record_grade;
@@ -71,7 +79,6 @@ public class staffTrainDTO {
 		this.staffTrain_gmt_modified = staffTrain_gmt_modified;
 	}
 
-	
 	
 	
 }

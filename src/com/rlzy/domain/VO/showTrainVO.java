@@ -5,17 +5,20 @@ import com.rlzy.domain.DO.rlzy_train;
 
 
 public class showTrainVO {
-	private int currPage;
-	private int totalPage;
-	private int count;
-	private int pageSize;
-	private String queryString;
+	
+	private int currPage;// 当前页数
+	private int totalPage; // 总页数
+	private int totalCount;// 总记录数
+	private int pageCount;// 一页显示条数
+	private String train_name; //培训名字查询
 	private List<rlzy_train> list;
-	public int getCurrPage() {
-		return currPage;
+	
+	
+	public String getTrain_name() {
+		return train_name;
 	}
-	public void setCurrPage(int currPage) {
-		this.currPage = currPage;
+	public void setTrain_name(String train_name) {
+		this.train_name = train_name;
 	}
 	public int getTotalPage() {
 		return totalPage;
@@ -23,23 +26,23 @@ public class showTrainVO {
 	public void setTotalPage(int totalPage) {
 		this.totalPage = totalPage;
 	}
-	public int getCount() {
-		return count;
+	public int getCurrPage() {
+		return currPage;
 	}
-	public void setCount(int count) {
-		this.count = count;
+	public void setCurrPage(int currPage) {
+		this.currPage = currPage;
 	}
-	public int getPageSize() {
-		return pageSize;
+	public int getTotalCount() {
+		return totalCount;
 	}
-	public void setPageSize(int pageSize) {
-		this.pageSize = pageSize;
+	public void setTotalCount(int totalCount) {
+		this.totalCount = totalCount;
 	}
-	public String getQueryString() {
-		return queryString;
+	public int getPageCount() {
+		return pageCount;
 	}
-	public void setQueryString(String queryString) {
-		this.queryString = queryString;
+	public void setPageCount(int pageCount) {
+		this.pageCount = pageCount;
 	}
 	public List<rlzy_train> getList() {
 		return list;

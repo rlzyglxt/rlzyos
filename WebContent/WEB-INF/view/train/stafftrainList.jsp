@@ -9,10 +9,10 @@
 <html>
 <head>
 <base href="<%=basePath%>">
-<title>培训记录信息表</title>
+<title>培训记录表</title>
 <%-- <link rel="stylesheet" href="<%=basePath%>css/Staff/Staff.css"> --%>
 <%-- <link rel="stylesheet" href="<%=basePath%>css/user/userIndex.css"> --%>
-<script type="text/javascript" src="<%=basePath%>js/trainrecord/trainrecord.js"></script>
+<script type="text/javascript" src="<%=basePath%>js/train/stafftrain.js"></script>
 <script src="<%=basePath%>js/jquery-3.1.1.min.js"></script>
 <style type="text/css">
 #bottomPage:hover {
@@ -36,7 +36,7 @@
 			</div>
 			<div class="panel-body">
 				<div class="operation" style="margin: 0 0 6px 50px;">
-					<button style="margin-left: 15px;" type="button" class="btn btn-default" data-toggle='modal' data-target='#addTrainrecord'>
+					<button style="margin-left: 15px;" type="button" class="btn btn-default" data-toggle='modal' data-target='#addStaffTrain'>
 						<i class="fa fa-plus-square"></i>新增记录
 					</button>
 					<input type="text" id="searchInput" class="form-control"
@@ -57,8 +57,8 @@
 									<tr>
 										<th>员工工号</th>
 										<th>员工姓名</th>
-										<th>成        绩</th>
 										<th>培训名称</th>
+										<th>培训成绩</th>
 										<th>证书名称</th>
 										<th>创建时间</th>
 										<th>修改时间</th>
@@ -66,19 +66,18 @@
 									</tr>
 								</thead>
 								<tbody>
-									 <tr v-for="trainrecord in list" style="text-align: center;"> 
-										<td>{{ trainrecord.staff_number }}</td>
-										<td>{{ trainrecord.staff_name }}</td>
-										<td>{{ trainrecord.record_grade }}</td>
-										<td>{{ trainrecord.train_name }}</td>
-										<td>{{ trainrecord.paper_name }}</td>
-										<td>{{ trainrecord.staffTrain_gmt_create }}</td>
-										<td>{{ trainrecord.staffTrain_gmt_modified }}</td>
+									 <tr v-for="staffTrain in list" style="text-align: center;"> 
+										<td>{{ staffTrain.staff_number }}</td>
+										<td>{{ staffTrain.staff_name }}</td>
+										<td>{{ staffTrain.train_name }}</td>
+										<td>{{ staffTrain.record_grade }}</td>
+										<td>{{ staffTrain.paper_name }}</td>
+										<td>{{ staffTrain.staffTrain_gmt_create }}</td>
+										<td>{{ staffTrain.staffTrain_gmt_modified }}</td>
 										<td><button onclick="createConfirmUpdata(this)" 
-												:id="trainrecord.rlzy_record_id" data-toggle='modal' data-target='#updateTrainrecord' class='btn btn-primary'><i class="fa fa-pencil-square-o"></i>修改</button>
+												:id="staffTrain.rlzy_stafftrain_id" data-toggle='modal' data-target='#updateStaffTrain' class='btn btn-primary'><i class="fa fa-pencil-square-o"></i>修改</button>
 											<button onclick="createConfirmDelete(this)"
-												:id="trainrecord.rlzy_record_id" class="btn btn-danger"><i class="fa fa-trash-o"></i>删除</button></td>
-										</td>
+												:id="staffTrain.rlzy_stafftrain_id" class="btn btn-danger"><i class="fa fa-trash-o"></i>删除</button></td>
 									</tr>
 								</tbody>
 							</table>
@@ -106,8 +105,8 @@
 			</div>
 		</div>
 </div>	
-<!---------------------updateStaffExp--------------------------------------------修改模态框----------------------------------------------------  -->
-	<div class="modal fade" id="updateTrainrecord" tabindex="-1" role="dialog"	aria-labelledby="myModalLabel">
+<!---------------------update--------------------------------------------修改模态框----------------------------------------------------  -->
+	<div class="modal fade" id="updateStaffTrain" tabindex="-1" role="dialog"	aria-labelledby="myModalLabel">
 		<div class="modal-dialog" role="document" style="width: 900px;">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -118,31 +117,24 @@
 					<h4 class="modal-title">修改培训记录</h4>
 				</div>
 				<div class="modal-body">
- 					<%-- <div id="updateLoadingDiv" class="hideDiv" 
-						style="width: 319px; margin: 0 auto;"> 
-						<img alt="" src="<%=basePath%>img/loading.gif">
-				</div>  --%>
 					<div id="updateContent">
-						<form id="updatetrainrecordForm">
+						<form id="updatestafftrainForm" name="updatestafftrainForm">
 							<table class="table" style="margin: 0 auto;">
 								<tr>
 									<td><label>员工工号：</label></td>
-									<td><input id="staff_number" name="staff_number" 
+									<td><input id="stafftrain_staff" name="stafftrain_staff"
 										type="text" class="form-control" readonly="readonly"></td>
-									<td><label>员工姓名：</label></td>
-									<td><input id="staff_name" name="staff_name"
-										type="text" class="form-control" readonly="readonly"></td>
+									<td><label>培训名称：</label></td>
+									<td><select id="stafftrain_train" name="stafftrain_train" class="form-control">
+										<option></option>
+										</select></td>
 								</tr>
 								<tr>
-									<td><label>成        绩：</label></td>
-									<td><input id="record_grade" name="record_grade"
-										type="text" class="form-control" placeholder="请输入成绩"></td>
-									<td><label>培训名称：</label></td>
-									<td><input id="train_name" name="train_name"
-										type="text" class="form-control" placeholder="请输入培训名称"></td>
-								</tr>
-								<tr><td><label>证书名称：</label></td>
-									<td><input id="paper_name" name="paper_name"
+									<td><label>培训成绩：</label></td>
+									<td><input id="stafftrain_score" name="stafftrain_score"
+										type="text" class="form-control" placeholder="请输入培训成绩"></td>
+									<td><label>证书名称：</label></td>
+									<td><input id="stafftrain_certificate" name="stafftrain_certificate"
 										type="text" class="form-control" placeholder="请输入证书名称"></td>
 								</tr>
 							</table>
@@ -151,7 +143,7 @@
 				</div>
 				<div class="modal-footer">
 					<button onclick="loadData()" type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-					<button id="updateTrainrecordBtn" onclick="updateTrainrecord(this)"  type="button" class="btn btn-primary">修改</button>
+					<button id="updateStaffTrainBtn" onclick="updateStaffTrain(this)"  type="button" class="btn btn-primary">修改</button>
 				</div>
 			</div>
 			<!-- /.modal-content id="updateBtn" -->
@@ -160,7 +152,7 @@
 	</div>
 	
 	<!-----------------------------------------------------------------增加模态框----------------------------------------------------  -->
-	<div class="modal fade" id="addTrainrecord" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal fade" id="addStaffTrain" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 		<div class="modal-dialog" role="document" style="width: 900px;">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -171,30 +163,28 @@
 					<h4 class="modal-title">新增培训记录</h4>
 				</div>
 				<div class="modal-body">
- 					<%-- <div id="updateLoadingDiv" class="hideDiv" 
-						style="width: 319px; margin: 0 auto;"> 
-						<img alt="" src="<%=basePath%>img/loading.gif">
-				</div>  --%>
 					<div id="addContent">
-						<form id="addtrainrecordForm" name="addtrainrecordForm">
+						<form id="addstafftrainForm" name="addstafftrainForm">
 							<table class="table" style="margin: 0 auto;">
 								<tr>
 									<td><label>员工工号：</label></td>
-									<td><input id="staff_number" name="staff_number" oninput="getName(this)" 
-									placeholder="请输入员工工号" type="text" class="form-control"></td>
+									<td><input id="stafftrain_staff" name="stafftrain_staff" oninput="getName(this)"
+										type="text" class="form-control"></td>
 									<td><label>员工姓名：</label></td>
-									<td><input id="staff_addname" name="staff_addname" type="text" class="form-control"></td>
+									<td><input id="staff_addname" name="staff_addname"
+										type="text" class="form-control" readonly="readonly"></td>
 								</tr>
 								<tr>
-									<td><label>成        绩：</label></td>
-									<td><input id="record_grade" name="record_grade"
-										type="text" class="form-control" placeholder="请输入成绩"></td>
 									<td><label>培训名称：</label></td>
-									<td><input id="train_name" name="train_name"
-										type="text" class="form-control" placeholder="请输入培训名称"></td>
+									<td><select id="rlzy_train_id" name="stafftrain_train" class="form-control">
+										<option></option>
+										</select></td>
+									<td><label>培训成绩：</label></td>
+									<td><input id="stafftrain_score" name="stafftrain_score"
+										type="text" class="form-control" placeholder="请输入培训成绩"></td>
 								</tr>
 								<tr><td><label>证书名称：</label></td>
-									<td><input id="paper_name" name="paper_name"
+									<td><input id="stafftrain_certificate" name="stafftrain_certificate"
 										type="text" class="form-control" placeholder="请输入证书名称"></td>
 								</tr>
 							</table>
@@ -203,7 +193,7 @@
 				</div>
 				<div class="modal-footer">
 					<button onclick="loadData()" type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-					<button onclick="addTrainrecord()"  type="button" class="btn btn-primary">添加</button>
+					<button id="addStaffTrainBtn" onclick="addStaffTrain()"  type="button" class="btn btn-primary">添加</button>
 				</div>
 			</div>
 			<!-- /.modal-content id="updateBtn" -->
