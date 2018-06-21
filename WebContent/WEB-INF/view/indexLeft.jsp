@@ -17,63 +17,71 @@
 	<div class="slimScrollDiv" id="slimScrollDiv" position: relative; overflow: hidden; width: auto;">
 		<!-- LEFT SIDEBAR #13599d-->
 		<div id="sidebar-nav" class="sidebar"
-			style="width: 240px; height: 100% !important; background-color:captiontext;">
+			style="width: 228px; height: 100% !important; background-color:#9E9E9E;">
 			<div class="sidebar-scroll" style="height: 100% !important;">
 				<nav>
 				<ul class="nav">
+				<template v-if="user_user_manager_power">
+					<li><a class=""><i class="lnr lnr-file-add"></i> <span>个人信息</span></a>
+						<ul class="nav" style="background-color: #9E9E9E;">
+						
+							<li><a href="<%=basePath%>staff/staff_page_staffDetails?rlzy_staff_id=<%=request.getSession().getAttribute("rlzy_user_id")%>"><span>个人基本信息</span></a></li>
+						
+						</ul>
+					</li> <!-- #5CACEE -->
+					</template>
+					<template v-if="user_admin_manager_power">
 					<li><a class=""><i class="lnr lnr-file-add"></i> <span>人员档案</span></a>
-						<ul class="nav" style="background-color: #303030;">
+						<ul class="nav" style="background-color: #9E9E9E;">
+						
 							<li><a href="<%=basePath%>staff/staff_page_StaffInfo"><span>人员基本信息</span></a></li>
 							<li><a href="<%=basePath%>staff/staff_page_StaffExp"><span>员工履历</span></a></li>
-							<li><a href="<%=basePath%>staff/staff_page_StaffAgreement"><span>奖金发放</span></a></li>
+							<li><a href="<%=basePath%>staff/staff_page_StaffAward"><span>奖金发放</span></a></li>
 							<li><a href="<%=basePath%>staff/staff_page_StaffAgreement"><span>员工合同</span></a></li>
-							</template>
+							
 						</ul>
 					</li>
-					<%-- <li><a class=""><i class="lnr lnr-file-add"></i> <span></span></a>
-						<ul class="nav" style="background-color: #303030;">
-							<template v-if="user_army_manager_power">
-							<li><a href="<%=basePath%>team/Staff_page_staffList"><span></span></a></li>
-							</template>
-							<template v-if="user_army_manager_power">
-							<li><a href="<%=basePath%>scheduling/Scheduling_page_list"><span>**</span></a></li>
-							</template>
-							<template v-if="user_army_manager_power">
-							<li><a href="<%=basePath%>user/Meeting_skipToMeetRecords"><span>***</span></a></li>
-							</template>
-							<template v-if="user_army_manager_power">
-							<li><a
-								href="<%=basePath%>user/Memorabilia_skipToMemorabilia"><span>***</span></a></li>
-							</template>
-						 </ul>
-					  </li><!-- #13599d --> --%>
+					</template>
+					<template v-if="user_admin_manager_power">
 					<li><a class=""><i class="lnr lnr-users"></i> <span>人事调动</span></a>
-					<ul class="nav" style="background-color:#303030;">
+					<ul class="nav" style="background-color:#9E9E9E;">
 						<li><a
 							href="<%=basePath%>staff/staff_page_StaffMove"><span>员工调配</span></a></li>
 						<li><a
-							href="<%=basePath%>"><span>新进员工栏</span></a></li>
-						<li><a href="<%=basePath%>"><span>离退员工栏</span></a></li>
+							href="<%=basePath%>staff/staff_page_StaffNewIn"><span>新进员工栏</span></a></li>
+						<li><a href="<%=basePath%>staff/staff_page_StaffLeave"><span>离退员工栏</span></a></li>
+						
 					</ul></li>
+					</template>
+					<template v-if="user_admin_manager_power">
 					<li><a class=""><i class="lnr lnr-license"></i> <span>教育培训</span></a>
-					<ul class="nav" style="background-color:#303030;">
+					<ul class="nav" style="background-color:#9E9E9E;">
+					
 						<li><a
 							href="<%=basePath%>train/train_toTrainlist"><span>教育培训类别</span></a></li>
 						<li><a
 							href="<%=basePath%>trainrecord/trainrecord_toTrainrecordlist"><span>教育培训记录</span></a></li>
+						
 					</ul></li>
+					</template>
 				</ul>
 				</nav>
 			</div>
 		</div>
 		</div>
 		</div>
-</body>
-<script type="text/javascript">
+		<script type="text/javascript">
+		var sliderVue = new Vue({
+			el : '#sidebar-nav',
+			data : userPowerDTO
+		});
+	</script>
+	<script type="text/javascript">
 	$(function() {
 		$('.slimScrollDiv')
 				.attr("style",
 						"position: relative; overflow: hidden; width: auto;");
 	});
 </script>
+</body>
 </html>

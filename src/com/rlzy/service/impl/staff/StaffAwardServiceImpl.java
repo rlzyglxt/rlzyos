@@ -3,8 +3,9 @@ package com.rlzy.service.impl.staff;
 import java.util.List;
 
 import com.rlzy.dao.staff.StaffAwardDao;
-import com.rlzy.domain.DO.rlzy_staffagreement;
 import com.rlzy.domain.DO.rlzy_staffaward;
+import com.rlzy.domain.DTO.Staff.staffAwardDTO;
+import com.rlzy.domain.VO.showAwardVO;
 import com.rlzy.service.staff.StaffAwardService;
 
 import util.TeamUtil;
@@ -65,6 +66,16 @@ public class StaffAwardServiceImpl implements StaffAwardService{
 	public rlzy_staffaward getStaffAwardById(String rlzy_staffAward_id) {
 		// TODO Auto-generated method stub
 		return staffAwardDao.getStaffAwardById(rlzy_staffAward_id);
+	}
+
+	@Override
+	public void getStaffAwardByPage(showAwardVO staffAwardVO) {
+		// TODO Auto-generated method stub
+		int count =staffAwardDao.getStaffAwardCount(staffAwardVO);
+		staffAwardVO.setTotalPage((int) Math.ceil((double) count / (double) staffAwardVO.getPageCount()));
+		staffAwardVO.setTotalCount(count);
+		List<staffAwardDTO> staffAwards = staffAwardDao.getStaffAwardByPage(staffAwardVO);
+		staffAwardVO.setStaffAwards(staffAwards);
 	}
 	
 }

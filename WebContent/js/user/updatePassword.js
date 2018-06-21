@@ -25,15 +25,14 @@ function updatePw() {
 		xmlHttp.onreadystatechange = function(){
 			if(isBack()){
 				var result = xmlHttp.responseText;
-				alert(result);
 				if(result == "oldPasswordError") {
 					toastr.error("原密码错误！");
 					$("#passwordLoadingDiv").hide();
-					$("#passwordContent").show();		
+					$("#passwordContent").show();
 				} else if(result == "updateFail") {
 					toastr.error("修改失败请重新登录！");
 					$("#passwordLoadingDiv").hide();
-					$("#passwordContent").show();	
+					$("#passwordContent").show();
 				} else if(result == "updateSuccess") {
 					toastr.success("修改成功！");
 					$("#oldPassword").val("");

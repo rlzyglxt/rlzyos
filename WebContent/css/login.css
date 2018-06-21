@@ -1,6 +1,5 @@
-<<<<<<< HEAD
 body{
-	background:url(../img/back.jpg)  no-repeat center center fixed ;
+	background:url(../img/img5.jpg)  no-repeat center center fixed ;
 	-webkit-background-size: cover;
   	-moz-background-size: cover;
   	-o-background-size: cover;
@@ -9,7 +8,7 @@ body{
 
 .contain{
 	width: 1000px;
-	height:800px;
+	height:750px;
 }
 .left{
 	width: 500px;
@@ -34,13 +33,15 @@ body{
 	opacity: 1;
 }
 .login-input-area{
-	width: 400px;
+	padding-top:20px;
+	padding-left:120px;
+	width: 600px;
 }
 .login-button{
 	height: 100px;
-	width: 300px;
+	width: 450px;
 	position:relative;
-	left: 100px;
+	padding-left:80px;	
 	}
 .picture{
 
@@ -51,9 +52,6 @@ body{
 	
 }
 	
-
-		
-=======
 html, body, div, p, img, span, a, label, input {
 	margin: 0px;
 	padding: 0px;
@@ -73,7 +71,7 @@ html, body, div, p, img, span, a, label, input {
 	border: 2px solid #ffffff;
 	border-radius: 20px;
 	position: absolute;
-	top: 50%;
+	top: 40%;
 	left: 50%;
 	margin-top: -160px;
 	margin-left: -348px;
@@ -84,7 +82,7 @@ html, body, div, p, img, span, a, label, input {
 
 .bg_center p {
 	display: inline-block;
-	margin-right: 122px;
+	/* margin-right: 122px; */
 	margin-top: 32px;
 	color: white;
 	font: 31.95px/35px "微软雅黑";
@@ -133,4 +131,3 @@ html, body, div, p, img, span, a, label, input {
 .button_box div:hover {
 	cursor: pointer;
 }
->>>>>>> TLR1

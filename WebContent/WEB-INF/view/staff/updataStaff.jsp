@@ -12,25 +12,25 @@
 <!---------------------------------------------------------------------------------------------------->
 <!---------------------------------------------------------------------------------------------------->
 <link rel="stylesheet" href="<%=basePath%>css/Staff/Staff.css">
+
+<title>人员详情信息</title>
+</head>
 <script type="text/javascript" src="<%=basePath%>js/staff/updataStaff.js"></script>
 <script type="text/javascript" src="<%=basePath%>js/staff/addOne_longTable.js"></script>
 <script type="text/javascript" src="<%=basePath%>js/staff/updata_longTable.js"></script>
 <script type="text/javascript" src="<%=basePath%>js/staff/deleteOne_longTable.js"></script>
-<title>人员详情信息</title>
-</head>
-
 <body>
 <div id="wrapper">
 	<s:action name="user_implements_navbar" namespace="/user" executeResult="true" />
 	<s:action name="user_LeftIndex" namespace="/user" executeResult="true" />
 	<!---------------------------------------------------------------------------------------------------->
-	<div style="margin: 80px 0 0 0; float: right; width: 82%; overflow: hidden;">
-		<div class="panel" style="width: auto; margin: 20px auto; overflow: inherit; position: relative;">
+	<div style="margin: 80px 0 0 0; float: right; width: 81%; overflow: hidden;">
+		<div class="panel" style="width: 1080px; margin: 20px auto; overflow: inherit; position: relative;">
 			<!--  -->
 			<div class="panel-heading">
 				<h3 class="panel-title">修改基本人员信息</h3>
 			</div>
-			<div style="margin-left: 5%;">
+			<div style="margin-left: 4.5%;">
 				<button onclick="javascript:history.go(-1)" type="button"
 					class="btn btn-default button button_return ">
 					<i class="fa fa-reply"></i> 返回列表
@@ -101,15 +101,15 @@
 							<tr>
 								<td><label class="staff_info_label">员工状态</label></td>
 								<td><select class="form-control" id="staff_status"
-									name="staff.staff_status">
+									name="staff.staff_status" onchange="checkIt(this.value)">
 										<option></option>
-										<option value="在职">在职</option>
-										<option value="离职">离职</option>
+										<option>在职</option>
+										<option>离职</option>
 								</select></td>
 							
 								<td><label class="staff_info_label">职务</label></td>
 								
-								<td><select class="form-control" name="staff.staff_duty" id="staff_duty">
+								<td><select class="form-control" name="staff.staff_duty" id="staff_duty" type="text">
 										<option></option>
 										<option value="管理员">管理员</option>
 										<option value="经理">经理</option>
@@ -118,6 +118,19 @@
 								</td>
 								
 							</tr>
+							<tr>
+								<td class="staff_leaveTime_label" style="display: none;">
+									<label class="staff_info_label">离职时间</label></td>
+								<td class="staff_leaveTime" style="display: none;">
+									<input placeholder="请填写离职时间" name="staff.staff_leaveTime"	class="staff_Time form-control " type="text">
+								</td>
+								<td class="staff_leaveReason_label" style="display: none;">
+									<label class="staff_info_label">离职原因</label></td>
+								<td class="staff_leaveReason" style="display: none;">
+									<input placeholder="请填写离职原因" name="staff.staff_leaveReason" class="staff_leaveReason form-control" type="text">
+								</td>
+							</tr>
+							<tr style="height: 30px"></tr>
 						</table>
 					</form>
 				</div></div>

@@ -19,7 +19,7 @@ function add_oneStaffExp() {
 					"staffExps[0].staffExp_remark" : staffExp_remark,
 				},
 				success : function(data) {
-					alert("一条履历添加成功");
+					/*alert("一条履历添加成功");*/
 					toastr.success('添加学习成功！');
 					show_staffExpAjax(staff_id);
 				}

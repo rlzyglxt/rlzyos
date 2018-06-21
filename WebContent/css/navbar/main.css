@@ -163,7 +163,7 @@ html.fullscreen-bg #wrapper {
   border: none;
   background-color: #fff; }
   .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
-    background-color: #0064b4; }
+    background-color: #ABABAB; }
   .navbar-default .navbar-toggle, .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
     background-color: #f8f8f8; }
   .navbar-default .brand {
@@ -364,7 +364,7 @@ ul.notifications > li {
       background-color: transparent; } */
      .sidebar .nav > li > a:hover, .sidebar .nav > li > a:focus {
       color: #fff;
-      background-color: #283555; }
+      background-color: #ABABAB; }
       .sidebar .nav > li > a:hover i, .sidebar .nav > li > a:focus i, .sidebar .nav > li > a.active i {
        /*  color: #00AAFF; */
        color: #FFF;

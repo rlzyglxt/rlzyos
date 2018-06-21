@@ -2,7 +2,7 @@
 window.onload = function() {
 	var url = window.location.href;
 	staff_id = url.substring(url.indexOf("=") + 1);
-	alert("获得部门");
+	/*alert("获得部门");*/
 		$.ajax({
 			url : '/rlzyos/depaterment/depaterment_getAllDepaterment',
 			type : 'post',
@@ -14,7 +14,7 @@ window.onload = function() {
 					document.getElementById("staff_depaterment").innerHTML = document
 							.getElementById("staff_depaterment").innerHTML
 							+ "<option value='"
-							+ result[i].rlzy_staffdepartment_id
+							+ result[i].staffdepartment_name
 							+ "'>"
 							+ result[i].staffdepartment_name
 							+ "</option>";
@@ -28,8 +28,8 @@ window.onload = function() {
 }
 //通过id获取员工。并且显示该员工信息
 function get_staffDetails(staff_id) {
-	alert("通过id得到信息并修改");
-	alert(staff_id);
+	/*alert("通过id得到信息并修改");*/
+	/*alert(staff_id);*/
 	var url = "/rlzyos/staff/staff_getStaffById?rlzy_staff_id="
 			+ staff_id;
 	get_staffDetails_Ajax(url,staff_id);
@@ -46,7 +46,24 @@ function get_staffDetails_Ajax(url,staff_id) {
 			//传回信息，加载到数据框中
 			var staff = xmlHttp.responseText;
 			staff = JSON.parse(staff);
-			alert(staff.staff_number);
+			/*alert(staff.staff_number);*/
+			
+			// 遍历并插入input的value
+			$.each(staff, function(key, value) {
+				if(key=="staff_status"){
+					if(value=="离职"){
+						document.querySelector(".staff_leaveTime_label").style.display = "";
+						document.querySelector(".staff_leaveTime").style.display = "";
+						
+						document.querySelector(".staff_leaveReason_label").style.display = "";
+						document.querySelector(".staff_leaveReason").style.display = "";
+						$('input[name="staff.' + key + '"]').val(value);
+			}
+				
+			}
+				$('input[name="staff.' + key + '"]').val(value);
+		});
+			
 			
 			$('#staff_number').val(staff.staff_number);
 			$('#staff_name').val(staff.staff_name);
@@ -58,13 +75,14 @@ function get_staffDetails_Ajax(url,staff_id) {
 			$('#staff_duty').val(staff.staff_duty);
 			$('#staff_status').val(staff.staff_status);
 			$('#staff_depaterment').val(staff.staff_depaterment);
-			
+//			$('.staff_leaveTime').val(staff.staff_leaveTime);
+//			$('.staff_leaveReason').val(staff.staff_leaveReason);
 			show_staffExpAjax(staff_id);
 			show_staffAgreeAjax(staff_id);
 			show_staffAwardAjax(staff_id);
-		}
 	}
 }
+	}
 
 //显示工作经历
 function show_staffExpAjax(staff_id) {
@@ -79,7 +97,7 @@ function show_staffExpAjax(staff_id) {
 	staffExp_xmlHttp.onreadystatechange = function() {
 		if (staffExp_xmlHttp.readyState == 4 && staffExp_xmlHttp.status == 200) {
 			var staff_Exp = staffExp_xmlHttp.responseText;
-			if(staff_Exp=="null"){
+			if(staff_Exp=="staffExpIsNull"){
 				$('#staffExperience_table tbody').html("");
 			}else{
 				staff_Exp = JSON.parse(staff_Exp);
@@ -211,8 +229,6 @@ function show_staffAwardAjax(staff_id) {
 	staffAward_xmlHttp.send();
 }
 
-
-
 // staffDetail.jsp中的修改人员
 function staff_updata() {
 	$.confirm({
@@ -247,7 +263,7 @@ function loadstaffDetail_staff_relive() {
 		console.log("c2");
 		if (isBack()) {
 			var result = xmlHttp.responseText;
-			alert(result);
+		/*	alert(result);*/
 			console.log(result);
 			switch (result) {
 			case "":
@@ -261,6 +277,33 @@ function loadstaffDetail_staff_relive() {
 		};
 	}
 }
+
+//检查员工状态的内容新增内容
+function checkIt(value) {
+	/*alert(value);*/
+	if (value == "离职") {
+		// 离职显示离职时间和
+		document.querySelector(".staff_leaveTime_label").style.display = "";
+		document.querySelector(".staff_leaveTime").style.display = "";
+		
+		document.querySelector(".staff_leaveReason_label").style.display = "";
+		document.querySelector(".staff_leaveReason").style.display = "";
+
+	} else if (value == "在职") {
+		// 清空其他内容
+		document.querySelector(".staff_leaveTime_label").style.display = "none";
+		document.querySelector(".staff_leaveTime").style.display = "none";
+		document.querySelector(".staff_leaveReason_label").style.display = "none";
+		document.querySelector(".staff_leaveReason").style.display = "none";
+//	} else {
+//		document.querySelector(".staff_leaveTime_label").style.display = "none";
+//		document.querySelector(".staff_leaveTime").style.display = "none";
+//		document.querySelector(".staff_leaveReason_label").style.display = "none";
+//		document.querySelector(".staff_leaveReason").style.display = "none";
+	}
+}
+
+
 
 function isBack() {
 	if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {

@@ -60,7 +60,6 @@ public class StaffAgreementServiceImpl implements StaffAgreementService {
 	public void getStaffAgreementByPage(showAgreementVO showagreementVO) {
 		// TODO Auto-generated method stub
 		int count =staffAgreementDao.getStaffAgreementCount(showagreementVO);
-		System.out.println("staffserviceimp::"+count);
 		showagreementVO.setTotalPage((int) Math.ceil((double) count / (double) showagreementVO.getPageCount()));
 		showagreementVO.setTotalCount(count);
 		List<staffAgreementDTO> staffAgreement = staffAgreementDao.getStaffAgreementByPage(showagreementVO);

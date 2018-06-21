@@ -2,15 +2,16 @@ package com.rlzy.dao.impl.staff;
 
 import java.util.List;
 
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import com.rlzy.dao.staff.StaffMoveDao;
 import com.rlzy.domain.DO.rlzy_staffinfo;
 import com.rlzy.domain.DO.rlzy_staffmove;
+import com.rlzy.domain.DTO.Staff.staffMoveDTO;
+import com.rlzy.domain.VO.showStaffMoveVO;
 
-public class StaffMoveDaoImpl implements StaffMoveDao{
+public class StaffMoveDaoImpl implements StaffMoveDao {
 	private SessionFactory sessionFactory;
 
 	public Session getSession() {
@@ -26,18 +27,76 @@ public class StaffMoveDaoImpl implements StaffMoveDao{
 	}
 	//保存调动记录
 	@Override
-	public void addStaffMove(rlzy_staffmove staffmove) {
+	public void addStaffMove(List<rlzy_staffmove> staffmove) {
 		// TODO Auto-generated method stub
-		getSession().save(staffmove);
+		for (rlzy_staffmove rlzy_staffmove : staffmove) {
+			getSession().save(rlzy_staffmove);
+			
+		}
+	}
+	
+	@Override
+	public List<rlzy_staffinfo> getValueByNumber(String staff_number) {
+		// TODO Auto-generated method stub
+		String hql = "from rlzy_staffinfo where staff_number= '" + staff_number + "'";
+		System.out.println(getSession().createQuery(hql).list());
+		System.out.println("人员调动");
+		return getSession().createQuery(hql).list();
 	}
 
 	@Override
-	public rlzy_staffinfo getValueByNumber(String staff_number) {
+	public List<staffMoveDTO> getStaffMoveByPage(showStaffMoveVO staffMoveVO) {
 		// TODO Auto-generated method stub
-		String hql = "from rlzy_staffinfo where staff_number= '" + staff_number + "'";
-		Query rs = getSession().createQuery(hql);
-		System.out.println("调动");
-		return (rlzy_staffinfo) rs;
+		String hql = "select new com.rlzy.domain.DTO.Staff.staffMoveDTO(move.rlzy_staffMove_id as rlzy_staffMove_id,"
+				+ "staff.staff_number as staff_number,"
+				+ "staff.staff_name as staff_name,"
+				+ "move.staffMove_time as staffMove_time,"
+				+ "move.staffMove_nowdepartment as staffMove_nowdepartment,"
+				+ "move.staffMove_bfdepartment as staffMove_bfdepartment,"
+				+ "move.staffMove_bfduty as staffMove_bfduty,"
+				+ "move.staffMove_nowduty as staffMove_nowduty,"
+				+ "move.staffMove_remark as staffMove_remark) from rlzy_staffinfo as staff,rlzy_staffmove as move where staff.rlzy_staff_id=move.staffMove_staff and 1=1 ";
+		if(staffMoveVO.getStaff_name() !=null && staffMoveVO.getStaff_name().trim().length() > 0){
+			hql = hql + " and staff_name like '" + "%" + staffMoveVO.getStaff_name() + "%" + "'";
+		}
+		if(staffMoveVO.getStaff_number() !=null && staffMoveVO.getStaff_number().trim().length() > 0){
+			hql = hql + " and staff_number like '" + "%" + staffMoveVO.getStaff_number() + "%" + "'";
+		}
+		hql = hql + "order by staffMove_time " + staffMoveVO.getStaffMove_time();
+		List<staffMoveDTO> staffMoves = getSession().createQuery(hql).setFirstResult((staffMoveVO.getCurrPage() - 1) * staffMoveVO.getPageCount()).setMaxResults(staffMoveVO.getPageCount()).list();
+//		for (staffMoveDTO staffMoveDTO : staffMoves) {
+//			if (staffMoveDTO.getStaff_name() != null
+//					&& staffMoveDTO.getStaff_name().trim().length() > 0) {
+//				staffMoveDTO.setStaff_name(staffMoveDTO.getStaff_name().replaceAll(staffMoveVO.getStaff_name(),
+//					"<span style='color:red;'>" + staffMoveVO.getStaff_name() + "</span>"));
+//			}
+//		}
+		return staffMoves;
+	}
+	//得到总数
+	@Override
+	public int getStaffMoveCount(showStaffMoveVO staffMoveVO) {
+		// TODO Auto-generated method stub
+		String hql = "select count(*) from rlzy_staffmove where 1=1";
+		if(staffMoveVO.getStaff_name() !=null && staffMoveVO.getStaff_name().trim().length() > 0){
+			hql = hql + " and staff_name like '" + "%" + staffMoveVO.getStaff_name() + "%" + "'";
+		}
+		if(staffMoveVO.getStaff_number() !=null && staffMoveVO.getStaff_number().trim().length() > 0){
+			hql = hql + " and staff_number like '" + "%" + staffMoveVO.getStaff_number() + "%" + "'";
+		}
+		if(staffMoveVO.getStaffMove_time() !=null && staffMoveVO.getStaffMove_time().trim().length() > 0){
+			hql = hql + " and staffMove_time like '" + "%" + staffMoveVO.getStaffMove_time() + "%" + "'";
+		}
+		Session session=this.getSession();
+		long count =(long) session.createQuery(hql).uniqueResult();
+		return (int) count;
 	}
 
+	@Override
+	public void updataStaff(rlzy_staffinfo rs) {
+		// TODO Auto-generated method stub
+//		String hql = "update rlzy_staffinfo set rlzy_staffinfo.staff_depaterment=rlzy_staffmove.staffMove_nowdepartment,rlzy_staffinfo.staff_duty=rlzy_staffmove.staffMove_nowduty from rlzy_staffmove,rlzy_staffinfo where rlzy_staffinfo.rlzy_staff_id=rlzy_staffmove.staffMove_staff";
+//		getSession().createQuery(hql);
+		getSession().update(rs);
+	}
 }

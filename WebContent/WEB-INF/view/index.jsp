@@ -48,14 +48,13 @@
 		<s:action name="user_LeftIndex" namespace="/user" executeResult="true" />
 		
 		<!-- END LEFT SIDEBAR -->
-	 	<div id="totalPanel" style="width:1000px; background-color: white; height: 600px; margin: 90px auto;">
+	 	<%-- <div id="totalPanel" style="width:1000px; background-color: white; height: 550px; margin: 90px 0px 0px 270px;">
 			<span>欢迎来到人事资源管理系统</span>
-		</div>	 
-	</div>
+		</div>	  --%>
 		<!-- END WRAPPER -->
 
-		<!-- END LEFT SIDEBAR -->
-			<!-- MAIN -->
+		<!-- END LEFT SIDEBAR
+			MAIN -->
 		<div class="main">
 			<!-- MAIN CONTENT -->
 			<div class="main-content">
@@ -64,10 +63,14 @@
 					<div class="panel panel-headline" >
 					
 						<div class="panel-heading">
-						
+							<h2 class="panel-title">欢迎进入人力资源管理系统</h2>
 						</div>
 						<div class="panel-body">
-
+							<div style="height: 300px; width: 780px; margin: 20px;">
+								<div style="border: 1px solid #BFBFBF; box-shadow: 0px 0px 10px 5px #aaa; width: 700px; height: 280px; margin-right: 10px;">
+									<img alt="" src="<%=basePath%>img/img2.jpg">
+								</div>
+							</div>
 						</div>
 					</div>
 					<!-- END OVERVIEW -->
@@ -75,16 +78,14 @@
 		<!-- END MAIN CONTENT -->
 	</div>
 	<!-- END MAIN -->
-	</div>
-	<%-- <div id="totalPanel" style="width: 1100px; background-color: white; height: 600px; margin: 90px auto;">
-	<span>fdsjakjfldsa</span>
-	</div> --%>
+</div>
+</div>
 </body>
-<%-- <script type="text/javascript">
+ <script type="text/javascript">
 	$(function() {
 		$('.slimScrollDiv')
 				.attr("style",
 						"position: relative; overflow: hidden; width: auto; height: 100%;");
 	});
-</script> --%>
+</script> 
 </html>

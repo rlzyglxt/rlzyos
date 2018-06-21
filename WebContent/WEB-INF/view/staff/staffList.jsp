@@ -92,7 +92,7 @@
 								<tbody>
 									 <tr v-for="staff in staffs" style="text-align: center;"> 
 										<td>
-										<a :id="staff.rlzy_staff_id" onclick="skipToDetails(this)">
+										<a :id="staff.rlzy_staff_id" onclick="skipToDetail(this)">
 										<span v-html="staff.staff_name"></span></a>
 										</td>
 										<td>{{ staff.staff_sex }}</td>

@@ -28,16 +28,27 @@ function login() {
 	xmlHttp.onreadystatechange = function() {
 		if (isBack()) {
 			var result = xmlHttp.responseText;
-			switch (result) {
-			case "userNoExist":
-				toastr.warning("用户名不存在！");
-				break;
-			case "passwordError":
-				toastr.error("密码错误！若忘记密码请联系管理员更改");
-				break;
-			case "loginSuccess":
+			/*alert(result);*/
+			console.log(result);
+//			switch (result) {
+//			case "userNoExist":
+//				toastr.warning("用户名不存在！");
+//				break;
+//			case "PasswordError":
+//				toastr.error("密码错误！若忘记密码请联系管理员更改");
+//				break;
+//			case "loginSuccess":
+			
+				/*toastr.success("登陆成功！");
 				window.location = "/rlzyos/user/user_intoIndex";
-
+*/
+			if(result=="userNoExist"){
+				toastr.warning("用户名不存在！");
+			}else if(result=="PasswordError"){
+				toastr.error("密码错误！若忘记密码请联系管理员更改");
+			}else if(result=="loginSuccess"){
+				toastr.success("登陆成功！");
+				window.location = "/rlzyos/user/user_intoIndex";
 			}
 		}
 	}

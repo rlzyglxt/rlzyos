@@ -61,18 +61,31 @@ public class StaffDaoImpl implements StaffDao {
 	@Override
 	public List<staffListDTO> getStaffByPage(showStaffVO showstaffVO) {
 		// TODO Auto-generated method stub
-		String hql = "select new com.rlzy.domain.DTO.Staff.staffListDTO(rlzy_staff_id as rlzy_staff_id,staff_name as staff_name,staff_birth as staff_birth,"
-				+ "staff_status as staff_status,staff_tel as staff_tel,staff_sex as staff_sex,"
-				+ "staff_record as staff_record,staff_address as staff_address,staff_depaterment as staff_depaterment) from rlzy_staffinfo  where 1=1 ";
+		String hql = "select new com.rlzy.domain.DTO.Staff.staffListDTO(rlzy_staff_id as rlzy_staff_id,"
+				+ "staff_number as staff_number,"
+				+ "staff_name as staff_name,"
+				+ "staff_birth as staff_birth,"
+				+ "staff_duty as staff_duty,"
+				+ "staff_status as staff_status,"
+				+ "staff_tel as staff_tel,"
+				+ "staff_sex as staff_sex,"
+				+ "staff_record as staff_record,"
+				+ "staff_address as staff_address,"
+				+ "staff_depaterment as staff_depaterment,"
+				+ "staff_inTime as staff_inTime) from rlzy_staffinfo  where 1=1 ";
+		//姓名查询
 		if(showstaffVO.getStaff_name() !=null && showstaffVO.getStaff_name().trim().length() > 0){
 			hql = hql + " and staff_name like '" + "%" + showstaffVO.getStaff_name() + "%" + "'";
 		}
+		//性别筛选
 		if(showstaffVO.getStaff_sex() !=null && showstaffVO.getStaff_sex().trim().length() > 0){
 			hql = hql + " and staff_number like '" + "%" + showstaffVO.getStaff_sex() + "%" + "'";
 		}
+		//状态筛选
 		if(showstaffVO.getStaff_status() !=null && showstaffVO.getStaff_status().trim().length() > 0){
-			hql = hql + " and staff_status like '" + "%" + showstaffVO.getStaff_status() + "%" + "'";
+			hql = hql + " and staff_record like '" + "%" + showstaffVO.getStaff_status() + "%" + "'";
 		}
+		hql = hql + "order by staff_InTime " + showstaffVO.getStaff_inTime();
 		Session session = this.getSession();
 		List<staffListDTO> staffs = session.createQuery(hql).setFirstResult((showstaffVO.getCurrPage() - 1) * showstaffVO.getPageCount()).setMaxResults(showstaffVO.getPageCount()).list();
 		for (staffListDTO staffListDTO : staffs) {

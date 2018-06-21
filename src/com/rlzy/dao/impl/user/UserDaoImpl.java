@@ -5,6 +5,8 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+
+import com.rlzy.domain.DO.rlzy_staffinfo;
 import com.rlzy.domain.DO.rlzy_user;
 import com.rlzy.dao.user.UserDao;
 
@@ -24,23 +26,19 @@ public class UserDaoImpl implements UserDao{
 		this.sessionFactory = sessionFactory;
 	}
 	//得到用户名
-	public rlzy_user getUserByUsername(String user_username) {
+	public rlzy_staffinfo getUserByUsername(String user_username) {
 		// TODO Auto-generated method stub
-		String hql = "from rlzy_user where user_username = '" + user_username + "'";
+		String hql = "from rlzy_staffinfo where staff_number = '" + user_username + "'";
 		Query query = getSession().createQuery(hql);
-		List<rlzy_user> list = query.list();
+		List<rlzy_staffinfo> list = query.list();
 		return list.get(0);
 	}
-
 	// 判断用户是否存在
 	public boolean judgeUserByUsername(String user_username) {
 		// TODO Auto-generated method stub
-		String hql = "from rlzy_user where user_username='" + user_username + "'";
-		System.out.println("judge1");
+		String hql = "from rlzy_staffinfo where staff_number='" + user_username + "'";
 		Query query =getSession().createQuery(hql);
-		System.out.println("judge2");
 		List<rlzy_user> list=query.list();
-		System.out.println("judge3");
 		if(list.size() <= 0){
 			return false;
 		}else{
@@ -49,35 +47,24 @@ public class UserDaoImpl implements UserDao{
 
 	}
 	//byid查询用户
-	public rlzy_user getUserById(String rlzy_user_id) {
+	public rlzy_staffinfo getUserById(String rlzy_staff_id) {
 		// TODO Auto-generated method stub
-		rlzy_user ru = (rlzy_user) getSession().get(rlzy_user.class, rlzy_user_id);
+		rlzy_staffinfo ru = (rlzy_staffinfo) getSession().get(rlzy_staffinfo.class, rlzy_staff_id);
 		return ru;
 	}
 	
-	//添加用户
-	public void addUser(rlzy_user ru) {
-		// TODO Auto-generated method stub
-		getSession().save(ru);
-	}
-	
-	//更新用户
-	public void updateUser(rlzy_user ru) {
-		// TODO Auto-generated method stub
-		getSession().update(ru);
-	}
 	//删除用户
 	public void deleteUser(String user_id) {
 
 		// TODO Auto-generated method stub
-		String hql="delete from rlzy_user where rlzy_user_id = '" + user_id + "'";
+		String hql="delete from rlzy_staffinfo where rlzy_staff_id = '" + user_id + "'";
 		Query query=getSession().createQuery(hql);
 		query.executeUpdate();
 	}
 	// 修改密码
 	public void updatePassword(String rlzy_user_id, String newPassword) {
 		// TODO Auto-generated method stub
-		String hql = "update rlzy_user set user_password ='" + newPassword + "' where rlzy_user_id = '" + rlzy_user_id
+		String hql = "update rlzy_staffinfo set staff_password ='" + newPassword + "' where rlzy_staff_id = '" + rlzy_user_id
 				+ "'";
 		getSession().createQuery(hql).executeUpdate();
 	}
@@ -86,7 +73,7 @@ public class UserDaoImpl implements UserDao{
 	public int getUserCount(String queryString, int currPage) {
 		// TODO Auto-generated method stub
 		String query = "%" + queryString + "%";
-		String hql = "select count(*) from rlzy_user where (user_username like '" + query + "' or user_gmt_create like '" + query + "' or user_name like '" + query + "')";
+		String hql = "select count(*) from rlzy_staffinfo where (staff_number like '" + query + "' or staff_gmt_create like '" + query + "' or staff_name like '" + query + "')";
 		System.out.println(hql);
 		System.out.println("hqlcount");
 		int count = ((Number) getSession().createQuery(hql).uniqueResult()).intValue();
@@ -96,12 +83,24 @@ public class UserDaoImpl implements UserDao{
 	}
 
 	@Override
-	public List<rlzy_user> getUserByPage(String queryString, int currPage) {
+	public List<rlzy_staffinfo> getUserByPage(String queryString, int currPage) {
 		// TODO Auto-generated method stub
 		String query = "%" + queryString + "%";
-		String hql = "from rlzy_user where (user_name like '" + query + "' or user_username like '" + query + "'or user_telephone like '" + query + "') ";
+		String hql = "from rlzy_staffinfo where (staff_number like '" + query + "' or staff_name like '" + query + "'or staff_tel like '" + query + "') ";
 		System.out.println(hql+"page");
-		List<rlzy_user> list = getSession().createQuery(hql).setFirstResult((currPage - 1) * 10).setMaxResults(10).list();
+		List<rlzy_staffinfo> list = getSession().createQuery(hql).setFirstResult((currPage - 1) * 10).setMaxResults(10).list();
 		return list;
+	}
+	//添加用户
+	@Override
+	public void addUser(rlzy_staffinfo ru) {
+		// TODO Auto-generated method stub
+		getSession().save(ru);
+	}
+	//修改用户
+	@Override
+	public void updateUser(rlzy_staffinfo ru) {
+		// TODO Auto-generated method stub
+		getSession().update(ru);
 	}
 }

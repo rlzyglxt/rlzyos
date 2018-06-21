@@ -2,7 +2,7 @@ package com.rlzy.domain.DO;
 //工作履历表
 public class rlzy_staffexp {
 	private String rlzy_staffExp_id;//工作经历id(uuid)
-	private String staffExp_staff;//外键，员工工号
+	private String staffExp_staff;//外键，员工id
 	private String staffExp_address;//工作地址
 	private String staffExp_startTime;//开始时间
 	private String staffExp_overTime;//结束时间

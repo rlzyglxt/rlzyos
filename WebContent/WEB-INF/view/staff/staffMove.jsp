@@ -52,27 +52,24 @@
 										<th>原职务</th>
 										<th>调入部门</th>
 										<th>调入职务</th>
-										<th>调动时间</th>
+										<th><select id="staffMove_time" onchange="changeTime(this)" class="form-control">
+												<option value="desc">调动时间（降序）</option>
+												<option value="asc">调动时间（升序）</option>
+										</select></th>
 									</tr>
 								</thead>
 								<tbody>
-									 <tr v-for="staffAgreement in staffAgreements" style="text-align: center;"> 
+									 <tr v-for="staffMove in staffMoves" style="text-align: center;"> 
 										<td>
-										<a :id="staffAgreement.staff_number" onclick="skipToDetails(this)">
-										<span v-html="staffAgreement.staff_number"></span></a>
+										<a :id="staffMove.rlzy_staffMove_id" onclick="skipToDetails(this)">
+										<span v-html="staffMove.staff_number"></span></a>
 										</td>
-										<td>{{  }}</td>
-										<td>{{  }}</td>
-										<td>{{  }}</td>
-										<td>{{  }}</td>
-										<td>{{  }}</td>
-										<td>{{  }}</td>
-										<td>{{  }}</td>
-										<td><button onclick="createConfirmUpdataAgreement(this)" 
-												:id="staffAgreement.rlzy_agreement_id" data-toggle='modal' data-target='#updataAgreement' class='btn btn-primary'><i class="fa fa-pencil-square-o"></i>修改</button>
-											<button onclick="createConfirmDeleteAgreement(this)"
-												:id="staffAgreement.rlzy_agreement_id" class="btn btn-danger"><i class="fa fa-trash-o"></i>删除</button></td>
-									</tr>
+										<td>{{ staffMove.staff_name }}</td>
+										<td>{{ staffMove.staffMove_bfdepartment }}</td>
+										<td>{{ staffMove.staffMove_bfduty }}</td>
+										<td>{{ staffMove.staffMove_nowdepartment }}</td>
+										<td>{{ staffMove.staffMove_nowduty }}</td>
+										<td>{{ staffMove.staffMove_time }}</td>
 								</tbody>
 							</table>
 							<div id="bottomPage" style="padding: 20px;">
@@ -119,7 +116,7 @@
 						<img alt="" src="<%=basePath%>img/loading.gif">
 				</div>  --%>
 					<div id="addContent">
-						<form id="addstaffExpForm" name="addstaffExpForm">
+						<form id="addstaffMoveForm" name="addstaffMoveForm">
 							<table class="table" style="margin: 0 auto;">
 								<tr>
 									<td><label>工号：</label></td>
@@ -136,19 +133,24 @@
 										type="text" class="form-control" placeholder="请输入现职务"></td>
 								</tr>
 								<tr><td><label>调入部门：</label></td>
-									<td><input id="staffMove_nowdepartment" name="staffMove.staffMove_nowdepartment"
-										type="text" class="staff_OverTime form-control" placeholder="请输入调入的部门"></td>
+									<td><select class="form-control" id="staffMove_nowdepartment" 
+									name="staffMove.staffMove_nowdepartment">
+										<option></option></td>
 									<td><label>调入职务：</label></td>
-									<td><input id="staffMove_nowduty" name="staffMove.staffMove_nowduty"
-										type="text" class="form-control" placeholder="请输入调入的职务"></td>
+									<td><select class="form-control" name="staffMove.staffMove_nowduty" id="staffMove_nowduty">
+										<option></option>
+										<option value="管理员">管理员</option>
+										<option value="经理">经理</option>
+										<option value="员工">员工</option>
+										</select></td>
 								</tr>
 								<tr>
-								<td><label>调动时间：</label></td>
-								<td><input id="staffMove_time" name="staffMove.staffMove_time"
-									type="text" class="form-control" placeholder="请输入调动时间"></td>
-								<td><label>备注：</label></td>
-								<td><input id="staffMove_remark" name="staffMove.staffMove_remark"
-									type="text" class="form-control" placeholder="请输入备注"></td>
+									<td><label>调动时间：</label></td>
+									<td><input id="staffMove_time" name="staffMove.staffMove_time"
+										type="text" class="form-control Time" placeholder="请输入调动时间"></td>
+									<td><label>备注：</label></td>
+									<td><input id="staffMove_remark" name="staffMove.staffMove_remark"
+										type="text" class="form-control" placeholder="请输入备注"></td>
 								</tr>
 							</table>
 						</form>
@@ -156,16 +158,25 @@
 				</div>
 				<div class="modal-footer">
 					<button onclick="loadData()" type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-					<button id="addStaffExpBtn" onclick="addStaffMove()"  type="button" class="btn btn-primary">添加</button>
+					<button id="addStaffMoveBtn" onclick="addStaffMove()"  type="button" class="btn btn-primary">添加</button>
 				</div>
 			</div>
 			<!-- /.modal-content id="updateBtn" -->
 		</div>
 		<!-- /.modal-dialog -->
 	</div>
-
-
-
-
+	<!-- 时间javescript -->
+	<script type="text/javascript">
+		$.datetimepicker.setLocale('ch');
+		$('.Time').datetimepicker({
+			yearStart : 1900, // 设置最小年份
+			yearEnd : 2100, // 设置最大年份
+			yearOffset : 0, // 年偏差
+			timepicker : false, // 关闭时间选项
+			format : 'Y-m-d', // 格式化日期年-月-日
+			minDate : '1900/01/01', // 设置最小日期
+			maxDate : '2100/01/01', // 设置最大日期
+		});
+	</script>
 </body>
 </html>

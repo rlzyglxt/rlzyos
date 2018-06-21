@@ -3,6 +3,8 @@ package com.rlzy.service.staff;
 import java.util.List;
 
 import com.rlzy.domain.DO.rlzy_staffaward;
+import com.rlzy.domain.VO.showAwardVO;
+import com.rlzy.domain.VO.showStaffExpVO;
 
 public interface StaffAwardService {
 	//添加奖金记录
@@ -22,4 +24,7 @@ public interface StaffAwardService {
 	
 	//得到奖金记录
 	rlzy_staffaward getStaffAwardById(String rlzy_staffAward_id);
+	
+	//得到所有奖金记录
+	void getStaffAwardByPage(showAwardVO staffAwardVO);
 }

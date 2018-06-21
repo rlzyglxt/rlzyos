@@ -2,14 +2,14 @@ package com.rlzy.domain.DO;
 //员工基本信息表
 public class rlzy_staffinfo {
 	private String rlzy_staff_id;//员工id
-	private String staff_number;//员工工号
+	private String staff_number;//员工工号/登陆账号
 	private String staff_name;//员工
 	private String staff_sex;//员工性别
 	private String staff_birth;//员工出生日期
 	private String staff_tel;//电话
 	private String staff_address;//地址
 	private String staff_record;//学历
-	private String staff_depaterment;//部门id外键
+	private String staff_depaterment;//部门
 	private String staff_duty;//职务
 	private String staff_status;//工作状态
 	private String staff_inTime;//入职时间
@@ -17,6 +17,29 @@ public class rlzy_staffinfo {
 	private String staff_leaveReason;//离职原因
 	private String staff_gmt_create;//创建时间
 	private String staff_gmt_modified;//修改时间
+	private String staff_password;//用户密码
+	private String staff_adminPower;//用户管理权限
+	private String staff_userPower;//用户使用权限
+	
+	
+	public String getStaff_password() {
+		return staff_password;
+	}
+	public void setStaff_password(String staff_password) {
+		this.staff_password = staff_password;
+	}
+	public String getStaff_adminPower() {
+		return staff_adminPower;
+	}
+	public void setStaff_adminPower(String staff_adminPower) {
+		this.staff_adminPower = staff_adminPower;
+	}
+	public String getStaff_userPower() {
+		return staff_userPower;
+	}
+	public void setStaff_userPower(String staff_userPower) {
+		this.staff_userPower = staff_userPower;
+	}
 	public String getRlzy_staff_id() {
 		return rlzy_staff_id;
 	}

@@ -117,33 +117,6 @@ function updateStaffExp(event) {
 	}
 }
 
-////工作经历添加一条
-//function add_oneStaffExp() {
-//	console.log("工作履历添加");
-//	// 添加一条数据
-//	var staffWork_address_val = $(".staffWork_address").val();
-//	var staffWork_duty_val = $(".staffWork_duty").val();
-//	var staffWork_startTime_val = $(".staffWork_startTime").val();
-//	var staffWork_stopTime_val = $(".staffWork_stopTime").val();
-//	var staffWork_remarks_val = $(".staffWork_remarks").val();
-//	
-//	$.ajax({
-//		type : "POST",
-//		url : "/xsjsglxt/team/StaffWork_saveWorks?works.staffWork_staff="
-//				+ staff_id,
-//		data : {
-//			"works[0].staffWork_address" : staffWork_address_val,
-//			"works[0].staffWork_duty" : staffWork_duty_val,
-//			"works[0].staffWork_startTime" : staffWork_startTime_val,
-//			"works[0].staffWork_stopTime" : staffWork_stopTime_val,
-//			"works[0].staffWork_remarks" : staffWork_remarks_val,
-//		},
-//		success : function(data) {
-//			toastr.success('添加工作成功！');
-//			show_workAjax(staff_id);
-//		}
-//	});
-//}
 //查询姓名
 function getName(event) {
 	$.ajax({
@@ -169,7 +142,6 @@ function addStaffExp(){
 		}
 	}
 	getXmlHttp();
-	
 	var addstaffExpForm=document.getElementById("addstaffExpForm");
 	var formData = new FormData(addstaffExpForm);
 	xmlHttp.open("POST", "/rlzyos/staff/staffExp_addStaffExp", true);
@@ -197,7 +169,7 @@ var createConfirmDeleteExp = function(event) {
 				btnClass : 'btn-blue',
 				action : function() {
 					deleteStaffExp(event);
-					alert(event);
+					/*alert(event);*/
 					loadData();
 				}
 			},

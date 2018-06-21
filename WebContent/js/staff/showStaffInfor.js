@@ -10,6 +10,7 @@ var queryConditionTemp = {
 	"staffName" : "",//查询姓名
 	"staffSex" : "", //筛选性别
 	"staffStatus" : "",//筛选状态
+	"staffInTime" : "desc" //入职时间
 }
 window.onload = function() {
 	allPageVue = new Vue({
@@ -43,11 +44,23 @@ var changeSex = function(event) {
 	queryConditionTemp.currPage = "1";
 	loadData();
 }
+
+//时间排序
+var changeTime = function(event) {
+	queryConditionTemp.staffInTime = event.value;
+	queryConditionTemp.currPage = "1";
+	loadData();
+}
+
 //进入修改页面
 function createConfirmUpdata(event){
-	alert("进入修改页面");
+/*	alert("进入修改页面");*/
 	enterUpdataPage(event);
 }
+
+
+
+
 //跳转到修改
 function enterUpdataPage(event){
 	window.location = "/rlzyos/staff/staff_page_UpdataStaff?rlzy_staff_id=" + event.id;
@@ -65,7 +78,9 @@ var loadData = function() {
 		"staffVO.staff_name" : queryConditionTemp.staffName,
 		"staffVO.staff_sex" : queryConditionTemp.staffSex,
 		"staffVO.staff_status" : queryConditionTemp.staffStatus,
-	}	
+		"staffVO.staff_InTime" : queryConditionTemp.staffInTime,
+		
+	}
 	$.ajax({
 		url : '/rlzyos/staff/staff_getStaffByPage',
 		type : 'POST',
@@ -86,6 +101,7 @@ var loadData = function() {
 			queryConditionTemp.staffName = result.staff_name;
 			queryConditionTemp.staffSex = result.staff_sex;
 			queryConditionTemp.staffStatus = result.staff_status
+			queryConditionTemp.staffInTime = result.staff_InTime
 			$('#loadingLayer').hide();
 			$('#mainPanel').show();
 		}
@@ -143,7 +159,7 @@ function createConfirmDelete(event) {
 				btnClass : 'btn-blue',
 				action : function() {
 					deleteStaff(event);
-					alert(event);
+					/*alert(event);*/
 					console.log("删除全部信息"+event);
 					loadData();
 				}
@@ -158,7 +174,11 @@ function createConfirmDelete(event) {
 		}
 	})
 }
-	
+
+var skipToDetail = function(event) {
+	window.location = "/rlzyos/staff/staff_page_staffDetails?rlzy_staff_id="
+			+ event.id;
+}
 //相应分页响应
 var firstPage = function() {
 	if (queryConditionTemp.currPage <= 1) {

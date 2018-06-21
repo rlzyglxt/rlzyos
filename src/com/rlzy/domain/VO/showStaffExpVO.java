@@ -2,7 +2,7 @@ package com.rlzy.domain.VO;
 
 import java.util.List;
 
-import com.rlzy.domain.DO.rlzy_staffexp;
+import com.rlzy.domain.DTO.Staff.staffExpDTO;
 
 public class showStaffExpVO {
 	private int currPage;// 当前页数
@@ -10,7 +10,7 @@ public class showStaffExpVO {
 	private int totalCount;// 总记录数
 	private int pageCount;// 一页显示条数
 	private String staffExp_staff;//工号查询
-	private List<rlzy_staffexp> staffExps;
+	private List<staffExpDTO> staffExps;
 	
 	public int getCurrPage() {
 		return currPage;
@@ -42,11 +42,11 @@ public class showStaffExpVO {
 	public void setStaffExp_staff(String staffExp_staff) {
 		this.staffExp_staff = staffExp_staff;
 	}
-	public List<rlzy_staffexp> getStaffExps() {
+	public List<staffExpDTO> getStaffExps() {
 		return staffExps;
 	}
-	public void setStaffExps(List<rlzy_staffexp> staffExps) {
+	public void setStaffExps(List<staffExpDTO> staffExps) {
 		this.staffExps = staffExps;
 	}
-
+	
 }

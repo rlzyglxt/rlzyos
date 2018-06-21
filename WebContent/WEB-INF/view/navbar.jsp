@@ -41,35 +41,30 @@
 <body>
 <div id="wrapper">
 		<nav id="navbar" class="navbar navbar-default navbar-fixed-top"
-			style=" background-color: #303030;"><!-- #13599d -->
+			style=" background-color: #9E9E9E;"><!-- #13599d #303030 #63B8FF-->
 		<div
 			style="width: auto; float: left; line-height: 78px; margin: 0 0 0 30px; font-size: 30px; color: white;">
 			<img alt="" src="<%=basePath%>img/hui.png">人力资源管理系统
 		</div>
 		<div id="navbar-menu">
 			<ul style="margin: 0 0 0 20px;" class="nav navbar-nav navbar-left">
+			<template v-if="user_user_manager_power">
 				<li class="dropdown" style="float: left;"><a
 					href="<%=basePath%>user/user_intoIndex"><span>首页</span> </a></li>
-				<li class="leader_control dropdown" style="float: left;">
-				<%-- <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <span>系统管理</span>
-						<i class="icon-submenu lnr lnr-chevron-down"></i>
-				</a>
-					<ul class="dropdown-menu">
-						<li><a href="<%=basePath%>depaterment/depaterment_toDepatermentlist">机构维护</a></li>
-						<li><a href="<%=basePath%>user/user_skipToUser">用户管理</a></li>
-					</ul></li> --%>
-				<!-- <template v-if="user_user_manager_power"> -->
+					</template>
+				<!-- <li class="leader_control dropdown" style="float: left;"> -->
+			<template v-if="user_admin_manager_power">
 				<li class="dropdown" style="float: left;"><a
 					href="<%=basePath%>depaterment/depaterment_toDepatermentlist"><span>机构维护</span>
 				</a></li>
-			<!-- 	</template>
-				<template v-if="user_user_manager_power"> -->
+			</template>
+			<template v-if="user_admin_manager_power">
 				<li class="dropdown" style="float: left;"><a
 					href="<%=basePath%>user/user_skipToUser"><span>用户管理</span>
 				</a></li>
-				<!-- </template> -->
-				<!--  -->
+			</template>
 			</ul>
+			
 			<!--  -->
 			<ul class="nav navbar-nav navbar-right" style="margin: 0 0px 0 0">
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
@@ -130,17 +125,10 @@
 		<!-- -------------------------------------------------修改密码成功--------------------------------------------------------------- -->
 	</div>
 	</body>	
-		<%-- <script type="text/javascript">
+		<script type="text/javascript">
 			var userPowerDTO = {
-				'user_case_technology_power' : false, //案件技术
-				'user_case_query_power' : false, //案件侦查
-				'user_check_power' : false, //检验鉴定
-				'user_army_manager_power' : false, //队伍
-				'user_technology_manager_power' : false,//技术
-				'user_statistics_power' : false, //统计
-				'user_user_manager_power' : false,
-				'user_check_power_modified' : false,
-				'user_letter_power' : false
+				'user_admin_manager_power' : false, //用户管理
+				'user_user_manager_power' : false //使用权限
 			}
 
 			var powerNavVue = new Vue({
@@ -149,9 +137,8 @@
 			});
 			//jurisdiction_admin管理
 			//jurisdiction_none无
-			$
-					.ajax({
-						url : '/xsjsglxt/user/User_judgePower',
+			$.ajax({
+						url : '/rlzyos/user/user_judgePower',
 						type : 'POST',
 						async : false,
 						success : function(data) {
@@ -165,7 +152,7 @@
 													text : "重新登录",
 													btnClass : "btn-blue",
 													action : function() {
-														window.location = "/xsjsglxt/login.jsp";
+														window.location = "/rlzyos/login.jsp";
 													}
 												}
 											}
@@ -173,50 +160,25 @@
 								$("#hideLayer").hide();
 							} else {
 								var result = JSON.parse(data);
-								if (result.user_case_technology_power == 'jurisdiction_admin') {
-									userPowerDTO.user_case_technology_power = true;
+								if (result.staff_adminPower == 'jurisdiction_admin') {
+									userPowerDTO.user_admin_manager_power = true;
 								} else {
-									userPowerDTO.user_case_technology_power = false;
+									userPowerDTO.user_admin_manager_power = false;
 								}
-								if (result.user_case_query_power == 'letter_admin') {
-									userPowerDTO.user_letter_power = true;
-								} else {
-									userPowerDTO.user_letter_power = false;
-								}
-								if (result.user_case_query_power == 'jurisdiction_none') {
-									userPowerDTO.user_case_query_power = false;
-								} else {
-									userPowerDTO.user_case_query_power = true;
-								}
-								if (result.user_check_power == 'jurisdiction_none') {
-									userPowerDTO.user_check_power = false;
-								} else {
-									userPowerDTO.user_check_power = true;
-								}
-								if (result.user_check_power == 'jurisdiction_use') {
-									userPowerDTO.user_check_power_modified = false;
-								} else {
-									userPowerDTO.user_check_power_modified = true;
-								}
-								if (result.user_army_manager_power == 'jurisdiction_admin') {
-									userPowerDTO.user_army_manager_power = true;
-								} else {
-									userPowerDTO.user_army_manager_power = false;
-								}
-								if (result.user_statistics_power == 'jurisdiction_admin') {
-									userPowerDTO.user_statistics_power = true;
-								} else {
-									userPowerDTO.user_statistics_power = false;
-								}
-								if (result.user_user_manager_power == 'jurisdiction_admin') {
+								if (result.staff_userPower == 'jurisdiction_user') {
 									userPowerDTO.user_user_manager_power = true;
 								} else {
 									userPowerDTO.user_user_manager_power = false;
 								}
-								if (result.user_technology_manager_power == 'jurisdiction_admin') {
-									userPowerDTO.user_technology_manager_power = true;
+								if (result.staff_userPower == 'jurisdiction_none') {
+									userPowerDTO.user_user_manager_power = false;
 								} else {
-									userPowerDTO.user_technology_manager_power = false;
+									userPowerDTO.user_user_manager_power = true;
+								}
+								if (result.staff_adminPower == 'jurisdiction_none') {
+									userPowerDTO.user_admin_manager_power = false;
+								} else {
+									userPowerDTO.user_admin_manager_power = true;
 								}
 								$("#hideLayer").hide();
 							}
@@ -226,7 +188,7 @@
 			jconfirm.defaults = {
 				smoothContent : false
 			}
-		</script> --%>
+		</script>
 
 <script type="text/javascript">
 	//getUserSessionForAjax();

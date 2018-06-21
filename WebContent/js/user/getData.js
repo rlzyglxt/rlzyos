@@ -10,6 +10,54 @@ window.onload = function() {
 	xmlHttp.onreadystatechange = loadUserBack;
 }
 
+function loadUserBack() {
+	if (isBack()) {
+		var result = xmlHttp.responseText;
+		result = JSON.parse(result);
+		var userTable = document.getElementById("userTable");
+		var hideQueryString = document.getElementById("hideQueryString");
+		var hideCurrPage = document.getElementById("hideCurrPage");
+		var queryString = document.getElementById("queryString");
+		var currPage = document.getElementById("currPage");
+		var totalPage = document.getElementById("totalPage");
+		var skipPage = document.getElementById("skipPage");
+		for (var i = 0; i < result.list.length; i++) {
+			userTable.innerHTML = userTable.innerHTML 
+					+ "<tr class='trHover'><td>"
+					+ result.list[i].staff_number
+					+ "</td>"
+					+ "<td>"
+					+ result.list[i].staff_name
+					+ "</td>"
+					+ "<td>"
+					+ result.list[i].staff_duty
+					+ "</td>"
+					+ "<td>"
+					+ result.list[i].staff_tel
+					+ "</td>"
+					+ "<td>"
+					+ result.list[i].staff_gmt_create
+					+ "</td>"
+					+ "<td>"
+				  /*+ "<button onclick='deleteUser(this)' value='"
+					+ result.list[i].rlzy_user_id
+					+ "' class='btn btn-danger managerPower'>删除</button>"*/
+					+ "<button onclick='getUserById(this)' value='"
+					+ result.list[i].rlzy_staff_id
+					+ "' data-toggle='modal' data-target='#updateUser' style='margin-left: 5px;' class='btn btn-primary managerPower'>修改权限</button>"
+					+ "</td></tr>";
+		}
+		hideQueryString.value = result.queryString;
+		hideCurrPage.value = result.currPage;
+		queryString.value = result.queryString;
+		currPage.innerHTML = result.currPage;
+		totalPage.innerHTML = result.totalPage;
+		skipPage.value = result.currPage;
+		$("#loadingDiv").addClass("hideDiv");
+		$("#tableDiv").removeClass("hideDiv");
+	}
+}
+
 function cleanInput() {
 	$("#addUserForm input").val("");
 }
@@ -50,8 +98,8 @@ function addUserBack() {
 function reLoadUser() {
 	$("#addContent input").val("");
 	$("#addContent input[name='user_username']").focus();
-	document.getElementById("userTable").innerHTML = "<tr style='background-color: #696969; color: white;'><td>账号</td><td>姓名</td><td>电话号码</td><td>注册时间</td><td>操作</td></tr>";
-	alert("000");
+	document.getElementById("userTable").innerHTML = "<tr style='background-color: #696969; color: white;'><td>账号</td><td>姓名</td><td>职务</td><td>电话号码</td><td>注册时间</td><td>操作</td></tr>";
+/*	alert("000");*/
 	$("#loadingDiv").removeClass("hideDiv");
 	$("#tableDiv").addClass("hideDiv");
 	getXmlHttp();
@@ -71,6 +119,7 @@ function updateUser(event) {
 	xmlHttp.open("POST", "/rlzyos/user/user_updateUser", true);
 	var formData = new FormData(updateUserForm);
 	formData.append("user_id", event.value);
+	/*alert(event.value);*/
 	xmlHttp.send(formData);
 	xmlHttp.onreadystatechange = updateUserBack;
 }
@@ -91,6 +140,7 @@ function getUserById(event) {
 	xmlHttp.open("POST", "/rlzyos/user/user_getUserById", true);
 	var formData = new FormData();
 	formData.append("user_id", event.value);
+	console.log(event.log);
 	xmlHttp.send(formData);
 	xmlHttp.onreadystatechange = getUserByIdBack;
 }
@@ -99,62 +149,15 @@ function getUserByIdBack() {
 	if (isBack()) {
 		var result = xmlHttp.responseText;
 		result = JSON.parse(result);
-		$("#user_username_update").val(result.user_username);
-		$("#user_name_update").val(result.user_name);
-		$("#user_telephone_update").val(result.user_telephone);;
-/*		$("#user_userRight_update").val(result.user_userRight);
-		$("#user_export_Right_update").val(result.user_export_Right);
-		$("#user_manage_Right_update").val(result.user_manage_Right);*/
-		$("#updateBtn").val(result.rlzy_user_id);
+		$("#user_username_update").val(result.staff_number);
+		$("#user_name_update").val(result.staff_name);
+		$("#user_telephone_update").val(result.staff_tel);
+		$("#staff_adminPower").val(result.staff_adminPower);
+		$("#staff_userPower").val(result.staff_userPower);
+		console.log(result.staff_userPower);
+		$("#updateBtn").val(result.rlzy_staff_id);
 		$("#updateLoadingDiv").addClass("hideDiv");
 		$("#updateContent").removeClass("hideDiv");
-	}
-}
-
-
-
-function loadUserBack() {
-	if (isBack()) {
-		var result = xmlHttp.responseText;
-		result = JSON.parse(result);
-		var userTable = document.getElementById("userTable");
-		var hideQueryString = document.getElementById("hideQueryString");
-		var hideCurrPage = document.getElementById("hideCurrPage");
-		var queryString = document.getElementById("queryString");
-		var currPage = document.getElementById("currPage");
-		var totalPage = document.getElementById("totalPage");
-		var skipPage = document.getElementById("skipPage");
-		for (var i = 0; i < result.list.length; i++) {
-			userTable.innerHTML = userTable.innerHTML
-					+ "<tr class='trHover'><td>"
-					+ result.list[i].user_username
-					+ "</td>"
-					+ "<td>"
-					+ result.list[i].user_name
-					+ "</td>"
-					+ "<td>"
-					+ result.list[i].user_telephone
-					+ "</td>"
-					+ "<td>"
-					+ result.list[i].user_gmt_create
-					+ "</td>"
-					+ "<td>"
-					+ "<button onclick='deleteUser(this)' value='"
-					+ result.list[i].rlzy_user_id
-					+ "' class='btn btn-danger managerPower'>删除</button>"
-					+ "<button onclick='getUserById(this)' value='"
-					+ result.list[i].rlzy_user_id
-					+ "' data-toggle='modal' data-target='#updateUser' style='margin-left: 5px;' class='btn btn-primary managerPower'>修改</button>"
-					+ "</td></tr>";
-		}
-		hideQueryString.value = result.queryString;
-		hideCurrPage.value = result.currPage;
-		queryString.value = result.queryString;
-		currPage.innerHTML = result.currPage;
-		totalPage.innerHTML = result.totalPage;
-		skipPage.value = result.currPage;
-		$("#loadingDiv").addClass("hideDiv");
-		$("#tableDiv").removeClass("hideDiv");
 	}
 }
 
@@ -169,7 +172,7 @@ function keyListener(e) {
 function queryUser() {
 	$("#loadingDiv").removeClass("hideDiv");
 	$("#tableDiv").addClass("hideDiv");
-	document.getElementById("userTable").innerHTML = "<tr style='background-color: #696969; color: white;'><td>账号</td><td>姓名</td><td>手机号码</td><td>注册时间</td><td>操作</td></tr>";
+	document.getElementById("userTable").innerHTML = "<tr style='background-color: #696969; color: white;'><td>账号</td><td>姓名</td><td>职务</td><td>电话号码</td><td>注册时间</td><td>操作</td></tr>";
 	var queryString = document.getElementById("queryString").value;
 	getXmlHttp();
 	xmlHttp.open("POST", "/rlzyos/user/user_getUser", true);
@@ -202,7 +205,7 @@ function skipToIndexPage() {
 }
 
 function deleteUser(event) {
-	alert(event.value);
+	/*alert(event.value);*/
 	getXmlHttp();
 	xmlHttp.open("POST", "/rlzyos/user/user_deleteUser", true);
 	var formData = new FormData();

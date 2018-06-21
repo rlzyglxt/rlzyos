@@ -38,7 +38,7 @@ var loadData = function() {
 		data : queryCondition,
 		success : function(data) {
 			var result = JSON.parse(data);
-			alert(result);
+			/*alert(result);*/
 			allPageVue.staffAgreements = result.staffAgreements;
 			allPageVue.currPage = result.currPage;
 			allPageVue.totalPage = result.totalPage;
@@ -86,7 +86,7 @@ function updateStaffAgreement(event) {
 	xmlHttp.open("POST", "/rlzyos/staff/staffAgreement_updataStaffAgreement", true);
 	var formData = new FormData(updateStaffAgreemenForm);
 	formData.append("rlzy_agreement_id", event.value);
-	alert(event.value);
+	/*alert(event.value);*/
 	xmlHttp.send(formData);
 	xmlHttp.onreadystatechange = function() {
 		if (isBack()) {
@@ -162,7 +162,7 @@ var createConfirmDeleteAgreement = function(event) {
 				btnClass : 'btn-blue',
 				action : function() {
 					deleteStaffAgreement(event);
-					alert(event);
+					/*alert(event);*/
 					loadData();
 				}
 			},

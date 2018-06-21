@@ -4,6 +4,9 @@
 	"http://struts.apache.org/dtds/struts-2.3.dtd">
 <struts>
 	<package name="staff" namespace="/staff" extends="struts-default">
+		<action name="staffMove_*" method="{1}" class="com.rlzy.action.staff.StaffMoveAction">
+		
+		</action>
 		<action name="staff_*" method="{1}" class="com.rlzy.action.staff.StaffAction">
 			<!-- 员工信息 -->
 			<result name="page_StaffInfo">/WEB-INF/view/staff/staffList.jsp</result>
@@ -11,12 +14,20 @@
 			<result name="page_AddStaff">/WEB-INF/view/staff/addStaff.jsp</result>
 			<!-- 修改员工页面 -->
 			<result name="page_UpdataStaff">/WEB-INF/view/staff/updataStaff.jsp</result>
-			<!-- 员工履历信息staff_page_StaffExp -->
+			<!-- 员工履历信息 -->
 			<result name="page_StaffExp">/WEB-INF/view/staff/staffExpList.jsp</result>	
 			<!-- 员工合同 -->
 			<result name="page_StaffAgreement">/WEB-INF/view/staff/staffAgreement.jsp</result>
 			<!-- 员工调配-->
-			<result name="page_StaffMove">/WEB-INF/view/staff/staffMove.jsp</result>		
+			<result name="page_StaffMove">/WEB-INF/view/staff/staffMove.jsp</result>
+			<!-- 员工详情页 -->
+			<result name="page_staffDetails">/WEB-INF/view/staff/staffDetails.jsp</result>
+			<!-- 员工奖金 -->
+			<result name="page_StaffAward">/WEB-INF/view/staff/staffAwardList.jsp</result>
+			<!-- 新进员工栏 -->
+			<result name="page_StaffNewIn">/WEB-INF/view/staff/staffNewInList.jsp</result>
+				<!-- 新进员工栏 -->
+			<result name="page_StaffLeave">/WEB-INF/view/staff/staffLeaveList.jsp</result>
 		</action>
 		<action name="staffExp_*" method="{1}" class="com.rlzy.action.staff.StaffExpAction">
 		
@@ -27,8 +38,6 @@
 		<action name="staffAward_*" method="{1}" class="com.rlzy.action.staff.StaffAwardAction">
 		
 		</action>
-		<action name="staffMove_*" method="{1}" class="com.rlzy.action.staff.StaffMoveAction">
 		
-		</action>
 	</package>
 </struts>

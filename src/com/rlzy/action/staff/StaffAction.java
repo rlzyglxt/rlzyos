@@ -48,6 +48,27 @@ public class StaffAction extends ActionSupport{
 	public String page_StaffMove(){
 		return "page_StaffMove";
 	}
+	//员工详情页
+	public String page_staffDetails(){
+		return "page_staffDetails";
+	}
+	
+	//员工奖金
+	public String page_StaffAward(){
+		return "page_StaffAward";
+	}
+	
+	//新进员工栏
+	public String page_StaffNewIn(){
+		return "page_StaffNewIn";
+	}
+	
+	//新进员工栏
+	public String page_StaffLeave(){
+		return "page_StaffLeave";
+	}
+	
+
 	
 	//分页获取所有员工
 	public void getStaffByPage() throws IOException{

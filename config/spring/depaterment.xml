@@ -14,16 +14,4 @@
 	<bean id="depatermentDao" class="com.rlzy.dao.impl.depaterment.DepatermentDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
-	
-	
-	<!-- 员工调配信息记录 -->	
-	<bean id="staffMoveAction" class="com.rlzy.action.staff.StaffMoveAction" scope="prototype">
-		<property name="staffMoveService" ref="staffMoveService"></property>
-	</bean>	
-	<bean id="staffMoveService" class="com.rlzy.service.impl.staff.StaffMoveServiceImpl">
-		<property name="staffMoveDao" ref="staffMoveDao"></property>
-	</bean>
-	<bean id="staffMoveDao" class="com.rlzy.dao.impl.staff.StaffMoveDaoImpl">
-		<property name="sessionFactory" ref="sessionFactory"></property>
-	</bean>
 </beans>

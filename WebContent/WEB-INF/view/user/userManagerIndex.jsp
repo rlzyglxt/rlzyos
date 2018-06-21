@@ -20,14 +20,6 @@
 	<input id="hideQueryString" type="text" class="hideDiv" />
 	<input id="hideCurrPage" type="text" class="hideDiv" />
 <div id="wrapper">
-	
-	<!-----------------------------------------引入导航条 ------------------------------------------------------>
-
-	<!----------------------------------------主体内容 -------------------------------------------------------- -->
-
-	
-			
-		<!---------------------------------------------------------------------------------------------------->
 		<s:action name="user_implements_navbar" namespace="/user" executeResult="true" />
 	
 		<s:action name="user_LeftIndex" namespace="/user" executeResult="true" />
@@ -62,6 +54,7 @@
 						<tr style="background-color: grey; color: white;">
 							<td>账号</td>
 							<td>姓名</td>
+							<td>职务</td>
 							<td>电话号码</td>
 							<td>注册时间</td>
 							<td>操作</td>
@@ -175,6 +168,21 @@
 									<td><label>电话：</label></td>
 									<td><input id="user_telephone_update" name="user_telephone"
 										type="text" class="form-control" placeholder="请输入用户电话"></td>
+								</tr>
+								<tr>
+									<td><label>管理权限：</label></td>
+									<td><select name="staff_adminPower" id="staff_adminPower"
+										class="form-control">
+										<option value="jurisdiction_none">无权限</option>
+										<option value="jurisdiction_admin">使用权限</option>
+									</select></td>
+									<td><label>使用权限：</label></td>
+									<td><select name="staff_userPower" id="staff_userPower"
+										class="form-control">
+										<option value="jurisdiction_none">无权限</option>
+										<option value="jurisdiction_user">使用权限</option>
+									</select>
+										</td>
 								</tr>
 							</table>
 						</form>

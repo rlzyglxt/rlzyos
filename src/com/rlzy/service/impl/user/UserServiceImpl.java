@@ -3,7 +3,7 @@ package com.rlzy.service.impl.user;
 import java.util.List;
 
 import com.rlzy.dao.user.UserDao;
-import com.rlzy.domain.DO.rlzy_user;
+import com.rlzy.domain.DO.rlzy_staffinfo;
 import com.rlzy.domain.VO.showUserVO;
 import com.rlzy.service.user.UserService;
 
@@ -19,14 +19,14 @@ public class UserServiceImpl implements UserService{
 	}
 
 	// 得到用户id
-	public rlzy_user getUserById(String rlzy_user_id) {
+	public rlzy_staffinfo getUserById(String rlzy_staff_id) {
 		// TODO Auto-generated method stub
-		rlzy_user ru = userDao.getUserById(rlzy_user_id);
+		rlzy_staffinfo ru = userDao.getUserById(rlzy_staff_id);
 		return ru;
 	}
 
 	// 得到用户名
-	public rlzy_user getUserByUsername(String user_username) {
+	public rlzy_staffinfo getUserByUsername(String user_username) {
 		// TODO Auto-generated method stub
 		return userDao.getUserByUsername(user_username);
 	}
@@ -39,15 +39,14 @@ public class UserServiceImpl implements UserService{
 	
 
 	// 添加用户
-	public void addUser(rlzy_user ru) {
+	public void addUser(rlzy_staffinfo ru) {
 		// TODO Auto-generated method stub
-		ru.setUser_password(ru.getUser_password());
+		ru.setStaff_password(ru.getStaff_password());
 		userDao.addUser(ru);
 	}
 	
 	//修改用户信息
-	public void updateUser(rlzy_user ru) {
-		// TODO Auto-generated method stub
+	public void updateUser(rlzy_staffinfo ru) {
 		userDao.updateUser(ru);
 	}
 
@@ -77,7 +76,7 @@ public class UserServiceImpl implements UserService{
 		double c = count;
 		int totalPage = (int) Math.ceil(c / 10);
 		suv.setTotalPage(totalPage);
-		List<rlzy_user> list = userDao.getUserByPage(queryString, currPage);
+		List<rlzy_staffinfo> list = userDao.getUserByPage(queryString, currPage);
 		suv.setList(list);
 		System.out.println(suv);
 		return suv;

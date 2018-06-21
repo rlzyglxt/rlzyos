@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 2018-6-15 15:17:38 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 2018-6-19 17:49:03 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="com.rlzy.domain.DO.rlzy_staffinfo" table="RLZY_STAFFINFO">
         <id name="rlzy_staff_id" type="java.lang.String">
@@ -52,6 +52,15 @@
         </property>
         <property name="staff_gmt_modified" type="java.lang.String">
             <column name="STAFF_GMT_MODIFIED" />
+        </property>
+        <property name="staff_password" type="java.lang.String">
+            <column name="STAFF_PASSWORD" />
+        </property>
+        <property name="staff_adminPower" type="java.lang.String">
+            <column name="STAFF_ADMINPOWER" />
+        </property>
+        <property name="staff_userPower" type="java.lang.String">
+            <column name="STAFF_USERPOWER" />
         </property>
     </class>
 </hibernate-mapping>

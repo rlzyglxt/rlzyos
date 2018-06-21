@@ -10,14 +10,16 @@ import org.apache.struts2.ServletActionContext;
 
 import com.google.gson.Gson;
 import com.opensymphony.xwork2.ActionSupport;
-import com.rlzy.domain.DO.rlzy_staffagreement;
 import com.rlzy.domain.DO.rlzy_staffaward;
+import com.rlzy.domain.VO.showAwardVO;
 import com.rlzy.service.staff.StaffAwardService;
 
 public class StaffAwardAction extends ActionSupport{
 	private StaffAwardService staffAwardService;
 	private List<rlzy_staffaward> staffAwards;
 	private rlzy_staffaward staffAward;
+	private showAwardVO staffAwardVO;
+	
 
 	//添加奖金
 	public void addStaffAward() throws IOException{
@@ -83,6 +85,19 @@ public class StaffAwardAction extends ActionSupport{
 		pw.flush();
 		pw.close();
 	}
+	
+	//得到所有奖金记录
+	public void getStaffAwardByPages() throws IOException{
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("text/html;charset=utf-8");
+		staffAwardService.getStaffAwardByPage(staffAwardVO);
+		Gson gson = new Gson();
+		String result = gson.toJson(staffAwardVO);
+		PrintWriter pw = response.getWriter();
+		pw.write(result);
+		pw.flush();
+		pw.close();
+	}
 
 	
 	
@@ -109,6 +124,12 @@ public class StaffAwardAction extends ActionSupport{
 
 	public void setStaffAward(rlzy_staffaward staffAward) {
 		this.staffAward = staffAward;
+	}
+	public showAwardVO getStaffAwardVO() {
+		return staffAwardVO;
+	}
+	public void setStaffAwardVO(showAwardVO staffAwardVO) {
+		this.staffAwardVO = staffAwardVO;
 	}
  
 	

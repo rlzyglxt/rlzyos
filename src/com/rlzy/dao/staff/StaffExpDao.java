@@ -3,6 +3,7 @@ package com.rlzy.dao.staff;
 import java.util.List;
 
 import com.rlzy.domain.DO.rlzy_staffexp;
+import com.rlzy.domain.DTO.Staff.staffExpDTO;
 import com.rlzy.domain.VO.showStaffExpVO;
 
 public interface StaffExpDao {
@@ -19,7 +20,7 @@ public interface StaffExpDao {
 	
 	void updataStaffExp(rlzy_staffexp staffExp);
 	//
-	List<rlzy_staffexp> getStaffExpByPage(showStaffExpVO staffExpVO);
+	List<staffExpDTO> getStaffExpByPage(showStaffExpVO staffExpVO);
 	//得到总数
 	int getStaffExpCount(showStaffExpVO staffExpVO);
 	

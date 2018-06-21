@@ -15,9 +15,16 @@ public class showStaffVO {
 	private String staff_name; // 员工名字查询
 	private String staff_sex; // 员工性别查询 
 	private String staff_status;//员工状态筛选 
+	private String staff_inTime="desc";//入职时间
 	private List<staffListDTO> staffs;
 	
 	
+	public String getStaff_inTime() {
+		return staff_inTime;
+	}
+	public void setStaff_inTime(String staff_inTime) {
+		this.staff_inTime = staff_inTime;
+	}
 	public String getStaff_sex() {
 		return staff_sex;
 	}

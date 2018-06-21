@@ -8,6 +8,7 @@ import org.hibernate.SessionFactory;
 
 import com.rlzy.dao.staff.StaffExpDao;
 import com.rlzy.domain.DO.rlzy_staffexp;
+import com.rlzy.domain.DTO.Staff.staffExpDTO;
 import com.rlzy.domain.VO.showStaffExpVO;
 
 public class StaffExpDaoImpl implements StaffExpDao {
@@ -75,14 +76,21 @@ public class StaffExpDaoImpl implements StaffExpDao {
 	}
 
 	@Override
-	public List<rlzy_staffexp> getStaffExpByPage(showStaffExpVO staffExpVO) {
+	public List<staffExpDTO> getStaffExpByPage(showStaffExpVO staffExpVO) {
 		// TODO Auto-generated method stub
-		String hql = "from rlzy_staffexp where 1=1";
-		if(staffExpVO.getStaffExp_staff() !=null && staffExpVO.getStaffExp_staff().trim().length() > 0){
-			hql = hql + " and staffExp_staff like '" + "%" + staffExpVO.getStaffExp_staff() + "%" + "'";
-		}
+		String hql = "select new com.rlzy.domain.DTO.Staff.staffExpDTO(exp.rlzy_staffExp_id as rlzy_staffExp_id,"
+				+ "staff.staff_number as staff_number,"
+				+ "staff.staff_name as staff_name,"
+				+ "exp.staffExp_address as staffExp_address,"
+				+ "exp.staffExp_startTime as staffExp_startTime,"
+				+ "exp.staffExp_overTime as staffExp_overTime,"
+				+ "exp.staffExp_remark as staffExp_remark)"
+				+ " from rlzy_staffinfo as staff,rlzy_staffexp as exp where staff.rlzy_staff_id=exp.staffExp_staff and 1=1 ";
+//		if(staffExpVO.getStaffExp_staff() !=null && staffExpVO.getStaffExp_staff().trim().length() > 0){
+//			hql = hql + " and staff_number like '" + "%" + staffExpVO.getStaffExp_staff() + "%" + "'";
+//		}
 		Session session = this.getSession();
-		List<rlzy_staffexp> staffexp = session.createQuery(hql).setFirstResult((staffExpVO.getCurrPage() - 1) * staffExpVO.getPageCount()).setMaxResults(staffExpVO.getPageCount()).list();
+		List<staffExpDTO> staffexp = session.createQuery(hql).setFirstResult((staffExpVO.getCurrPage() - 1) * staffExpVO.getPageCount()).setMaxResults(staffExpVO.getPageCount()).list();
 		return staffexp;
 	}
 

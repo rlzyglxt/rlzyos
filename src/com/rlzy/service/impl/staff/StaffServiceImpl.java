@@ -24,9 +24,7 @@ public class StaffServiceImpl implements StaffService {
 	@Override
 	public void getStaffByPage(showStaffVO staffVO) {
 		// TODO Auto-generated method stub
-		System.out.println("getpage");
 		int count =staffDao.getStaffCount(staffVO);
-		System.out.println("staffserviceimp::"+count);
 		staffVO.setTotalPage((int) Math.ceil((double) count / (double) staffVO.getPageCount()));
 		staffVO.setTotalCount(count);
 		List<staffListDTO> staffs = staffDao.getStaffByPage(staffVO);
@@ -38,6 +36,7 @@ public class StaffServiceImpl implements StaffService {
 	public void addStaff(rlzy_staffinfo staff) {
 		// TODO Auto-generated method stub
 		staff.setRlzy_staff_id(TeamUtil.getUuid());
+		staff.setStaff_inTime(TeamUtil.getStringDay());
 		staff.setStaff_gmt_create(TeamUtil.getStringSecond());
 		staff.setStaff_gmt_modified(TeamUtil.getStringSecond());
 		staffDao.addStaff(staff);;
@@ -53,6 +52,7 @@ public class StaffServiceImpl implements StaffService {
 	public void updataStaff(rlzy_staffinfo staff) {
 		// TODO Auto-generated method stub
 //		staffDao.getStaffById(rlzy_staff_id)
+		staff.setStaff_gmt_modified(TeamUtil.getStringSecond());
 		staffDao.updataStaff(staff);		
 	}
 

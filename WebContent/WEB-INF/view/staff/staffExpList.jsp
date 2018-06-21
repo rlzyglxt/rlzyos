@@ -55,7 +55,8 @@
 							<table class="table table-hover table-condensed staff_table_info">
 								<thead>
 									<tr>
-										<th>员工工号</th>
+										<th>工号</th>
+										<th>姓名</th>
 										<th>工作地址</th>
 										<th>开始时间</th>
 										<th>结束时间</th>
@@ -67,14 +68,15 @@
 									 <tr v-for="staffExp in staffExps" style="text-align: center;"> 
 										<td>
 										<a :id="staffExp.staffExp_staff" onclick="skipToDetails(this)">
-										<span v-html="staffExp.staffExp_staff"></span></a>
+										<span v-html="staffExp.staff_number"></span></a>
 										</td>
+										<td>{{ staffExp.staff_name }}</td>
 										<td>{{ staffExp.staffExp_address }}</td>
 										<td>{{ staffExp.staffExp_startTime }}</td>
 										<td>{{ staffExp.staffExp_overTime }}</td>
 										<td>{{ staffExp.staffExp_remark }}</td>
-										<td><button onclick="createConfirmUpdata(this)" 
-												:id="staffExp.rlzy_staffExp_id" data-toggle='modal' data-target='#updateStaffExp' class='btn btn-primary'><i class="fa fa-pencil-square-o"></i>修改</button>
+										<td><!-- <button onclick="createConfirmUpdata(this)" 
+												:id="staffExp.rlzy_staffExp_id" data-toggle='modal' data-target='#updateStaffExp' class='btn btn-primary'><i class="fa fa-pencil-square-o"></i>修改</button> -->
 											<button onclick="createConfirmDeleteExp(this)"
 												:id="staffExp.rlzy_staffExp_id" class="btn btn-danger"><i class="fa fa-trash-o"></i>删除</button></td>
 									</tr>

@@ -89,7 +89,7 @@ public class StaffExpAction extends ActionSupport{
 	public void getStaffExpsByStaffId() throws IOException{
 		List<rlzy_staffexp> staffExps = staffExpService.getStaffExps(staffExp.getStaffExp_staff());
 		String result;
-		if (staffExps.size() <= 0) {
+		if (staffExps.size() < 0) {
 			result = "staffExpIsNull";
 		} else {
 			Gson gson = new Gson();

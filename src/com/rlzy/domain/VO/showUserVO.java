@@ -2,7 +2,7 @@ package com.rlzy.domain.VO;
 
 import java.util.List;
 
-import com.rlzy.domain.DO.rlzy_user;
+import com.rlzy.domain.DO.rlzy_staffinfo;
 
 
 public class showUserVO {
@@ -11,7 +11,7 @@ public class showUserVO {
 	private int count;
 	private int pageSize;
 	private String queryString;
-	private List<rlzy_user> list;
+	private List<rlzy_staffinfo> list;
 	public int getCurrPage() {
 		return currPage;
 	}
@@ -42,11 +42,12 @@ public class showUserVO {
 	public void setQueryString(String queryString) {
 		this.queryString = queryString;
 	}
-	public List<rlzy_user> getList() {
+	public List<rlzy_staffinfo> getList() {
 		return list;
 	}
-	public void setList(List<rlzy_user> list) {
+	public void setList(List<rlzy_staffinfo> list) {
 		this.list = list;
 	}
+	
 	
 }

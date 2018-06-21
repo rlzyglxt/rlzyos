@@ -92,7 +92,6 @@ public class StaffAgreementAction extends ActionSupport{
 			pw.write("deleteSuccess删除合同");
 			pw.flush();
 			pw.close();
-			
 		}
 		//增加合同
 		public void addStaffAgreement() throws IOException{
@@ -106,7 +105,6 @@ public class StaffAgreementAction extends ActionSupport{
 		}
 		
 	
-		
 	
 		public rlzy_staffagreement getAgreement() {
 			return agreement;

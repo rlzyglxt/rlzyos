@@ -3,6 +3,7 @@ package com.rlzy.service.impl.staff;
 import java.util.List;
 import com.rlzy.dao.staff.StaffExpDao;
 import com.rlzy.domain.DO.rlzy_staffexp;
+import com.rlzy.domain.DTO.Staff.staffExpDTO;
 import com.rlzy.domain.VO.showStaffExpVO;
 import com.rlzy.service.staff.StaffExpService;
 
@@ -70,10 +71,9 @@ public class StaffExpServiceImpl implements StaffExpService {
 		// TODO Auto-generated method stub
 		System.out.println("getpage");
 		int count =staffExpDao.getStaffExpCount(staffExpVO);
-		System.out.println("staffserviceimp::"+count);
 		staffExpVO.setTotalPage((int) Math.ceil((double) count / (double) staffExpVO.getPageCount()));
 		staffExpVO.setTotalCount(count);
-		List<rlzy_staffexp> staffexps = staffExpDao.getStaffExpByPage(staffExpVO);
+		List<staffExpDTO> staffexps = staffExpDao.getStaffExpByPage(staffExpVO);
 		staffExpVO.setStaffExps(staffexps);
 	}
 
