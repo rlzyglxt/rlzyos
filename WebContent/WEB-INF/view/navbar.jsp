@@ -40,11 +40,10 @@
 </head>
 <body>
 <div id="wrapper">
-		<nav id="navbar" class="navbar navbar-default navbar-fixed-top"
-			style=" background-color: #9E9E9E;"><!-- #13599d #303030 #63B8FF-->
+		<nav id="navbar" class="navbar navbar-default navbar-fixed-top	style="background-color:#9E9E9E;"><!-- #13599d #303030 #63B8FF-->
 		<div
 			style="width: auto; float: left; line-height: 78px; margin: 0 0 0 30px; font-size: 30px; color: white;">
-			<img alt="" src="<%=basePath%>img/hui.png">人力资源管理系统
+			<img alt="" src="<%=basePath%>">人力资源管理系统
 		</div>
 		<div id="navbar-menu">
 			<ul style="margin: 0 0 0 20px;" class="nav navbar-nav navbar-left">
@@ -63,6 +62,7 @@
 					href="<%=basePath%>user/user_skipToUser"><span>用户管理</span>
 				</a></li>
 			</template>
+
 			</ul>
 			
 			<!--  -->

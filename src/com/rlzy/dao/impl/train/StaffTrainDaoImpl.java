@@ -27,7 +27,6 @@ public class StaffTrainDaoImpl implements StaffTrainDao {
 	}
 
 	//根据员工工号得到该员工所有信息
-	@SuppressWarnings("all")
 	public List<rlzy_stafftrain> getStaffTrains(String stafftrain_staff) {
 		String hql="from rlzy_stafftrain where stafftrain_staff = '" + stafftrain_staff + "'";
 		return getSession().createQuery(hql).list();
@@ -50,15 +49,11 @@ public class StaffTrainDaoImpl implements StaffTrainDao {
 		String hql = "delete from rlzy_stafftrain where stafftrain_staff='" + stafftrain_staff + "'";
 		getSession().createQuery(hql).executeUpdate();
 	}
-
-	
 	//修改
 	public void updataStaffTrain(rlzy_stafftrain rs) {
 		getSession().update(rs);
 	}
-
 	//分页查询
-	@SuppressWarnings("all")
 	public List<staffTrainDTO> getStaffTrainByPage(showStaffTrainVO staffTrainVO) {
 		System.out.println("3");
 		String hql = "select new com.rlzy.domain.DTO.Staff.staffTrainDTO(train.rlzy_stafftrain_id as rlzy_stafftrain_id,"
@@ -81,9 +76,9 @@ public class StaffTrainDaoImpl implements StaffTrainDao {
 		System.out.println(list);
 		return list;
 	}
-
 	//分页总计
 	public int getStaffTrainCount(showStaffTrainVO staffTrainVO) {
+		System.out.println("count");
 		String hql="select count(*) from rlzy_stafftrain where 1=1";
 		if(staffTrainVO.getStaffTrain_staff() !=null && staffTrainVO.getStaffTrain_staff().trim().length() > 0){
 			hql = hql + " and stafftrain_staff like '" + "%" + staffTrainVO.getStaffTrain_staff() + "%" + "'";
@@ -92,24 +87,18 @@ public class StaffTrainDaoImpl implements StaffTrainDao {
 		System.out.println("2");
 		return (int) count;
 	}
-
 	//通过员工工号查询姓名
 	public String getStaffNameByStaffNumber(String stafftrain_staff){
 		 String hql = " select staff_name from rlzy_staffinfo where staff_number= '" + stafftrain_staff + "'";
 		 String staff_name = (String) getSession().createQuery(hql).uniqueResult();
 		 return staff_name;
 	 }
-
     //保存一条信息
 	public void addStaffTrain(rlzy_stafftrain rs) {
 		getSession().save(rs);
 	}
-
-	@SuppressWarnings("all")
 	public List<rlzy_train> getTrainName() {
 		String hql="from rlzy_train";
 		return getSession().createQuery(hql).list();
 	}
-
-
 }

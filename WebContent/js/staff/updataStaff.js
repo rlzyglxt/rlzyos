@@ -2,7 +2,7 @@
 window.onload = function() {
 	var url = window.location.href;
 	staff_id = url.substring(url.indexOf("=") + 1);
-	/*alert("获得部门");*/
+
 		$.ajax({
 			url : '/rlzyos/depaterment/depaterment_getAllDepaterment',
 			type : 'post',
@@ -97,7 +97,7 @@ function show_staffExpAjax(staff_id) {
 	staffExp_xmlHttp.onreadystatechange = function() {
 		if (staffExp_xmlHttp.readyState == 4 && staffExp_xmlHttp.status == 200) {
 			var staff_Exp = staffExp_xmlHttp.responseText;
-			if(staff_Exp=="staffExpIsNull"){
+			if(staff_Exp=="null"){
 				$('#staffExperience_table tbody').html("");
 			}else{
 				staff_Exp = JSON.parse(staff_Exp);

@@ -1,7 +1,6 @@
 var newStaff = {};
 var xmlHttp;
 window.onload = function() {
-	/*alert("获得部门");*/
 	$.ajax({
 		url : '/rlzyos/depaterment/depaterment_getAllDepaterment',
 		type : 'post',
@@ -10,6 +9,7 @@ window.onload = function() {
 			console.log(result);
 			console.log(result.length);
 			for (var i = 0; i < result.length; i++) {
+
 				document.getElementById("staff_depaterment").innerHTML = document
 						.getElementById("staff_depaterment").innerHTML
 						+ "<option value='"

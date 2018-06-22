@@ -12,6 +12,7 @@ import com.google.gson.Gson;
 import com.opensymphony.xwork2.ActionSupport;
 import com.rlzy.domain.DO.rlzy_staffaward;
 import com.rlzy.domain.VO.showAwardVO;
+
 import com.rlzy.service.staff.StaffAwardService;
 
 public class StaffAwardAction extends ActionSupport{
@@ -98,30 +99,25 @@ public class StaffAwardAction extends ActionSupport{
 		pw.flush();
 		pw.close();
 	}
-
+	
 	
 	
 	
 	public StaffAwardService getStaffAwardService() {
 		return staffAwardService;
 	}
-
 	public void setStaffAwardService(StaffAwardService staffAwardService) {
 		this.staffAwardService = staffAwardService;
 	}
-	
 	public List<rlzy_staffaward> getStaffAwards() {
 		return staffAwards;
 	}
-
 	public void setStaffAwards(List<rlzy_staffaward> staffAwards) {
 		this.staffAwards = staffAwards;
 	}
-
 	public rlzy_staffaward getStaffAward() {
 		return staffAward;
 	}
-
 	public void setStaffAward(rlzy_staffaward staffAward) {
 		this.staffAward = staffAward;
 	}
@@ -131,8 +127,4 @@ public class StaffAwardAction extends ActionSupport{
 	public void setStaffAwardVO(showAwardVO staffAwardVO) {
 		this.staffAwardVO = staffAwardVO;
 	}
- 
-	
-
-	
 }

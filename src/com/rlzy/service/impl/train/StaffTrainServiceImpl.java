@@ -8,7 +8,6 @@ import com.rlzy.domain.DTO.Staff.staffTrainDTO;
 import com.rlzy.domain.VO.showStaffTrainVO;
 import com.rlzy.service.train.StaffTrainService;
 
-import util.TeamUtil;
 
 public class StaffTrainServiceImpl implements StaffTrainService {
 	
@@ -53,17 +52,17 @@ public class StaffTrainServiceImpl implements StaffTrainService {
 		staffTrainDao.deleteStaffTrain(rlzy_stafftrain_id);
 	}
 
-	@Override
-	public void getStaffTrainByPage(showStaffTrainVO staffTrainVO) {
-		System.out.println("getpage");
-		int count =staffTrainDao.getStaffTrainCount(staffTrainVO);
-		System.out.println("staffTrainserviceimp::"+count);
-		staffTrainVO.setTotalPage((int) Math.ceil((double) count / (double) staffTrainVO.getPageCount()));
-		staffTrainVO.setTotalCount(count);
-		List<staffTrainDTO> list = staffTrainDao.getStaffTrainByPage(staffTrainVO);
-		System.out.println("4");
-		staffTrainVO.setList(list);
-	}
+//	@Override
+//	public void getStaffTrainByPage(showStaffTrainVO staffTrainVO) {
+//		System.out.println("getpage");
+//		int count =staffTrainDao.getStaffTrainCount(staffTrainVO);
+//		System.out.println("staffTrainserviceimp::"+count);
+//		staffTrainVO.setTotalPage((int) Math.ceil((double) count / (double) staffTrainVO.getPageCount()));
+//		staffTrainVO.setTotalCount(count);
+//		List<staffTrainDTO> staffTrains = staffTrainDao.getStaffTrainByPage(staffTrainVO);
+//		System.out.println("4");
+//		staffTrainVO.setStaffTrains(staffTrains);
+//	}
 
 	public String getStaffNameByStaffNumber(String stafftrain_staff) {
 		return staffTrainDao.getStaffNameByStaffNumber(stafftrain_staff);
@@ -76,5 +75,18 @@ public class StaffTrainServiceImpl implements StaffTrainService {
 	@Override
 	public List<rlzy_train> getTrainName() {
 		return staffTrainDao.getTrainName();
+	}
+
+	@Override
+	public void getStaffTrainByPage(showStaffTrainVO staffTrainVO) {
+		// TODO Auto-generated method stub
+		System.out.println("getpage");
+		int count =staffTrainDao.getStaffTrainCount(staffTrainVO);
+		System.out.println("staffTrainserviceimp::"+count);
+		staffTrainVO.setTotalPage((int) Math.ceil((double) count / (double) staffTrainVO.getPageCount()));
+		staffTrainVO.setTotalCount(count);
+		List<staffTrainDTO> staffTrains = staffTrainDao.getStaffTrainByPage(staffTrainVO);
+		System.out.println("4");
+		staffTrainVO.setStaffTrains(staffTrains);
 	}
 }

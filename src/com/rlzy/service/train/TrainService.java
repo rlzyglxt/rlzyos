@@ -1,6 +1,5 @@
 package com.rlzy.service.train;
 
-import java.util.List;
 import com.rlzy.domain.DO.rlzy_train;
 import com.rlzy.domain.VO.showTrainVO;
 

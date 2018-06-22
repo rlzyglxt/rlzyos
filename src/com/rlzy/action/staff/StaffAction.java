@@ -117,10 +117,7 @@ public class StaffAction extends ActionSupport{
 		pw.flush();
 		pw.close();
 	}
-	/**
-	 * @throws IOException 
-	 * 
-	 */
+
 	public void getStaffById() throws IOException{
 		rlzy_staffinfo staff = staffService.getStaffById(rlzy_staff_id);
 		Gson gson = new Gson();

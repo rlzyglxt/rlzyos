@@ -3,9 +3,9 @@ var xmlHttp;
 var allPageVue;
 var queryConditionTemp = {
 	"currPage" : "1",
-	"totalPage" : "",
+	"totalPage" : " ",
 	"pageCount" : "10",
-	"totalCount" : "",
+	"totalCount" : " ",
 	"staffTrain_staff" : ""//查询
 }
 
@@ -18,9 +18,10 @@ window.onload = function() {
 			pageCount : '10',
 			totalCount : '',
 			staffTrain_staff : '',
-			list : ''
+			staffTrains : ''
 		}
 	});
+	loadData();
 	$.ajax({
 		url : '/rlzyos/train/stafftrain_getTrainName',
 		type : 'post',
@@ -57,7 +58,7 @@ window.onload = function() {
 			}
 		}
 	});
-	loadData();
+	
 }
 
 //改变筛选条件
@@ -78,14 +79,14 @@ var loadData = function() {
 		"staffTrainVO.pageCount" : queryConditionTemp.pageCount,
 		"staffTrainVO.totalCount" : queryConditionTemp.totalCount,
 		"staffTrainVO.staffTrain_staff" : queryConditionTemp.staffTrain_staff,
-	}	
+	}
 	$.ajax({
 		url : '/rlzyos/train/stafftrain_getAllStaffTrainByPage',
 		type : 'POST',
 		data : queryCondition,
 		success : function(data) {
 			var result = JSON.parse(data);
-			allPageVue.list = result.list;
+			allPageVue.staffTrains = result.staffTrains;
 			allPageVue.currPage = result.currPage;
 			allPageVue.totalPage = result.totalPage;
 			allPageVue.pageCount = result.pageCount;

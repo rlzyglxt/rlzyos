@@ -14,6 +14,7 @@ public class showAgreementVO {
 //	private String staff_status;//员工状态筛选 
 	private List<staffAgreementDTO> staffAgreements;
 	public int getCurrPage() {
+		System.out.println("hahha 测试");
 		return currPage;
 	}
 	public void setCurrPage(int currPage) {

@@ -82,10 +82,11 @@ public class TrainAction extends ActionSupport{
 	
 	//得到信息
 	public void getAllByPage() throws IOException{
+		System.out.println("1");
 		trainService.getTrainByPage(trainVO);
 		Gson gson = new Gson();
 		String result = gson.toJson(trainVO);
-		HttpServletResponse response = ServletActionContext.getResponse();
+		HttpServletResponse response = ServletActionContext.getResponse();	
 		response.setContentType("text/html;charset=utf-8");
 		System.out.println("分页得到履历"+result);
 		PrintWriter pw =response.getWriter();

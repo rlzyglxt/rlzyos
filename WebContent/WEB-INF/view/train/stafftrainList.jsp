@@ -66,7 +66,7 @@
 									</tr>
 								</thead>
 								<tbody>
-									 <tr v-for="staffTrain in list" style="text-align: center;"> 
+									 <tr v-for="staffTrain in staffTrains" style="text-align: center;"> 
 										<td>{{ staffTrain.staff_number }}</td>
 										<td>{{ staffTrain.staff_name }}</td>
 										<td>{{ staffTrain.train_name }}</td>

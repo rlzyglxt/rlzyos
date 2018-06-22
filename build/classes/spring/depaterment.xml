@@ -6,7 +6,7 @@
 	<bean id="depatermentAction" class="com.rlzy.action.depaterment.DepatermentAction" scope="prototype">
 		<property name="depatermentService" ref="depatermentService"></property>
 	</bean>	
-	
+
 	<bean id="depatermentService" class="com.rlzy.service.impl.depaterment.DepatermentServiceImpl">
 		<property name="depatermentDao" ref="depatermentDao"></property>
 	</bean>
@@ -14,4 +14,5 @@
 	<bean id="depatermentDao" class="com.rlzy.dao.impl.depaterment.DepatermentDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
+
 </beans>

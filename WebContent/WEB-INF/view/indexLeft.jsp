@@ -33,7 +33,6 @@
 					<template v-if="user_admin_manager_power">
 					<li><a class=""><i class="lnr lnr-file-add"></i> <span>人员档案</span></a>
 						<ul class="nav" style="background-color: #9E9E9E;">
-						
 							<li><a href="<%=basePath%>staff/staff_page_StaffInfo"><span>人员基本信息</span></a></li>
 							<li><a href="<%=basePath%>staff/staff_page_StaffExp"><span>员工履历</span></a></li>
 							<li><a href="<%=basePath%>staff/staff_page_StaffAward"><span>奖金发放</span></a></li>
@@ -53,18 +52,21 @@
 						
 					</ul></li>
 					</template>
-					<template v-if="user_admin_manager_power">
+			
+					
+				
+							<template v-if="user_admin_manager_power">
 					<li><a class=""><i class="lnr lnr-license"></i> <span>教育培训</span></a>
 					<ul class="nav" style="background-color:#9E9E9E;">
-					
 						<li><a
-							href="<%=basePath%>train/train_toTrainlist"><span>教育培训类别</span></a></li>
+							href="<%=basePath%>train/train_toTrainList"><span>教育培训类别</span></a></li>
 						<li><a
-							href="<%=basePath%>trainrecord/trainrecord_toTrainrecordlist"><span>教育培训记录</span></a></li>
-						
+							href="<%=basePath%>train/train_toStaffTrainList"><span>教育培训记录</span></a></li>
+						<li><a
+							href="<%=basePath%>paper/paper_toPaperlist"><span>证书记录</span></a></li>
 					</ul></li>
 					</template>
-				</ul>
+					</ul>
 				</nav>
 			</div>
 		</div>

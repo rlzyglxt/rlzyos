@@ -6,7 +6,8 @@ var queryConditionTemp = {
 	"totalPage" : "",
 	"pageCount" : "10",
 	"totalCount" : "",
-	"train_name" : ""//查询
+	"train_name" : "",//查询
+	"list" : ""
 }
 
 window.onload = function() {
@@ -42,6 +43,7 @@ var loadData = function() {
 		"trainVO.pageCount" : queryConditionTemp.pageCount,
 		"trainVO.totalCount" : queryConditionTemp.totalCount,
 		"trainVO.train_name" : queryConditionTemp.train_name,
+		"trainVO.list" : queryConditionTemp.list,
 	}	
 	$.ajax({
 		url : '/rlzyos/train/train_getAllByPage',

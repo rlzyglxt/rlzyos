@@ -10,10 +10,9 @@ public class showStaffTrainVO {
 	private int totalCount;// 总记录数
 	private int pageCount;// 一页显示条数
 	private String staffTrain_staff;//工号查询
-	private List<staffTrainDTO> list;
+	private List<staffTrainDTO> staffTrains;
 	
 	public int getCurrPage() {
-		System.out.println("3.2");
 		return currPage;
 	}
 	public void setCurrPage(int currPage) {
@@ -43,12 +42,13 @@ public class showStaffTrainVO {
 	public void setStaffTrain_staff(String staffTrain_staff) {
 		this.staffTrain_staff = staffTrain_staff;
 	}
-	public List<staffTrainDTO> getList() {
-		return list;
+	public List<staffTrainDTO> getStaffTrains() {
+		return staffTrains;
 	}
-	public void setList(List<staffTrainDTO> list) {
-		this.list = list;
+	public void setStaffTrains(List<staffTrainDTO> staffTrains) {
+		this.staffTrains = staffTrains;
 	}
+	
 	
 
 }

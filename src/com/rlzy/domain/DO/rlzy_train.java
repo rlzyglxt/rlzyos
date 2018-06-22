@@ -9,6 +9,8 @@ public class rlzy_train {
 	private String train_content;//培训介绍
 	private String train_gmt_create;//创建时间
 	private String train_gmt_modified;
+	
+	
 	public String getRlzy_train_id() {
 		return rlzy_train_id;
 	}

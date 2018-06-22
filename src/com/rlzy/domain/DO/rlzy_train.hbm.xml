@@ -1,11 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<<<<<<< HEAD
-<!-- Generated 2018-6-19 17:49:03 by Hibernate Tools 3.4.0.CR1 -->
-=======
-<!-- Generated 2018-6-15 15:17:38 by Hibernate Tools 3.4.0.CR1 -->
->>>>>>> zhj
+<!-- Generated 2018-6-22 8:31:12 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="com.rlzy.domain.DO.rlzy_train" table="RLZY_TRAIN">
         <id name="rlzy_train_id" type="java.lang.String">

@@ -11,7 +11,6 @@ public class staffTrainDTO {
 	private String staffTrain_gmt_modified;//修改时间
 	
 	public String getRlzy_stafftrain_id() {
-		System.out.println("3.1");
 		return rlzy_stafftrain_id;
 	}
 	public void setRlzy_stafftrain_id(String rlzy_stafftrain_id) {
@@ -78,7 +77,6 @@ public class staffTrainDTO {
 		this.staffTrain_gmt_create = staffTrain_gmt_create;
 		this.staffTrain_gmt_modified = staffTrain_gmt_modified;
 	}
-
 	
 	
 }
