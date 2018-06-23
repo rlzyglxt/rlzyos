@@ -1,4 +1,4 @@
-package com.rlzy.dao.impl.train;
+package com.rlzy.dao.impl.staff;
 
 import java.util.List;
 
@@ -6,12 +6,11 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import com.rlzy.dao.train.TrainDao;
-import com.rlzy.domain.DO.rlzy_depaterment;
+import com.rlzy.dao.staff.TrainDao;
 import com.rlzy.domain.DO.rlzy_train;
 import com.rlzy.domain.VO.showTrainVO;
 
-public class TrainDaoImpl implements TrainDao {
+public class TrainDaoImpl implements TrainDao{
 	private SessionFactory sessionFactory;
 
 	public Session getSession() {
@@ -26,31 +25,35 @@ public class TrainDaoImpl implements TrainDao {
 		this.sessionFactory = sessionFactory;
 	}
 
-	//得到
+	@Override
 	public rlzy_train getTrainById(String rlzy_train_id) {
+		// TODO Auto-generated method stub
 		return (rlzy_train) getSession().get(rlzy_train.class, rlzy_train_id);
 	}
-	//删除
+
+	@Override
 	public void deleteTrain(String rlzy_train_id) {
+		// TODO Auto-generated method stub
 		rlzy_train train = new rlzy_train();
 		train.setRlzy_train_id(rlzy_train_id);
 		getSession().delete(train);
 	}
 
-
-	
-	//保存
+	@Override
 	public void addTrain(rlzy_train train) {
-			getSession().save(train);
+		// TODO Auto-generated method stub
+		getSession().save(train);
 	}
-	
-	//修改
+
+	@Override
 	public void updataTrain(rlzy_train train) {
+		// TODO Auto-generated method stub
 		getSession().update(train);
 	}
 
-
+	@Override
 	public List<rlzy_train> getTrainByPage(showTrainVO trainVO) {
+		// TODO Auto-generated method stub
 		String hql = "from rlzy_train where 1=1";
 		if(trainVO.getTrain_name() !=null && trainVO.getTrain_name().trim().length() > 0){
 			hql = hql + " and train_name like '" + "%" + trainVO.getTrain_name() + "%" + "'";
@@ -60,7 +63,9 @@ public class TrainDaoImpl implements TrainDao {
 		return list;
 	}
 
+	@Override
 	public int getTrainCount(showTrainVO trainVO) {
+		// TODO Auto-generated method stub
 		String hql="select count(*) from rlzy_train where 1=1";
 		if(trainVO.getTrain_name() !=null && trainVO.getTrain_name().trim().length() > 0){
 			hql = hql + " and train_name like '" + "%" + trainVO.getTrain_name() + "%" + "'";
@@ -70,8 +75,9 @@ public class TrainDaoImpl implements TrainDao {
 		return (int) count;
 	}
 
-	
+	@Override
 	public boolean judgeTrainByTrainname(String train_name) {
+		// TODO Auto-generated method stub
 		String hql = "from rlzy_train where train_name='" + train_name + "'";
 		Query query =getSession().createQuery(hql);
 		List<rlzy_train> list=query.list();
@@ -81,6 +87,4 @@ public class TrainDaoImpl implements TrainDao {
 			return true;
 		}
 	}
-
-	
 }

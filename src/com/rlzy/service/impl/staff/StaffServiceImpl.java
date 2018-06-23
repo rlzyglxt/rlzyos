@@ -9,6 +9,7 @@ import com.rlzy.domain.VO.showStaffVO;
 import com.rlzy.service.staff.StaffService;
 
 import util.TeamUtil;
+import util.md5;
 
 public class StaffServiceImpl implements StaffService {
 	private StaffDao staffDao;
@@ -39,6 +40,13 @@ public class StaffServiceImpl implements StaffService {
 		staff.setStaff_inTime(TeamUtil.getStringDay());
 		staff.setStaff_gmt_create(TeamUtil.getStringSecond());
 		staff.setStaff_gmt_modified(TeamUtil.getStringSecond());
+		String powerdmin="jurisdiction_admin";
+		staff.setStaff_adminPower(powerdmin);
+		String poweruser="jurisdiction_user";
+		staff.setStaff_userPower(poweruser);
+		String str="000000";
+		String password=md5.GetMD5Code(str);
+		staff.setStaff_password(password);
 		staffDao.addStaff(staff);;
 	}
 

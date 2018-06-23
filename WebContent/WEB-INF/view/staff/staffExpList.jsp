@@ -190,17 +190,17 @@
 								</tr>
 								<tr>
 									<td><label>工作地点：</label></td>
-									<td><input id="staffExp_address" name="staffExp.staffExp_address"
+									<td><input id="addstaffExp_address" name="staffExp.staffExp_address"
 										type="text" class="form-control" placeholder="请输入工作地点"></td>
 									<td><label>开始时间：</label></td>
-									<td><input id="staffExp_startTime" name="staffExp.staffExp_startTime"
+									<td><input id="addstaffExp_startTime" name="staffExp.staffExp_startTime"
 										type="text" class="staff_StartTime form-control" placeholder="请输入开始时间"></td>
 								</tr>
 								<tr><td><label>结束时间：</label></td>
-									<td><input id="staffExp_overTime" name="staffExp.staffExp_overTime"
+									<td><input id="addstaffExp_overTime" name="staffExp.staffExp_overTime"
 										type="text" class="staff_OverTime form-control" placeholder="请输入结束时间"></td>
 									<td><label>备注：</label></td>
-									<td><input id="staffExp_remark" name="staffExp.staffExp_remark"
+									<td><input id="addstaffExp_remark" name="staffExp.staffExp_remark"
 										type="text" class="form-control" placeholder="请输入备注"></td>
 								</tr>
 							</table>

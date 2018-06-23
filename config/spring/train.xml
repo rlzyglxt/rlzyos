@@ -3,7 +3,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<bean id="trainAction" class="com.rlzy.action.train.TrainAction" scope="prototype">
+<!-- 	<bean id="trainAction" class="com.rlzy.action.train.TrainAction" scope="prototype">
 		<property name="trainService" ref="trainService"></property>
 	</bean>	
 	<bean id="trainService" class="com.rlzy.service.impl.train.TrainServiceImpl">
@@ -11,17 +11,5 @@
 	</bean>
 	<bean id="trainDao" class="com.rlzy.dao.impl.train.TrainDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
-	</bean>
-	
-	<!-- 培训记录 -->
-	<bean id="staffTrainAction" class="com.rlzy.action.train.StaffTrainAction" scope="prototype">
-		<property name="staffTrainService" ref="staffTrainService"></property>
-	</bean>	
-	<bean id="staffTrainService" class="com.rlzy.service.impl.train.StaffTrainServiceImpl">
-		<property name="staffTrainDao" ref="staffTrainDao"></property>
-	</bean>
-	<bean id="staffTrainDao" class="com.rlzy.dao.impl.train.StaffTrainDaoImpl">
-		<property name="sessionFactory" ref="sessionFactory"></property>
-	</bean>
-
+	</bean> -->
 </beans>

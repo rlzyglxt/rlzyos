@@ -6,6 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import com.rlzy.dao.staff.StaffMoveDao;
+import com.rlzy.domain.DO.rlzy_staffexp;
 import com.rlzy.domain.DO.rlzy_staffinfo;
 import com.rlzy.domain.DO.rlzy_staffmove;
 import com.rlzy.domain.DTO.Staff.staffMoveDTO;
@@ -40,7 +41,6 @@ public class StaffMoveDaoImpl implements StaffMoveDao {
 		// TODO Auto-generated method stub
 		String hql = "from rlzy_staffinfo where staff_number= '" + staff_number + "'";
 		System.out.println(getSession().createQuery(hql).list());
-		System.out.println("人员调动");
 		return getSession().createQuery(hql).list();
 	}
 
@@ -98,5 +98,23 @@ public class StaffMoveDaoImpl implements StaffMoveDao {
 //		String hql = "update rlzy_staffinfo set rlzy_staffinfo.staff_depaterment=rlzy_staffmove.staffMove_nowdepartment,rlzy_staffinfo.staff_duty=rlzy_staffmove.staffMove_nowduty from rlzy_staffmove,rlzy_staffinfo where rlzy_staffinfo.rlzy_staff_id=rlzy_staffmove.staffMove_staff";
 //		getSession().createQuery(hql);
 		getSession().update(rs);
+	}
+
+	@Override
+	public void deleteStaffMoves(String staffMove_staff) {
+		// TODO Auto-generated method stub
+		String hql = "delete from rlzy_staffmove where staffMove_staff='" + staffMove_staff + "'";
+		getSession().createQuery(hql).executeUpdate();
+	}
+
+	@Override
+	public void deleteStaffMove(String rlzy_staffMove_id) {
+		// TODO Auto-generated method stub
+//		rlzy_staffmove staffmove = new rlzy_staffmove();
+//		staffmove.setStaffMove_staff(rlzy_staffMove_id);
+//		System.out.println("hhhhh"+staffmove);
+//		getSession().delete(staffmove);
+		String hql = "delete from rlzy_staffmove where rlzy_staffMove_id='" +rlzy_staffMove_id+ "'";
+		getSession().createQuery(hql).executeUpdate();
 	}
 }

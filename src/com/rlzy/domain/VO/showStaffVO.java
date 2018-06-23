@@ -2,7 +2,6 @@ package com.rlzy.domain.VO;
 
 import java.util.List;
 
-import com.rlzy.domain.DO.rlzy_staffinfo;
 import com.rlzy.domain.DTO.Staff.staffListDTO;
 
 
@@ -15,10 +14,17 @@ public class showStaffVO {
 	private String staff_name; // 员工名字查询
 	private String staff_sex; // 员工性别查询 
 	private String staff_status;//员工状态筛选 
+	private String staff_record;//学历
 	private String staff_inTime="desc";//入职时间
 	private List<staffListDTO> staffs;
 	
 	
+	public String getStaff_record() {
+		return staff_record;
+	}
+	public void setStaff_record(String staff_record) {
+		this.staff_record = staff_record;
+	}
 	public String getStaff_inTime() {
 		return staff_inTime;
 	}

@@ -1,24 +1,4 @@
-window.onload = function() {
-	/*alert("获得部门");*/
-	$.ajax({
-		url : '/rlzyos/depaterment/depaterment_getAllDepaterment',
-		type : 'post',
-		success : function(data) {
-			var result = JSON.parse(data);
-			console.log(result);
-			console.log(result.length);
-			for (var i = 0; i < result.length; i++) {
-				document.getElementById("staffMove_nowdepartment").innerHTML = document
-						.getElementById("staffMove_nowdepartment").innerHTML
-						+ "<option value='"
-						+ result[i].rlzy_staffdepartment_id
-						+ "'>"
-						+ result[i].staffdepartment_name
-						+ "</option>";
-			}
-		}
-	});
-}
+
 var allPageVue;
 //通过工号得到员工id,员工姓名，员工部门员工职务
 function getValue(event){
@@ -56,24 +36,24 @@ function addStaffMove() {
 	var staffMove_bfduty = $("#staffMove_bfduty").val();
 	var staffMove_nowdepartment = $("#staffMove_nowdepartment").val();
 	var staffMove_nowduty = $("#staffMove_nowduty").val();
-	var staffMove_time = $("#staffMove_time").val();
+	var staffMove_timee = $("#staffMove_timee").val();
 	var staffMove_remark =  $("#staffMove_remark").val();
 	
 	var addStaffMoveBtn =  $("#addStaffMoveBtn").val();
-	
+	console.log(staffMove_time);
 	alert("员工id"+addStaffMoveBtn);
 	$.ajax({
 		type : "POST",
 		url : "/rlzyos/staff/staffMove_addStaffMove?staffMove_staff="
 				+ addStaffMoveBtn,
 		data : {
-			"staffMove[0].staffMove_staff" : addStaffMoveBtn,
-			"staffMove[0].staffMove_bfdepartment" : staffMove_bfdepartment,
-			"staffMove[0].staffMove_bfduty" : staffMove_bfduty,
-			"staffMove[0].staffMove_nowdepartment" : staffMove_nowdepartment,
-			"staffMove[0].staffMove_nowduty" : staffMove_nowduty,
-			"staffMove[0].staffMove_time" : staffMove_time,
-			"staffMove[0].staffMove_remark" : staffMove_remark,
+			"staffMoves[0].staffMove_staff" : addStaffMoveBtn,
+			"staffMoves[0].staffMove_bfdepartment" : staffMove_bfdepartment,
+			"staffMoves[0].staffMove_bfduty" : staffMove_bfduty,
+			"staffMoves[0].staffMove_nowdepartment" : staffMove_nowdepartment,
+			"staffMoves[0].staffMove_nowduty" : staffMove_nowduty,
+			"staffMoves[0].staffMove_time" : staffMove_timee,
+			"staffMoves[0].staffMove_remark" : staffMove_remark,
 			"staffMove_nowduty" : staffMove_nowduty,
 			"staffMove_nowdepartment" : staffMove_nowdepartment
 		},
@@ -105,6 +85,25 @@ window.onload = function() {
 		}
 	});
 	loadData();
+	$.ajax({
+		url : '/rlzyos/depaterment/depaterment_getAllDepaterment',
+		type : 'post',
+		success : function(data) {
+			var result = JSON.parse(data);
+			console.log(result);
+			console.log(result.length);
+			for (var i = 0; i < result.length; i++) {
+
+				document.getElementById("staffMove_nowdepartment").innerHTML = document
+						.getElementById("staffMove_nowdepartment").innerHTML
+						+ "<option value='"
+						+ result[i].staffdepartment_name
+						+ "'>"
+						+ result[i].staffdepartment_name
+						+ "</option>";
+			}
+		}
+	});
 }
 //改变筛选条件
 //查询姓名
@@ -156,6 +155,47 @@ var loadData = function() {
 		}
 	});
 }
+//删除员工调配信息
+var deleteStaffMove = function(event) {
+	//删除
+	$.ajax({
+		url : '/rlzyos/staff/staffMove_deleteStaffMove?staffMove.rlzy_staffMove_id='+event.id,
+		type : 'POST',
+		data : {
+			'rlzy_staffMove_id' : event.id
+		}
+	});
+}
+//确认删除提示
+function createConfirmDeleteMove(event) {
+	$.confirm({
+		title : '真的要删除吗？',
+		content : '',
+		type : 'red',
+		autoClose : 'closeAction|5500',
+		buttons : {
+			deleteAction : {
+				text : '确认',
+				btnClass : 'btn-blue',
+				action : function() {
+					deleteStaffMove(event);
+					console.log("删除全部信息"+event);
+					toastr.success('删除成功！');
+					loadData();
+				}
+			},
+			closeAction : {
+				text : '取消',
+				btnClass : 'btn-red',
+				action : function() {
+
+				}
+			}
+		}
+	})
+}
+
+
 //相应分页响应
 var firstPage = function() {
 	if (queryConditionTemp.currPage <= 1) {

@@ -9,7 +9,7 @@ var queryConditionTemp = {
 	"totalCount" : "",
 	"staffName" : "",//查询姓名
 	"staffSex" : "", //筛选性别
-	"staffStatus" : "",//筛选状态
+	"staffStatus" : "离职",//筛选状态
 	"staffInTime" : "desc",//入职时间
 	"staffRecord" : ""
 }

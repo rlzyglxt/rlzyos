@@ -12,7 +12,7 @@
 <title>教育培训表</title>
 <%-- <link rel="stylesheet" href="<%=basePath%>css/Staff/Staff.css"> --%>
 <%-- <link rel="stylesheet" href="<%=basePath%>css/user/userIndex.css"> --%>
-<script type="text/javascript" src="<%=basePath%>js/train/train.js"></script>
+<script type="text/javascript" src="<%=basePath%>js/staff/train.js"></script>
 <script src="<%=basePath%>js/jquery-3.1.1.min.js"></script>
 <style type="text/css">
 #bottomPage:hover {
@@ -61,19 +61,17 @@
 										<th>培训费用</th>
 										<th>培训介绍</th>
 										<th>创建时间</th>
-										<th>修改时间</th>
 										<th>操作</th>
 									</tr>
 								</thead>
 								<tbody>
-									 <tr v-for="train in list" style="text-align: center;"> 
+									 <tr v-for="train in trains" style="text-align: center;"> 
 										<td>{{ train.train_name }}</td>
 										<td>{{ train.train_startTime }}</td>
 										<td>{{ train.train_overTime }}</td>
 										<td>{{ train.train_pay }}</td>
 										<td>{{ train.train_content }}</td>
 										<td>{{ train.train_gmt_create }}</td>
-										<td>{{ train.train_gmt_modified }}</td>
 										<td><button onclick="createConfirmUpdata(this)" 
 												:id="train.rlzy_train_id" data-toggle='modal' data-target='#updateTrain' class='btn btn-primary'><i class="fa fa-pencil-square-o"></i>修改</button>
 											<button onclick="createConfirmDelete(this)"

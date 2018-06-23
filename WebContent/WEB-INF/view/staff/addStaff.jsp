@@ -52,7 +52,18 @@
 								
 							</tr>
 							<tr>
-								<%-- <label style="float: left; width: 50px;"
+							
+								<td><label class="staff_info_label">身份证</label></td>
+								<td><input name="staff.staff_cardid" id="idNumber" onblur="getAge()"
+									class=" form-control" type="text"></td>
+								<td><label class="staff_info_label">性别</label></td>
+								<%-- <td>
+									<select id="staff_sex" onchange="changeSex(this)"
+											class="form-control" name="staff.staff_sex">
+												<option value=""></option>
+												<option value="男">男</option>
+												<option value="女">女</option></select></td> --%>
+								<td><label style="float: left; width: 50px;"
 									class="fancy-radio person_radio"> <input
 										name="staff.staff_sex" type="radio" value="男">
 										<span> <i></i>男
@@ -61,19 +72,17 @@
 									class="fancy-radio "> <input
 										name="staff.staff_sex" type="radio" value="女">
 										<span><i></i>女</span>
-								</label> --%>
-								<td><label class="staff_info_label">性别</label></td>
-								<td>
-									<select id="staff_sex" onchange="changeSex(this)"
-											class="form-control" name="staff.staff_sex">
-												<option value=""></option>
-												<option value="男">男</option>
-												<option value="女">女</option></select></td>
+								</label></td>
 								
-								<td><label class="staff_info_label">出生年月</label></td>
-								<td><input name="staff.staff_birth" id="idNumber"
+								
+							</tr>
+							<tr>
+							<td><label class="staff_info_label">年龄</label></td>
+								<td><input name="staff.staff_age"
 									class="_Time form-control" type="text"></td>
-								
+							<td><label class="staff_info_label">出生年月</label></td>
+								<td><input name="staff.staff_birth"
+									class="staff_birth form-control" type="text"></td>
 							</tr>
 							<tr>
 								<td><label class="staff_info_label">联系方式</label></td>
@@ -90,11 +99,12 @@
 								<td><select class="form-control"
 									name="staff.staff_record">
 										<option></option>
-										<option value="初中">初中</option>
-										<option value="高中">高中</option>
-										<option value="专科">专科</option>
+										<option value="硕士">硕士</option>
 										<option value="本科">本科</option>
-										<option value="研究生">研究生</option>
+										<option value="专科">专科</option>
+										<option value="高中">高中</option>
+										<option value="初中">初中</option>
+										<option value="小学">小学</option></select>
 								</select></td>
 								
 								<td><label class="staff_info_label">现部门</label></td>
@@ -400,6 +410,15 @@
 	<script type="text/javascript">
 		$.datetimepicker.setLocale('ch');
 		$('._Time').datetimepicker({
+			yearStart : 1900, // 设置最小年份
+			yearEnd : 2100, // 设置最大年份
+			yearOffset : 0, // 年偏差
+			timepicker : false, // 关闭时间选项
+			format : 'Y-m-d', // 格式化日期年-月-日
+			minDate : '1900/01/01', // 设置最小日期
+			maxDate : '2100/01/01', // 设置最大日期
+		});
+		$('.staff_birth').datetimepicker({
 			yearStart : 1900, // 设置最小年份
 			yearEnd : 2100, // 设置最大年份
 			yearOffset : 0, // 年偏差

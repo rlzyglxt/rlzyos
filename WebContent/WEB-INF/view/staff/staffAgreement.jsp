@@ -173,11 +173,11 @@
 						<img alt="" src="<%=basePath%>img/loading.gif">
 				</div>  --%>
 					<div id="addAgreementContent">
-						<form id="addAgreementForm">
+						<form id="addAgreementForm" name="addAgreementForm"> 
 							<table class="table" style="margin: 0 auto;">
 								<tr>
 									<td><label>员工工号：</label></td>
-									<td><input id="staff_number" name="staff_number" oninput="getName(this)
+									<td><input id="staff_number" name="staff_number" oninput="getName(this)"
 										type="text" class="form-control"></td>
 								</tr>
 								<tr><td><label>员工姓名：</label></td>
@@ -185,15 +185,15 @@
 										type="text" class="form-control" readonly="readonly"></td>
 								</tr>
 								<tr><td><label>合同开始时间：</label></td>
-									<td><input id="staffAgreement_StartTime" name="staffAgreement_StartTime"
+									<td><input id="addstaffAgreement_StartTime" name="staffAgreement_StartTime"
 										type="text" class="staffAgreement_StartTime form-control" placeholder="请输入结束时间"></td>
 								<tr>
 								<tr><td><label>合同结束时间：</label></td>
-									<td><input id="staffAgreement_OverTime" name="staffAgreement_OverTime"
+									<td><input id="addstaffAgreement_OverTime" name="staffAgreement_OverTime"
 										type="text" class="staffAgreement_OverTime form-control" placeholder="请输入开始时间"></td>
 								<tr>
 									<td><label class="staff_info_label">合同内容</label></td>
-									<td colspan="6"><textarea id="staff_contactsRemark"
+									<td colspan="6"><textarea id="addstaff_contactsRemark"
 											class="staffFurlough_remarks"
 											style="width: 480px; border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
 											name="policeman.staff_contactsRemark" rows="3" cols="62"></textarea>
@@ -205,8 +205,8 @@
 				</div>
 				<div class="modal-footer">
 					<button onclick="loadData()" type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-					<button onclick="reset()" type="button" class="btn btn-danger">清空</button>
-					<button id="updateStaffExpBtn" onclick="updateStaffExp(this)"  type="button" class="btn btn-primary">添加</button>
+<!-- 					<button onclick="reset()" type="button" class="btn btn-danger">清空</button> -->
+					<button id="addStaffStaffAgreementbtn" onclick="addStaffStaffAgreement(this)"  type="button" class="btn btn-primary">添加</button>
 				</div>
 			</div>
 			<!-- /.modal-content id="updateBtn" -->

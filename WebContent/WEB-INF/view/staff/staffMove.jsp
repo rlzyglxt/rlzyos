@@ -56,6 +56,7 @@
 												<option value="desc">调动时间（降序）</option>
 												<option value="asc">调动时间（升序）</option>
 										</select></th>
+										<th>操作</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -70,6 +71,8 @@
 										<td>{{ staffMove.staffMove_nowdepartment }}</td>
 										<td>{{ staffMove.staffMove_nowduty }}</td>
 										<td>{{ staffMove.staffMove_time }}</td>
+										<td><button onclick="createConfirmDeleteMove(this)"
+												:id="staffMove.rlzy_staffMove_id" class="btn btn-danger"><i class="fa fa-trash-o"></i>删除</button></td>
 								</tbody>
 							</table>
 							<div id="bottomPage" style="padding: 20px;">
@@ -146,7 +149,7 @@
 								</tr>
 								<tr>
 									<td><label>调动时间：</label></td>
-									<td><input id="staffMove_time" name="staffMove.staffMove_time"
+									<td><input id="staffMove_timee" name="staffMove.staffMove_time"
 										type="text" class="form-control Time" placeholder="请输入调动时间"></td>
 									<td><label>备注：</label></td>
 									<td><input id="staffMove_remark" name="staffMove.staffMove_remark"

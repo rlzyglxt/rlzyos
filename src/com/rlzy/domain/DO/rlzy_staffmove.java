@@ -12,18 +12,6 @@ public class rlzy_staffmove {
 	private String staffMove_gmt_create;//创建时间
 	private String staffMove_gmt_modified;//修改时间
 	
-	public String getStaffMove_gmt_create() {
-		return staffMove_gmt_create;
-	}
-	public void setStaffMove_gmt_create(String staffMove_gmt_create) {
-		this.staffMove_gmt_create = staffMove_gmt_create;
-	}
-	public String getStaffMove_gmt_modified() {
-		return staffMove_gmt_modified;
-	}
-	public void setStaffMove_gmt_modified(String staffMove_gmt_modified) {
-		this.staffMove_gmt_modified = staffMove_gmt_modified;
-	}
 	public String getRlzy_staffMove_id() {
 		return rlzy_staffMove_id;
 	}
@@ -72,5 +60,18 @@ public class rlzy_staffmove {
 	public void setStaffMove_remark(String staffMove_remark) {
 		this.staffMove_remark = staffMove_remark;
 	}
+	public String getStaffMove_gmt_create() {
+		return staffMove_gmt_create;
+	}
+	public void setStaffMove_gmt_create(String staffMove_gmt_create) {
+		this.staffMove_gmt_create = staffMove_gmt_create;
+	}
+	public String getStaffMove_gmt_modified() {
+		return staffMove_gmt_modified;
+	}
+	public void setStaffMove_gmt_modified(String staffMove_gmt_modified) {
+		this.staffMove_gmt_modified = staffMove_gmt_modified;
+	}
+	
 	
 }

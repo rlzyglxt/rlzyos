@@ -15,6 +15,7 @@
 
 <title>人员详情信息</title>
 </head>
+<script type="text/javascript" src="<%=basePath%>js/staff/addStaff.js"></script>
 <script type="text/javascript" src="<%=basePath%>js/staff/updataStaff.js"></script>
 <script type="text/javascript" src="<%=basePath%>js/staff/addOne_longTable.js"></script>
 <script type="text/javascript" src="<%=basePath%>js/staff/updata_longTable.js"></script>
@@ -55,7 +56,7 @@
 								<td><input class="form-control" id="staff_name" name="staff.staff_name"  type="text"></td>
 								
 							</tr>
-							<tr>
+						<%-- 	<tr>
 								<td><label class="staff_info_label">性别</label></td>
 								<td><select class="form-control" id="staff_sex" onchange="changeSex(this)"
 											 name="staff.staff_sex">
@@ -67,25 +68,47 @@
 								<td><input name="staff.staff_birth" id="staff_birthTime"
 									class="form-control staff_birthTime"  type="text"></td>
 								
+							</tr>  --%>
+							<tr>
+							
+								<td><label class="staff_info_label">身份证</label></td>
+								<td><input name="staff.staff_cardid" id="idNumber" onblur="getAge()"
+									class=" form-control" type="text"></td>
+								<td><label class="staff_info_label">性别</label></td>
+								<td><label style="float: left; width: 50px;"
+									class="fancy-radio person_radio"> <input
+										name="sex_content" onclick=changeSex_man(this) type="radio" value="男">
+										<span> <i></i>男
+									</span>
+								</label> <label style="float: left; width: 50px; margin-left: 10px;"
+									class="fancy-radio "> <input
+										name="sex_content" onclick=changeSex_woman(this) type="radio" value="女">
+										<span><i></i>女</span>
+								</label><input type="hidden" name="staff.staff_sex" id="sex"></td>
+							</tr>
+							<tr>
+								<td><label class="staff_info_label">年龄</label></td>
+								<td><input name="staff.staff_age" class="form-control" type="text"></td>
+								<td><label class="staff_info_label">出生年月</label></td>
+								<td><input name="staff.staff_birth"	class="staff_birth form-control" type="text"></td>
 							</tr>
 							<tr>
 								<td><label class="staff_info_label">联系方式</label></td>
 								<td><input id="staff_tel" name="staff.staff_tel" class="form-control" type="text"></td>
-								
 								<td><label class="staff_info_label">家庭住址</label></td>
 								<td><input name="staff.staff_address" id="staff_address" class="form-control" type="text"></td>
-								
 							</tr>
 							<tr>
 								<td><label class="staff_info_label">学历</label></td>
 								<td><select class="form-control" id="staff_record"
 									name="staff.staff_record" type="text">
 										<option></option>
-										<option>初中</option>
-										<option>高中</option>
-										<option>专科</option>
-										<option>本科</option>
-										<option>研究生</option>
+										<option value="硕士">硕士</option>
+										<option value="本科">本科</option>
+										<option value="专科">专科</option>
+										<option value="高中">高中</option>
+										<option value="初中">初中</option>
+										<option value="小学">小学</option></select>
 								</select></td>
 							
 								<td><label class="staff_info_label">部门</label></td>

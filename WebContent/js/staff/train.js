@@ -19,20 +19,11 @@ window.onload = function() {
 			pageCount : '10',
 			totalCount : '',
 			train_name : '',
-			list : ''
+			trains : ''
 		}
 	});
 	loadData();
 }
-
-//改变筛选条件
-//查询姓名
-var changeName = function(event) {
-	queryConditionTemp.train_name = event.value;
-	queryConditionTemp.currPage = "1";
-	loadData();
-}
-
 //显示培训类别
 var loadData = function() {
 	$('#mainPanel').hide();
@@ -51,7 +42,7 @@ var loadData = function() {
 		data : queryCondition,
 		success : function(data) {
 			var result = JSON.parse(data);
-			allPageVue.list = result.list;
+			allPageVue.trains = result.trains;
 			allPageVue.currPage = result.currPage;
 			allPageVue.totalPage = result.totalPage;
 			allPageVue.pageCount = result.pageCount;
@@ -67,7 +58,75 @@ var loadData = function() {
 		}
 	});
 }
+//添加培训类别
+function addTrain(){
+	for (var i = 0; i < document.addtrainForm.elements.length - 1; i++) {
+		if (document.addtrainForm.elements[i].value == "") {
+			toastr.error("当前表单不能有空项");
+			document.form.elements[i].focus();
+			return false;
+		}
+	}
+	getXmlHttp();
+	xmlHttp.open("POST", "/rlzyos/train/train_addTrain", true);
+	var formData = new FormData(document.getElementById("addtrainForm"));
+	xmlHttp.send(formData);
+	xmlHttp.onreadystatechange = function (){
+		if (isBack()) {
+			var result = xmlHttp.responseText;
+			if (result == "samename") {
+				toastr.error("培训名称已经存在请重新填写！");
+				$("#addLoadingDiv").addClass("hideDiv");
+				$("#addContent").removeClass("hideDiv");
+			} else {
+				toastr.success("添加成功！");
+				$("#addLoadingDiv").addClass("hideDiv");
+				$("#addContent").removeClass("hideDiv");
+				$("#addContent input").val("");
+				loadData();
+			}
+		}
+	}
+}
+//删除类别
+var deleteTrain = function(event) {
+	$.ajax({
+		url : '/rlzyos/train/train_deleteTrain',
+		type : 'POST',
+		data : {
+			'rlzy_train_id' : event.id
+		}
+	});
+}
+//确认删除提示
+function createConfirmDelete(event) {
+	$.confirm({
+		title : '真的要删除吗？',
+		content : '',
+		type : 'red',
+		autoClose : 'closeAction|5500',
+		buttons : {
+			deleteAction : {
+				text : '确认',
+				btnClass : 'btn-blue',
+				action : function() {
+					deleteTrain(event);
+					console.log("删除信息"+event);
+					loadData();
+				}
+			},
+			closeAction : {
+				text : '取消',
+				btnClass : 'btn-red',
+				action : function() {
 
+				}
+			}
+		}
+	})
+}
+
+//修改类别
 //进入修改模态框
 function createConfirmUpdata(event) {
 	$("#updateLoadingDiv").removeClass("hideDiv");
@@ -79,8 +138,6 @@ function createConfirmUpdata(event) {
 	xmlHttp.send(formData);
 	xmlHttp.onreadystatechange = getTrainByIdBack;
 }
-
-
 //通过Id得到履历回显
 function getTrainByIdBack() {
 	if (isBack()) {
@@ -115,87 +172,12 @@ function updateTrain(event) {
 		}
 	}
 }
-
-//删除
-var deleteTrain = function(event) {
-	$.ajax({
-		url : '/rlzyos/train/train_deleteTrain',
-		type : 'POST',
-		data : {
-			'rlzy_train_id' : event.id
-		}
-	});
-//	getXmlHttp();
-//	xmlHttp.open("POST", "/rlzyos/train/train_deleteTrain", true);
-//	var formData = new FormData();
-//	formData.append("rlzy_train_id", event.id);
-//	xmlHttp.send(formData);
-//	xmlHttp.onreadystatechange = function() {
-//		if (isBack()) {
-//			toastr.success("删除成功");
-//			loadData();
-//		}
-//	}
+//查询
+var changeName = function(event) {
+	queryConditionTemp.train_name = event.value;
+	queryConditionTemp.currPage = "1";
+	loadData();
 }
-
-//确认删除提示
-function createConfirmDelete(event) {
-	$.confirm({
-		title : '真的要删除吗？',
-		content : '',
-		type : 'red',
-		autoClose : 'closeAction|5500',
-		buttons : {
-			deleteAction : {
-				text : '确认',
-				btnClass : 'btn-blue',
-				action : function() {
-					deleteTrain(event);
-					console.log("删除全部信息"+event);
-					loadData();
-				}
-			},
-			closeAction : {
-				text : '取消',
-				btnClass : 'btn-red',
-				action : function() {
-
-				}
-			}
-		}
-	})
-}
-
-function addTrain(){
-	for (var i = 0; i < document.addtrainForm.elements.length - 1; i++) {
-		if (document.addtrainForm.elements[i].value == "") {
-			toastr.error("当前表单不能有空项");
-			document.form.elements[i].focus();
-			return false;
-		}
-	}
-	getXmlHttp();
-	xmlHttp.open("POST", "/rlzyos/train/train_addTrain", true);
-	var formData = new FormData(document.getElementById("addtrainForm"));
-	xmlHttp.send(formData);
-	xmlHttp.onreadystatechange = function (){
-		if (isBack()) {
-			var result = xmlHttp.responseText;
-			if (result == "samename") {
-				toastr.error("培训名称已经存在请重新填写培训名称！");
-				$("#addLoadingDiv").addClass("hideDiv");
-				$("#addContent").removeClass("hideDiv");
-			} else {
-				toastr.success("上传成功！");
-				$("#addLoadingDiv").addClass("hideDiv");
-				$("#addContent").removeClass("hideDiv");
-				$("#addContent input").val("");
-				loadData();
-			}
-		}
-	}
-}
-
 //相应分页响应
 var firstPage = function() {
 	if (queryConditionTemp.currPage <= 1) {

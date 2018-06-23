@@ -5,6 +5,8 @@ public class rlzy_staffinfo {
 	private String staff_number;//员工工号/登陆账号
 	private String staff_name;//员工
 	private String staff_sex;//员工性别
+	private String staff_cardid;//身份证
+	private String staff_age;//年龄
 	private String staff_birth;//员工出生日期
 	private String staff_tel;//电话
 	private String staff_address;//地址
@@ -15,31 +17,11 @@ public class rlzy_staffinfo {
 	private String staff_inTime;//入职时间
 	private String staff_leaveTime;//离职时间
 	private String staff_leaveReason;//离职原因
-	private String staff_gmt_create;//创建时间
-	private String staff_gmt_modified;//修改时间
 	private String staff_password;//用户密码
 	private String staff_adminPower;//用户管理权限
 	private String staff_userPower;//用户使用权限
-	
-	
-	public String getStaff_password() {
-		return staff_password;
-	}
-	public void setStaff_password(String staff_password) {
-		this.staff_password = staff_password;
-	}
-	public String getStaff_adminPower() {
-		return staff_adminPower;
-	}
-	public void setStaff_adminPower(String staff_adminPower) {
-		this.staff_adminPower = staff_adminPower;
-	}
-	public String getStaff_userPower() {
-		return staff_userPower;
-	}
-	public void setStaff_userPower(String staff_userPower) {
-		this.staff_userPower = staff_userPower;
-	}
+	private String staff_gmt_create;//创建时间
+	private String staff_gmt_modified;//修改时间
 	public String getRlzy_staff_id() {
 		return rlzy_staff_id;
 	}
@@ -63,6 +45,19 @@ public class rlzy_staffinfo {
 	}
 	public void setStaff_sex(String staff_sex) {
 		this.staff_sex = staff_sex;
+	}
+
+	public String getStaff_cardid() {
+		return staff_cardid;
+	}
+	public void setStaff_cardid(String staff_cardid) {
+		this.staff_cardid = staff_cardid;
+	}
+	public String getStaff_age() {
+		return staff_age;
+	}
+	public void setStaff_age(String staff_age) {
+		this.staff_age = staff_age;
 	}
 	public String getStaff_birth() {
 		return staff_birth;
@@ -124,6 +119,24 @@ public class rlzy_staffinfo {
 	public void setStaff_leaveReason(String staff_leaveReason) {
 		this.staff_leaveReason = staff_leaveReason;
 	}
+	public String getStaff_password() {
+		return staff_password;
+	}
+	public void setStaff_password(String staff_password) {
+		this.staff_password = staff_password;
+	}
+	public String getStaff_adminPower() {
+		return staff_adminPower;
+	}
+	public void setStaff_adminPower(String staff_adminPower) {
+		this.staff_adminPower = staff_adminPower;
+	}
+	public String getStaff_userPower() {
+		return staff_userPower;
+	}
+	public void setStaff_userPower(String staff_userPower) {
+		this.staff_userPower = staff_userPower;
+	}
 	public String getStaff_gmt_create() {
 		return staff_gmt_create;
 	}
@@ -136,6 +149,7 @@ public class rlzy_staffinfo {
 	public void setStaff_gmt_modified(String staff_gmt_modified) {
 		this.staff_gmt_modified = staff_gmt_modified;
 	}
+	
 	
 	
 	

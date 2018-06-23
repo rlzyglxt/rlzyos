@@ -11,7 +11,7 @@
 <base href="<%=basePath%>">
 <title>新进员工信息表</title>
 <link rel="stylesheet" href="<%=basePath%>css/Staff/Staff.css">
-<script type="text/javascript" src="<%=basePath%>js/staff/showStaffInfor.js"></script>
+<script type="text/javascript" src="<%=basePath%>js/staff/newInStaff.js"></script>
 <style type="text/css">
 #bottomPage:hover {
 	cursor: pointer;
@@ -75,8 +75,11 @@
 										<td>{{ staff.staff_duty }}</td>
 										<td>{{ staff.staff_depaterment }}</td>
 										<td>{{ staff.staff_inTime }}</td>
-										<td><button onclick="skipToDetail(this)"
-												:id="staff.rlzy_staff_id" class='btn btn-primary'><i class="fa fa-pencil-square-o"></i>查看详情</button>
+										<td>
+											<button onclick="enterUpdataPage(this)"
+												:id="staff.rlzy_staff_id" class='btn btn-info'><i class="fa fa-pencil-square-o"></i>修改</button>
+											<button onclick="skipToDetail(this)"
+												:id="staff.rlzy_staff_id" class='btn btn-primary'><i class="fa fa-check"></i>详情</button>
 										</td>
 									</tr>
 								</tbody>

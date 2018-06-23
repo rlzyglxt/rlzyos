@@ -10,37 +10,17 @@ public class rlzy_staffagreement {
 	private String agreement_remark;
 	private String agreement_gmt_create;//创建时间
 	private String agreement_gmt_modified;//修改时间
-	
-
-	public String getAgreement_remark() {
-		return agreement_remark;
+	public String getRlzy_agreement_id() {
+		return rlzy_agreement_id;
 	}
-	public void setAgreement_remark(String agreement_remark) {
-		this.agreement_remark = agreement_remark;
+	public void setRlzy_agreement_id(String rlzy_agreement_id) {
+		this.rlzy_agreement_id = rlzy_agreement_id;
 	}
 	public String getAgreement_staff() {
 		return agreement_staff;
 	}
 	public void setAgreement_staff(String agreement_staff) {
 		this.agreement_staff = agreement_staff;
-	}
-	public String getAgreement_gmt_create() {
-		return agreement_gmt_create;
-	}
-	public void setAgreement_gmt_create(String agreement_gmt_create) {
-		this.agreement_gmt_create = agreement_gmt_create;
-	}
-	public String getAgreement_gmt_modified() {
-		return agreement_gmt_modified;
-	}
-	public void setAgreement_gmt_modified(String agreement_gmt_modified) {
-		this.agreement_gmt_modified = agreement_gmt_modified;
-	}
-	public String getRlzy_agreement_id() {
-		return rlzy_agreement_id;
-	}
-	public void setRlzy_agreement_id(String rlzy_agreement_id) {
-		this.rlzy_agreement_id = rlzy_agreement_id;
 	}
 	public String getAgreement_startTime() {
 		return agreement_startTime;
@@ -66,5 +46,24 @@ public class rlzy_staffagreement {
 	public void setAgreement_content(String agreement_content) {
 		this.agreement_content = agreement_content;
 	}
+	public String getAgreement_remark() {
+		return agreement_remark;
+	}
+	public void setAgreement_remark(String agreement_remark) {
+		this.agreement_remark = agreement_remark;
+	}
+	public String getAgreement_gmt_create() {
+		return agreement_gmt_create;
+	}
+	public void setAgreement_gmt_create(String agreement_gmt_create) {
+		this.agreement_gmt_create = agreement_gmt_create;
+	}
+	public String getAgreement_gmt_modified() {
+		return agreement_gmt_modified;
+	}
+	public void setAgreement_gmt_modified(String agreement_gmt_modified) {
+		this.agreement_gmt_modified = agreement_gmt_modified;
+	}
 	
+
 }

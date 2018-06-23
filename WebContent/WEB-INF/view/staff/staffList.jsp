@@ -79,7 +79,8 @@
 											class="form-control">
 												<option value="">学历</option>
 												<option value="硕士">硕士</option>
-												<option value="大学">大学</option>
+												<option value="本科">本科</option>
+												<option value="专科">专科</option>
 												<option value="高中">高中</option>
 												<option value="初中">初中</option>
 												<option value="小学">小学</option></select>
@@ -96,7 +97,6 @@
 										<span v-html="staff.staff_name"></span></a>
 										</td>
 										<td>{{ staff.staff_sex }}</td>
-								
 										<td>{{ staff.staff_depaterment }}</td>
 										<td>{{ staff.staff_birth }}</td>
 										<td>{{ staff.staff_status }}</td><!-- 员工状态-->

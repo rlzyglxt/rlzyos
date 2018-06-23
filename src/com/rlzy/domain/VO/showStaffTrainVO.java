@@ -9,9 +9,24 @@ public class showStaffTrainVO {
 	private int totalPage; // 总页数
 	private int totalCount;// 总记录数
 	private int pageCount;// 一页显示条数
-	private String staffTrain_staff;//工号查询
+	private String staff_number;//工号查询
+	private String train_name;//培训名称查询
+	private String staff_name;//员工姓名查询
 	private List<staffTrainDTO> staffTrains;
 	
+	
+	public String getTrain_name() {
+		return train_name;
+	}
+	public void setTrain_name(String train_name) {
+		this.train_name = train_name;
+	}
+	public String getStaff_name() {
+		return staff_name;
+	}
+	public void setStaff_name(String staff_name) {
+		this.staff_name = staff_name;
+	}
 	public int getCurrPage() {
 		return currPage;
 	}
@@ -36,11 +51,11 @@ public class showStaffTrainVO {
 	public void setPageCount(int pageCount) {
 		this.pageCount = pageCount;
 	}
-	public String getStaffTrain_staff() {
-		return staffTrain_staff;
+	public String getStaff_number() {
+		return staff_number;
 	}
-	public void setStaffTrain_staff(String staffTrain_staff) {
-		this.staffTrain_staff = staffTrain_staff;
+	public void setStaff_number(String staff_number) {
+		this.staff_number = staff_number;
 	}
 	public List<staffTrainDTO> getStaffTrains() {
 		return staffTrains;
@@ -50,5 +65,4 @@ public class showStaffTrainVO {
 	}
 	
 	
-
 }

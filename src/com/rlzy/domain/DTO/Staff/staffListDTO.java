@@ -7,6 +7,7 @@ public class staffListDTO {
 	private String staff_number;//工号
 	private String staff_name;//名字
 	private String staff_birth;//生日
+	private String staff_age;//年龄
 	private String staff_duty;//职务
 	private String staff_status;//状态
 	private String staff_tel;//电话
@@ -15,9 +16,7 @@ public class staffListDTO {
 	private String staff_address;//家庭住址
 	private String staff_depaterment;//部门
 	private String staff_inTime;//入职时间
-	
-	
-	
+	private String staff_leaveTime;
 	public String getRlzy_staff_id() {
 		return rlzy_staff_id;
 	}
@@ -41,6 +40,12 @@ public class staffListDTO {
 	}
 	public void setStaff_birth(String staff_birth) {
 		this.staff_birth = staff_birth;
+	}
+	public String getStaff_age() {
+		return staff_age;
+	}
+	public void setStaff_age(String staff_age) {
+		this.staff_age = staff_age;
 	}
 	public String getStaff_duty() {
 		return staff_duty;
@@ -90,22 +95,31 @@ public class staffListDTO {
 	public void setStaff_inTime(String staff_inTime) {
 		this.staff_inTime = staff_inTime;
 	}
+	public String getStaff_leaveTime() {
+		return staff_leaveTime;
+	}
+	public void setStaff_leaveTime(String staff_leaveTime) {
+		this.staff_leaveTime = staff_leaveTime;
+	}
 	@Override
 	public String toString() {
 		return "staffListDTO [rlzy_staff_id=" + rlzy_staff_id + ", staff_number=" + staff_number + ", staff_name="
-				+ staff_name + ", staff_birth=" + staff_birth + ", staff_duty=" + staff_duty + ", staff_status="
-				+ staff_status + ", staff_tel=" + staff_tel + ", staff_sex=" + staff_sex + ", staff_record="
-				+ staff_record + ", staff_address=" + staff_address + ", staff_depaterment=" + staff_depaterment
-				+ ", staff_inTime=" + staff_inTime + "]";
+				+ staff_name + ", staff_birth=" + staff_birth + ", staff_age=" + staff_age + ", staff_duty="
+				+ staff_duty + ", staff_status=" + staff_status + ", staff_tel=" + staff_tel + ", staff_sex="
+				+ staff_sex + ", staff_record=" + staff_record + ", staff_address=" + staff_address
+				+ ", staff_depaterment=" + staff_depaterment + ", staff_inTime=" + staff_inTime + ", staff_leaveTime="
+				+ staff_leaveTime + "]";
 	}
 	public staffListDTO(String rlzy_staff_id, String staff_number, String staff_name, String staff_birth,
-			String staff_duty, String staff_status, String staff_tel, String staff_sex, String staff_record,
-			String staff_address, String staff_depaterment, String staff_inTime) {
+			String staff_age, String staff_duty, String staff_status, String staff_tel, String staff_sex,
+			String staff_record, String staff_address, String staff_depaterment, String staff_inTime,
+			String staff_leaveTime) {
 		super();
 		this.rlzy_staff_id = rlzy_staff_id;
 		this.staff_number = staff_number;
 		this.staff_name = staff_name;
 		this.staff_birth = staff_birth;
+		this.staff_age = staff_age;
 		this.staff_duty = staff_duty;
 		this.staff_status = staff_status;
 		this.staff_tel = staff_tel;
@@ -114,6 +128,7 @@ public class staffListDTO {
 		this.staff_address = staff_address;
 		this.staff_depaterment = staff_depaterment;
 		this.staff_inTime = staff_inTime;
+		this.staff_leaveTime = staff_leaveTime;
 	}
 	
 	

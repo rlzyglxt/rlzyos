@@ -6,7 +6,7 @@
 	<package name="user" namespace="/user" extends="struts-default">
 		<action name="user_*" method="{1}" class="com.rlzy.action.user.UserAction">
 			<result name="navbar">/WEB-INF/view/navbar.jsp</result>
-			
+	
 			<result name="intoIndex">/WEB-INF/view/index.jsp</result>
 			
 			<result name="LeftIndex">/WEB-INF/view/indexLeft.jsp</result>

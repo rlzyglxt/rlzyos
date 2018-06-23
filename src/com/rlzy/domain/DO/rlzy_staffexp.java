@@ -9,19 +9,6 @@ public class rlzy_staffexp {
 	private String staffExp_remark;//备注
 	private String staffExp_gmt_create;
 	private String staffExp_gmt_modified;
-
-	public String getStaffExp_gmt_create() {
-		return staffExp_gmt_create;
-	}
-	public void setStaffExp_gmt_create(String staffExp_gmt_create) {
-		this.staffExp_gmt_create = staffExp_gmt_create;
-	}
-	public String getStaffExp_gmt_modified() {
-		return staffExp_gmt_modified;
-	}
-	public void setStaffExp_gmt_modified(String staffExp_gmt_modified) {
-		this.staffExp_gmt_modified = staffExp_gmt_modified;
-	}
 	public String getRlzy_staffExp_id() {
 		return rlzy_staffExp_id;
 	}
@@ -58,7 +45,18 @@ public class rlzy_staffexp {
 	public void setStaffExp_remark(String staffExp_remark) {
 		this.staffExp_remark = staffExp_remark;
 	}
-	
-	
+	public String getStaffExp_gmt_create() {
+		return staffExp_gmt_create;
+	}
+	public void setStaffExp_gmt_create(String staffExp_gmt_create) {
+		this.staffExp_gmt_create = staffExp_gmt_create;
+	}
+	public String getStaffExp_gmt_modified() {
+		return staffExp_gmt_modified;
+	}
+	public void setStaffExp_gmt_modified(String staffExp_gmt_modified) {
+		this.staffExp_gmt_modified = staffExp_gmt_modified;
+	}
+
 	
 }

@@ -48,10 +48,13 @@ public class StaffDaoImpl implements StaffDao {
 			hql = hql + " and staff_name like '" + "%" + showstaffVO.getStaff_name() + "%" + "'";
 		}
 		if(showstaffVO.getStaff_sex() !=null && showstaffVO.getStaff_sex().trim().length() > 0){
-			hql = hql + " and staff_number like '" + "%" + showstaffVO.getStaff_sex() + "%" + "'";
+			hql = hql + " and staff_sex like '" + "%" + showstaffVO.getStaff_sex() + "%" + "'";
 		}
 		if(showstaffVO.getStaff_status() !=null && showstaffVO.getStaff_status().trim().length() > 0){
 			hql = hql + " and staff_status like '" + "%" + showstaffVO.getStaff_status() + "%" + "'";
+		}
+		if(showstaffVO.getStaff_record() !=null && showstaffVO.getStaff_record().trim().length() > 0){
+			hql = hql + " and staff_record like '" + "%" + showstaffVO.getStaff_record() + "%" + "'";
 		}
 		Session session=this.getSession();
 		long count =(long) session.createQuery(hql).uniqueResult();
@@ -65,6 +68,7 @@ public class StaffDaoImpl implements StaffDao {
 				+ "staff_number as staff_number,"
 				+ "staff_name as staff_name,"
 				+ "staff_birth as staff_birth,"
+				+ "staff_age as staff_age,"
 				+ "staff_duty as staff_duty,"
 				+ "staff_status as staff_status,"
 				+ "staff_tel as staff_tel,"
@@ -72,18 +76,21 @@ public class StaffDaoImpl implements StaffDao {
 				+ "staff_record as staff_record,"
 				+ "staff_address as staff_address,"
 				+ "staff_depaterment as staff_depaterment,"
-				+ "staff_inTime as staff_inTime) from rlzy_staffinfo  where 1=1 ";
+				+ "staff_inTime as staff_inTime,staff_leaveTime as staff_leaveTime) from rlzy_staffinfo  where 1=1 ";
 		//姓名查询
 		if(showstaffVO.getStaff_name() !=null && showstaffVO.getStaff_name().trim().length() > 0){
 			hql = hql + " and staff_name like '" + "%" + showstaffVO.getStaff_name() + "%" + "'";
 		}
 		//性别筛选
 		if(showstaffVO.getStaff_sex() !=null && showstaffVO.getStaff_sex().trim().length() > 0){
-			hql = hql + " and staff_number like '" + "%" + showstaffVO.getStaff_sex() + "%" + "'";
+			hql = hql + " and staff_sex like '" + "%" + showstaffVO.getStaff_sex() + "%" + "'";
 		}
 		//状态筛选
 		if(showstaffVO.getStaff_status() !=null && showstaffVO.getStaff_status().trim().length() > 0){
-			hql = hql + " and staff_record like '" + "%" + showstaffVO.getStaff_status() + "%" + "'";
+			hql = hql + " and staff_status like '" + "%" + showstaffVO.getStaff_status() + "%" + "'";
+		}
+		if(showstaffVO.getStaff_record() !=null && showstaffVO.getStaff_record().trim().length() > 0){
+			hql = hql + " and staff_record like '" + "%" + showstaffVO.getStaff_record() + "%" + "'";
 		}
 		hql = hql + "order by staff_InTime " + showstaffVO.getStaff_inTime();
 		Session session = this.getSession();

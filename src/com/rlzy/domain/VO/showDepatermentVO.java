@@ -10,7 +10,7 @@ public class showDepatermentVO {
 	private int currPage;
 	private int totalPage;
 	private int count;
-	private int pageSize;
+	private int pageCount;
 	private String queryString;
 	private List<rlzy_depaterment> list;
 	public int getCurrPage() {
@@ -31,11 +31,12 @@ public class showDepatermentVO {
 	public void setCount(int count) {
 		this.count = count;
 	}
-	public int getPageSize() {
-		return pageSize;
+
+	public int getPageCount() {
+		return pageCount;
 	}
-	public void setPageSize(int pageSize) {
-		this.pageSize = pageSize;
+	public void setPageCount(int pageCount) {
+		this.pageCount = pageCount;
 	}
 	public String getQueryString() {
 		return queryString;

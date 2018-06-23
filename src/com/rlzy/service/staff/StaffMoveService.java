@@ -17,4 +17,8 @@ public interface StaffMoveService {
 		void getStaffMoveByPage(showStaffMoveVO staffMoveVO);
 		//
 		void updataStaffInfo(rlzy_staffinfo rs);
+		//删除该员工所有调动记录
+		void deleteStaffMoves(String staffMove_staff);
+		//删除该员工一条调动记录
+		void deleteStaffMove(String rlzy_staffMove_id);
 }

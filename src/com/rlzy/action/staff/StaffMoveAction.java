@@ -20,14 +20,19 @@ public class StaffMoveAction extends ActionSupport{
 	private StaffMoveService staffMoveService;
 	private StaffService staffService;
 	private String staff_number;
-	private List<rlzy_staffmove> staffMove;
+	private List<rlzy_staffmove> staffMoves;
+	private rlzy_staffmove staffmove;
 	private showStaffMoveVO staffMoveVO;
 	private String staffMove_staff;
 	private String staffMove_nowdepartment;
 	private String staffMove_nowduty;
+	private String rlzy_staffMove_id;
+	
+	
+	
 	//员工调动
 	public void addStaffMove() throws IOException{
-		staffMoveService.addStaffMove(staffMove);
+		staffMoveService.addStaffMove(staffMoves);
 		System.out.println("该员工id为"+staffMove_staff);
 		rlzy_staffinfo rs = staffService.getStaffById(staffMove_staff);
 		rs.setStaff_duty(staffMove_nowduty);
@@ -65,8 +70,80 @@ public class StaffMoveAction extends ActionSupport{
 		pw.flush();
 		pw.close();
 	}
-
+	//删除一个工作
+	public void deleteStaffMove() throws IOException{
+		//System.out.println("调动记录id"+staffmove.getRlzy_staffMove_id());
+		System.out.println();
+			staffMoveService.deleteStaffMove(rlzy_staffMove_id);
+			HttpServletResponse response = ServletActionContext.getResponse();
+			response.setContentType("text/html;charset=utf-8");
+			PrintWriter pw = response.getWriter();
+			pw.write("deleteSuccess");
+			pw.flush();
+			pw.close();
+	}
+	//删除全部该人工作
+	public void deleteStaffMoves() throws IOException{
+		staffMoveService.deleteStaffMoves(staffmove.getStaffMove_staff());
+			HttpServletResponse response = ServletActionContext.getResponse();
+			response.setContentType("text/html;charset=utf-8");
+			PrintWriter pw = response.getWriter();
+			pw.write("deleteSuccess");
+			pw.flush();
+			pw.close();
+	}
 	
+	
+	
+	
+	public String getRlzy_staffMove_id() {
+		return rlzy_staffMove_id;
+	}
+	public void setRlzy_staffMove_id(String rlzy_staffMove_id) {
+		this.rlzy_staffMove_id = rlzy_staffMove_id;
+	}
+	public StaffMoveService getStaffMoveService() {
+		return staffMoveService;
+	}
+	public void setStaffMoveService(StaffMoveService staffMoveService) {
+		this.staffMoveService = staffMoveService;
+	}
+	public StaffService getStaffService() {
+		return staffService;
+	}
+	public void setStaffService(StaffService staffService) {
+		this.staffService = staffService;
+	}
+	public String getStaff_number() {
+		return staff_number;
+	}
+	public void setStaff_number(String staff_number) {
+		this.staff_number = staff_number;
+	}
+	public List<rlzy_staffmove> getStaffMoves() {
+		return staffMoves;
+	}
+	public void setStaffMoves(List<rlzy_staffmove> staffMoves) {
+		this.staffMoves = staffMoves;
+	}
+	public rlzy_staffmove getStaffmove() {
+		return staffmove;
+	}
+	public void setStaffmove(rlzy_staffmove staffmove) {
+		this.staffmove = staffmove;
+	}
+	public showStaffMoveVO getStaffMoveVO() {
+		return staffMoveVO;
+	}
+	public void setStaffMoveVO(showStaffMoveVO staffMoveVO) {
+		this.staffMoveVO = staffMoveVO;
+	}
+	public String getStaffMove_staff() {
+		return staffMove_staff;
+	}
+	public void setStaffMove_staff(String staffMove_staff) {
+		this.staffMove_staff = staffMove_staff;
+	}
 	public String getStaffMove_nowdepartment() {
 		return staffMove_nowdepartment;
 	}
@@ -79,43 +156,8 @@ public class StaffMoveAction extends ActionSupport{
 	public void setStaffMove_nowduty(String staffMove_nowduty) {
 		this.staffMove_nowduty = staffMove_nowduty;
 	}
-	public StaffService getStaffService() {
-		return staffService;
-	}
-	public void setStaffService(StaffService staffService) {
-		this.staffService = staffService;
-	}
-	public String getStaffMove_staff() {
-		return staffMove_staff;
-	}
-	public void setStaffMove_staff(String staffMove_staff) {
-		this.staffMove_staff = staffMove_staff;
-	}
-	public showStaffMoveVO getStaffMoveVO() {
-		return staffMoveVO;
-	}
-	public void setStaffMoveVO(showStaffMoveVO staffMoveVO) {
-		this.staffMoveVO = staffMoveVO;
-	}
-	public List<rlzy_staffmove> getStaffMove() {
-		return staffMove;
-	}
-	public void setStaffMove(List<rlzy_staffmove> staffMove) {
-		this.staffMove = staffMove;
-	}
-	public String getStaff_number() {
-		return staff_number;
-	}
 
-	public void setStaff_number(String staff_number) {
-		this.staff_number = staff_number;
-	}
 	
-	public StaffMoveService getStaffMoveService() {
-		return staffMoveService;
-	}
-
-	public void setStaffMoveService(StaffMoveService staffMoveService) {
-		this.staffMoveService = staffMoveService;
-	}
+	
+	
 }

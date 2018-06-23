@@ -10,6 +10,7 @@
 	<bean id="userService" class="com.rlzy.service.impl.user.UserServiceImpl">
 		<property name="userDao" ref="userDao"></property>
 	</bean>
+	
 	<bean id="userDao" class="com.rlzy.dao.impl.user.UserDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>

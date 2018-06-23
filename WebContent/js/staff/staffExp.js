@@ -117,22 +117,49 @@ function updateStaffExp(event) {
 	}
 }
 
-//查询姓名
-function getName(event) {
+////查询姓名
+//function getName(event) {
+//	$.ajax({
+//			type : "POST",
+//			url : "/rlzyos/staff/staffExp_getStaffNameByStaffNumber",
+//			data : {
+//				"staffExp_staff": event.value,
+//			},
+//			success : function(data) {
+//				var result = JSON.parse(data);
+//				var staff_name = $("#staff_addname");
+//				staff_name.val(result);
+//			}
+//		});
+//}
+//通过工号得到员工id,员工姓名，员工部门员工职务
+function getName(event){
 	$.ajax({
-			type : "POST",
-			url : "/rlzyos/staff/staffExp_getStaffNameByStaffNumber",
-			data : {
-				"staffExp_staff": event.value,
-			},
-			success : function(data) {
-				var result = JSON.parse(data);
-				var staff_name = $("#staff_addname");
-				staff_name.val(result);
-			}
-		});
+		type : "POST",
+		url : "/rlzyos/staff/staffMove_getValueByNumber",
+		data : {
+			"staff_number": event.value,
+		},
+		success : function(data) {
+			var result = JSON.parse(data);
+			var staff_name = $("#staff_addname");
+//			var staff_depaterment = $("#staffMove_bfdepartment");
+//			var staff_duty = $("#staffMove_bfduty");
+			var staff_confirm = $("#addStaffExpBtn");
+			if(result==""){
+				staff_name.val("没有该员工");
+//				staff_depaterment.val("没有该部门");
+//				staff_duty.val("没有该职务");
+			}else{
+				console.log("姓名为"+result[0].staff_name);
+				staff_name.val(result[0].staff_name);
+//				staff_depaterment.val(result[0].staff_depaterment);
+//				staff_duty.val(result[0].staff_duty);
+				staff_confirm.val(result[0].rlzy_staff_id);
+			}	
+		}
+	});
 }
-
 function addStaffExp(){
 	for (var i = 0; i < document.addstaffExpForm.elements.length - 1; i++) {
 		if (document.addstaffExpForm.elements[i].value == "") {
@@ -142,17 +169,41 @@ function addStaffExp(){
 		}
 	}
 	getXmlHttp();
-	var addstaffExpForm=document.getElementById("addstaffExpForm");
-	var formData = new FormData(addstaffExpForm);
-	xmlHttp.open("POST", "/rlzyos/staff/staffExp_addStaffExp", true);
-	xmlHttp.send(formData);
-	xmlHttp.onreadystatechange = function (){
-		if(isBack())
-		var result = xmlHttp.responseText;
-		if(result == "addsuccess"){
+//	var addstaffExpForm=document.getElementById("addstaffExpForm");
+//	var formData = new FormData(addstaffExpForm);
+//	xmlHttp.open("POST", "/rlzyos/staff/staffExp_addStaffExp", true);
+//	xmlHttp.send(formData);
+//	xmlHttp.onreadystatechange = function (){
+//		if(isBack())
+//		var result = xmlHttp.responseText;
+//		if(result == "addsuccess"){
+//			toastr.success('添加成功！');
+//		}
+//	}
+	// 添加数据
+	var staffExp_address = $("#addstaffExp_address").val();
+	var staffExp_startTime = $("#addstaffExp_startTime").val();
+	var staffExp_overTime = $("#addstaffExp_overTime").val();
+	var staffExp_remark = $("#addstaffExp_remark").val();
+	
+	var addStaffExpBtn =  $("#addStaffExpBtn").val();
+	alert("员工id"+addStaffExpBtn);
+	alert("员工结束时间"+staffExp_overTime);
+	$.ajax({
+		type : "POST",
+		url : "/rlzyos/staff/staffExp_addStaffExp?staffExp_staff="
+				+ addStaffExpBtn,
+		data : {
+			"staffExps[0].staffExp_address" : staffExp_address,
+			"staffExps[0].staffExp_startTime" : staffExp_startTime,
+			"staffExps[0].staffExp_overTime" : staffExp_overTime,
+			"staffExps[0].staffExp_remark" : staffExp_remark,
+			"staffExps[0].staffExp_staff" : addStaffExpBtn,
+		},
+		success : function(data) {
 			toastr.success('添加成功！');
 		}
-	}
+	});
 }
 
 
@@ -170,6 +221,7 @@ var createConfirmDeleteExp = function(event) {
 				action : function() {
 					deleteStaffExp(event);
 					/*alert(event);*/
+					toastr.success('删除成功！');
 					loadData();
 				}
 			},
@@ -191,7 +243,7 @@ var deleteStaffExp = function(event) {
 		url : '/rlzyos/staff/staffExp_deleteStaffExp',
 		type : 'POST',
 		data : {
-			'rlzy_staffExp_id' : event.id
+			'staffExp.rlzy_staffExp_id' : event.id
 		}
 	});
 }

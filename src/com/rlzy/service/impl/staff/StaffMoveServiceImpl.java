@@ -55,4 +55,16 @@ public class StaffMoveServiceImpl implements StaffMoveService {
 		// TODO Auto-generated method stub
 		staffMoveDao.updataStaff(rs);
 	}
+
+	@Override
+	public void deleteStaffMoves(String staffMove_staff) {
+		// TODO Auto-generated method stub
+		staffMoveDao.deleteStaffMoves(staffMove_staff);
+	}
+
+	@Override
+	public void deleteStaffMove(String rlzy_staffMove_id) {
+		// TODO Auto-generated method stub
+		staffMoveDao.deleteStaffMove(rlzy_staffMove_id);
+	}
 }

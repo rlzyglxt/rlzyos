@@ -48,7 +48,7 @@ public class UserAction extends ActionSupport{
 				} else {
 						rlzy_staffinfo user = userService.getUserByUsername(user_username);
 						String password = md5.GetMD5Code(user_password);
-						/*String password=user_password;*/
+//						String password=user_password;
 						System.out.println(password.equals(user.getStaff_password()));
 						if (user.getStaff_password().equals(password)) {
 							pw.write("loginSuccess");

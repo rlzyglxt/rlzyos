@@ -11,26 +11,20 @@ public class showTrainVO {
 	private int totalCount;// 总记录数
 	private int pageCount;// 一页显示条数
 	private String train_name; //培训名字查询
-	private List<rlzy_train> list;
+	private List<rlzy_train> trains;
 	
 	
-	public String getTrain_name() {
-		return train_name;
+	public int getCurrPage() {
+		return currPage;
 	}
-	public void setTrain_name(String train_name) {
-		this.train_name = train_name;
+	public void setCurrPage(int currPage) {
+		this.currPage = currPage;
 	}
 	public int getTotalPage() {
 		return totalPage;
 	}
 	public void setTotalPage(int totalPage) {
 		this.totalPage = totalPage;
-	}
-	public int getCurrPage() {
-		return currPage;
-	}
-	public void setCurrPage(int currPage) {
-		this.currPage = currPage;
 	}
 	public int getTotalCount() {
 		return totalCount;
@@ -44,12 +38,20 @@ public class showTrainVO {
 	public void setPageCount(int pageCount) {
 		this.pageCount = pageCount;
 	}
-	public List<rlzy_train> getList() {
-		return list;
+	public String getTrain_name() {
+		return train_name;
 	}
-	public void setList(List<rlzy_train> list) {
-		this.list = list;
+	public void setTrain_name(String train_name) {
+		this.train_name = train_name;
 	}
+	public List<rlzy_train> getTrains() {
+		return trains;
+	}
+	public void setTrains(List<rlzy_train> trains) {
+		this.trains = trains;
+	}
+	
+
 	
 	
 }

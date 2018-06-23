@@ -54,13 +54,18 @@
 
 							</tr>
 							<tr>
+								<td class="odd"><label class="staff_info_label">身份证</label></td>
+								<td class="even">{{ returnData.staff_cardid }}</td>
+								
 								<td class="odd"><label class="staff_info_label">性别</label></td>
 								<td class="even">{{ returnData.staff_sex }}</td>
-
+							</tr>
+							<tr>
 								<td class="odd"><label class="staff_info_label">出生年月</label></td>
 								<td class="even">{{ returnData.staff_birth }}</td>
-
-
+								
+								<td class="odd"><label class="staff_info_label">年龄</label></td>
+								<td class="even">{{ returnData.staff_age }}</td>
 							</tr>
 							<tr>
 
@@ -89,10 +94,12 @@
 
 							</tr>
 							<tr>
+								<template v-if="returnData.staff_status === '离职'">
 								<td class="odd"><label class="staff_info_label">离职时间</label></td>
 								<td class="even">{{ returnData.staff_leaveTime }}</td>
 								<td class="odd"><label class="staff_info_label">离职原因</label></td>
 								<td class="even">{{ returnData.staff_leaveReason }}</td>
+								</template>
 							</tr>
 						</table>
 					</form>

@@ -22,10 +22,70 @@ window.onload = function() {
 			}
 		});
 	console.log(staff_id);
-	alert(staff_id);
+//	alert(staff_id);
 	get_staffDetails(staff_id);
 	
 }
+
+//改变性别方法
+function changeSex_man(even) {
+	var sex = document.getElementById("sex");
+	sex.value = even.value;
+	return sex.value;
+}
+function changeSex_woman(even) {
+	var sex = document.getElementById("sex");
+	sex.value = even.value;
+	return sex.value;
+}
+//更新年龄的ajax
+function get_ageAjax(){
+	if (window.XMLHttpRequest) {
+		xmlhttp = new XMLHttpRequest();
+	} else {
+		xmlhttp = new ActiveXOBject("Microsoft.XMLHTTP");
+	}
+	var staffDetails = document.getElementById("staffDetails");
+	var formData = new FormData(staffDetails);
+	xmlhttp.open("post","/rlzyos/staff/staff_updataStaff?staff.rlzy_staff_id="
+					+ staff_id, true);
+	xmlhttp.send(formData);
+	xmlhttp.onreadystatechange = function() {
+		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+			var result = xmlhttp.responseText;
+			if (result == 'updateSuccess') {
+				console.log('更新年龄成功！');
+			} else {
+				console.log('更新年龄成功！');
+			}
+		}
+	};
+	
+}
+//从身份证自动获取年龄  和判断身份证 格式
+function relive_getAge(){
+	var ID=document.getElementsByName("staff.staff_cardid")[0].value;
+	var reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;  
+	if(reg.test(ID)==false){
+		toastr.error('身份证格式错误,请输入有效身份证！');
+		var idNumber=document.getElementById("idNumber");
+		idNumber.value="";
+		idNumber.focus();
+	}
+	var myDate = new Date(); 
+	var month = myDate.getMonth() + 1; 
+	var day = myDate.getDate(); 
+	var age = myDate.getFullYear()-ID.substring(6, 10) - 1; 
+	if (ID.substring(10,12)<month||ID.substring(10,12)==month&&ID.substring(12,14)<=day) 
+	{ 
+	age++; 
+	}	
+    var xsjsglxt_age=document.getElementsByName("staff.staff_age")[0];
+	xsjsglxt_age.value=age;
+	console.log("年龄更新"+age);
+	return age;
+}
+
 //通过id获取员工。并且显示该员工信息
 function get_staffDetails(staff_id) {
 	/*alert("通过id得到信息并修改");*/
@@ -47,10 +107,18 @@ function get_staffDetails_Ajax(url,staff_id) {
 			var staff = xmlHttp.responseText;
 			staff = JSON.parse(staff);
 			/*alert(staff.staff_number);*/
-			
+			var staff_sex = document.getElementsByName("sex_content");
+			var sex_man = staff_sex[0];
+			var sex_woman = staff_sex[1];
 			// 遍历并插入input的value
 			$.each(staff, function(key, value) {
-				if(key=="staff_status"){
+				if(key=="staff_sex"){
+					if (value == "男") {
+						sex_man.checked = true;
+					} else {
+						sex_woman.checked = true;
+					}
+				}else if(key=="staff_status"){
 					if(value=="离职"){
 						document.querySelector(".staff_leaveTime_label").style.display = "";
 						document.querySelector(".staff_leaveTime").style.display = "";
@@ -68,6 +136,7 @@ function get_staffDetails_Ajax(url,staff_id) {
 			$('#staff_number').val(staff.staff_number);
 			$('#staff_name').val(staff.staff_name);
 			$('#staff_sex').val(staff.staff_sex);
+			
 			$('#staff_birthTime').val(staff.staff_birth);
 			$('#staff_tel').val(staff.staff_tel);
 			$('#staff_address').val(staff.staff_address);
@@ -77,6 +146,10 @@ function get_staffDetails_Ajax(url,staff_id) {
 			$('#staff_depaterment').val(staff.staff_depaterment);
 //			$('.staff_leaveTime').val(staff.staff_leaveTime);
 //			$('.staff_leaveReason').val(staff.staff_leaveReason);
+			relive_getAge();
+			get_ageAjax();
+			
+			
 			show_staffExpAjax(staff_id);
 			show_staffAgreeAjax(staff_id);
 			show_staffAwardAjax(staff_id);
@@ -272,7 +345,7 @@ function loadstaffDetail_staff_relive() {
 			case "updataStaffSuccess":
 				toastr.warning("修改成功,返回信息列表");
 			//刷新页面
-			get_staffDetails();
+			get_staffDetails(staff_id);
 		}
 		};
 	}

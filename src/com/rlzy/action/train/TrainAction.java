@@ -8,23 +8,37 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.struts2.ServletActionContext;
 import com.google.gson.Gson;
 import com.opensymphony.xwork2.ActionSupport;
-import com.rlzy.domain.DO.rlzy_depaterment;
 import com.rlzy.domain.DO.rlzy_train;
 import com.rlzy.domain.VO.showTrainVO;
 import com.rlzy.service.train.TrainService;
-
 import util.TeamUtil;
 
-@SuppressWarnings("all")
 public class TrainAction extends ActionSupport{
 	
-	public String toTrainList(){
-		return "toTrainList";
+	public String page_toTrainList(){
+		return "page_toTrainList";
 	}
 	
-	public String toStaffTrainList(){
-		return "toStaffTrainList";
+	public String page_toStaffTrainList(){
+		return "page_toStaffTrainList";
 	}
+	
+	
+	//得到信息
+	public void getAllByPage() throws IOException{
+		System.out.println("1");
+		trainService.getTrainByPage(trainVO);
+		Gson gson = new Gson();
+		String result = gson.toJson(trainVO);
+		HttpServletResponse response = ServletActionContext.getResponse();	
+		response.setContentType("text/html;charset=utf-8");
+		System.out.println("分页得到履历"+result);
+		PrintWriter pw =response.getWriter();
+		pw.write(result);
+		pw.flush();
+		pw.close();
+	}
+	
 	
 	//增加
 	public void addTrain() throws IOException{
@@ -79,21 +93,7 @@ public class TrainAction extends ActionSupport{
 		pw.close();
 	}
 	
-	
-	//得到信息
-	public void getAllByPage() throws IOException{
-		System.out.println("1");
-		trainService.getTrainByPage(trainVO);
-		Gson gson = new Gson();
-		String result = gson.toJson(trainVO);
-		HttpServletResponse response = ServletActionContext.getResponse();	
-		response.setContentType("text/html;charset=utf-8");
-		System.out.println("分页得到履历"+result);
-		PrintWriter pw =response.getWriter();
-		pw.write(result);
-		pw.flush();
-		pw.close();
-	}
+
 	
 	//修改信息
 	public void updateTrain() throws IOException{

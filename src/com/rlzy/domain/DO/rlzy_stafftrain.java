@@ -21,17 +21,17 @@ public class rlzy_stafftrain {
 	public void setStafftrain_staff(String stafftrain_staff) {
 		this.stafftrain_staff = stafftrain_staff;
 	}
-	public String getStafftrain_train() {
-		return stafftrain_train;
-	}
-	public void setStafftrain_train(String stafftrain_train) {
-		this.stafftrain_train = stafftrain_train;
-	}
 	public String getStafftrain_score() {
 		return stafftrain_score;
 	}
 	public void setStafftrain_score(String stafftrain_score) {
 		this.stafftrain_score = stafftrain_score;
+	}
+	public String getStafftrain_train() {
+		return stafftrain_train;
+	}
+	public void setStafftrain_train(String stafftrain_train) {
+		this.stafftrain_train = stafftrain_train;
 	}
 	public String getStafftrain_certificate() {
 		return stafftrain_certificate;
@@ -51,7 +51,6 @@ public class rlzy_stafftrain {
 	public void setStafftrain_gmt_modified(String stafftrain_gmt_modified) {
 		this.stafftrain_gmt_modified = stafftrain_gmt_modified;
 	}
-	
 	
 }
 	

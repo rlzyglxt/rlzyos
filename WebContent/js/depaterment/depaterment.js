@@ -4,7 +4,7 @@ var allPageVue;
 var queryConditionTemp = {
 	"currPage" : "1",
 	"totalPage" : "",
-	"pageSize" : "10",
+	"pageCount" : "10",
 	"count" : "",
 	"queryString" : ""//查询
 }
@@ -15,7 +15,7 @@ window.onload = function() {
 		data : {
 			currPage : '1',
 			totalPage : '',
-			pageSize : '10',
+			pageCount : '10',
 			count : '',
 			queryString : '',
 			list : ''
@@ -39,7 +39,7 @@ var loadData = function() {
 	var queryCondition = {
 		"depatermentVO.currPage" : queryConditionTemp.currPage,
 		"depatermentVO.totalPage" : queryConditionTemp.totalPage,
-		"depatermentVO.pageSize" : queryConditionTemp.pageSize,
+		"depatermentVO.pageCount" : queryConditionTemp.pageCount,
 		"depatermentVO.count" : queryConditionTemp.count,
 		"depatermentVO.queryString" : queryConditionTemp.queryString,
 	}	
@@ -52,12 +52,12 @@ var loadData = function() {
 			allPageVue.list = result.list;
 			allPageVue.currPage = result.currPage;
 			allPageVue.totalPage = result.totalPage;
-			allPageVue.pageSize = result.pageSize;
+			allPageVue.pageCount = result.pageCount;
 			allPageVue.count = result.count;
 			
 			queryConditionTemp.currPage = result.currPage;
 			queryConditionTemp.totalPage = result.totalPage;
-			queryConditionTemp.pageSize = result.pageSize;
+			queryConditionTemp.pageCount = result.pageCount;
 			queryConditionTemp.count = result.count;
 			queryConditionTemp.queryString = result.queryString;
 			$('#loadingLayer').hide();

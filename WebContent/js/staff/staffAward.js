@@ -157,7 +157,7 @@ function addStaffExp(){
 
 
 //确认删除提示
-var createConfirmDeleteExp = function(event) {
+var createConfirmDeleteaward= function(event) {
 	$.confirm({
 		title : '真的要删除吗？',
 		content : '',
@@ -191,7 +191,7 @@ var deleteStaffExp = function(event) {
 		url : '/rlzyos/staff/staffExp_deleteStaffExp',
 		type : 'POST',
 		data : {
-			'rlzy_staffExp_id' : event.id
+			'staffExp.rlzy_staffExp_id' : event.id
 		}
 	});
 }

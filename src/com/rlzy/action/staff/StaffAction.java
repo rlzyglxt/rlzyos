@@ -9,6 +9,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.rlzy.domain.DO.rlzy_staffinfo;
 import com.rlzy.domain.VO.showStaffVO;
 import com.rlzy.service.staff.StaffService;
+import util.TeamUtil;
 
 public class StaffAction extends ActionSupport{
 	private StaffService staffService;
@@ -24,7 +25,10 @@ public class StaffAction extends ActionSupport{
 	public void setStaffService(StaffService staffService) {
 		this.staffService = staffService;
 	}
-	
+	//培训记录
+	public String page_StaffTrain(){
+		return "page_StaffTrain";
+	}
 	//进入员工信息页面
 	public String page_StaffInfo() {
 		return "page_StaffInfo";
@@ -96,9 +100,22 @@ public class StaffAction extends ActionSupport{
 	}
 	//修改员工信息
 	public void updataStaff() throws IOException{
-		System.out.println("修改员工信息");
-		staff.setRlzy_staff_id(rlzy_staff_id);
+		System.out.println("修改员工信息"+rlzy_staff_id);
+		rlzy_staffinfo ruGet=staffService.getStaffById(rlzy_staff_id);
 		System.out.println(staff);
+		staff.setRlzy_staff_id(ruGet.getRlzy_staff_id());
+		staff.setStaff_password(ruGet.getStaff_password());
+		staff.setStaff_inTime(ruGet.getStaff_inTime());
+		staff.setStaff_gmt_create(ruGet.getStaff_gmt_create());
+		staff.setStaff_gmt_modified(TeamUtil.getStringSecond());
+		staff.setStaff_userPower(ruGet.getStaff_userPower());
+		staff.setStaff_adminPower(ruGet.getStaff_adminPower());
+//		if(ruGet.getStaff_status()=="在职"){
+//			staff.setStaff_leaveReason(ruGet.getStaff_leaveReason());
+//			staff.setStaff_leaveTime(ruGet.getStaff_leaveTime());
+//		}else if(ruGet){
+//			
+//		}
 		staffService.updataStaff(staff);
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setContentType("text/html;charset=utf-8");

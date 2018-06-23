@@ -26,8 +26,10 @@
 			<result name="page_StaffAward">/WEB-INF/view/staff/staffAwardList.jsp</result>
 			<!-- 新进员工栏 -->
 			<result name="page_StaffNewIn">/WEB-INF/view/staff/staffNewInList.jsp</result>
-				<!-- 新进员工栏 -->
+			<!-- 新进员工栏 -->
 			<result name="page_StaffLeave">/WEB-INF/view/staff/staffLeaveList.jsp</result>
+			<!-- 培训记录 -->
+			<result name="page_StaffTrain">/WEB-INF/view/staff/staffTrainList.jsp</result>
 		</action>
 		<action name="staffExp_*" method="{1}" class="com.rlzy.action.staff.StaffExpAction">
 		
@@ -38,6 +40,8 @@
 		<action name="staffAward_*" method="{1}" class="com.rlzy.action.staff.StaffAwardAction">
 		
 		</action>
+		<action name="staffTrain_*" method="{1}" class="com.rlzy.action.staff.StaffTrainAction">
 		
+		</action>
 	</package>
 </struts>

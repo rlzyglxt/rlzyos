@@ -11,20 +11,24 @@
 <base href="<%=basePath%>">
 <title>离退员工信息表</title>
 <link rel="stylesheet" href="<%=basePath%>css/Staff/Staff.css">
-<script type="text/javascript" src="<%=basePath%>js/staff/showStaffInfor.js"></script>
+<script type="text/javascript" src="<%=basePath%>js/staff/leaveStaff.js"></script>
 <style type="text/css">
 #bottomPage:hover {
 	cursor: pointer;
 }
 </style>
+<script type="text/javascript">
+
+</script>
 </head>
 <body>
 <div id="wrapper">
 	<s:action name="user_implements_navbar" namespace="/user" executeResult="true" />
+	<s:action name="user_LeftIndex" namespace="/user" executeResult="true" />
 <!----------------------------------------------- 隐藏信息开始 --------------------------------------------------->
 	<input id="hideQueryString" type="text" class="hideDiv" />
 	<input id="hideCurrPage" type="text" class="hideDiv" />
-	<s:action name="user_LeftIndex" namespace="/user" executeResult="true" />
+	
 	<div style="margin: 80px 0 0 0; float: right; width: 82%;">
 		<div class="panel" style="width: 95%; margin: 20px auto;" id="allPage">
 			<!--  -->
@@ -52,14 +56,17 @@
 						<div class="panel-body">
 							<table class="table table-hover table-condensed staff_table_info">
 								<thead>
+								
 									<tr>
-										<th>员工工号</th>
+										<th>工号</th>
+										
 										<th>姓名</th>
 										<th>年龄</th>
 										<th>学历</th>
 										<th>职务</th>
 										<th>部门</th>
-										<th id="staffInTime"  onchange="changeTime('desc')">入职时间</th>
+										<th>入职时间</th>
+										<th>离职时间</th>
 										<th>操作</th>
 									</tr>
 								</thead>
@@ -70,13 +77,16 @@
 										<span v-html="staff.staff_number"></span></a>
 										</td>
 										<td><span v-html="staff.staff_name"></span></td>
-										<td>{{ staff.staff_birth }}</td>
+										<td>{{ staff.staff_age }}</td>
 										<td>{{ staff.staff_record }}</td>
 										<td>{{ staff.staff_duty }}</td>
 										<td>{{ staff.staff_depaterment }}</td>
 										<td>{{ staff.staff_inTime }}</td>
+										<td>{{ staff.staff_leaveTime }}</td>
 										<td><button onclick="skipToDetail(this)"
 												:id="staff.rlzy_staff_id" class='btn btn-primary'><i class="fa fa-pencil-square-o"></i>查看详情</button>
+											<button onclick="createConfirmDelete(this)"
+											:id="staff.rlzy_staff_id" class="btn btn-danger"><i class="fa fa-trash-o"></i>删除</button></td>
 										</td>
 									</tr>
 								</tbody>

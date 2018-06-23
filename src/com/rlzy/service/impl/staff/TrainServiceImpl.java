@@ -1,16 +1,17 @@
-package com.rlzy.service.impl.train;
+package com.rlzy.service.impl.staff;
 
 import java.util.List;
-import com.rlzy.dao.train.TrainDao;
+
+import com.rlzy.dao.staff.TrainDao;
 import com.rlzy.domain.DO.rlzy_train;
 import com.rlzy.domain.VO.showTrainVO;
-import com.rlzy.service.train.TrainService;
+import com.rlzy.service.staff.TrainService;
 
 import util.TeamUtil;
 
-public class TrainServiceImpl implements TrainService {
+public class TrainServiceImpl implements TrainService{
 	private TrainDao trainDao;
-
+	
 	public TrainDao getTrainDao() {
 		return trainDao;
 	}
@@ -19,13 +20,16 @@ public class TrainServiceImpl implements TrainService {
 		this.trainDao = trainDao;
 	}
 
-
-
+	
+	@Override
 	public rlzy_train getTrainById(String rlzy_train_id) {
+		// TODO Auto-generated method stub
 		return trainDao.getTrainById(rlzy_train_id);
 	}
-	//修改
+
+	@Override
 	public void upadteTrain(rlzy_train train) {
+		// TODO Auto-generated method stub
 		rlzy_train rs = trainDao.getTrainById(train.getRlzy_train_id());
 		rs.setTrain_name(train.getTrain_name());
 		rs.setTrain_startTime(train.getTrain_startTime());
@@ -35,17 +39,21 @@ public class TrainServiceImpl implements TrainService {
 		rs.setTrain_gmt_modified(TeamUtil.getStringSecond());
 	}
 
-	//删除
+	@Override
 	public void deleteTrain(String rlzy_train_id) {
 		// TODO Auto-generated method stub
 		trainDao.deleteTrain(rlzy_train_id);
 	}
-	//保存
+
+	@Override
 	public void saveTrain(rlzy_train ru) {
+		// TODO Auto-generated method stub
 		trainDao.addTrain(ru);
 	}
 
+	@Override
 	public void getTrainByPage(showTrainVO trainVO) {
+		// TODO Auto-generated method stub
 		System.out.println("getpage");
 		int count =trainDao.getTrainCount(trainVO);
 		System.out.println("staffserviceimp::"+count);
@@ -54,7 +62,11 @@ public class TrainServiceImpl implements TrainService {
 		List<rlzy_train> trains = trainDao.getTrainByPage(trainVO);
 		trainVO.setTrains(trains);
 	}
+
+	@Override
 	public boolean judgeTrainByTrainname(String train_name) {
+		// TODO Auto-generated method stub
 		return trainDao.judgeTrainByTrainname(train_name);
 	}
+
 }

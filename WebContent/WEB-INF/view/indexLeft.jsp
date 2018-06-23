@@ -59,11 +59,11 @@
 					<li><a class=""><i class="lnr lnr-license"></i> <span>教育培训</span></a>
 					<ul class="nav" style="background-color:#9E9E9E;">
 						<li><a
-							href="<%=basePath%>train/train_toTrainList"><span>教育培训类别</span></a></li>
+							href="<%=basePath%>train/train_page_toTrainList"><span>教育培训类别</span></a></li>
 						<li><a
-							href="<%=basePath%>train/train_toStaffTrainList"><span>教育培训记录</span></a></li>
+							href="<%=basePath%>staff/staff_page_StaffTrain"><span>教育培训记录</span></a></li>
 						<li><a
-							href="<%=basePath%>paper/paper_toPaperlist"><span>证书记录</span></a></li>
+							href="<%=basePath%>paper/paper_page_toPaperlist"><span>证书记录</span></a></li>
 					</ul></li>
 					</template>
 					</ul>
@@ -72,11 +72,11 @@
 		</div>
 		</div>
 		</div>
-		<script type="text/javascript">
-		var sliderVue = new Vue({
-			el : '#sidebar-nav',
-			data : userPowerDTO
-		});
+	<script type="text/javascript">
+	var sliderVue = new Vue({
+		el : '#sidebar-nav',
+		data : userPowerDTO
+	});
 	</script>
 	<script type="text/javascript">
 	$(function() {

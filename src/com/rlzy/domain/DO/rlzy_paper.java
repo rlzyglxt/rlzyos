@@ -6,7 +6,6 @@ public class rlzy_paper {
 	private String staff_name;//员工姓名
 	private String paper_name;//证书名称
 	private String paper_time;//证书时间
-	
 	public String getRlzy_paper_id() {
 		return rlzy_paper_id;
 	}

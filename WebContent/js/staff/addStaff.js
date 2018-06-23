@@ -387,6 +387,44 @@ function stopPropagation(e) {
 		e.cancelBubble = true;
 }
 
+//从身份证自动获取年龄 和判断身份证 格式
+function getAge() {
+	var ID = document.getElementsByName("staff.staff_cardid")[0].value;
+	var reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
+	if (reg.test(ID) == false) {
+		toastr.error('身份证格式错误,请输入有效身份证！');
+		var idNumber = document.getElementById("idNumber");
+		idNumber.value = "";
+		idNumber.focus();
+	}
+	var sex_man = document.getElementsByName("staff.staff_sex")[0];
+	var sex_woman = document.getElementsByName("staff.staff_sex")[1];
+	// 根据身份证得到性别
+	if (parseInt(ID.substr(16, 1)) % 2 == 1) {
+		sex_man.checked = true;
+	} else {
+		sex_woman.checked = true;
+	}
+	// 根据身份证得到生日
+	var year = ID.substring(6, 10);
+	var month = ID.substring(10, 12);
+	var date = ID.substring(12, 14);
+	document.querySelector(".staff_birth").value = year + "-" + month + "-"
+			+ date;
+	// 根据身份证得到年龄
+	var myDate = new Date();
+	var month = myDate.getMonth() + 1;
+	var day = myDate.getDate();
+	var age = myDate.getFullYear() - ID.substring(6, 10) - 1;
+	if (ID.substring(10, 12) < month || ID.substring(10, 12) == month
+			&& ID.substring(12, 14) <= day) {
+		age++;
+	}
+	var staff_age = document.getElementsByName("staff.staff_age")[0];
+	staff_age.value = age;
+	console.log("年龄更新" + age);
+	return age;
+}
 function clear_iquery() {
 	console.log("这是清空");
 	$(" input[ type='text' ]").val('');
