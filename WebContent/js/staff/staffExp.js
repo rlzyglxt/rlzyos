@@ -285,9 +285,9 @@ var endPage = function() {
 }
 
 var jumpPage = function() {
-	if ($('#jumpInput').val() <= queryConditionTemp.totalPage
-			&& $('#jumpInput').val() >= 1) {
-		queryConditionTemp.currPage = $('#jumpInput').val()
+	if ($('#skipPage').val() <= queryConditionTemp.totalPage
+			&& $('#skipPage').val() >= 1) {
+		queryConditionTemp.currPage = $('#skipPage').val()
 		loadData();
 	} else {
 		toastr.error("不存在这一页");

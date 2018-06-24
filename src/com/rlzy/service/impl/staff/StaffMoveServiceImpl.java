@@ -3,6 +3,7 @@ package com.rlzy.service.impl.staff;
 import java.util.List;
 
 import com.rlzy.dao.staff.StaffMoveDao;
+import com.rlzy.domain.DO.rlzy_staffaward;
 import com.rlzy.domain.DO.rlzy_staffinfo;
 import com.rlzy.domain.DO.rlzy_staffmove;
 import com.rlzy.domain.DTO.Staff.staffMoveDTO;
@@ -66,5 +67,29 @@ public class StaffMoveServiceImpl implements StaffMoveService {
 	public void deleteStaffMove(String rlzy_staffMove_id) {
 		// TODO Auto-generated method stub
 		staffMoveDao.deleteStaffMove(rlzy_staffMove_id);
+	}
+
+	@Override
+	public rlzy_staffmove getStaffMoveById(String rlzy_staffMove_id) {
+		// TODO Auto-generated method stub
+		return staffMoveDao.getStaffMoveById(rlzy_staffMove_id);
+	}
+
+	@Override
+	public List<rlzy_staffmove> getStaffMoveByStaffId(String staffMove_staff) {
+		// TODO Auto-generated method stub
+		return staffMoveDao.getStaffMoveByStaffId(staffMove_staff);
+	}
+
+	@Override
+	public void updataStaffMove(rlzy_staffmove staffmove) {
+		// TODO Auto-generated method stub
+		rlzy_staffmove rs = staffMoveDao.getStaffMoveById(staffmove.getRlzy_staffMove_id());
+		rs.setStaffMove_nowdepartment(staffmove.getStaffMove_nowdepartment());
+		rs.setStaffMove_gmt_modified(TeamUtil.getStringSecond());
+		rs.setStaffMove_nowduty(staffmove.getStaffMove_nowduty());
+		rs.setStaffMove_remark(staffmove.getStaffMove_remark());
+		rs.setStaffMove_bfdepartment(staffmove.getStaffMove_bfdepartment());
+		rs.setStaffMove_bfduty(staffmove.getStaffMove_bfduty());
 	}
 }

@@ -42,12 +42,12 @@ public class StaffTrainDaoImpl implements StaffTrainDao{
 				+ "train.stafftrain_gmt_modified as staffTrain_gmt_modified)"
 				+ " from rlzy_staffinfo as staff,rlzy_stafftrain as train"
 				+ " where staff.rlzy_staff_id=train.stafftrain_staff and 1=1";
-		if(staffTrainVO.getStaff_number() !=null && staffTrainVO.getStaff_number().trim().length() > 0){
-			hql = hql + " and staff.staff_number like '" + "%" + staffTrainVO.getStaff_number() + "%" + "'";
-		}
-		if(staffTrainVO.getStaff_name() !=null && staffTrainVO.getStaff_name().trim().length() > 0){
-			hql = hql + " and staff.staff_name like '" + "%" + staffTrainVO.getStaff_name() + "%" + "'";
-		}
+//		if(staffTrainVO.getStaff_number() !=null && staffTrainVO.getStaff_number().trim().length() > 0){
+//			hql = hql + " and staff.staff_number like '" + "%" + staffTrainVO.getStaff_number() + "%" + "'";
+//		}
+//		if(staffTrainVO.getStaff_name() !=null && staffTrainVO.getStaff_name().trim().length() > 0){
+//			hql = hql + " and staff.staff_name like '" + "%" + staffTrainVO.getStaff_name() + "%" + "'";
+//		}
 		if(staffTrainVO.getTrain_name() !=null && staffTrainVO.getTrain_name().trim().length() > 0){
 			hql = hql + " and train.stafftrain_train like '" + "%" + staffTrainVO.getTrain_name() + "%" + "'";
 		}
@@ -63,18 +63,18 @@ public class StaffTrainDaoImpl implements StaffTrainDao{
 	public int getStaffTrainCount(showStaffTrainVO staffTrainVO) {
 		// TODO Auto-generated method stub
 		System.out.println("count");
-		String hql="select count(*) from rlzy_stafftrain,rlzy_staffinfo where 1=1";
-		if(staffTrainVO.getStaff_number() !=null && staffTrainVO.getStaff_number().trim().length() > 0){
+		String hql="select count(*) from rlzy_stafftrain where 1=1";
+	/*	if(staffTrainVO.getStaff_number() !=null && staffTrainVO.getStaff_number().trim().length() > 0){
 			hql = hql + " and staff_number like '" + "%" + staffTrainVO.getStaff_number() + "%" + "'";
 		}
 		if(staffTrainVO.getStaff_name() !=null && staffTrainVO.getStaff_name().trim().length() > 0){
 			hql = hql + " and staff_name like '" + "%" + staffTrainVO.getStaff_name() + "%" + "'";
-		}
+		}*/
 		if(staffTrainVO.getTrain_name() !=null && staffTrainVO.getTrain_name().trim().length() > 0){
 			hql = hql + " and stafftrain_train like '" + "%" + staffTrainVO.getTrain_name() + "%" + "'";
 		}
 		long count = (long) getSession().createQuery(hql).uniqueResult();
-		System.out.println("2");
+		System.out.println("2sss"+count);
 		return (int) count;
 	}
 

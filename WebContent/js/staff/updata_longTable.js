@@ -105,3 +105,78 @@ function updata_Award(){
 				},
 			});
 }
+
+//显示当前员工调配在模态框中
+function show_staffmove(updata_button) {
+	 console.log("回显调配");
+	 var this_tr=updata_button.parentNode.parentNode;
+	 console.log(this_tr.children[1].innerHTML);
+	 this_trId=this_tr.querySelector(".rlzy_staffMove_id").getAttribute("id");
+	 document.querySelector(".updatastaffMove_nowdepartment").value=this_tr.children[1].innerHTML;
+	 document.querySelector(".updatastaffMove_nowduty").value=this_tr.children[2].innerHTML;
+	 document.querySelector(".updatastaffMove_time").value=this_tr.children[3].innerHTML;
+	 document.querySelector(".updatastaffMove_remark").value=this_tr.children[4].innerHTML;
+
+}
+//修改员工调配
+function updata_Move(){
+	console.log("调配修改");
+	// 修改一条数据
+	var staffMove_nowdepartment=$(".updatastaffMove_nowdepartment").val();
+	var staffMove_nowduty=$(".updatastaffMove_nowduty").val();
+	var staffMove_time=$(".updatastaffMove_time").val();
+	var staffMove_remark=$(".updatastaffMove_remark").val();
+	var staffMove_bfdepartment = $(".staff_depaterment").val();
+	var staffMove_bfduty = $(".staff_duty").val();
+	$.ajax({
+				type : "POST",
+				url : '/rlzyos/staff/staffMove_updataStaffMove?staffmove.rlzy_staffMove_id='+this_trId,
+				data :{
+					"staffmove.staffMove_nowdepartment":staffMove_nowdepartment,
+					"staffmove.staffMove_nowduty":staffMove_nowduty,
+					"staffmove.staffMove_time":staffMove_time,
+					"staffmove.staffMove_remark":staffMove_remark,
+					"staffmove.staffMove_bfdepartment":staffMove_bfdepartment,
+					"staffmove.staffMove_bfduty":staffMove_bfduty,
+				},
+				success:function(data){
+					toastr.success('修改调配记录成功！');
+					show_staffMoveAjax(staff_id);
+				},
+			});
+}
+
+//显示当前员工培训在模态框中
+function show_stafftrain(updata_button) {
+	 console.log("回显培训");
+	 var this_tr=updata_button.parentNode.parentNode;
+	 console.log(this_tr.children[1].innerHTML);
+	 this_trId=this_tr.querySelector(".rlzy_stafftrain_id").getAttribute("id");
+	 document.querySelector(".updatastafftrain_train").value=this_tr.children[1].innerHTML;
+	 document.querySelector(".updatastafftrain_score").value=this_tr.children[2].innerHTML;
+	 document.querySelector(".updatastafftrain_certificate").value=this_tr.children[3].innerHTML;
+
+}
+//修改员工培训
+function updata_Train(){
+	console.log("奖金修改");
+	// 修改一条数据
+	var stafftrain_train=$(".updatastafftrain_train").val();
+	var stafftrain_score=$(".updatastafftrain_score").val();
+	var stafftrain_certificate=$(".updatastafftrain_certificate").val();
+	
+	$.ajax({
+				type : "POST",
+				url : '/rlzyos/staff/staffTrain_updateStaffTrain?rlzy_stafftrain_id='+this_trId,
+				data :{
+					"stafftrain_train":stafftrain_train,
+					"stafftrain_score":stafftrain_score,
+					"stafftrain_certificate":stafftrain_certificate,
+//					"staffAward.award_provideReason":award_provideReason,
+				},
+				success:function(data){
+					toastr.success('修改培训记录成功！');
+					show_staffTrainAjax(staff_id);
+				},
+			});
+}

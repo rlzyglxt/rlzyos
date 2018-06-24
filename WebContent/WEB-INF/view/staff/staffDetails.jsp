@@ -193,6 +193,33 @@
 							</table>
 						</div>
 					</div>
+						<div style="background: #e7e6e6; width: 1000px; height: 1px;"></div>
+					<div class="long_tableBox">
+						<span class="staff_info_title">培训记录</span>
+
+						<div class="long_tb">
+
+							<table id="staffTrain_table">
+
+								<tbody>
+									<tr class="long_table">
+										<th>培训名称</th>
+										<th>培训成绩</th>
+										<th>培训证书</th>
+									</tr>
+									<template v-for="train in trains">
+									<tr>
+										<td>{{ train.stafftrain_train }}</td>
+										<td>{{ train.stafftrain_score }}</td>
+										<td>{{ train.stafftrain_certificate }}</td>
+										
+									</tr>
+									</template>
+								</tbody>
+
+							</table>
+						</div>
+					</div>
 					</div>
 			</div>
 		</div>

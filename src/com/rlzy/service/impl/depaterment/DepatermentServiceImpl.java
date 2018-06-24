@@ -13,7 +13,7 @@ public class DepatermentServiceImpl implements DepatermentService {
 	public void getDepatermentByPage(showDepatermentVO depatermentVO) {
 		int count = depatermentDao.getDepatermentCount(depatermentVO);
 		depatermentVO.setTotalPage((int) Math.ceil((double) count / 10));
-		depatermentVO.setCount(count);
+		depatermentVO.setTotalCount(count);
 		List<rlzy_depaterment> list = depatermentDao.getDepatermentByPage(depatermentVO);
 		depatermentVO.setList(list);
 

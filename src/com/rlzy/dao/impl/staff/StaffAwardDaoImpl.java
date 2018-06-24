@@ -29,7 +29,6 @@ public class StaffAwardDaoImpl implements StaffAwardDao{
 	public void addStaffAward(List<rlzy_staffaward> staffawards) {
 		// TODO Auto-generated method stub
 		for (rlzy_staffaward rlzy_staffaward : staffawards) {
-
 			getSession().saveOrUpdate(rlzy_staffaward);
 		}
 	}

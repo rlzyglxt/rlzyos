@@ -9,7 +9,7 @@ public class showDepatermentVO {
 
 	private int currPage;
 	private int totalPage;
-	private int count;
+	private int totalCount;// 总记录数
 	private int pageCount;
 	private String queryString;
 	private List<rlzy_depaterment> list;
@@ -25,13 +25,12 @@ public class showDepatermentVO {
 	public void setTotalPage(int totalPage) {
 		this.totalPage = totalPage;
 	}
-	public int getCount() {
-		return count;
+	public int getTotalCount() {
+		return totalCount;
 	}
-	public void setCount(int count) {
-		this.count = count;
+	public void setTotalCount(int totalCount) {
+		this.totalCount = totalCount;
 	}
-
 	public int getPageCount() {
 		return pageCount;
 	}

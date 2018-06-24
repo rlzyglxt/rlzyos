@@ -6,7 +6,9 @@ window.onload = function() {
 			returnData:'',
 			exps:'',
 			agreements:"",
-			awards:""			
+			awards:"",
+			moves:"",
+			trains:""
 		}
 	})
 	var url = window.location.href;
@@ -41,6 +43,7 @@ function get_staffDetails_Ajax(url, staff_id) {
 			show_agreementAjax(staff_id);
 			show_ExpAjax(staff_id);
 			show_awardAjax(staff_id);
+			show_trainAjax(staff_id);
 		}
 	}
 	xmlhttp.open("post", url, true);
@@ -113,7 +116,7 @@ function show_awardAjax(staff_id) {
 			}else{
 			console.log(staff_award);
 			staff_award = JSON.parse(staff_award);
-			staffVue.familys=staff_award;
+			staffVue.awards=staff_award;
 
 			}
 		}
@@ -122,4 +125,56 @@ function show_awardAjax(staff_id) {
 			"/rlzyos/staff/staffAward_getStaffAwardByStaffId?staffAward.award_staff="
 			+ staff_id, true);
 	xmlhttp_award.send();
+}
+//显示调配
+function show_moveAjax(staff_id) {
+	var xmlhttp_move;
+	if (window.XMLHttpRequest) {
+		xmlhttp_move = new XMLHttpRequest();
+	} else {
+		xmlhttp_move = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	xmlhttp_move.onreadystatechange = function() {
+		if (xmlhttp_move.readyState == 4 && xmlhttp_move.status == 200) {
+			var staff_move = xmlhttp_award.responseText;
+			if(staff_move=="null"){
+				$('#staffAward_table tbody').html("");
+			}else{
+			console.log(staff_move);
+			staff_move = JSON.parse(staff_move);
+			staffVue.moves=staff_move;
+
+			}
+		}
+	}
+	xmlhttp_move.open("POST",
+			"/rlzyos/staff/staffAward_getStaffAwardByStaffId?staffAward.award_staff="
+			+ staff_id, true);
+	xmlhttp_move.send();
+}
+//显示培训
+function show_trainAjax(staff_id) {
+	var xmlhttp_train;
+	if (window.XMLHttpRequest) {
+		xmlhttp_train = new XMLHttpRequest();
+	} else {
+		xmlhttp_train = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	xmlhttp_train.onreadystatechange = function() {
+		if (xmlhttp_train.readyState == 4 && xmlhttp_train.status == 200) {
+			var staff_train = xmlhttp_train.responseText;
+			if(staff_train=="staffTriansIsNull"){
+				$('#staffTrain_table tbody').html("");
+			}else{
+			console.log(staff_train);
+			staff_train = JSON.parse(staff_train);
+			staffVue.trains=staff_train;
+
+			}
+		}
+	}
+	xmlhttp_train.open("POST",
+			"/rlzyos/staff/staffTrain_getStaffTrainsByStaffId?stafftrain.stafftrain_staff="
+			+ staff_id, true);
+	xmlhttp_train.send();
 }

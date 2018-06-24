@@ -24,4 +24,10 @@ public interface StaffMoveDao {
 		void deleteStaffMoves(String staffMove_staff);
 		//删除该员工一条调动记录
 		void deleteStaffMove(String rlzy_staffMove_id);
+		//得到一个调动记录
+		rlzy_staffmove getStaffMoveById(String rlzy_staffMove_id);
+		//得到该员工所有调动记录
+		List<rlzy_staffmove> getStaffMoveByStaffId(String staffMove_staff);
+		//修改调配记录
+		void updataStaffMove(rlzy_staffmove staffmove);
 }

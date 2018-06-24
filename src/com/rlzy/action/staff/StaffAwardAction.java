@@ -21,7 +21,6 @@ public class StaffAwardAction extends ActionSupport{
 	private rlzy_staffaward staffAward;
 	private showAwardVO staffAwardVO;
 	
-
 	//添加奖金
 	public void addStaffAward() throws IOException{
 		staffAwardService.addStaffAward(staffAwards);

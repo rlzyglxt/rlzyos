@@ -125,6 +125,24 @@ public class StaffTrainAction extends ActionSupport{
 		pw.flush();
 		pw.close();
 	}
+	//通过员工id得到全部信息
+		public void getStaffTrainsByStaffId() throws IOException{
+			List<rlzy_stafftrain> staffTrains = staffTrainService.getStaffTrains(stafftrain.getStafftrain_staff());
+			String result;
+			if (staffTrains.size() < 0) {
+				result = "staffTriansIsNull";
+			} else {
+				Gson gson = new Gson();
+				result = gson.toJson(staffTrains);
+			}
+			HttpServletResponse response = ServletActionContext.getResponse();
+			response.setContentType("text/html;charset=utf-8");
+			PrintWriter pw = response.getWriter();
+			pw.write(result);
+			pw.flush();
+			pw.close();
+
+			}
 	
 	
 	

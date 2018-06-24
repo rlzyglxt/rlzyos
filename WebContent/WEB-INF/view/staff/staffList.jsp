@@ -121,9 +121,9 @@
 									onclick="nextPage()" id="nextPage" class="pageOperation">下一页</span>
 								<span onclick="endPage()" id="lastPage" class="pageOperation">末页</span>
 								<span> <input id="skipPage" class="form-control"
-									type="text"
+									type="text" 
 									style="display: inline-block; text-align: center; width: 60px; height: 30px;"
-									class="queryInput">
+									class="jumpInput">
 									<button onclick="jumpPage()" class="btn btn-default"
 										style="height: 30px;">跳转</button>
 								</span>

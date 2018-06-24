@@ -32,9 +32,10 @@ public class StaffMoveAction extends ActionSupport{
 	
 	//员工调动
 	public void addStaffMove() throws IOException{
+		System.out.println("该员工id为"+staffmove.getStaffMove_staff());
 		staffMoveService.addStaffMove(staffMoves);
-		System.out.println("该员工id为"+staffMove_staff);
-		rlzy_staffinfo rs = staffService.getStaffById(staffMove_staff);
+		System.out.println("该员工原职务是为"+staffMove_nowduty);
+		rlzy_staffinfo rs = staffService.getStaffById(staffmove.getStaffMove_staff());
 		rs.setStaff_duty(staffMove_nowduty);
 		rs.setStaff_depaterment(staffMove_nowdepartment);
 		staffMoveService.updataStaffInfo(rs);
@@ -70,11 +71,11 @@ public class StaffMoveAction extends ActionSupport{
 		pw.flush();
 		pw.close();
 	}
-	//删除一个工作
+	//删除一个调动
 	public void deleteStaffMove() throws IOException{
 		//System.out.println("调动记录id"+staffmove.getRlzy_staffMove_id());
-		System.out.println();
-			staffMoveService.deleteStaffMove(rlzy_staffMove_id);
+		System.out.println("id"+staffmove.getRlzy_staffMove_id());
+			staffMoveService.deleteStaffMove(staffmove.getRlzy_staffMove_id());
 			HttpServletResponse response = ServletActionContext.getResponse();
 			response.setContentType("text/html;charset=utf-8");
 			PrintWriter pw = response.getWriter();
@@ -92,7 +93,50 @@ public class StaffMoveAction extends ActionSupport{
 			pw.flush();
 			pw.close();
 	}
+	//通过id得到一个信息
+	public void getStaffMoveById() throws IOException{
+		rlzy_staffmove rs = staffMoveService.getStaffMoveById(rlzy_staffMove_id);
+		HttpServletResponse response = ServletActionContext.getResponse();
+		System.out.println(rlzy_staffMove_id);
+		response.setContentType("text/html;charset=utf-8");
+		Gson gson = new Gson();
+		String result = gson.toJson(rs);
+		PrintWriter pw =response.getWriter();
+		pw.write(result);
+		pw.flush();
+		pw.close();
+	}
 	
+	//通过员工id得到全部调动信息
+	public void getStaffMoveByStaffId() throws IOException{
+		List<rlzy_staffmove> rlzy_staffmove = staffMoveService.getStaffMoveByStaffId(staffmove.getStaffMove_staff());
+		String result;
+		if (rlzy_staffmove.size() < 0) {
+			result = "staffMoveIsNull";
+		} else {
+			Gson gson = new Gson();
+			result = gson.toJson(rlzy_staffmove);
+		}
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter pw = response.getWriter();
+		pw.write(result);
+		pw.flush();
+		pw.close();
+
+	}
+	//修改调动记录
+	public void updataStaffMove() throws IOException{
+		System.out.println("修改一下调动记录 ");
+		staffMoveService.updataStaffMove(staffmove);;
+		System.out.println(staffmove.getStaffMove_nowdepartment());
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter pw = response.getWriter();
+		pw.write("updataSuccess");
+		pw.flush();
+		pw.close();
+	}
 	
 	
 	

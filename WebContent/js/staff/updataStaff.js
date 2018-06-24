@@ -136,7 +136,6 @@ function get_staffDetails_Ajax(url,staff_id) {
 			$('#staff_number').val(staff.staff_number);
 			$('#staff_name').val(staff.staff_name);
 			$('#staff_sex').val(staff.staff_sex);
-			
 			$('#staff_birthTime').val(staff.staff_birth);
 			$('#staff_tel').val(staff.staff_tel);
 			$('#staff_address').val(staff.staff_address);
@@ -153,6 +152,8 @@ function get_staffDetails_Ajax(url,staff_id) {
 			show_staffExpAjax(staff_id);
 			show_staffAgreeAjax(staff_id);
 			show_staffAwardAjax(staff_id);
+			show_staffMoveAjax(staff_id);
+			show_staffTrainAjax(staff_id);
 	}
 }
 	}
@@ -301,6 +302,104 @@ function show_staffAwardAjax(staff_id) {
 			+ staff_id, true);
 	staffAward_xmlHttp.send();
 }
+//显示调动信息
+function show_staffMoveAjax(staff_id) {
+	console.log("调动信息");
+	var staffMove_xmlHttp;
+	if (window.XMLHttpRequest) {
+		staffMove_xmlHttp=new XMLHttpRequest();
+	} else {
+		// IE6, IE5 浏览器执行代码
+		staffMove_xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	staffMove_xmlHttp.onreadystatechange = function() {
+		if (staffMove_xmlHttp.readyState == 4 && staffMove_xmlHttp.status == 200) {
+			var staff_Move = staffMove_xmlHttp.responseText;
+			if(staff_Move=="staffMoveIsNull"){
+				$('#staffMove_table tbody').html("");
+			}else{
+				console.log(staff_Move);
+				staff_Move = JSON.parse(staff_Move);
+			var table_elements=$('#staffMove_table tbody');
+			for(var i=1;i<table_elements.length;i++){
+				table_elements.removeChild(table_elements.element[i]);
+			}
+			var str1 = '';
+			for (var len = 0; len < staff_Move.length; len++) {
+				var rlzy_staffMove_id = staff_Move[len].rlzy_staffMove_id;
+				str1 += '<tr>';
+				str1 += '<input type="hidden" class="rlzy_staffMove_id" id="'
+						+ rlzy_staffMove_id + '">';
+				str1 += '<td>' + staff_Move[len].staffMove_nowdepartment
+				+ '</td>';
+				str1 += '<td>' + staff_Move[len].staffMove_nowduty
+						+ '</td>';
+				str1 += '<td>' + staff_Move[len].staffMove_time
+						+ '</td>';
+				str1 += '<td>' + staff_Move[len].staffMove_remark
+						+ '</td>';
+				str1 += '<td> <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#updataMove_Modal" onclick="show_staffmove(this)" type="button" ><i class="fa fa-pencil"></i></button><button class="btn btn-default btn-xs" onclick="delete_move(this)" type="button" ><i class="fa fa-trash"></i></button></td>';
+
+				str1 += '</tr>';
+			}
+			$('#staffMove_table tbody').html(str1);
+			}
+		}
+	}
+	staffMove_xmlHttp.open("POST","/rlzyos/staff/staffMove_getStaffMoveByStaffId?staffmove.staffMove_staff="
+			+ staff_id, true);
+	staffMove_xmlHttp.send();
+}
+//显示培训信息
+function show_staffTrainAjax(staff_id) {
+	console.log("培训信息");
+	var staffTrain_xmlHttp;
+	if (window.XMLHttpRequest) {
+		staffTrain_xmlHttp=new XMLHttpRequest();
+	} else {
+		// IE6, IE5 浏览器执行代码
+		staffTrain_xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	staffTrain_xmlHttp.onreadystatechange = function() {
+		if (staffTrain_xmlHttp.readyState == 4 && staffTrain_xmlHttp.status == 200) {
+			var staff_Train = staffTrain_xmlHttp.responseText;
+			if(staff_Train=="staffTriansIsNull"){
+				$('#staffTrain_table tbody').html("");
+			}else{
+				console.log(staff_Train);
+				staff_Train = JSON.parse(staff_Train);
+			var table_elements=$("#staffTrain_table tbody");
+			for(var i=1;i<table_elements.length;i++){
+				table_elements.removeChild(table_elements.element[i]);
+			}
+			var str1 = '';
+			for (var len = 0; len < staff_Train.length; len++) {
+				var rlzy_stafftrain_id = staff_Train[len].rlzy_stafftrain_id;
+				str1 += '<tr>';
+				str1 += '<input type="hidden" class="rlzy_stafftrain_id" id="'
+						+ rlzy_stafftrain_id + '">';
+				str1 += '<td>' + staff_Train[len].stafftrain_train
+				+ '</td>';
+				str1 += '<td>' + staff_Train[len].stafftrain_score
+						+ '</td>';
+				str1 += '<td>' + staff_Train[len].stafftrain_certificate
+						+ '</td>';
+//				str1 += '<td>' + staff_Train[len].staffMove_remark
+//						+ '</td>';
+				str1 += '<td> <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#updataTrain_Modal" onclick="show_stafftrain(this)" type="button" ><i class="fa fa-pencil"></i></button><button class="btn btn-default btn-xs" onclick="delete_train(this)" type="button" ><i class="fa fa-trash"></i></button></td>';
+
+				str1 += '</tr>';
+			}
+			$('#staffTrain_table tbody').html(str1);
+			}
+		}
+	}
+
+	staffTrain_xmlHttp.open("POST","/rlzyos/staff/staffTrain_getStaffTrainsByStaffId?stafftrain.stafftrain_staff="
+			+ staff_id, true);
+	staffTrain_xmlHttp.send();
+}
+
 
 // staffDetail.jsp中的修改人员
 function staff_updata() {
@@ -377,6 +476,11 @@ function checkIt(value) {
 }
 
 
+function clear_iquery() {
+	console.log("这是清空");
+	$(" input[ type='text' ]").val('');
+	$(" textarea").val('');
+}
 
 function isBack() {
 	if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {

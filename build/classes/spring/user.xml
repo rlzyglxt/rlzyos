@@ -5,7 +5,7 @@
 
 	<bean id="userAction" class="com.rlzy.action.user.UserAction" scope="prototype">
 		<property name="userService" ref="userService"></property>
-	</bean>	
+	</bean>
 	
 	<bean id="userService" class="com.rlzy.service.impl.user.UserServiceImpl">
 		<property name="userDao" ref="userDao"></property>

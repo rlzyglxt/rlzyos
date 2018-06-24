@@ -29,8 +29,8 @@ public class DepatermentDaoImpl implements DepatermentDao {
 		String hql = "from rlzy_depaterment where (staffdepartment_name like '" + query + "') ";
 		Session session = this.getSession();
 		List<rlzy_depaterment> list = session.createQuery(hql)
-				.setFirstResult((depatermentVO.getCurrPage() - 1) * depatermentVO.getCount())
-				.setMaxResults(depatermentVO.getCount()).list();
+				.setFirstResult((depatermentVO.getCurrPage() - 1) * depatermentVO.getPageCount())
+				.setMaxResults(depatermentVO.getPageCount()).list();
 
 		return list;
 	}

@@ -112,7 +112,7 @@
 								</select></td>
 							
 								<td><label class="staff_info_label">部门</label></td>
-								<td><select class="form-control" id="staff_depaterment"
+								<td><select class="form-control staff_depaterment" id="staff_depaterment"
 									name="staff.staff_depaterment">
 										<!-- <option></option> -->
 										<!-- <option value="一部门">一部门</option>
@@ -132,7 +132,7 @@
 							
 								<td><label class="staff_info_label">职务</label></td>
 								
-								<td><select class="form-control" name="staff.staff_duty" id="staff_duty" type="text">
+								<td><select class="form-control staff_duty" name="staff.staff_duty" id="staff_duty" type="text">
 										<option></option>
 										<option value="管理员">管理员</option>
 										<option value="经理">经理</option>
@@ -248,6 +248,66 @@
 							</div>
 						</form>
 					</div>	
+					<div style="background: #e7e6e6; width: 1000px; height: 1px;"></div>
+						<div class="long_tableBox">
+							<span class="staff_info_title">员工调配</span>
+						<button style="margin-left: 10px;" class="btn btn-default btn-xs"
+							type="button" data-toggle="modal" data-target="#addMove_Modal"
+							onclick="">
+							<i class="fa fa-plus-square"></i>新增调配
+						</button>
+						<form id="staff_Move">
+							<div class="long_tb">
+								<table>
+									<tbody>
+										<tr class="long_table">
+											<th>调入部门</th>
+											<th>调入职务</th>
+											<th>调动时间</th>
+											<th>备注</th>
+											<th>操作</th>
+										</tr>
+									</tbody>
+								</table>
+								<table id="staffMove_table">
+									<tbody>
+
+									</tbody>
+								</table>
+							</div>
+						</form>
+					</div>		
+					<div style="background: #e7e6e6; width: 1000px; height: 1px;"></div>
+						<div class="long_tableBox">
+							<span class="staff_info_title">培训记录</span>
+						<button style="margin-left: 10px;" class="btn btn-default btn-xs"
+							type="button" data-toggle="modal" data-target="#addTrain_Modal"
+							onclick="">
+							<i class="fa fa-plus-square"></i>员工培训
+						</button>
+						<form id="staff_Train">
+							<div class="long_tb">
+								<table>
+									<tbody>
+										<tr class="long_table">
+											<th>培训名称</th>
+											<th>培训成绩</th>
+											<th>培训证书</th>
+											<th>操作</th>
+										</tr>
+									</tbody>
+								</table>
+								<table id="staffTrain_table">
+									<tbody>
+
+									</tbody>
+								</table>
+							</div>
+						</form>
+					</div>
+	
+					
+					
 			</div>
 		</div>
 	</div>
@@ -391,7 +451,7 @@
 								<tr>
 									<td><label class="staff_info_label">发放部门</label></td>
 											<td><input style="font-size: 12px;" id="award_provideDepartment"
-										class="award_provideDepartments"></td>
+										class="award_provideDepartment"></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">发放原因</label></td>
@@ -415,7 +475,105 @@
 		</div>
 	</div>
 	<!--添加添加奖金模态框 end  -->
+		<!--添加添加调动模态框 start  -->
+	<div class="modal fade" id="addMove_Modal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">调动员工</h4>
+				</div>
+				<div class="modal-body">
+					<form action="" id="studyMove_form" accept-charset="utf-8">
+						<table>
+							<tbody>
+								<tr>
+									<td><label class="staff_info_label">调入部门</label></td>
+									<td><input style="font-size: 12px;" id="staffMove_nowdepartment"
+										class="staffMove_nowdepartment" type="text"></td>
+								</tr>
+								<tr>
+									<td><label class="staff_info_label">调动职务</label></td>
+									<td><input style="font-size: 12px;" id="staffMove_nowduty"
+										class="staffMove_nowduty"></td>
+								</tr>
+								<tr>
+									<td><label class="staff_info_label">调入时间</label></td>
+									<td><input style="font-size: 12px;" id="staffMove_time"
+										class="staffMove_time staff_Time"></td>
+								</tr>
+								<tr>
+									<td><label class="staff_info_label">备注</label></td>
+										<td colspan="6"><textarea id="staffMove_remark"
+											class="staffMove_remark"
+											style="width: 480px; border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
+											rows="3" cols="62"></textarea></td>
+								</tr>
+								
+							</tbody>
+						</table>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default "
+						onclick="clear_iquery()" data-dismiss="modal">清空</button>
+					<button type="button" class="btn btn-primary"
+						onclick="add_oneStaffMove()" data-dismiss='modal'>添加</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--添加添加调动记录模态框 end  -->
 	
+	<!--添加添加培训记录模态框 start  -->
+	<div class="modal fade" id="addTrain_Modal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">培训记录</h4>
+				</div>
+				<div class="modal-body">
+					<form action="" id="studyTrain_form" accept-charset="utf-8">
+						<table>
+							<tbody>
+								<tr>
+									<td><label class="staff_info_label">培训名称</label></td>
+									<td><input style="font-size: 12px;" id="stafftrain_train"
+										class="stafftrain_train" type="text"></td>
+								</tr>
+								<tr>
+									<td><label class="staff_info_label">培训成绩</label></td>
+									<td><input style="font-size: 12px;" id="stafftrain_score"
+										class="stafftrain_score"></td>
+								</tr>
+								<tr>
+									<td><label class="staff_info_label">培训证书</label></td>
+									<td><input style="font-size: 12px;" id="stafftrain_certificate"
+										class="stafftrain_certificate"></td>
+								</tr>								
+							</tbody>
+						</table>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default "
+						onclick="clear_iquery()" data-dismiss="modal">清空</button>
+					<button type="button" class="btn btn-primary"
+						onclick="add_oneStaffTrain()" data-dismiss='modal'>添加</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--添加添加培训记录模态框 end  -->
 	
 	
 	
@@ -583,6 +741,106 @@
 		</div>
 	</div>
 	<!--修改奖金模态框 end  -->
+	<!--修改调动模态框 start  -->
+	<div class="modal fade" id="updataMove_Modal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">调动员工</h4>
+				</div>
+				<div class="modal-body">
+					<form action="" id="studyMove_form" accept-charset="utf-8">
+						<table>
+							<tbody>
+								<tr>
+									<td><label class="staff_info_label">调入部门</label></td>
+									<td><input style="font-size: 12px;" id="updatastaffMove_nowdepartment"
+										class="updatastaffMove_nowdepartment" type="text"></td>
+								</tr>
+								<tr>
+									<td><label class="staff_info_label">调动职务</label></td>
+									<td><input style="font-size: 12px;" id="updatastaffMove_nowduty"
+										class="updatastaffMove_nowduty"></td>
+								</tr>
+								<tr>
+									<td><label class="staff_info_label">调入时间</label></td>
+									<td><input style="font-size: 12px;" id="updatastaffMove_time"
+										class="updatastaffMove_time staff_Time"></td>
+								</tr>
+								<tr>
+									<td><label class="staff_info_label">备注</label></td>
+										<td colspan="6"><textarea id="updatastaffMove_remark"
+											class="updatastaffMove_remark"
+											style="width: 480px; border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
+											rows="3" cols="62"></textarea></td>
+								</tr>
+								
+							</tbody>
+						</table>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default "
+						onclick="clear_iquery()" data-dismiss="modal">清空</button>
+					<button type="button" class="btn btn-primary"
+						onclick="updata_Move()" data-dismiss='modal'>添加</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--修改调动记录模态框 end  -->
+	
+	<!--修改培训记录模态框 start  -->
+	<div class="modal fade" id="updataTrain_Modal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">培训记录</h4>
+				</div>
+				<div class="modal-body">
+					<form action="" id="studyTrain_form" accept-charset="utf-8">
+						<table>
+							<tbody>
+								<tr>
+									<td><label class="staff_info_label">培训名称</label></td>
+									<td><input style="font-size: 12px;" id="updatastafftrain_train"
+										class="updatastafftrain_train" type="text"></td>
+								</tr>
+								<tr>
+									<td><label class="staff_info_label">培训成绩</label></td>
+									<td><input style="font-size: 12px;" id="updatastafftrain_score"
+										class="updatastafftrain_score"></td>
+								</tr>
+								<tr>
+									<td><label class="staff_info_label">培训证书</label></td>
+									<td><input style="font-size: 12px;" id="updatastafftrain_certificate"
+										class="updatastafftrain_certificate"></td>
+								</tr>								
+							</tbody>
+						</table>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default "
+						onclick="clear_iquery()" data-dismiss="modal">清空</button>
+					<button type="button" class="btn btn-primary"
+						onclick="updata_Train()" data-dismiss='modal'>添加</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--修改培训记录模态框 end  -->
+	
 <!-- 时间javescript -->
 	<script type="text/javascript">
 		$.datetimepicker.setLocale('ch');

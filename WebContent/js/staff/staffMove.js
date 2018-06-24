@@ -157,13 +157,18 @@ var loadData = function() {
 }
 //删除员工调配信息
 var deleteStaffMove = function(event) {
+	alert(event.id);
 	//删除
 	$.ajax({
-		url : '/rlzyos/staff/staffMove_deleteStaffMove?staffMove.rlzy_staffMove_id='+event.id,
+//		url : '/rlzyos/staff/staffMove_deleteStaffMove?staffMove.rlzy_staffMove_id='+event.id,
+//		type : 'POST',
+//		data : {
+//			'staffMove.rlzy_staffMove_id' : event.id
+//		}
+		url : '/rlzyos/staff/staffMove_deleteStaffMove?staffmove.rlzy_staffMove_id='+event.id,
 		type : 'POST',
-		data : {
-			'rlzy_staffMove_id' : event.id
-		}
+		success:function(data){
+		},
 	});
 }
 //确认删除提示
@@ -234,9 +239,9 @@ var endPage = function() {
 }
 
 var jumpPage = function() {
-	if ($('#jumpInput').val() <= queryConditionTemp.totalPage
-			&& $('#jumpInput').val() >= 1) {
-		queryConditionTemp.currPage = $('#jumpInput').val()
+	if ($('#skipPage').val() <= queryConditionTemp.totalPage
+			&& $('#skipPage').val() >= 1) {
+		queryConditionTemp.currPage = $('#skipPage').val()
 		loadData();
 	} else {
 		toastr.error("不存在这一页");

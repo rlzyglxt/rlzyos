@@ -9,6 +9,7 @@ public class rlzy_stafftrain {
 	private String stafftrain_certificate;//证书
 	private String stafftrain_gmt_create;//创建时间
 	private String stafftrain_gmt_modified;//修改时间
+	
 	public String getRlzy_stafftrain_id() {
 		return rlzy_stafftrain_id;
 	}

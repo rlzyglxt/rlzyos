@@ -5,7 +5,7 @@ var queryConditionTemp = {
 	"currPage" : "1",
 	"totalPage" : "",
 	"pageCount" : "10",
-	"count" : "",
+	"totalCount" : "",
 	"queryString" : ""//查询
 }
 
@@ -16,7 +16,7 @@ window.onload = function() {
 			currPage : '1',
 			totalPage : '',
 			pageCount : '10',
-			count : '',
+			totalCount : '',
 			queryString : '',
 			list : ''
 		}
@@ -40,7 +40,7 @@ var loadData = function() {
 		"depatermentVO.currPage" : queryConditionTemp.currPage,
 		"depatermentVO.totalPage" : queryConditionTemp.totalPage,
 		"depatermentVO.pageCount" : queryConditionTemp.pageCount,
-		"depatermentVO.count" : queryConditionTemp.count,
+		"depatermentVO.totalCount" : queryConditionTemp.totalCount,
 		"depatermentVO.queryString" : queryConditionTemp.queryString,
 	}	
 	$.ajax({
@@ -53,12 +53,12 @@ var loadData = function() {
 			allPageVue.currPage = result.currPage;
 			allPageVue.totalPage = result.totalPage;
 			allPageVue.pageCount = result.pageCount;
-			allPageVue.count = result.count;
+			allPageVue.totalCount = result.totalCount;
 			
 			queryConditionTemp.currPage = result.currPage;
 			queryConditionTemp.totalPage = result.totalPage;
 			queryConditionTemp.pageCount = result.pageCount;
-			queryConditionTemp.count = result.count;
+			queryConditionTemp.totalCount = result.totalCount;
 			queryConditionTemp.queryString = result.queryString;
 			$('#loadingLayer').hide();
 			$('#mainPanel').show();
@@ -193,9 +193,9 @@ var endPage = function() {
 }
 
 var jumpPage = function() {
-	if ($('#jumpInput').val() <= queryConditionTemp.totalPage
-			&& $('#jumpInput').val() >= 1) {
-		queryConditionTemp.currPage = $('#jumpInput').val()
+	if ($('#skipPage').val() <= queryConditionTemp.totalPage
+			&& $('#skipPage').val() >= 1) {
+		queryConditionTemp.currPage = $('#skipPage').val()
 		loadData();
 	} else {
 		toastr.error("不存在这一页");

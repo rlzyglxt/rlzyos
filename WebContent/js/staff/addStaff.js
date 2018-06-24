@@ -1,5 +1,21 @@
 var newStaff = {};
-var xmlHttp;
+/*
+function getXmlHttp() {
+	if (window.XMLHttpRequest) {
+		// IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+		xmlHttp=new XMLHttpRequest();
+	} else {
+		// IE6, IE5 浏览器执行代码
+		xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+}
+function isBack() {
+	if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+		return true;
+	} else {
+		return false;
+	}
+}*/
 window.onload = function() {
 	$.ajax({
 		url : '/rlzyos/depaterment/depaterment_getAllDepaterment',
@@ -50,19 +66,28 @@ function Add_Staff() {
 }
 // 员工基本信息表
 function addStaff_Info(url) {
-	getXmlHttp();
+	if (window.XMLHttpRequest) {
+		// IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+		xmlHttp=new XMLHttpRequest();
+	} else {
+		// IE6, IE5 浏览器执行代码
+		xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
 	var staffDetails = document.getElementById("staffDetails");
 	var formData = new FormData(staffDetails);
 	xmlHttp.open("post", url, true);
 	xmlHttp.send(formData);
 	xmlHttp.onreadystatechange = function() {
 		console.log("c2");
-		if (isBack()) {
+		if (xmlHttp.readyState == 4 && xmlHttp.status == 200){
 			console.log(xmlHttp.responseText);
 			var id = xmlHttp.responseText;//返回id
+			
 			staffExp_ajax(id);
 			staffAgreement_ajax(id);
 			staffAward_ajax(id);
+			staffMove_ajax(id)
+			staffTrain_ajax(id);
 			toastr.success("新建成功");
 			//返回修改页面(未做)	
 			/*window.location.href = '/rlzyos/staff/staff_page_StaffInfo';*/
@@ -73,7 +98,13 @@ function addStaff_Info(url) {
 }
 //添加员工履历
 function staffExp_ajax(id){	
-	getXmlHttp();
+	if (window.XMLHttpRequest) {
+		// IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+		xmlHttp=new XMLHttpRequest();
+	} else {
+		// IE6, IE5 浏览器执行代码
+		xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
 	var formdata = new FormData();
 	// 得到每行
 	var s_tr = document.getElementById("staffExp_table").getElementsByTagName("tr");
@@ -96,7 +127,7 @@ function staffExp_ajax(id){
 	}
 	xmlHttp.onreadystatechange = function() {
 		console.log("c3");
-		if (isBack()) {
+		if (xmlHttp.readyState == 4 && xmlHttp.status == 200){
 			// console.log("studyExp_ajax"+xmlHttp.responseText);
 		}
 
@@ -171,7 +202,13 @@ function add_staffExp() {
 
 //员工合同提交
 function staffAgreement_ajax(id){	
-	getXmlHttp();
+	if (window.XMLHttpRequest) {
+		// IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+		xmlHttp=new XMLHttpRequest();
+	} else {
+		// IE6, IE5 浏览器执行代码
+		xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
 	var formdata = new FormData();
 	// 得到每行
 	var s_tr = document.getElementById("staffAgreement_table").getElementsByTagName("tr");
@@ -194,7 +231,7 @@ function staffAgreement_ajax(id){
 	}
 	xmlHttp.onreadystatechange = function() {
 		console.log("c3");
-		if (isBack()) {
+		if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
 			// console.log("studyExp_ajax"+xmlHttp.responseText);
 		}
 
@@ -269,7 +306,13 @@ function add_staffAgreement() {
 
 //员工奖金提交
 function staffAward_ajax(id){	
-	getXmlHttp();
+	if (window.XMLHttpRequest) {
+		// IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+		xmlHttp=new XMLHttpRequest();
+	} else {
+		// IE6, IE5 浏览器执行代码
+		xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
 	var formdata = new FormData();
 	// 得到每行
 	var s_tr = document.getElementById("staffAward_table").getElementsByTagName("tr");
@@ -292,13 +335,11 @@ function staffAward_ajax(id){
 	}
 	xmlHttp.onreadystatechange = function() {
 		console.log("c3");
-		if (isBack()) {
+		if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
 			// console.log("studyExp_ajax"+xmlHttp.responseText);
 		}
-
 	};
 	xmlHttp.open("post", "/rlzyos/staff/staffAward_addStaffAward", true);
-	// xmlHttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded;charset=utf-8");
 	xmlHttp.send(formdata);
 }
 //添加奖金到表格
@@ -325,21 +366,21 @@ function add_staffAward() {
 	//开始时间
 	var staffAward_amount = document.createElement("td");
 	staffAward_amount.innerHTML = newStaff['staffAward_amount'];
-	staffAward_amount.setAttribute("name", "staffAwards[" + y + "].award_amount");
+	staffAward_amount.setAttribute("name", "staffAwards[" + x + "].award_amount");
 	console.log(staffAward_amount.innerHTML);
 	//结束时间
 	var staffAward_provideTime = document.createElement("td");
 	staffAward_provideTime.innerHTML = newStaff['staffAward_provideTime'];
-	staffAward_provideTime.setAttribute("name", "staffAwards[" + y + "].award_provideTime");
+	staffAward_provideTime.setAttribute("name", "staffAwards[" + x + "].award_provideTime");
 	console.log(staffAward_provideTime.innerHTML);
 	//内容
 	var staffAward_provideDepartment = document.createElement("td");
 	staffAward_provideDepartment.innerHTML = newStaff['staffAward_provideDepartment'];
-	staffAward_provideDepartment.setAttribute("name", "staffAwards[" + y	+ "].award_provideDepartment");
+	staffAward_provideDepartment.setAttribute("name", "staffAwards[" +  x	+ "].award_provideDepartment");
 	//备注
 	var staffAward_provideReason = document.createElement("td");
 	staffAward_provideReason.innerHTML = newStaff['staffAward_provideReason'];
-	staffAward_provideReason.setAttribute("name", "staffAwards[" + y + "].award_provideReason");
+	staffAward_provideReason.setAttribute("name", "staffAwards[" + x + "].award_provideReason");
 
 	// 增加删除按钮的列
 	var reviseTd = document.createElement("td");
@@ -363,6 +404,209 @@ function add_staffAward() {
 	awa_tr.appendChild(reviseTd);
 	staffAward_table.children[0].append(awa_tr);
 	x++;
+}
+
+//员工调动记录提交
+function staffMove_ajax(id){	
+	if (window.XMLHttpRequest) {
+		// IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+		xmlHttp=new XMLHttpRequest();
+	} else {
+		// IE6, IE5 浏览器执行代码
+		xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	var formdata = new FormData();
+	// 得到每行
+	var s_tr = document.getElementById("staffMove_table").getElementsByTagName("tr");
+
+	for (var i = 1; i < s_tr.length; i++) {
+		// 得到每列
+		var s_td = s_tr[i].getElementsByTagName("td");
+		for (var j = 0; j < s_td.length; j++) {
+			// 得到每列的class名
+			if (s_td[j].innerHTML == "") {
+				s_td[j].innerHTML = "d";
+			}
+			var s_tdName = s_td[j].getAttribute("name");
+			console.log("列名" + s_tdName);
+			// 将每列的名和值放到formdata中
+			formdata.append(s_tdName, s_td[j].innerHTML);
+		}
+		// 将id放到每行中
+		formdata.append("staffMoves.staffMove_staff", id);
+	}
+	xmlHttp.onreadystatechange = function() {
+		console.log("c3");
+		if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+			// console.log("studyExp_ajax"+xmlHttp.responseText);
+		}
+	};
+	xmlHttp.open("post", "/rlzyos/staff/staffMove_addStaffMove?staffMoves.staffMove_staff="+id, true);
+	xmlHttp.send(formdata);
+}
+//添加调动到表格
+var a = 0;
+function add_staffMove() {
+	console.log("add_move start");
+	// 把表格的数据存到json中
+	var staffMove_nowdepartment = document.querySelector(".staffMove_nowdepartment").value;
+	var staffMove_nowduty = document.querySelector(".staffMove_nowduty").value;
+	var staffMove_time = document.querySelector(".staffMove_time").value;
+	var staffMove_remark = document.querySelector(".staffMove_remark").value;
+
+	console.log(staffMove_nowdepartment);
+	newStaff['staffMove_nowdepartment'] = staffMove_nowdepartment;
+	newStaff['staffMove_nowduty'] = staffMove_nowduty;
+	newStaff['staffMove_time'] = staffMove_time;
+	newStaff['staffMove_remark'] = staffMove_remark;
+	console.log(newStaff['staffMove_remark']);
+	// 动态创建表格
+	var staffMove_table = document.getElementById("staffMove_table");
+	staffMove_table.setAttribute("class", "long_table");
+
+	var move_tr = document.createElement("tr");
+	//调入部门
+	var staffMove_nowdepartment = document.createElement("td");
+	staffMove_nowdepartment.innerHTML = newStaff['staffMove_nowdepartment'];
+	staffMove_nowdepartment.setAttribute("name", "staffMoves[" + x + "].staffMove_nowdepartment");
+	console.log(staffMove_nowdepartment.innerHTML);
+	//导入职务
+	var staffMove_nowduty = document.createElement("td");
+	staffMove_nowduty.innerHTML = newStaff['staffMove_nowduty'];
+	staffMove_nowduty.setAttribute("name", "staffMoves[" + x + "].staffMove_nowduty");
+	console.log(staffMove_nowduty.innerHTML);
+	//调动时间
+	var staffMove_time = document.createElement("td");
+	staffMove_time.innerHTML = newStaff['staffMove_time'];
+	staffMove_time.setAttribute("name", "staffMoves[" +  x	+ "].staffMove_time");
+	//备注
+	var staffMove_remark = document.createElement("td");
+	staffMove_remark.innerHTML = newStaff['staffMove_remark'];
+	staffMove_remark.setAttribute("name", "staffMoves[" + x + "].staffMove_remark");
+
+	// 增加删除按钮的列
+	var reviseTd = document.createElement("td");
+	// 增加删除按钮及样式
+	var delete_button = document.createElement("button");
+	delete_button.className = 'btn btn-default btn-xs';
+	delete_button.setAttribute("type", "button");
+	delete_button.addEventListener('click', function() {
+		this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode);}, false);
+	delete_button.style['margin-left'] = "10px";
+	// 添加按钮里的图标
+	var delete_icon = document.createElement("i");
+	delete_icon.className = "fa fa-trash";
+	delete_button.append(delete_icon);
+	reviseTd.append(delete_button);
+
+	move_tr.appendChild(staffMove_nowdepartment);
+	move_tr.appendChild(staffMove_nowduty);
+	move_tr.appendChild(staffMove_time);
+	move_tr.appendChild(staffMove_remark);
+	move_tr.appendChild(reviseTd);
+	staffMove_table.children[0].append(move_tr);
+	a++;
+}
+
+//员工教育培训记录提交
+function staffTrain_ajax(id){	
+	if (window.XMLHttpRequest) {
+		// IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+		xmlHttp=new XMLHttpRequest();
+	} else {
+		// IE6, IE5 浏览器执行代码
+		xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	var formdata = new FormData();
+	// 得到每行
+	var s_tr = document.getElementById("staffTrain_table").getElementsByTagName("tr");
+
+	for (var i = 1; i < s_tr.length; i++) {
+		// 得到每列
+		var s_td = s_tr[i].getElementsByTagName("td");
+		for (var j = 0; j < s_td.length; j++) {
+			// 得到每列的class名
+			if (s_td[j].innerHTML == "") {
+				s_td[j].innerHTML = "d";
+			}
+			var s_tdName = s_td[j].getAttribute("name");
+			console.log("列名" + s_tdName);
+			// 将每列的名和值放到formdata中
+			formdata.append(s_tdName, s_td[j].innerHTML);
+		}
+		// 将id放到每行中
+		formdata.append("stafftrains.stafftrain_staff", id);
+	}
+	xmlHttp.onreadystatechange = function() {
+		console.log("c3");
+		if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+			// console.log("studyExp_ajax"+xmlHttp.responseText);
+		}
+	};
+	xmlHttp.open("post", "/rlzyos/staff/staffTrain_addStaffTrain", true);
+	xmlHttp.send(formdata);
+}
+//添加教育培训记录到表格
+var b = 0;
+function add_staffTrain() {
+	console.log("add_train start");
+	// 把表格的数据存到json中
+	var stafftrain_train = document.querySelector(".stafftrain_train").value;
+	var stafftrain_score = document.querySelector(".stafftrain_score").value;
+	var stafftrain_certificate = document.querySelector(".stafftrain_certificate").value;
+	
+
+	console.log(stafftrain_certificate);
+	newStaff['stafftrain_train'] = stafftrain_train;
+	newStaff['stafftrain_score'] = stafftrain_score;
+	newStaff['stafftrain_certificate'] = stafftrain_certificate;
+	console.log(newStaff['stafftrain_train']);
+	// 动态创建表格
+	var staffTrain_table = document.getElementById("staffTrain_table");
+	staffTrain_table.setAttribute("class", "long_table");
+
+	var tra_tr = document.createElement("tr");
+	//开始时间
+	var stafftrain_train = document.createElement("td");
+	stafftrain_train.innerHTML = newStaff['stafftrain_train'];
+	stafftrain_train.setAttribute("name", "stafftrains[" + b + "].stafftrain_train");
+	console.log(stafftrain_train.innerHTML);
+	//结束时间
+	var stafftrain_score = document.createElement("td");
+	stafftrain_score.innerHTML = newStaff['stafftrain_score'];
+	stafftrain_score.setAttribute("name", "stafftrains[" + b + "].stafftrain_score");
+	console.log(stafftrain_score.innerHTML);
+	//内容
+	var stafftrain_certificate = document.createElement("td");
+	stafftrain_certificate.innerHTML = newStaff['stafftrain_certificate'];
+	stafftrain_certificate.setAttribute("name", "stafftrains[" +  b	+ "].stafftrain_certificate");
+/*	//备注
+	var staffAward_provideReason = document.createElement("td");
+	staffAward_provideReason.innerHTML = newStaff['staffAward_provideReason'];
+	staffAward_provideReason.setAttribute("name", "staffAwards[" + b + "].award_provideReason");*/
+
+	// 增加删除按钮的列
+	var reviseTd = document.createElement("td");
+	// 增加删除按钮及样式
+	var delete_button = document.createElement("button");
+	delete_button.className = 'btn btn-default btn-xs';
+	delete_button.setAttribute("type", "button");
+	delete_button.addEventListener('click', function() {
+		this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode);}, false);
+	delete_button.style['margin-left'] = "10px";
+	// 添加按钮里的图标
+	var delete_icon = document.createElement("i");
+	delete_icon.className = "fa fa-trash";
+	delete_button.append(delete_icon);
+	reviseTd.append(delete_button);
+
+	tra_tr.appendChild(stafftrain_train);
+	tra_tr.appendChild(stafftrain_score);
+	tra_tr.appendChild(stafftrain_certificate);
+//	tra_tr.appendChild(staffAward_provideReason);
+	tra_tr.appendChild(reviseTd);
+	staffTrain_table.children[0].append(tra_tr);
+	b++;
 }
 
 
@@ -432,19 +676,3 @@ function clear_iquery() {
 }
 
 
-function getXmlHttp() {
-	if (window.XMLHttpRequest) {
-		// IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
-		xmlHttp=new XMLHttpRequest();
-	} else {
-		// IE6, IE5 浏览器执行代码
-		xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
-	}
-}
-function isBack() {
-	if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
-		return true;
-	} else {
-		return false;
-	}
-}

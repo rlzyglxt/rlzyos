@@ -43,7 +43,22 @@ public class StaffMoveDaoImpl implements StaffMoveDao {
 		System.out.println(getSession().createQuery(hql).list());
 		return getSession().createQuery(hql).list();
 	}
-
+	//得到总数
+	@Override
+	public int getStaffMoveCount(showStaffMoveVO staffMoveVO) {
+		// TODO Auto-generated method stub
+		String hql = "select count(*) from rlzy_staffmove where 1=1";
+		if(staffMoveVO.getStaff_name() !=null && staffMoveVO.getStaff_name().trim().length() > 0){
+			hql = hql + " and staff_name like '" + "%" + staffMoveVO.getStaff_name() + "%" + "'";
+		}
+			if(staffMoveVO.getStaff_number() !=null && staffMoveVO.getStaff_number().trim().length() > 0){
+			hql = hql + " and staff_number like '" + "%" + staffMoveVO.getStaff_number() + "%" + "'";
+		}
+		Session session=this.getSession();
+		long count =(long) session.createQuery(hql).uniqueResult();
+		System.out.println("count"+(int) count);
+		return (int) count;
+	}
 	@Override
 	public List<staffMoveDTO> getStaffMoveByPage(showStaffMoveVO staffMoveVO) {
 		// TODO Auto-generated method stub
@@ -73,24 +88,7 @@ public class StaffMoveDaoImpl implements StaffMoveDao {
 //		}
 		return staffMoves;
 	}
-	//得到总数
-	@Override
-	public int getStaffMoveCount(showStaffMoveVO staffMoveVO) {
-		// TODO Auto-generated method stub
-		String hql = "select count(*) from rlzy_staffmove where 1=1";
-		if(staffMoveVO.getStaff_name() !=null && staffMoveVO.getStaff_name().trim().length() > 0){
-			hql = hql + " and staff_name like '" + "%" + staffMoveVO.getStaff_name() + "%" + "'";
-		}
-		if(staffMoveVO.getStaff_number() !=null && staffMoveVO.getStaff_number().trim().length() > 0){
-			hql = hql + " and staff_number like '" + "%" + staffMoveVO.getStaff_number() + "%" + "'";
-		}
-		if(staffMoveVO.getStaffMove_time() !=null && staffMoveVO.getStaffMove_time().trim().length() > 0){
-			hql = hql + " and staffMove_time like '" + "%" + staffMoveVO.getStaffMove_time() + "%" + "'";
-		}
-		Session session=this.getSession();
-		long count =(long) session.createQuery(hql).uniqueResult();
-		return (int) count;
-	}
+	
 
 	@Override
 	public void updataStaff(rlzy_staffinfo rs) {
@@ -114,7 +112,28 @@ public class StaffMoveDaoImpl implements StaffMoveDao {
 //		staffmove.setStaffMove_staff(rlzy_staffMove_id);
 //		System.out.println("hhhhh"+staffmove);
 //		getSession().delete(staffmove);
-		String hql = "delete from rlzy_staffmove where rlzy_staffMove_id='" +rlzy_staffMove_id+ "'";
-		getSession().createQuery(hql).executeUpdate();
+//		String hql = "delete from rlzy_staffmove where rlzy_staffMove_id='" +rlzy_staffMove_id+ "'";
+//		getSession().createQuery(hql).executeUpdate();
+		rlzy_staffmove staffmove = new rlzy_staffmove();
+		staffmove.setRlzy_staffMove_id(rlzy_staffMove_id);
+		getSession().delete(staffmove);
+	}
+
+	@Override
+	public rlzy_staffmove getStaffMoveById(String rlzy_staffMove_id) {
+		// TODO Auto-generated method stub
+		return (rlzy_staffmove) getSession().get(rlzy_staffmove.class, rlzy_staffMove_id);
+	}
+
+	@Override
+	public List<rlzy_staffmove> getStaffMoveByStaffId(String staffMove_staff) {
+		String hql="from rlzy_staffmove where staffMove_staff = '" + staffMove_staff + "'";
+		return getSession().createQuery(hql).list();
+	}
+
+	@Override
+	public void updataStaffMove(rlzy_staffmove staffmove) {
+		// TODO Auto-generated method stub
+		getSession().saveOrUpdate(staffmove);
 	}
 }
