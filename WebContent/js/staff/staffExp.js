@@ -187,8 +187,8 @@ function addStaffExp(){
 	var staffExp_remark = $("#addstaffExp_remark").val();
 	
 	var addStaffExpBtn =  $("#addStaffExpBtn").val();
-	alert("员工id"+addStaffExpBtn);
-	alert("员工结束时间"+staffExp_overTime);
+	/*alert("员工id"+addStaffExpBtn);*/
+	/*alert("员工结束时间"+staffExp_overTime);*/
 	$.ajax({
 		type : "POST",
 		url : "/rlzyos/staff/staffExp_addStaffExp?staffExp_staff="

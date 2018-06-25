@@ -304,10 +304,7 @@
 								</table>
 							</div>
 						</form>
-					</div>
-	
-					
-					
+					</div>				
 			</div>
 		</div>
 	</div>
@@ -332,17 +329,17 @@
 							<tbody>
 								<tr>
 									<td><label class="staff_info_label">工作地址</label></td>
-									<td><input style="font-size: 12px;"
-										class="staffExp_address" type="text"></td></td>
+									<td><input type="text" style="font-size: 12px;"
+										class="staffExp_address" ></td></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">开始时间</label></td>
-									<td><input style="font-size: 12px;"
-										class="staffExp_startTime staff_Time" type="text"></td>
+									<td><input type="text" style="font-size: 12px;"
+										class="staffExp_startTime staff_Time" ></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">结束时间</label></td>
-									<td><input style="font-size: 12px;"
+									<td><input style="font-size: 12px;" type="text"
 										class=" staffExp_overTime staff_Time"></td>
 								</tr>
 								<tr>
@@ -357,8 +354,8 @@
 					</form>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default "
-						onclick="clear_iquery()" data-dismiss="modal">清空</button>
+					<button type="button" class="btn btn-default"
+						onclick="clear_iquery()" >清空</button><!-- data-dismiss="modal" -->
 					<button type="button" class="btn btn-primary"
 						onclick="add_oneStaffExp()" data-dismiss='modal'>添加</button>
 				</div>
@@ -450,8 +447,10 @@
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">发放部门</label></td>
-											<td><input style="font-size: 12px;" id="award_provideDepartment"
-										class="award_provideDepartment"></td>
+									<td><select class="form-control award_provideDepartment" id="staff_modeldepaterment">
+										</select></td>
+									<!-- 		<td><input style="font-size: 12px;" id="award_provideDepartment"
+										class="award_provideDepartment"></td>    -->
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">发放原因</label></td>
@@ -493,13 +492,21 @@
 							<tbody>
 								<tr>
 									<td><label class="staff_info_label">调入部门</label></td>
-									<td><input style="font-size: 12px;" id="staffMove_nowdepartment"
-										class="staffMove_nowdepartment" type="text"></td>
+									<td><select class="form-control staffMove_nowdepartment" id="staff_nowdepaterment">
+										</select></td>
+								<!-- 	<td><input style="font-size: 12px;" id="staffMove_nowdepartment"
+										class="staffMove_nowdepartment" type="text"></td>   -->
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">调动职务</label></td>
-									<td><input style="font-size: 12px;" id="staffMove_nowduty"
-										class="staffMove_nowduty"></td>
+									<td><select class="form-control staffMove_nowduty" id="staffMove_nowduty">
+										<option value="管理员">管理员</option>
+										<option value="经理">经理</option>
+										<option value="员工">员工</option>
+									</select>
+								</td>
+									<!-- <td><input style="font-size: 12px;" id="staffMove_nowduty" 
+										class="staffMove_nowduty"></td>   -->
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">调入时间</label></td>
@@ -547,8 +554,10 @@
 							<tbody>
 								<tr>
 									<td><label class="staff_info_label">培训名称</label></td>
-									<td><input style="font-size: 12px;" id="stafftrain_train"
-										class="stafftrain_train" type="text"></td>
+									<td><select class="form-control stafftrain_train" id="stafftrain_train">
+										</select></td>
+								<!-- 	<td><input style="font-size: 12px;" id="stafftrain_train"
+										class="stafftrain_train" type="text"></td>   -->
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">培训成绩</label></td>
@@ -716,8 +725,10 @@
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">发放部门</label></td>
-									<td><input style="font-size: 12px;" id="updataaward_provideDepartment"
-										class="updataaward_provideDepartment _Time"></td>
+									<td><select class="form-control updataaward_provideDepartment" id="staff_noedepaterment">
+									</select></td>
+								<!-- 	<td><input style="font-size: 12px;" id="updataaward_provideDepartment"
+										class="updataaward_provideDepartment _Time"></td>     -->
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">发放原因</label></td>
@@ -759,13 +770,20 @@
 							<tbody>
 								<tr>
 									<td><label class="staff_info_label">调入部门</label></td>
-									<td><input style="font-size: 12px;" id="updatastaffMove_nowdepartment"
-										class="updatastaffMove_nowdepartment" type="text"></td>
+									<td><select class="form-control updatastaffMove_nowdepartment" id="staff_nordepaterment">
+										</select></td>
+								<!-- 	<td><input style="font-size: 12px;" id="updatastaffMove_nowdepartment"
+										class="updatastaffMove_nowdepartment" type="text"></td>   -->
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">调动职务</label></td>
-									<td><input style="font-size: 12px;" id="updatastaffMove_nowduty"
-										class="updatastaffMove_nowduty"></td>
+									 <td><select id="updatastaffMove_nowduty" class="form-control updatastaffMove_nowduty">
+										 <option value="管理员">管理员</option>
+										 <option value="经理">经理</option>
+										 <option value="员工">员工</option>
+									 </select></td>
+								<!-- 	<td><input style="font-size: 12px;" id="updatastaffMove_nowduty"
+										class="updatastaffMove_nowduty"></td>   -->
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">调入时间</label></td>
@@ -813,8 +831,10 @@
 							<tbody>
 								<tr>
 									<td><label class="staff_info_label">培训名称</label></td>
-									<td><input style="font-size: 12px;" id="updatastafftrain_train"
-										class="updatastafftrain_train" type="text"></td>
+									<td><select class="form-control updatastafftrain_train" id="staff_train">
+										</select></td>
+								<!-- 	<td><input style="font-size: 12px;" id="updatastafftrain_train"
+										class="updatastafftrain_train" type="text"></td>   -->
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">培训成绩</label></td>

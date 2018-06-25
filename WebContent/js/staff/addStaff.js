@@ -36,6 +36,62 @@ window.onload = function() {
 			}
 		}
 	});
+	$.ajax({
+		url : '/rlzyos/depaterment/depaterment_getAllDepaterment',
+		type : 'post',
+		success : function(data) {
+			var result = JSON.parse(data);
+			console.log(result);
+			console.log(result.length);
+			for (var i = 0; i < result.length; i++) {
+
+				document.getElementById("staff_qdepaterment").innerHTML = document
+						.getElementById("staff_qdepaterment").innerHTML
+						+ "<option value='"
+						+ result[i].staffdepartment_name
+						+ "'>"
+						+ result[i].staffdepartment_name
+						+ "</option>";
+			}
+		}
+	});
+	$.ajax({
+		url : '/rlzyos/depaterment/depaterment_getAllDepaterment',
+		type : 'post',
+		success : function(data) {
+			var result = JSON.parse(data);
+			console.log(result);
+			console.log(result.length);
+			for (var i = 0; i < result.length; i++) {
+
+				document.getElementById("staff_wdepaterment").innerHTML = document
+						.getElementById("staff_wdepaterment").innerHTML
+						+ "<option value='"
+						+ result[i].staffdepartment_name
+						+ "'>"
+						+ result[i].staffdepartment_name
+						+ "</option>";
+			}
+		}
+	});
+	$.ajax({
+		url : '/rlzyos/staff/staffTrain_getTrainName',
+		type : 'post',
+		success : function(data) {
+			var result = JSON.parse(data);
+			console.log(result);
+			console.log(result.length);
+			for (var i = 0; i < result.length; i++) {
+				document.getElementById("stafftrain_train").innerHTML = document
+						.getElementById("stafftrain_train").innerHTML
+						+ "<option value='"
+						+ result[i].train_name
+						+ "'>"
+						+ result[i].train_name
+						+ "</option>";
+			}
+		}
+	});
 }
 
 // addStaff新建人员

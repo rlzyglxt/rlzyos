@@ -15,6 +15,24 @@ window.onload = function() {
 	staff_id = url.substring(url.indexOf("=") + 1);
 	console.log(staff_id);
 	get_staffDetails(staff_id);
+	$.ajax({
+		url : '/rlzyos/staff/staffTrain_getTrainName',
+		type : 'post',
+		success : function(data) {
+			var result = JSON.parse(data);
+			console.log(result);
+			console.log(result.length);
+			for (var i = 0; i < result.length; i++) {
+				document.getElementById("train_name").innerHTML = document
+						.getElementById("train_name").innerHTML
+						+ "<option value='"
+						+ result[i].train_name
+						+ "'>"
+						+ result[i].train_name
+						+ "</option>";
+			}
+		}
+	});
 }
 
 function get_staffDetails(staff_id) {

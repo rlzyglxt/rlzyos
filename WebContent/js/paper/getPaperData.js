@@ -3,12 +3,10 @@ var xmlHttp;
 window.onload = function() {
 	getXmlHttp();
 	xmlHttp.open("POST", "/rlzyos/paper/paper_getPaperByPage", true);
-	alert("onload");
 	var formData = new FormData();
 	formData.append("currPage", "1");
 	formData.append("queryString", "");
 	xmlHttp.send(formData);
-	alert("onload323");
 	xmlHttp.onreadystatechange = loadPaperBack;
 }
 
@@ -35,8 +33,6 @@ function addPaper() {
 function addPaperBack() {
 	if (isBack()) {
 		var result = xmlHttp.responseText;
-		
-		alert("addpaper")
 		if (result == "培训名称存在") {
 			toastr.error("培训名称已经存在请重新填写培训名称！");
 			$("#addLoadingDiv").addClass("hideDiv");
@@ -52,7 +48,6 @@ function addPaperBack() {
 }
 
 function deletePaper(event) {
-	alert(event.value);
 	getXmlHttp();
 	xmlHttp.open("POST", "/rlzyos/paper/paper_deletePaper", true);
 	var formData = new FormData();
@@ -137,7 +132,6 @@ function reLoadPaper() {
 function loadPaperBack() {
 	if (isBack()) {
 		var result = xmlHttp.responseText;
-		alert(result);
 		result = JSON.parse(result);
 		var paperTable = document.getElementById("paperTable");
 		var hideQueryString = document.getElementById("hideQueryString");

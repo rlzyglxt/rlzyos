@@ -176,7 +176,7 @@
 								</tr>
 								<tr>
 									<td><label>培训名称：</label></td>
-									<td><select id="rlzy_train_id" name="stafftrain_train" class="form-control">
+									<td><select id="stafftrain_train" name="stafftrain_train" class="form-control">
 										<option></option>
 										</select></td>
 									<td><label>培训成绩：</label></td>

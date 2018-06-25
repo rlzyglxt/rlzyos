@@ -212,8 +212,8 @@ function addStaffStaffAgreement(){
 	var staff_contactsRemark = $("#addstaff_contactsRemark").val();
 	
 	var addStaffAgreementBtn =  $("#addStaffStaffAgreementbtn").val();
-	alert("员工id"+addStaffAgreementBtn);
-	alert("员工结束时间"+staff_contactsRemark);
+    /*alert("员工id"+addStaffAgreementBtn);*/
+	/*alert("员工结束时间"+staff_contactsRemark);*/
 	$.ajax({
 		type : "POST",
 		url : "/rlzyos/staff/staffAgreement_addStaffAgreement?agreement_staff="

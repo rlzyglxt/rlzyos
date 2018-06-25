@@ -139,10 +139,9 @@
 								<tr><td><label>调入部门：</label></td>
 									<td><select class="form-control" id="staffMove_nowdepartment" 
 									name="staffMove.staffMove_nowdepartment">
-										<option></option></td>
+										</select></td>
 									<td><label>调入职务：</label></td>
 									<td><select class="form-control" name="staffMove.staffMove_nowduty" id="staffMove_nowduty">
-										<option></option>
 										<option value="管理员">管理员</option>
 										<option value="经理">经理</option>
 										<option value="员工">员工</option>

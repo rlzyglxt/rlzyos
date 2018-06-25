@@ -1,3 +1,4 @@
+
 //长表格员工履历添加一条
 function add_oneStaffExp() {
 	console.log("修改员工页面履历添加");
@@ -87,7 +88,6 @@ function add_oneStaffMove() {
 	var staffMove_remark = $(".staffMove_remark").val();
 	var staffMove_bfdepartment = $(".staff_depaterment").val();
 	var staffMove_bfduty = $(".staff_duty").val();
-	alert(staffMove_bfduty);
 	$.ajax({
 				type : "POST",
 				url : "/rlzyos/staff/staffMove_addStaffMove?staffMoves.staffMove_staff="

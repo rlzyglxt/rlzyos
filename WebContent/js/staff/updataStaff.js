@@ -2,29 +2,45 @@
 window.onload = function() {
 	var url = window.location.href;
 	staff_id = url.substring(url.indexOf("=") + 1);
-
-		$.ajax({
-			url : '/rlzyos/depaterment/depaterment_getAllDepaterment',
-			type : 'post',
-			success : function(data) {
-				var result = JSON.parse(data);
-				console.log(result);
-				console.log(result.length);
-				for (var i = 0; i < result.length; i++) {
-					document.getElementById("staff_depaterment").innerHTML = document
-							.getElementById("staff_depaterment").innerHTML
-							+ "<option value='"
-							+ result[i].staffdepartment_name
-							+ "'>"
-							+ result[i].staffdepartment_name
-							+ "</option>";
-				}
-			}
-		});
 	console.log(staff_id);
 //	alert(staff_id);
 	get_staffDetails(staff_id);
-	
+	$.ajax({
+		url : '/rlzyos/depaterment/depaterment_getAllDepaterment',
+		type : 'post',
+		success : function(data) {
+			var result = JSON.parse(data);
+			console.log(result);
+			console.log(result.length);
+			for (var i = 0; i < result.length; i++) {
+				document.getElementById("staff_depaterment").innerHTML = document
+						.getElementById("staff_depaterment").innerHTML
+						+ "<option value='"
+						+ result[i].staffdepartment_name
+						+ "'>"
+						+ result[i].staffdepartment_name
+						+ "</option>";
+			}
+		}
+	});
+	$.ajax({
+		url : '/rlzyos/depaterment/depaterment_getAllDepaterment',
+		type : 'post',
+		success : function(data) {
+			var result = JSON.parse(data);
+			console.log(result);
+			console.log(result.length);
+			for (var i = 0; i < result.length; i++) {
+				document.getElementById("staff_modeldepaterment").innerHTML = document
+						.getElementById("staff_modeldepaterment").innerHTML
+						+ "<option value='"
+						+ result[i].staffdepartment_name
+						+ "'>"
+						+ result[i].staffdepartment_name
+						+ "</option>";
+			}
+		}
+	});
 }
 
 //改变性别方法
@@ -88,6 +104,96 @@ function relive_getAge(){
 
 //通过id获取员工。并且显示该员工信息
 function get_staffDetails(staff_id) {
+	$.ajax({
+		url : '/rlzyos/depaterment/depaterment_getAllDepaterment',
+		type : 'post',
+		success : function(data) {
+			var result = JSON.parse(data);
+			console.log(result);
+			console.log(result.length);
+			for (var i = 0; i < result.length; i++) {
+				document.getElementById("staff_nowdepaterment").innerHTML = document
+						.getElementById("staff_nowdepaterment").innerHTML
+						+ "<option value='"
+						+ result[i].staffdepartment_name
+						+ "'>"
+						+ result[i].staffdepartment_name
+						+ "</option>";
+			}
+		}
+	});
+	$.ajax({
+		url : '/rlzyos/depaterment/depaterment_getAllDepaterment',
+		type : 'post',
+		success : function(data) {
+			var result = JSON.parse(data);
+			console.log(result);
+			console.log(result.length);
+			for (var i = 0; i < result.length; i++) {
+				document.getElementById("staff_noedepaterment").innerHTML = document
+						.getElementById("staff_noedepaterment").innerHTML
+						+ "<option value='"
+						+ result[i].staffdepartment_name
+						+ "'>"
+						+ result[i].staffdepartment_name
+						+ "</option>";
+			}
+		}
+	});
+	$.ajax({
+		url : '/rlzyos/depaterment/depaterment_getAllDepaterment',
+		type : 'post',
+		success : function(data) {
+			var result = JSON.parse(data);
+			console.log(result);
+			console.log(result.length);
+			for (var i = 0; i < result.length; i++) {
+				document.getElementById("staff_nordepaterment").innerHTML = document
+						.getElementById("staff_nordepaterment").innerHTML
+						+ "<option value='"
+						+ result[i].staffdepartment_name
+						+ "'>"
+						+ result[i].staffdepartment_name
+						+ "</option>";
+			}
+		}
+	});
+	$.ajax({
+		url : '/rlzyos/staff/staffTrain_getTrainName',
+		type : 'post',
+		success : function(data) {
+			var result = JSON.parse(data);
+			console.log(result);
+			console.log(result.length);
+			for (var i = 0; i < result.length; i++) {
+				document.getElementById("stafftrain_train").innerHTML = document
+						.getElementById("stafftrain_train").innerHTML
+						+ "<option value='"
+						+ result[i].train_name
+						+ "'>"
+						+ result[i].train_name
+						+ "</option>";
+			}
+		}
+	});
+	$.ajax({
+		url : '/rlzyos/staff/staffTrain_getTrainName',
+		type : 'post',
+		success : function(data) {
+			var result = JSON.parse(data);
+			console.log(result);
+			console.log(result.length);
+			for (var i = 0; i < result.length; i++) {
+				document.getElementById("staff_train").innerHTML = document
+						.getElementById("staff_train").innerHTML
+						+ "<option value='"
+						+ result[i].train_name
+						+ "'>"
+						+ result[i].train_name
+						+ "</option>";
+			}
+		}
+	});
 	/*alert("通过id得到信息并修改");*/
 	/*alert(staff_id);*/
 	var url = "/rlzyos/staff/staff_getStaffById?rlzy_staff_id="
@@ -489,3 +595,4 @@ function isBack() {
 		return false;
 	}
 }
+
