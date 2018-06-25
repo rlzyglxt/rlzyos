@@ -14,10 +14,11 @@
 <body>
 <div id="wrapper">
 	<s:action name="user_implements_navbar" namespace="/user" executeResult="true" />
-	<s:action name="user_LeftIndex" namespace="/user" executeResult="true" />
+	
 <!----------------------------------------------- 隐藏信息开始 --------------------------------------------------->
 	<input id="hideQueryString" type="text" class="hideDiv" />
 	<input id="hideCurrPage" type="text" class="hideDiv" />
+	<s:action name="user_LeftIndex" namespace="/user" executeResult="true" />
 	<div style="margin: 80px 0 0 0; float: right; width: 82%;">
 		<div class="panel" style="width: 95%; margin: 20px auto;" id="allPage">
 			<!--  -->

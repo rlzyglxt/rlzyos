@@ -34,30 +34,22 @@
 			</div>
 			<div class="panel-body">
 				<div class="headDiv" style="margin: 0 0 6px 50px;">
-					<button style="margin-left: 15px;float: left" type="button"
+					<button style="margin-left: 5px;float: left" type="button"
 					 class="btn btn-default" data-toggle='modal' data-target='#addAgreement'>
 						<i class="fa fa-plus-square"></i>添加合同
 					</button>
 					<!-- <input type="text" id="searchInput" class="form-control"
 						style="width: 250px; display: inline-block; float: right;"
 						oninput="changeName(this)" placeholder="请输入搜索内容"/> -->
-					<div style="float: right;">
-						<label>时间筛选</label> <input class="form-control time({
-			yearStart : 1900, // 设置最小年份
-			yearEnd : 2100, // 设置最大年份
-			yearOffset : 0, // 年偏差
-			timepicker : false, // 关闭时间选项
-			format : 'Y-m-d', // 格式化日期年-月-日
-			minDate : '1900/01/01', // 设置最小日期
-			maxDate : '2100/01/01', // 设置最大日期
-		});"
-						onchange="QuerySort()" type="text" id="timeStart"
+					<div style="float: right;margin-right: 30px;">
+						<label>时间筛选</label> <input class="form-control Time"
+						onchange="QuerySort()" type="text" id="agreement_startTime"
 						style="width: 150px; display: inline-block;">至 <input
-						class="form-control sortTime" onchange="QuerySort()"
+						class="form-control Time" onchange="QuerySort()"
 						type="text" style="width: 150px; display: inline-block;"
-						id="timeEnd"> <label>查询</label><input type="text" id="searchInput" 
+						id="agreement_overtTime"> <!-- <label>查询</label><input type="text" id="searchInput" 
 						class="form-control" style="width: 250px; display: inline-block; float: right;"
-						oninput="changeName(this)" placeholder="请输入搜索内容"/>
+						oninput="changeName(this)" placeholder="请输入搜索内容"/> -->
 					</div>
 				</div>
 				<div class="col-md-12">
@@ -233,7 +225,7 @@
 		</div>
 		<!-- /.modal-dialog -->
 	</div>	
-<!-- 时间javescript -->
+<%-- <!-- 时间javescript -->
 	<script type="text/javascript">
 		$.datetimepicker.setLocale('ch');
 		$('.Time').datetimepicker({
@@ -245,19 +237,7 @@
 			minDate : '1900/01/01', // 设置最小日期
 			maxDate : '2100/01/01', // 设置最大日期
 		});
-	</script>
+	</script> --%>
 	
 </body>
-<script type="text/javascript">
-		$.datetimepicker.setLocale('ch');
-		$('.sortTime').datetimepicker({
-			yearStart : 1900, // 设置最小年份
-			yearEnd : 2100, // 设置最大年份
-			yearOffset : 0, // 年偏差
-			timepicker : false, // 关闭时间选项
-			format : 'Y-m-d', // 格式化日期年-月-日
-			minDate : '1900/01/01', // 设置最小日期
-			maxDate : '2030/01/01', // 设置最大日期
-		});
-	</script>
 </html>

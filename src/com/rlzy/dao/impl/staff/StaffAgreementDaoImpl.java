@@ -71,6 +71,10 @@ public class StaffAgreementDaoImpl implements StaffAgreementDao {
 			hql = hql + " and agreement_startTime >= '" + showagreementVO.getAgreement_startTime() + "'";
 		if (showagreementVO.getAgreement_overtTime() != null && !"".equals(showagreementVO.getAgreement_overtTime().trim()))
 			hql = hql + " and agreement_overtTime <= '" + showagreementVO.getAgreement_overtTime() + "'";
+	/*	if (showagreementVO.getQueryname() != null !="".equals(showagreementVO.getQueryname().trim()))
+			hql = hql + "";*/
+			
+		
 		Session session = this.getSession();
 		List<staffAgreementDTO> staffagreementList = session.createQuery(hql)
 				.setFirstResult((showagreementVO.getCurrPage() - 1) * showagreementVO.getPageCount())

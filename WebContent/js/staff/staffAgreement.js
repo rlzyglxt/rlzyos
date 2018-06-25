@@ -13,9 +13,6 @@ var queryConditionTemp = {
 }
 var allPageVue;
 window.onload = function() {
-	$('#agreement_startTime').val("");
-	$('#agreement_overtTime').val("");
-	
 	allPageVue = new Vue({
 		el : '#allPage',
 		data : {
@@ -38,6 +35,16 @@ window.onload = function() {
 			+ '-31';
 	$('#agreement_startTime').val(currDate.getFullYear() + '-' + currMonth + '-01');
 	$('#agreement_overtTime').val(currDate.getFullYear() + '-' + currMonth + '-30');
+	$.datetimepicker.setLocale('ch');
+	$('.Time').datetimepicker({
+		yearStart : 1900, // 设置最小年份
+		yearEnd : 2100, // 设置最大年份
+		yearOffset : 0, // 年偏差
+		timepicker : false, // 关闭时间选项
+		format : 'Y-m-d', // 格式化日期年-月-日
+		minDate : '1900/01/01', // 设置最小日期
+		maxDate : '2100/01/01', // 设置最大日期
+	});
 }
 //导出合同
 var exportAgreement = function(event) {
