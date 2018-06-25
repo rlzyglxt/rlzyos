@@ -178,7 +178,6 @@
 								<tr>
 									<td><label>培训名称：</label></td>
 									<td><select id="rlzy_train_id" name="stafftrain_train" class="form-control">
-										<option></option>
 										</select></td>
 									<td><label>培训成绩：</label></td>
 									<td><input id="addstafftrain_score" name="stafftrain_score"

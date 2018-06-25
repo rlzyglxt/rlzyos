@@ -88,7 +88,6 @@
 								<td><label class="staff_info_label">联系方式</label></td>
 								<td><input style="font-size: 12px;"
 									name="staff.staff_tel" class="form-control" type="text"></td>
-								
 								<td><label class="staff_info_label">家庭住址</label></td>
 								<td><input name="staff.staff_address"
 									class="form-control" type="text"></td>
@@ -436,10 +435,12 @@
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">发放部门</label></td>
-									<td colspan="6"><textarea id="award_provideDepartment"
+									<td><select class="form-control award_provideDepartment" id="staff_qdepaterment">
+										</select></td>
+								<!-- 	<td colspan="6"><textarea id="award_provideDepartment"
 											class="award_provideDepartment"
 											style="width: 480px; border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
-											rows="2" cols="62"></textarea></td>
+											rows="2" cols="62"></textarea></td>   -->
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">发放原因</label></td>
@@ -483,13 +484,20 @@
 							<tbody>
 								<tr>
 									<td><label class="staff_info_label">调入部门</label></td>
-									<td><input style="font-size: 12px;" id="staffMove_nowdepartment"
-										class="staffMove_nowdepartment" type="text"></td>
+									<td><select class="form-control staffMove_nowdepartment" id="staff_wdepaterment">
+										</select></td>
+								<!-- 	<td><input style="font-size: 12px;" id="staffMove_nowdepartment"
+										class="staffMove_nowdepartment" type="text"></td>  -->
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">调动职务</label></td>
-									<td><input style="font-size: 12px;" id="staffMove_nowduty"
-										class="staffMove_nowduty"></td>
+									<td><select class="form-control staffMove_nowduty" id="staffMove_nowduty">
+										<option value="管理员">管理员</option>
+										<option value="经理">经理</option>
+										<option value="员工">员工</option>
+									</select>
+								<!-- 	<td><input style="font-size: 12px;" id="staffMove_nowduty"
+										class="staffMove_nowduty"></td>   -->
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">调入时间</label></td>
@@ -537,8 +545,10 @@
 							<tbody>
 								<tr>
 									<td><label class="staff_info_label">培训名称</label></td>
-									<td><input style="font-size: 12px;" id="stafftrain_train"
-										class="stafftrain_train" type="text"></td>
+									<td><select class="form-control stafftrain_train" id="stafftrain_train">
+										</select></td>
+								<!-- 	<td><input style="font-size: 12px;" id="stafftrain_train"
+										class="stafftrain_train" type="text"></td>   -->
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">培训成绩</label></td>
