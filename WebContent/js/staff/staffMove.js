@@ -41,7 +41,7 @@ function addStaffMove() {
 	
 	var addStaffMoveBtn =  $("#addStaffMoveBtn").val();
 	console.log(staffMove_time);
-	alert("员工id"+addStaffMoveBtn);
+	/*alert("员工id"+addStaffMoveBtn);*/
 	$.ajax({
 		type : "POST",
 		url : "/rlzyos/staff/staffMove_addStaffMove?staffMove_staff="
@@ -157,7 +157,7 @@ var loadData = function() {
 }
 //删除员工调配信息
 var deleteStaffMove = function(event) {
-	alert(event.id);
+	/*alert(event.id);*/
 	//删除
 	$.ajax({
 //		url : '/rlzyos/staff/staffMove_deleteStaffMove?staffMove.rlzy_staffMove_id='+event.id,

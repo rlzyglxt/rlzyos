@@ -1,3 +1,4 @@
+
 //显示当前员工履历在模态框中
 function show_staffexp(updata_button) {
 	 console.log("回显履历");
@@ -78,8 +79,8 @@ function show_staffaward(updata_button) {
 	 this_trId=this_tr.querySelector(".rlzy_staffAward_id").getAttribute("id");
 	 document.querySelector(".updataaward_amount").value=this_tr.children[1].innerHTML;
 	 document.querySelector(".updataaward_provideTime").value=this_tr.children[2].innerHTML;
-	 document.querySelector(".updataaward_provideDepartment").value=this_tr.children[3].innerHTML;
-	 document.querySelector(".updataaward_provideReason").value=this_tr.children[4].innerHTML;
+	 document.querySelector(".updataaward_provideReason").value=this_tr.children[3].innerHTML;
+	 document.querySelector(".updataaward_provideDepartment").value=this_tr.children[4].innerHTML;
 
 }
 //修改员工奖金

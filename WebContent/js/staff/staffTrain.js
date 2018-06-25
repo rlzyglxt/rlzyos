@@ -172,7 +172,7 @@ function addStaffTrain() {
 
 	var addStaffTrainBtn =  $("#addStaffTrainBtn").val();
 	
-	alert("员工id"+addStaffTrainBtn);
+//	alert("员工id"+addStaffTrainBtn);
 	$.ajax({
 		type : "POST",
 		url : "/rlzyos/staff/staffTrain_addStaffTrain?stafftrain_staff="

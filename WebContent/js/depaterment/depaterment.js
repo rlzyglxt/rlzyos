@@ -136,7 +136,6 @@ function addDepaterment(){
 	getXmlHttp();
 	xmlHttp.open("POST", "/rlzyos/depaterment/depaterment_addDepaterment", true);
 	var formData = new FormData(document.getElementById("adddepatermentForm"));
-	alert("添加部门");
 	xmlHttp.send(formData);
 	xmlHttp.onreadystatechange = function (){
 		if (isBack()) {

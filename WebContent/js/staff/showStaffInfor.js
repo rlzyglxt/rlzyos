@@ -225,7 +225,7 @@ var endPage = function() {
 var jumpPage = function() {
 	if ($('#skipPage').val() <= queryConditionTemp.totalPage
 			&& $('#skipPage').val() >= 1) {
-		alert($('#skipPage').val());
+/*		alert($('#skipPage').val());   */
 		queryConditionTemp.currPage = $('#skipPage').val()
 		loadData();
 	} else {

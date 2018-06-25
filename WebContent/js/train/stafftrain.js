@@ -42,25 +42,6 @@ window.onload = function() {
 			}
 		}
 	});
-	$.ajax({
-		url : '/rlzyos/staff/staffTrain_getTrainName',
-		type : 'post',
-		success : function(data) {
-			var result = JSON.parse(data);
-			console.log(result);
-			console.log(result.length);
-			for (var i = 0; i < result.length; i++) {
-				document.getElementById("rlzy_train_id").innerHTML = document
-						.getElementById("rlzy_train_id").innerHTML
-						+ "<option value='"
-						+ result[i].train_name
-						+ "'>"
-						+ result[i].train_name
-						+ "</option>";
-			}
-		}
-	});
-	
 }
 
 //改变筛选条件
