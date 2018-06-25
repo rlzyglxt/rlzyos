@@ -2,15 +2,22 @@ package com.rlzy.action.staff;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
+import java.util.HashMap;
 import java.util.List;
-
+import java.util.Map;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.struts2.ServletActionContext;
 import com.google.gson.Gson;
 import com.opensymphony.xwork2.ActionSupport;
 import com.rlzy.domain.DO.rlzy_staffagreement;
+import com.rlzy.domain.DO.rlzy_staffinfo;
 import com.rlzy.domain.VO.showAgreementVO;
 import com.rlzy.service.staff.StaffAgreementService;
+import com.rlzy.service.staff.StaffService;
+import freemarker.template.Configuration;
+import freemarker.template.Template;
+import freemarker.template.TemplateException;
 
 public class StaffAgreementAction extends ActionSupport{
 		private StaffAgreementService staffAgreementService;
@@ -18,6 +25,7 @@ public class StaffAgreementAction extends ActionSupport{
 		private String rlzy_agreement_id;
 		private List<rlzy_staffagreement> staffagreements;
 		private rlzy_staffagreement agreement;
+		private StaffService staffService;
 
 		
 		public StaffAgreementService getStaffAgreementService() {
@@ -103,9 +111,57 @@ public class StaffAgreementAction extends ActionSupport{
 			pw.flush();
 			pw.close();
 		}
+		//导出合同
+		public void exportAgreement() throws ParseException, IOException, TemplateException {
+//			xsjsglxt_introduce_letter letter1 = handleService
+//					.getIntroduceLetterByIdObject(letter.getXsjsglxt_introduce_letter_id());
+			rlzy_staffagreement agreement1 = staffAgreementService.
+					getStaffAgreementById(agreement.getRlzy_agreement_id());
+			System.out.println("导出合同id"+agreement.getRlzy_agreement_id());
+			System.out.println("导出员工id"+agreement1.getAgreement_staff());
+			rlzy_staffinfo rs = staffService.getStaffById(agreement1.getAgreement_staff());
+			Map<String, String> map = new HashMap<String, String>();
+			
+			HttpServletResponse response = ServletActionContext.getResponse();
+			
+			map.put("staffname", rs.getStaff_name());
+			map.put("staffsex", rs.getStaff_sex());
+			map.put("staffadress", rs.getStaff_address());
+			map.put("staffrecord", rs.getStaff_record());
+			map.put("staffidcard", rs.getStaff_cardid());
+			map.put("agreementstart",agreement1.getAgreement_startTime());
+			map.put("agreementover",agreement1.getAgreement_overtTime());
+			map.put("year_", agreement1.getAgreement_startTime().substring(0, 4));
+			map.put("month_", agreement1.getAgreement_startTime().substring(5, 7));
+			map.put("day_", agreement1.getAgreement_startTime().substring(8));
+			
+			
+			Configuration configuration = new Configuration();
+			configuration.setDefaultEncoding("utf-8");
+			// 设置默认的编码方式，将数据以utf-8的方式进行编码
+			configuration.setClassForTemplateLoading(this.getClass(), "");
+			response.setCharacterEncoding("utf-8");
+			// 设置响应的编码方式(以utf-8的方式将字符编码成字节)
+			response.setContentType("application/msword");
+			String filename = "劳动合同";
+			response.addHeader("Content-Disposition",
+					"attachment;filename=\"" + new String(filename.getBytes(), "ISO-8859-1") + ".doc\"");
+			PrintWriter pw = response.getWriter();
+			Template t = configuration.getTemplate("agreement.ftl", "utf-8");
+			t.process(map, pw);
+			pw.flush();
+			pw.close();
+		}
+	
 		
-	
-	
+		public StaffService getStaffService() {
+			return staffService;
+		}
+
+		public void setStaffService(StaffService staffService) {
+			this.staffService = staffService;
+		}
+
 		public rlzy_staffagreement getAgreement() {
 			return agreement;
 		}

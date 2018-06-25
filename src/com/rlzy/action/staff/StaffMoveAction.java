@@ -83,7 +83,7 @@ public class StaffMoveAction extends ActionSupport{
 			pw.flush();
 			pw.close();
 	}
-	//删除全部该人工作
+	//删除全部记录
 	public void deleteStaffMoves() throws IOException{
 		staffMoveService.deleteStaffMoves(staffmove.getStaffMove_staff());
 			HttpServletResponse response = ServletActionContext.getResponse();

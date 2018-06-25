@@ -67,6 +67,10 @@ public class StaffAgreementDaoImpl implements StaffAgreementDao {
 				+ "agreement.agreement_content as agreement_content)"
 				+ " from rlzy_staffinfo as staff,rlzy_staffagreement as agreement where staff.rlzy_staff_id=agreement.agreement_staff and 1=1";
 		
+		if (showagreementVO.getAgreement_startTime() != null && !"".equals(showagreementVO.getAgreement_startTime().trim()))
+			hql = hql + " and agreement_startTime >= '" + showagreementVO.getAgreement_startTime() + "'";
+		if (showagreementVO.getAgreement_overtTime() != null && !"".equals(showagreementVO.getAgreement_overtTime().trim()))
+			hql = hql + " and agreement_overtTime <= '" + showagreementVO.getAgreement_overtTime() + "'";
 		Session session = this.getSession();
 		List<staffAgreementDTO> staffagreementList = session.createQuery(hql)
 				.setFirstResult((showagreementVO.getCurrPage() - 1) * showagreementVO.getPageCount())
@@ -78,6 +82,10 @@ public class StaffAgreementDaoImpl implements StaffAgreementDao {
 	public int getStaffAgreementCount(showAgreementVO showagreementVO) {
 		// TODO Auto-generated method stub
 		String hql = "select count(*) from rlzy_staffagreement where 1=1";
+		if (showagreementVO.getAgreement_startTime() != null && !"".equals(showagreementVO.getAgreement_startTime().trim()))
+			hql = hql + " and agreement_startTime >= '" + showagreementVO.getAgreement_startTime() + "'";
+		if (showagreementVO.getAgreement_overtTime() != null && !"".equals(showagreementVO.getAgreement_overtTime().trim()))
+			hql = hql + " and agreement_overtTime <= '" + showagreementVO.getAgreement_overtTime() + "'";
 		long count = (long) getSession().createQuery(hql).uniqueResult();
 		return (int) count;
 	}

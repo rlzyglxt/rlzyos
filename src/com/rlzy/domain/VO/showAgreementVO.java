@@ -12,7 +12,22 @@ public class showAgreementVO {
 //	private String staff_name; // 员工名字查询
 //	private String staff_sex; // 员工性别查询 
 //	private String staff_status;//员工状态筛选 
+	private String agreement_startTime;//合同开始时间
+	private String agreement_overtTime;//合同结束时间
 	private List<staffAgreementDTO> staffAgreements;
+	
+	public String getAgreement_startTime() {
+		return agreement_startTime;
+	}
+	public void setAgreement_startTime(String agreement_startTime) {
+		this.agreement_startTime = agreement_startTime;
+	}
+	public String getAgreement_overtTime() {
+		return agreement_overtTime;
+	}
+	public void setAgreement_overtTime(String agreement_overtTime) {
+		this.agreement_overtTime = agreement_overtTime;
+	}
 	public int getCurrPage() {
 		System.out.println("hahha 测试");
 		return currPage;

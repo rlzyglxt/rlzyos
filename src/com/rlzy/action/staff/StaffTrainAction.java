@@ -15,7 +15,6 @@ import com.rlzy.domain.DO.rlzy_stafftrain;
 import com.rlzy.domain.DO.rlzy_train;
 import com.rlzy.domain.VO.showStaffTrainVO;
 import com.rlzy.service.staff.StaffTrainService;
-
 import util.TeamUtil;
 
 
@@ -94,7 +93,18 @@ public class StaffTrainAction extends ActionSupport{
 			pw.flush();
 			pw.close();
 	}
-	
+	//删除全部信息
+	public void deleteStaffTrains() throws IOException{
+			staffTrainService.deleteStaffTrains(stafftrain.getStafftrain_staff());
+			System.out.println("得到id"+stafftrain.getStafftrain_staff());
+			System.out.println("删除多个履历");
+			HttpServletResponse response = ServletActionContext.getResponse();
+			response.setContentType("text/html;charset=utf-8");
+			PrintWriter pw = response.getWriter();
+			pw.write("履历deleteSuccess培训");
+			pw.flush();
+			pw.close();
+	}
 	//修改工作信息
 	public void updateStaffTrain() throws IOException{
 		rlzy_stafftrain rs = staffTrainService.getStaffTrainById(rlzy_stafftrain_id);

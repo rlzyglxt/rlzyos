@@ -1,15 +1,21 @@
 /**
  * 员工合同
  */
-var allPageVue;
+
 var queryConditionTemp = {
 	"currPage" : "1",
 	"totalPage" : "",
 	"pageCount" : "10",
-	"totalCount" : ""
+	"totalCount" : "",
+	"agreement_startTime" : "",//时间筛选
+	"agreement_overtTime" : ""
 	
 }
+var allPageVue;
 window.onload = function() {
+	$('#agreement_startTime').val("");
+	$('#agreement_overtTime').val("");
+	
 	allPageVue = new Vue({
 		el : '#allPage',
 		data : {
@@ -17,11 +23,35 @@ window.onload = function() {
 			totalPage : '',
 			pageCount : '10',
 			totalCount : '',
-			staffAgreements : '',
+			staffAgreements : ''
 		}
-	});
+});
+	loadData();
+	var currDate = new Date();
+	var currMonth = currDate.getMonth() + 1;
+	if (currMonth <= 10) {
+		currMonth = '0' + currMonth;
+	}
+	queryConditionTemp.agreement_startTime = currDate.getFullYear() + '-'
+			+ currMonth + '-01';
+	queryConditionTemp.agreement_overtTime = currDate.getFullYear() + '-' + currMonth
+			+ '-31';
+	$('#agreement_startTime').val(currDate.getFullYear() + '-' + currMonth + '-01');
+	$('#agreement_overtTime').val(currDate.getFullYear() + '-' + currMonth + '-30');
+}
+//导出合同
+var exportAgreement = function(event) {
+	window.location.href = "/rlzyos/staff/staffAgreement_exportAgreement?agreement.rlzy_agreement_id="
+			+ event.id;
+}
+//时间筛选
+var QuerySort = function() {
+//	queryConditionTemp.query_name = $('#searchInput').val();
+	queryConditionTemp.agreement_startTime = $('#agreement_startTime').val();
+	queryConditionTemp.agreement_overtTime = $('#agreement_overtTime').val();
 	loadData();
 }
+
 //显示数据
 var loadData = function() {
 	$('#mainPanel').hide();
@@ -30,7 +60,8 @@ var loadData = function() {
 		"showagreementVO.currPage" : queryConditionTemp.currPage,
 		"showagreementVO.totalPage" : queryConditionTemp.totalPage,
 		"showagreementVO.pageCount" : queryConditionTemp.pageCount,
-		"showagreementVO.totalCount" : queryConditionTemp.totalCount,
+		"showagreementVO.agreement_startTime" : queryConditionTemp.agreement_startTime,
+		"showagreementVO.agreement_overtTime" : queryConditionTemp.agreement_overtTime,
 	}	
 	$.ajax({
 		url : '/rlzyos/staff/staffAgreement_getStaffAgreementByPage',
@@ -44,11 +75,13 @@ var loadData = function() {
 			allPageVue.totalPage = result.totalPage;
 			allPageVue.pageCount = result.pageCount;
 			allPageVue.totalCount = result.totalCount;
+			
 			queryConditionTemp.currPage = result.currPage;
 			queryConditionTemp.totalPage = result.totalPage;
 			queryConditionTemp.pageCount = result.pageCount;
 			queryConditionTemp.totalCount = result.totalCount;
-			
+			queryConditionTemp.agreement_startTime = result.agreement_startTime;
+			queryConditionTemp.agreement_overtTime = result.agreement_overtTime;
 			$('#loadingLayer').hide();
 			$('#mainPanel').show();
 		}

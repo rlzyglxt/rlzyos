@@ -10,8 +10,6 @@
 <head>
 <base href="<%=basePath%>">
 <title>员工合同信息表</title>
-<%-- <link rel="stylesheet" href="<%=basePath%>css/Staff/Staff.css"> --%>
-<%-- <link rel="stylesheet" href="<%=basePath%>css/user/userIndex.css"> --%>
 <script type="text/javascript" src="<%=basePath%>js/staff/staffAgreement.js"></script>
 <script src="<%=basePath%>js/jquery-3.1.1.min.js"></script>
 <style type="text/css">
@@ -23,10 +21,11 @@
 <body>
 <div id="wrapper">
 	<s:action name="user_implements_navbar" namespace="/user" executeResult="true" />
+	<s:action name="user_LeftIndex" namespace="/user" executeResult="true" />
 <!----------------------------------------------- 隐藏信息开始 --------------------------------------------------->
 	<input id="hideQueryString" type="text" class="hideDiv" />
 	<input id="hideCurrPage" type="text" class="hideDiv" />
-	<s:action name="user_LeftIndex" namespace="/user" executeResult="true" />
+	
 	<div style="margin: 80px 0 0 0; float: right; width: 82%;">
 		<div class="panel" style="width: 95%; margin: 20px auto;" id="allPage">
 			<!--  -->
@@ -34,14 +33,32 @@
 				<h3 class="panel-title">员工合同表</h3>
 			</div>
 			<div class="panel-body">
-				<div class="operation" style="margin: 0 0 6px 50px;">
-					<button style="margin-left: 15px; margin-right: 15px; float: right" type="button"
+				<div class="headDiv" style="margin: 0 0 6px 50px;">
+					<button style="margin-left: 15px;float: left" type="button"
 					 class="btn btn-default" data-toggle='modal' data-target='#addAgreement'>
 						<i class="fa fa-plus-square"></i>添加合同
 					</button>
-					<input type="text" id="searchInput" class="form-control"
+					<!-- <input type="text" id="searchInput" class="form-control"
 						style="width: 250px; display: inline-block; float: right;"
+						oninput="changeName(this)" placeholder="请输入搜索内容"/> -->
+					<div style="float: right;">
+						<label>时间筛选</label> <input class="form-control time({
+			yearStart : 1900, // 设置最小年份
+			yearEnd : 2100, // 设置最大年份
+			yearOffset : 0, // 年偏差
+			timepicker : false, // 关闭时间选项
+			format : 'Y-m-d', // 格式化日期年-月-日
+			minDate : '1900/01/01', // 设置最小日期
+			maxDate : '2100/01/01', // 设置最大日期
+		});"
+						onchange="QuerySort()" type="text" id="timeStart"
+						style="width: 150px; display: inline-block;">至 <input
+						class="form-control sortTime" onchange="QuerySort()"
+						type="text" style="width: 150px; display: inline-block;"
+						id="timeEnd"> <label>查询</label><input type="text" id="searchInput" 
+						class="form-control" style="width: 250px; display: inline-block; float: right;"
 						oninput="changeName(this)" placeholder="请输入搜索内容"/>
+					</div>
 				</div>
 				<div class="col-md-12">
 					<div id="loadingLayer" style="margin: 0 auto; width: 45px;">
@@ -77,8 +94,10 @@
 										<td>{{ staffAgreement.agreement_startTime }}</td>
 										<td>{{ staffAgreement.agreement_overtTime }}</td>
 										<td>{{ staffAgreement.agreement_content }}</td>
-										<td><button onclick="createConfirmUpdataAgreement(this)" 
-												:id="staffAgreement.rlzy_agreement_id" data-toggle='modal' data-target='#updataAgreement' class='btn btn-primary'><i class="fa fa-pencil-square-o"></i>修改</button>
+										<td><!-- <button onclick="createConfirmUpdataAgreement(this)" 
+												:id="staffAgreement.rlzy_agreement_id" data-toggle='modal' data-target='#updataAgreement' class='btn btn-primary'><i class="fa fa-pencil-square-o"></i>修改</button> -->
+											<button :id='staffAgreement.rlzy_agreement_id'
+										onclick='exportAgreement(this)'  class="btn btn-info"><i class='fa fa-print'></i>导出</button>
 											<button onclick="createConfirmDeleteAgreement(this)"
 												:id="staffAgreement.rlzy_agreement_id" class="btn btn-danger"><i class="fa fa-trash-o"></i>删除</button></td>
 									</tr>
@@ -108,6 +127,7 @@
 			</div>
 		</div>
 </div>	
+
 <!---------------------updateStaffExp--------------------------------------------修改合同模态框----------------------------------------------------  -->
 	<div class="modal fade" id="updataAgreement" tabindex="-1" role="dialog"	aria-labelledby="myModalLabel">
 		<div class="modal-dialog" role="document" style="width: 800px;">
@@ -129,11 +149,11 @@
 							<table class="table" style="margin: 0 auto;">
 								<tr><td><label>合同开始时间：</label></td>
 									<td><input id="staffAgreement_StartTime" name="staffAgreement_StartTime"
-										type="text" class="staffAgreement_StartTime form-control" placeholder="请输入结束时间"></td>
+										type="text" class="Time form-control" placeholder="请输入结束时间"></td>
 								<tr>
 								<tr><td><label>合同结束时间：</label></td>
 									<td><input id="staffAgreement_OverTime" name="staffAgreement_OverTime"
-										type="text" class="staffAgreement_OverTime form-control" placeholder="请输入开始时间"></td>
+										type="text" class="Time form-control" placeholder="请输入开始时间"></td>
 								<tr>
 									<td><label class="staff_info_label">合同内容</label></td>
 									<td colspan="6"><textarea id="staffAgreement_content"
@@ -186,11 +206,11 @@
 								</tr>
 								<tr><td><label>合同开始时间：</label></td>
 									<td><input id="addstaffAgreement_StartTime" name="staffAgreement_StartTime"
-										type="text" class="staffAgreement_StartTime form-control" placeholder="请输入结束时间"></td>
+										type="text" class="Time form-control" placeholder="请输入结束时间"></td>
 								<tr>
 								<tr><td><label>合同结束时间：</label></td>
 									<td><input id="addstaffAgreement_OverTime" name="staffAgreement_OverTime"
-										type="text" class="staffAgreement_OverTime form-control" placeholder="请输入开始时间"></td>
+										type="text" class="Time form-control" placeholder="请输入开始时间"></td>
 								<tr>
 									<td><label class="staff_info_label">合同内容</label></td>
 									<td colspan="6"><textarea id="addstaff_contactsRemark"
@@ -216,7 +236,7 @@
 <!-- 时间javescript -->
 	<script type="text/javascript">
 		$.datetimepicker.setLocale('ch');
-		$('.staffAgreement_StartTime').datetimepicker({
+		$('.Time').datetimepicker({
 			yearStart : 1900, // 设置最小年份
 			yearEnd : 2100, // 设置最大年份
 			yearOffset : 0, // 年偏差
@@ -226,17 +246,18 @@
 			maxDate : '2100/01/01', // 设置最大日期
 		});
 	</script>
-	<script type="text/javascript">
-		$.datetimepicker.setLocale('ch');
-		$('.staffAgreement_OverTime').datetimepicker({
-			yearStart : 1900, // 设置最小年份
-			yearEnd : 2100, // 设置最大年份
-			yearOffset : 0, // 年偏差
-			timepicker : false, // 关闭时间选项
-			format : 'Y-m-d', // 格式化日期年-月-日
-			minDate : '1900/01/01', // 设置最小日期
-			maxDate : '2100/01/01', // 设置最大日期
-		});
-	</script>
+	
 </body>
+<script type="text/javascript">
+		$.datetimepicker.setLocale('ch');
+		$('.sortTime').datetimepicker({
+			yearStart : 1900, // 设置最小年份
+			yearEnd : 2100, // 设置最大年份
+			yearOffset : 0, // 年偏差
+			timepicker : false, // 关闭时间选项
+			format : 'Y-m-d', // 格式化日期年-月-日
+			minDate : '1900/01/01', // 设置最小日期
+			maxDate : '2030/01/01', // 设置最大日期
+		});
+	</script>
 </html>

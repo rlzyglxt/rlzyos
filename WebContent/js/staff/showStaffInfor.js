@@ -149,13 +149,31 @@ var deleteStaff = function(event) {
 			'staffAward.award_staff' : event.id
 		}
 	});
+	//删除调配记录
+	console.log("删除调动信息");
+	$.ajax({//删除员工的奖金信息
+		url : '/rlzyos/staff/staffMove_deleteStaffMoves',
+		type : 'POST',
+		data : {
+			'staffmove.staffMove_staff' : event.id
+		}
+	});
+	//删除培训记录
+	console.log("删除培训信息");
+	$.ajax({//删除员工的奖金信息
+		url : '/rlzyos/staff/staffTrain_deleteStaffTrains',
+		type : 'POST',
+		data : {
+			'stafftrain.stafftrain_staff' : event.id
+		}
+	});
 	
 }
 	
 //确认删除提示
 function createConfirmDelete(event) {
 	$.confirm({
-		title : '真的要删除吗？',
+		title : '一经删除该员工全部信息将清空，请慎重考虑，真的要删除吗？',
 		content : '',
 		type : 'red',
 		autoClose : 'closeAction|5500',
