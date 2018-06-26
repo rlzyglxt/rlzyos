@@ -30,6 +30,8 @@
 			<result name="page_StaffLeave">/WEB-INF/view/staff/staffLeaveList.jsp</result>
 			<!-- 培训记录 -->
 			<result name="page_StaffTrain">/WEB-INF/view/staff/staffTrainList.jsp</result>
+			<!-- 数据导出 -->
+			<result name="page_StaffExport">/WEB-INF/view/export/exportStaffInfo.jsp</result>
 		</action>
 		<action name="staffExp_*" method="{1}" class="com.rlzy.action.staff.StaffExpAction">
 		

@@ -68,6 +68,7 @@ public class StaffDaoImpl implements StaffDao {
 				+ "staff_number as staff_number,"
 				+ "staff_name as staff_name,"
 				+ "staff_birth as staff_birth,"
+				+ "staff_cardid as staff_cardid,"
 				+ "staff_age as staff_age,"
 				+ "staff_duty as staff_duty,"
 				+ "staff_status as staff_status,"
@@ -76,7 +77,9 @@ public class StaffDaoImpl implements StaffDao {
 				+ "staff_record as staff_record,"
 				+ "staff_address as staff_address,"
 				+ "staff_depaterment as staff_depaterment,"
-				+ "staff_inTime as staff_inTime,staff_leaveTime as staff_leaveTime) from rlzy_staffinfo  where 1=1 ";
+				+ "staff_inTime as staff_inTime,"
+				+ "staff_leaveTime as staff_leaveTime,"
+				+ "staff_leaveReason as staff_leaveReason) from rlzy_staffinfo  where 1=1 ";
 		//姓名查询
 		if(showstaffVO.getStaff_name() !=null && showstaffVO.getStaff_name().trim().length() > 0){
 			hql = hql + " and staff_name like '" + "%" + showstaffVO.getStaff_name() + "%" + "'";
@@ -95,13 +98,13 @@ public class StaffDaoImpl implements StaffDao {
 		hql = hql + "order by staff_InTime " + showstaffVO.getStaff_inTime();
 		Session session = this.getSession();
 		List<staffListDTO> staffs = session.createQuery(hql).setFirstResult((showstaffVO.getCurrPage() - 1) * showstaffVO.getPageCount()).setMaxResults(showstaffVO.getPageCount()).list();
-		for (staffListDTO staffListDTO : staffs) {
-			if (staffListDTO.getStaff_name() != null
-					&& staffListDTO.getStaff_name().trim().length() > 0) {
-				staffListDTO.setStaff_name(staffListDTO.getStaff_name().replaceAll(showstaffVO.getStaff_name(),
-					"<span style='color:red;'>" + showstaffVO.getStaff_name() + "</span>"));
-			}
-		}
+//		for (staffListDTO staffListDTO : staffs) {
+//			if (staffListDTO.getStaff_name() != null
+//					&& staffListDTO.getStaff_name().trim().length() > 0) {
+//				staffListDTO.setStaff_name(staffListDTO.getStaff_name().replaceAll(showstaffVO.getStaff_name(),
+//					"<span style='color:red;'>" + showstaffVO.getStaff_name() + "</span>"));
+//			}
+//		}
 		return staffs;
 	}
 	

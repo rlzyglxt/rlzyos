@@ -59,6 +59,16 @@
 			</template>
 			<template v-if="user_admin_manager_power">
 				<li class="dropdown" style="float: left;"><a
+					href="<%=basePath%>staff/staff_page_StaffExport"><span>数据导出</span>
+				</a></li>
+			</template>
+			<template v-if="user_admin_manager_power">
+				<li class="dropdown" style="float: left;"><a
+					href="<%=basePath%>staff/staffExport_toDepatermentlist"><span>数据统计</span>
+				</a></li>
+			</template>
+			<template v-if="user_admin_manager_power">
+				<li class="dropdown" style="float: left;"><a
 					href="<%=basePath%>user/user_skipToUser"><span>用户管理</span>
 				</a></li>
 			</template>

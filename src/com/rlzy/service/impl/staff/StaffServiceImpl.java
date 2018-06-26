@@ -26,11 +26,12 @@ public class StaffServiceImpl implements StaffService {
 	public void getStaffByPage(showStaffVO staffVO) {
 		// TODO Auto-generated method stub
 		int count =staffDao.getStaffCount(staffVO);
+		staffVO.setPageCount(30);
 		staffVO.setTotalPage((int) Math.ceil((double) count / (double) staffVO.getPageCount()));
 		staffVO.setTotalCount(count);
 		List<staffListDTO> staffs = staffDao.getStaffByPage(staffVO);
 		staffVO.setStaffs(staffs);
-		System.out.println("setstaff");
+//		System.out.println("setstaff");
 //		return staffVO.getStaffs();
 	}
 	@Override
