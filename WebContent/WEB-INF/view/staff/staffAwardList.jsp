@@ -201,7 +201,7 @@
 									<td><label>发放原因</label></td>
 										<td colspan="6"><textarea id="award_provideReason"
 											class="form-control"  name="award_provideReason"
-											style="width: 480px; border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
+											style="width: 480px; border: 1px solid #ccc;margin-top: 10px;"
 											rows="3" cols="62" placeholder="请输入发放原因"></textarea></td>
 								</tr>
 							</table>

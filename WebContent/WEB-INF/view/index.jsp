@@ -10,6 +10,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript"  src="<%=basePath%>js/Clock.js"></script>
 <title>首页</title>
 <style type="text/css">
 .nav li {
@@ -46,15 +47,6 @@
 		<s:action name="user_implements_navbar" namespace="/user" executeResult="true" />
 		
 		<s:action name="user_LeftIndex" namespace="/user" executeResult="true" />
-		
-		<!-- END LEFT SIDEBAR -->
-	 	<%-- <div id="totalPanel" style="width:1000px; background-color: white; height: 550px; margin: 90px 0px 0px 270px;">
-			<span>欢迎来到人事资源管理系统</span>
-		</div>	  --%>
-		<!-- END WRAPPER -->
-
-		<!-- END LEFT SIDEBAR
-			MAIN -->
 		<div class="main">
 			<!-- MAIN CONTENT -->
 			<div class="main-content">
@@ -63,7 +55,7 @@
 					<div class="panel panel-headline" >
 					
 						<div class="panel-heading">
-							<h2 class="panel-title">欢迎进入人力资源管理系统</h2>
+							<h2 class="panel-title">欢迎 <%=request.getSession().getAttribute("user_name")%> 进入人力资源管理系统，您的职位是：，<i id="clock"></i></h2>
 						</div>
 						<div class="panel-body">
 							<div style="height: 300px; width: 780px; margin: 20px;">
@@ -81,6 +73,10 @@
 </div>
 </div>
 </body>
+<script type="text/javascript">
+    var clock = new Clock();
+    clock.display(document.getElementById("clock"));
+	</script>
  <script type="text/javascript">
 	$(function() {
 		$('.slimScrollDiv')
