@@ -47,7 +47,7 @@ var changeName = function(event) {
 	loadData();
 }
 
-//显示员工履历
+//显示员工奖金
 var loadData = function() {
 	$('#mainPanel').hide();
 	$('#loadingLayer').show();
@@ -177,6 +177,13 @@ function addStaffAward(){
 		},
 		success : function(data) {
 			toastr.success('添加成功！');
+			$("#staff_number").val("");
+			$("#staff_addname").val("");
+			$("#award_amount").val("");
+			$("#award_provideTime").val("");
+			$("#staff_nordepaterment").val("");
+			$("#award_provideReason").val("");
+			loadData();
 		}
 	});
 }

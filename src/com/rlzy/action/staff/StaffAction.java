@@ -21,6 +21,7 @@ import com.rlzy.domain.VO.showStaffVO;
 import com.rlzy.service.staff.StaffService;
 import util.ExportExcelCollection;
 import util.TeamUtil;
+import util.md5;
 
 public class StaffAction extends ActionSupport{
 	private StaffService staffService;
@@ -84,6 +85,16 @@ public class StaffAction extends ActionSupport{
 		return "page_StaffExport";
 	}
 	
+	
+	//得到所有员工
+//	public void getAllStaff() throws IOException{
+//		
+//		HttpServletResponse response = ServletActionContext.getResponse();
+//		response.setContentType("text/html;charset=utf-8");
+//		PrintWriter pw = response.getWriter();
+//		List<rlzy_staffinfo> rs = staffService.getAllStaff();
+//		
+//	}
 	//分页获取所有员工
 	public void getStaffByPage() throws IOException{
 		staffService.getStaffByPage(staffVO);
@@ -118,8 +129,31 @@ public class StaffAction extends ActionSupport{
 		staff.setStaff_inTime(ruGet.getStaff_inTime());
 		staff.setStaff_gmt_create(ruGet.getStaff_gmt_create());
 		staff.setStaff_gmt_modified(TeamUtil.getStringSecond());
-		staff.setStaff_userPower(ruGet.getStaff_userPower());
-		staff.setStaff_adminPower(ruGet.getStaff_adminPower());
+		staff.setStaff_age(ruGet.getStaff_age());
+		staff.setStaff_cardid(ruGet.getStaff_cardid());
+		String poweradmin="jurisdiction_admin";//管理员权限
+		String poweruser="jurisdiction_user";//经理权限
+		String powerstaff="jurisdiction_staff";//员工权限
+		String nonepower="jurisdiction_none";//无权限
+		if(staff.getStaff_duty().equals("管理员")){
+			System.out.println("管理员权限");
+			staff.setStaff_adminPower(poweradmin);
+			staff.setStaff_userPower(poweruser);
+			staff.setStaff_staffPower(powerstaff);
+			
+		}else if(staff.getStaff_duty().equals("经理")){
+			staff.setStaff_adminPower(nonepower);
+			staff.setStaff_userPower(poweruser);
+			staff.setStaff_staffPower(powerstaff);
+			
+		}else if(staff.getStaff_duty().equals("员工")){
+			staff.setStaff_adminPower(nonepower);
+			staff.setStaff_userPower(nonepower);
+			staff.setStaff_staffPower(powerstaff);
+	
+		}
+//		staff.setStaff_userPower(ruGet.getStaff_userPower());
+//		staff.setStaff_adminPower(ruGet.getStaff_adminPower());
 //		if(ruGet.getStaff_status()=="在职"){
 //			staff.setStaff_leaveReason(ruGet.getStaff_leaveReason());
 //			staff.setStaff_leaveTime(ruGet.getStaff_leaveTime());
@@ -136,6 +170,32 @@ public class StaffAction extends ActionSupport{
 	}
 	//增加员工
 	public void addStaff() throws IOException{
+		System.out.println("添加员工"+staff.getStaff_duty());
+		//如果从员工添加页面添加
+		String poweradmin="jurisdiction_admin";//管理员权限
+		String poweruser="jurisdiction_user";//经理权限
+		String powerstaff="jurisdiction_staff";//员工权限
+		String nonepower="jurisdiction_none";//无权限
+		String str="000000";
+		String password=md5.GetMD5Code(str);
+		if(staff.getStaff_duty().equals("管理员")){
+			System.out.println("管理员权限");
+			staff.setStaff_adminPower(poweradmin);
+			staff.setStaff_userPower(poweruser);
+			staff.setStaff_staffPower(powerstaff);
+			staff.setStaff_password(password);
+		}else if(staff.getStaff_duty().equals("经理")){
+			staff.setStaff_adminPower(nonepower);
+			staff.setStaff_userPower(poweruser);
+			staff.setStaff_staffPower(powerstaff);
+			
+			staff.setStaff_password(password);
+		}else if(staff.getStaff_duty().equals("员工")){
+			staff.setStaff_adminPower(nonepower);
+			staff.setStaff_userPower(nonepower);
+			staff.setStaff_staffPower(powerstaff);
+			staff.setStaff_password(password);
+		}
 		staffService.addStaff(staff);
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setContentType("text/html;charset=utf-8");

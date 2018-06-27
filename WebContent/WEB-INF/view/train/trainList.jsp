@@ -40,7 +40,7 @@
 						<i class="fa fa-plus-square"></i>新增培训
 					</button>
 					<input type="text" id="searchInput" class="form-control"
-						style="width: 250px; display: inline-block; float: right;"
+						style="width: 250px; display: inline-block; float: right; margin-right:15px;"
 						oninput="changeName(this)" placeholder="请输入搜索内容"/>
 				</div>
 				<div class="col-md-12">
@@ -193,7 +193,7 @@
 				</div>
 				<div class="modal-footer">
 					<button onclick="loadData()" type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-					<button id="addTrainBtn" onclick="addTrain()"  type="button" class="btn btn-primary">添加</button>
+					<button id="addTrainBtn" onclick="addTrain()"  type="button" class="btn btn-primary" data-dismiss="modal">添加</button>
 				</div>
 			</div>
 			<!-- /.modal-content id="updateBtn" -->

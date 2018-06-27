@@ -127,6 +127,7 @@ function updateUser(event) {
 function updateUserBack() {
 	if (isBack()) {
 		toastr.success("修改成功！");
+		reLoadUser();
 		$("#user_password_update").val("");
 		$("#updateLoadingDiv").addClass("hideDiv");
 		$("#updateContent").removeClass("hideDiv");
@@ -140,7 +141,7 @@ function getUserById(event) {
 	xmlHttp.open("POST", "/rlzyos/user/user_getUserById", true);
 	var formData = new FormData();
 	formData.append("user_id", event.value);
-	console.log(event.log);
+//	console.log(event.log);
 	xmlHttp.send(formData);
 	xmlHttp.onreadystatechange = getUserByIdBack;
 }
@@ -152,9 +153,13 @@ function getUserByIdBack() {
 		$("#user_username_update").val(result.staff_number);
 		$("#user_name_update").val(result.staff_name);
 		$("#user_telephone_update").val(result.staff_tel);
-		$("#staff_adminPower").val(result.staff_adminPower);
-		$("#staff_userPower").val(result.staff_userPower);
+		$("#staff_adminPower_updata").val(result.staff_adminPower);
+		$("#staff_userPower_updata").val(result.staff_userPower);
+		$("#staff_staffPower_updata").val(result.staff_staffPower);
+		
+		console.log(result.staff_number);
 		console.log(result.staff_userPower);
+		console.log(result.staff_staffPower);
 		$("#updateBtn").val(result.rlzy_staff_id);
 		$("#updateLoadingDiv").addClass("hideDiv");
 		$("#updateContent").removeClass("hideDiv");

@@ -115,88 +115,122 @@ var loadData = function() {
 }
 //删除员工所有信息(离职)
 var deleteStaff = function(event) {
+//	getXmlHttp();
+//	xmlHttp.open("POST", "/rlzyos/staff/staff_getStaffById", true);
+//	var formData = new FormData();
+//	formData.append("rlzy_staff_id", event.id);
+//	xmlHttp.send(formData);
+//	xmlHttp.onreadystatechange = function() {
+//		if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+//			var result = xmlHttp.responseText;
+//			result = JSON.parse(result);
+//			if(result.staff_status=="离职"){//离职全部删除
+				$.ajax({
+					url : '/rlzyos/staff/staff_deleteStaff',
+					type : 'POST',
+					data : {
+						'rlzy_staff_id' : event.id
+					}
+				});
+				console.log("删除员工履历");
+				$.ajax({//删除员工的工作履历
+					url : '/rlzyos/staff/staffExp_deleteStaffExps',
+					type : 'POST',
+					data : {
+						'staffExp.staffExp_staff' : event.id
+					}
+				});
+				console.log("删除合同信息");
+				$.ajax({//删除员工的合同信息
+					url : '/rlzyos/staff/staffAgreement_deleteStaffAgreements',
+					type : 'POST',
+					data : {
+						'agreement.agreement_staff' : event.id
+					}
+				});
+				
+				//删除员工的奖金记录
+				console.log("删除奖金信息");
+				$.ajax({//删除员工的奖金信息
+					url : '/rlzyos/staff/staffAward_deleteStaffAwards',
+					type : 'POST',
+					data : {
+						'staffAward.award_staff' : event.id
+					}
+				});
+				//删除调配记录
+				console.log("删除调动信息");
+				$.ajax({//删除员工的奖金信息
+					url : '/rlzyos/staff/staffMove_deleteStaffMoves',
+					type : 'POST',
+					data : {
+						'staffmove.staffMove_staff' : event.id
+					}
+				});
+				//删除培训记录
+				console.log("删除培训信息");
+				$.ajax({//删除员工的奖金信息
+					url : '/rlzyos/staff/staffTrain_deleteStaffTrains',
+					type : 'POST',
+					data : {
+						'stafftrain.stafftrain_staff' : event.id
+					}
+				});
+//				toastr.success("删除成功");
+//			}else  {
+//				toastr.warning("该员工还未离职,请离职后再来删除");
+//			}
+//		}
+//	}
 	//删除员工的基本信息
-	$.ajax({
-		url : '/rlzyos/staff/staff_deleteStaff',
-		type : 'POST',
-		data : {
-			'rlzy_staff_id' : event.id
-		}
-	});
-	console.log("删除员工履历");
-	$.ajax({//删除员工的工作履历
-		url : '/rlzyos/staff/staffExp_deleteStaffExps',
-		type : 'POST',
-		data : {
-			'staffExp.staffExp_staff' : event.id
-		}
-	});
-	console.log("删除合同信息");
-	$.ajax({//删除员工的合同信息
-		url : '/rlzyos/staff/staffAgreement_deleteStaffAgreements',
-		type : 'POST',
-		data : {
-			'agreement.agreement_staff' : event.id
-		}
-	});
 	
-	//删除员工的奖金记录
-	console.log("删除奖金信息");
-	$.ajax({//删除员工的奖金信息
-		url : '/rlzyos/staff/staffAward_deleteStaffAwards',
-		type : 'POST',
-		data : {
-			'staffAward.award_staff' : event.id
-		}
-	});
-	//删除调配记录
-	console.log("删除调动信息");
-	$.ajax({//删除员工的奖金信息
-		url : '/rlzyos/staff/staffMove_deleteStaffMoves',
-		type : 'POST',
-		data : {
-			'staffmove.staffMove_staff' : event.id
-		}
-	});
-	//删除培训记录
-	console.log("删除培训信息");
-	$.ajax({//删除员工的奖金信息
-		url : '/rlzyos/staff/staffTrain_deleteStaffTrains',
-		type : 'POST',
-		data : {
-			'stafftrain.stafftrain_staff' : event.id
-		}
-	});
 	
 }
 	
 //确认删除提示
 function createConfirmDelete(event) {
-	$.confirm({
-		title : '一经删除该员工全部信息将清空，请慎重考虑，真的要删除吗？',
-		content : '',
-		type : 'red',
-		autoClose : 'closeAction|5500',
-		buttons : {
-			deleteAction : {
-				text : '确认',
-				btnClass : 'btn-blue',
-				action : function() {
-					deleteStaff(event);
-					/*alert(event);*/
-					console.log("删除全部信息"+event);
-					loadData();
-				}
-			},
-			closeAction : {
-				text : '取消',
-				btnClass : 'btn-red',
-				action : function() {
-
+	getXmlHttp();
+	xmlHttp.open("POST", "/rlzyos/staff/staff_getStaffById", true);
+	var formData = new FormData();
+	formData.append("rlzy_staff_id", event.id);
+	xmlHttp.send(formData);
+	xmlHttp.onreadystatechange = function() {
+		if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+			var result = xmlHttp.responseText;
+			result = JSON.parse(result);
+			if(result.staff_status=="离职"){
+					$.confirm({
+						title : '',
+						content : '一经删除该员工全部信息将清空，请慎重考虑，真的要删除吗？',
+						type : 'red',
+						autoClose : 'closeAction|5500',
+						buttons : {
+							deleteAction : {
+								text : '确认',
+								btnClass : 'btn-blue',
+								action : function() {
+									
+									deleteStaff(event);
+									/*alert(event);*/
+									console.log("删除全部信息"+event);
+									
+									loadData();
+								}
+							},
+							closeAction : {
+								text : '取消',
+								btnClass : 'btn-red',
+								action : function() {
+				
+								}
+							}
+						}
+					})
+				}else {
+					toastr.error("该员工还未离职,请离职后再来删除");
 				}
 			}
-		}
-	})
+	}		
 }
 
 var skipToDetail = function(event) {

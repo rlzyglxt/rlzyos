@@ -59,6 +59,7 @@ function addStaffMove() {
 		},
 		success : function(data) {
 			toastr.success('调动成功！');
+			loadData();
 		}
 	});
 }
@@ -150,6 +151,15 @@ var loadData = function() {
 			queryConditionTemp.staff_name = result.staff_name;
 			queryConditionTemp.staff_number = result.staff_number;
 			queryConditionTemp.staffMove_time = result.staffMove_time;
+			//清空模态框
+			$("#staff_addname").val("");
+			$("#staffMove_staff").val("");
+			$("#staffMove_bfdepartment").val("");
+			$("#staffMove_bfduty").val("");
+			$("#staffMove_nowdepartment").val("");
+			$("#staffMove_nowduty").val("");
+			$("#staffMove_timee").val("");
+			$("#staffMove_remark").val("");
 			$('#loadingLayer').hide();
 			$('#mainPanel').show();
 		}

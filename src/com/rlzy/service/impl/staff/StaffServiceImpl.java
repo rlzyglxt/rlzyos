@@ -41,13 +41,15 @@ public class StaffServiceImpl implements StaffService {
 		staff.setStaff_inTime(TeamUtil.getStringDay());
 		staff.setStaff_gmt_create(TeamUtil.getStringSecond());
 		staff.setStaff_gmt_modified(TeamUtil.getStringSecond());
-		String powerdmin="jurisdiction_admin";
-		staff.setStaff_adminPower(powerdmin);
-		String poweruser="jurisdiction_user";
-		staff.setStaff_userPower(poweruser);
-		String str="000000";
-		String password=md5.GetMD5Code(str);
-		staff.setStaff_password(password);
+//		String poweradmin="jurisdiction_admin";
+//		staff.setStaff_adminPower(poweradmin);
+//		String poweruser="jurisdiction_user";
+//		staff.setStaff_userPower(poweruser);
+//		String powerstaff="jurisdiction_user";
+//		staff.setStaff_staffPower(powerstaff);
+//		String str="000000";
+//		String password=md5.GetMD5Code(str);
+//		staff.setStaff_password(password);
 		staffDao.addStaff(staff);;
 	}
 
@@ -69,5 +71,11 @@ public class StaffServiceImpl implements StaffService {
 	public rlzy_staffinfo getStaffById(String rlzy_staff_id) {
 		// TODO Auto-generated method stub
 		return staffDao.getStaffById(rlzy_staff_id);
+	}
+
+	@Override
+	public List<rlzy_staffinfo> getAllStaff() {
+		// TODO Auto-generated method stub
+		return staffDao.getAllStaff();
 	}
 }		

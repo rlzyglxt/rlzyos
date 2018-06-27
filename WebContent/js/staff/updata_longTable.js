@@ -29,7 +29,7 @@ function updata_Exp(){
 					"staffExp.staffExp_remark":staffExp_remark,
 				},
 				success:function(data){
-					toastr.success('修改学习经历成功！');
+					toastr.success('修改履历成功！');
 					show_staffExpAjax(staff_id);
 				},
 			});
@@ -65,7 +65,7 @@ function updata_Agreement(){
 					"agreement.agreement_remark":agreement_remark,
 				},
 				success:function(data){
-					toastr.success('修改学习经历成功！');
+					toastr.success('修改合同成功！');
 					show_staffAgreeAjax(staff_id);
 				},
 			});
@@ -160,7 +160,7 @@ function show_stafftrain(updata_button) {
 }
 //修改员工培训
 function updata_Train(){
-	console.log("奖金修改");
+	console.log("培训修改");
 	// 修改一条数据
 	var stafftrain_train=$(".updatastafftrain_train").val();
 	var stafftrain_score=$(".updatastafftrain_score").val();

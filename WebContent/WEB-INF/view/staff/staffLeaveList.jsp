@@ -37,12 +37,12 @@
 			</div>
 			<div class="panel-body">
 				<div class="operation" style="margin: 0 0 6px 50px;">
-					<button style="margin-left: 15px; margin-right: 15px; float: right" type="button"
+<!-- 					<button style="margin-left: 15px; margin-right: 15px; float: right" type="button"
 					 class="btn btn-default" data-toggle='modal' data-target='#addAgreement'>
 						<i class="fa fa-plus-square"></i>员工添加
-					</button>
+					</button> -->
 					<input type="text" id="searchInput" class="form-control"
-						style="width: 250px; display: inline-block; float: right;"
+						style="width: 250px; display: inline-block; float: right; margin-right:15px;"
 						oninput="changeName(this)" placeholder="请输入搜索内容"/>
 				</div>
 				<div class="col-md-12">
@@ -213,7 +213,7 @@
 				<div class="modal-footer">
 					<button onclick="loadData()" type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
 					<button onclick="reset()" type="button" class="btn btn-danger">清空</button>
-					<button id="updateStaffExpBtn" onclick="updateStaffExp(this)"  type="button" class="btn btn-primary">添加</button>
+					<button id="updateStaffExpBtn" onclick="updateStaffExp(this)"  type="button" class="btn btn-primary" data-dismiss="modal">添加</button>
 				</div>
 			</div>
 			<!-- /.modal-content id="updateBtn" -->

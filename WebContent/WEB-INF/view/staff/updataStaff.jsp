@@ -50,7 +50,7 @@
 							<tr style="height: 20px"></tr>
 							<tr>
 								<td><label class="staff_info_label">员工工号</label></td>
-								<td><input class="form-control" id="staff_number" name="staff.staff_number"  type="text"></td>
+								<td><input class="form-control" id="staff_number" name="staff.staff_number"  type="text" readonly="readonly"></td>
 								
 								<td><label class="staff_info_label">姓名</label></td>
 								<td><input class="form-control" id="staff_name" name="staff.staff_name"  type="text"></td>
@@ -158,8 +158,38 @@
 					</form>
 				</div></div>
 				<!-- 长表格 -->
-				<div style="background: #e7e6e6; width: auto; height: 10px;"></div>
+				<div style="background: #e7e6e6; width: 1000px; height: 5px;"></div>
 				<div class="longBoxs">
+					<div class="long_tableBox">
+						<span class="staff_info_title">员工合同表</span>
+						<button style="margin-left: 10px;" class="btn btn-default btn-xs"
+							type="button" data-toggle="modal" data-target="#addAgreement_Modal"
+							onclick="">
+							<i class="fa fa-plus-square"></i> 添加合同信息
+						</button>
+						<form id="staff_agr">
+							<div class="long_tb">
+								<table>
+									<tbody>
+										<tr class="long_table">
+											<th>合同开始时间</th>
+											<th>合同结束时间</th>
+											<th>合同内容</th>
+											<th>备注</th>
+											<th>操作</th>
+										</tr>
+									</tbody>
+								</table>
+								<table id="staffAgreement_table">
+									<tbody>
+
+									</tbody>
+								</table>
+							</div>
+						</form>
+					</div>
+				<div style="background: #e7e6e6; width: 1000px; height: 1px;"></div>
+				
 					<div class="long_tableBox">
 						<span class="staff_info_title">员工履历表</span>
 						<button style="margin-left: 10px;" class="btn btn-default btn-xs"
@@ -190,35 +220,7 @@
 							</div>
 						</form>
 					</div>
- 				<div style="background: #e7e6e6; width: 1000px; height: 1px;"></div>
-					<div class="long_tableBox">
-						<span class="staff_info_title">员工合同表</span>
-						<button style="margin-left: 10px;" class="btn btn-default btn-xs"
-							type="button" data-toggle="modal" data-target="#addAgreement_Modal"
-							onclick="">
-							<i class="fa fa-plus-square"></i> 添加合同信息
-						</button>
-						<form id="staff_agr">
-							<div class="long_tb">
-								<table>
-									<tbody>
-										<tr class="long_table">
-											<th>合同开始时间</th>
-											<th>合同结束时间</th>
-											<th>合同内容</th>
-											<th>备注</th>
-											<th>操作</th>
-										</tr>
-									</tbody>
-								</table>
-								<table id="staffAgreement_table">
-									<tbody>
-
-									</tbody>
-								</table>
-							</div>
-						</form>
-					</div>
+ 			
 					<div style="background: #e7e6e6; width: 1000px; height: 1px;"></div>
 						<div class="long_tableBox">
 							<span class="staff_info_title">员工奖金表</span>
@@ -305,6 +307,8 @@
 							</div>
 						</form>
 					</div>				
+					<button type="button" style="float: right;" class="btn btn-default button button_change" onclick="staff_updata()">
+					<i class="fa fa-pencil"></i>保存</button>
 			</div>
 		</div>
 	</div>
@@ -679,7 +683,7 @@
 								</tr>
 
 								<tr>
-									<td><label class="staff_info_label">合同内容</label></td>
+									<td><label class="staff_info_label">备注</label></td>
 									<td><input type="text" class="updataagreement_remark " /></td>
 
 								</tr>

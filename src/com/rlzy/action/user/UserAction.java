@@ -169,17 +169,20 @@ public class UserAction extends ActionSupport{
 			public void updateUser() throws IOException{
 				rlzy_staffinfo ru=new rlzy_staffinfo();
 				rlzy_staffinfo ruGet=userService.getUserById(user_id);
-				ru.setStaff_number(user_username);
-				ru.setStaff_tel(user_telephone);
+				ru.setStaff_number(user_username);//工号
+				ru.setStaff_tel(user_telephone);//电话号码
 				ru.setStaff_gmt_modified(TeamUtil.getStringSecond());
-				ru.setStaff_userPower(staff_userPower);
-				ru.setStaff_adminPower(staff_adminPower);
+				ru.setStaff_userPower(staff_userPower);//使用权限
+				ru.setStaff_adminPower(staff_adminPower);//管理权限
+				ru.setStaff_staffPower(staff_staffPower);//查看权限
 				ru.setStaff_name(user_name);
 				ru.setRlzy_staff_id(ruGet.getRlzy_staff_id());
 				ru.setStaff_address(ruGet.getStaff_address());
 				ru.setStaff_birth(ruGet.getStaff_birth());
 				ru.setStaff_sex(ruGet.getStaff_sex());
 				ru.setStaff_inTime(ruGet.getStaff_inTime());
+				ru.setStaff_age(ruGet.getStaff_age());
+				ru.setStaff_cardid(ruGet.getStaff_cardid());
 				ru.setStaff_depaterment(ruGet.getStaff_depaterment());
 				ru.setStaff_record(ruGet.getStaff_record());
 				ru.setStaff_gmt_create(ruGet.getStaff_gmt_create());
@@ -187,6 +190,8 @@ public class UserAction extends ActionSupport{
 				ru.setStaff_leaveTime(ruGet.getStaff_leaveTime());
 				ru.setStaff_status(ruGet.getStaff_status());
 				ru.setStaff_duty(ruGet.getStaff_duty());
+				
+				System.out.println("身份证为"+ruGet.getStaff_cardid());
 				if (user_password == "" || user_password.equals("")) {
 					ru.setStaff_password(ruGet.getStaff_password());
 				} else {
@@ -209,7 +214,16 @@ public class UserAction extends ActionSupport{
 		private String newPassword;
 		private String staff_userPower;
 		private String staff_adminPower;
+		private String staff_staffPower;
 
+		
+		public String getStaff_staffPower() {
+			return staff_staffPower;
+		}
+
+		public void setStaff_staffPower(String staff_staffPower) {
+			this.staff_staffPower = staff_staffPower;
+		}
 
 		public String getStaff_userPower() {
 			return staff_userPower;

@@ -30,7 +30,7 @@ public class StaffDaoImpl implements StaffDao {
 
 	//得到所有员工
 	@Override
-	public List<rlzy_staffinfo> getAllStaff(String duty) {
+	public List<rlzy_staffinfo> getAllStaff() {
 		// TODO Auto-generated method stub
 		String hql= "from rlzy_staffinfo where 1=1";
 			Session session =getSession();

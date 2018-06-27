@@ -33,9 +33,10 @@
 			</div>
 			<div class="panel-body">
 				<div class="operation" style="margin: 0 0 6px 50px;">
-					<button style="margin-left: 15px; margin-right: 15px; float: right" type="button"
-					 class="btn btn-default" data-toggle='modal' data-target='#addAgreement'>
-						<i class="fa fa-plus-square"></i>员工添加
+					<button style="margin-left: 15px;" type="button"
+						class="btn btn-default"
+						onclick="javascript:location.href='/rlzyos/staff/staff_page_AddStaff'">
+						<i class="fa fa-plus-square"></i> 新建人员
 					</button>
 					<input type="text" id="searchInput" class="form-control"
 						style="width: 250px; display: inline-block; float: right;"
@@ -148,7 +149,7 @@
 				</div>
 				<div class="modal-footer">
 					<button onclick="loadData()" type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-					<button id="updateStaffAgreementBtn" onclick="updateStaffAgreement(this)"  type="button" class="btn btn-primary">修改</button>
+					<button id="updateStaffAgreementBtn" onclick="updateStaffAgreement(this)"  type="button" class="btn btn-primary" data-dismiss="modal">修改</button>
 				</div>
 			</div>
 			<!-- /.modal-content id="updateBtn" -->

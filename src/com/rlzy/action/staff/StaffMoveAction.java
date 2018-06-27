@@ -32,10 +32,10 @@ public class StaffMoveAction extends ActionSupport{
 	
 	//员工调动
 	public void addStaffMove() throws IOException{
-		System.out.println("该员工id为"+staffmove.getStaffMove_staff());
+//		System.out.println("该员工id为"+staffmove.getStaffMove_staff());
 		staffMoveService.addStaffMove(staffMoves);
 		System.out.println("该员工原职务是为"+staffMove_nowduty);
-		rlzy_staffinfo rs = staffService.getStaffById(staffmove.getStaffMove_staff());
+		rlzy_staffinfo rs = staffService.getStaffById(staffMove_staff);
 		rs.setStaff_duty(staffMove_nowduty);
 		rs.setStaff_depaterment(staffMove_nowdepartment);
 		staffMoveService.updataStaffInfo(rs);

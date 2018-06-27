@@ -110,15 +110,55 @@ function Add_Staff() {
 						var number = document.getElementsByName("staff.staff_number")[0].value;
 						var name = document.getElementsByName("staff.staff_name")[0].value;
 						var duty = document.getElementsByName("staff.staff_duty")[0].value;
-						if (number == "" || name == "" || duty == "") {
-							toastr.error('工号、姓名、职务不能为空！');
-							return false;
-						}
-						addStaff_Info(url);
+						var record = document.getElementsByName("staff.staff_record")[0].value;
+						var cardid = document.getElementsByName("staff.staff_cardid")[0].value;
+						$.ajax({
+							type : "POST",
+							url : "/rlzyos/staff/staffMove_getValueByNumber",
+							data : {
+								"staff_number": number,
+							},
+							success : function(data) {
+								var result = JSON.parse(data);
+								if(number==result[0].staff_number){
+									toastr.error('该工号已存在，不可再添加！');
+									return false;
+								}else if (number == "" || name == "" || duty == "" || record == "" || cardid == "") {
+									toastr.error('工号、姓名、身份证不能为空！');
+									return false;
+								}
+								addStaff_Info(url);
+							}
+					});
+						
 					}
 					}
 				}
 			});
+}
+
+function getvalue(event) {
+	$.ajax({
+			type : "POST",
+			url : "/rlzyos/staff/staffMove_getValueByNumber",
+			data : {
+				"staff_number": event.value,
+			},
+			success : function(data) {
+				var result = JSON.parse(data);
+				var number = document.getElementsByName("staff.staff_number")[0].value;
+				if(number==""){
+					toastr.error("工号不能为空");
+				}else if(result==""){
+					toastr.success("该工号可用");
+					return false;
+				}else{
+					toastr.warning("该工号以存在，请输入其他工号");
+					return true;
+				}
+			}
+		});
+	
 }
 // 员工基本信息表
 function addStaff_Info(url) {
@@ -146,7 +186,7 @@ function addStaff_Info(url) {
 			staffTrain_ajax(id);
 			toastr.success("新建成功");
 			//返回修改页面(未做)	
-			/*window.location.href = '/rlzyos/staff/staff_page_StaffInfo';*/
+			window.location.href = '/rlzyos/staff/staff_page_StaffInfo';
 		
 	}
 	

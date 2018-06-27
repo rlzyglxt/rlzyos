@@ -226,6 +226,14 @@ function addStaffStaffAgreement(){
 		},
 		success : function(data) {
 			toastr.success('添加成功！');
+			$("#updateLoadingDiv").addClass("hideDiv");
+			$("#updateContent").removeClass("hideDiv");
+			$("#staff_name").val("");
+			$("#staff_number").val("");
+			$("#addstaffAgreement_StartTime").val("");
+			$("#addstaffAgreement_OverTime").val("");
+			$("#addstaff_contactsRemark").val("");
+			loadData();
 		}
 	});
 }

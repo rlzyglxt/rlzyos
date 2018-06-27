@@ -118,10 +118,10 @@
 					<h4 class="modal-title">修改员工履历</h4>
 				</div>
 				<div class="modal-body">
- 					<%-- <div id="updateLoadingDiv" class="hideDiv" 
+ 			 <div id="updateLoadingDiv" class="hideDiv" 
 						style="width: 319px; margin: 0 auto;"> 
 						<img alt="" src="<%=basePath%>img/loading.gif">
-				</div>  --%>
+				</div>
 					<div id="updateContent">
 						<form id="updatestaffExpForm">
 							<table class="table" style="margin: 0 auto;">
@@ -154,7 +154,7 @@
 				</div>
 				<div class="modal-footer">
 					<button onclick="loadData()" type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-					<button id="updateStaffExpBtn" onclick="updateStaffExp(this)"  type="button" class="btn btn-primary">修改</button>
+					<button id="updateStaffExpBtn" onclick="updateStaffExp(this)"  type="button" class="btn btn-primary" data-dismiss="modal">修改</button>
 				</div>
 			</div>
 			<!-- /.modal-content id="updateBtn" -->
@@ -183,7 +183,7 @@
 							<table class="table" style="margin: 0 auto;">
 								<tr>
 									<td><label>工号：</label></td>
-									<td><input id="staffExp_staff" name="staffExp.staffExp_staff" oninput="getName(this)" 
+									<td><input id="staffExp_addstaff" name="staffExp.staffExp_staff" oninput="getName(this)" 
 									placeholder="请输入工号" type="text" class="form-control"></td>
 									<td><label>姓名：</label></td>
 									<td><input id="staff_addname" name="staffExp.staff_addname" type="text" value="没有发该员工" class="form-control"></td>
@@ -209,7 +209,7 @@
 				</div>
 				<div class="modal-footer">
 					<button onclick="loadData()" type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-					<button id="addStaffExpBtn" onclick="addStaffExp()"  type="button" class="btn btn-primary">添加</button>
+					<button id="addStaffExpBtn" onclick="addStaffExp()"  type="button" class="btn btn-primary" data-dismiss="modal">添加</button>
 				</div>
 			</div>
 			<!-- /.modal-content id="updateBtn" -->

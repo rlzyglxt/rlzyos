@@ -31,11 +31,16 @@
 							<h3 class="panel-title staff_title">用户表</h3>
 			</div>
 			<div id="" style="height: 80px; padding: 20px;">
-				<div class="managerClass" style="float: right; margin-left: 10px;">
-					<button onclick="cleanInput" data-toggle="modal"
+				<div class="managerClass" style="float: left; ">
+					<button style="margin-left: 15px;" type="button"
+							class="btn btn-success"
+							onclick="javascript:location.href='/rlzyos/staff/staff_page_AddStaff'">
+							<i class="fa fa-plus-square"></i> 新建人员
+					</button>
+					<%-- <button onclick="cleanInput" data-toggle="modal"
 						data-target="#addUser" class="btn btn-success">
 						<span style="" class="glyphicon glyphicon-plus"></span>新增用户
-					</button>
+					</button> --%>
 				</div>
 				<div class="input-group" style="float: right; width: 300px;">
 					<input id="queryString" type="text" class="form-control"
@@ -120,6 +125,29 @@
 									<td><input id="user_telephone" name="user_telephone" type="text"
 										class="form-control" placeholder="请输入用户电话"></td>
 								</tr>
+								<tr>
+									<td><label>管理权限：</label></td>
+									<td><select name="staff_adminPower" id="staff_adminPower"
+										class="form-control">
+										<option value="jurisdiction_none">无权限</option>
+										<option value="jurisdiction_admin">管理权限</option>
+									</select></td>
+									<td><label>操作权限：</label></td>
+									<td><select name="staff_userPower" id="staff_userPower"
+										class="form-control">
+										<option value="jurisdiction_none">无权限</option>
+										<option value="jurisdiction_user">操作权限</option>
+									</select>
+										</td>
+								</tr>
+								<tr>
+									<td><label>查看权限：</label></td>
+									<td><select name="staff_staffPower" id="staff_staffPower"
+										class="form-control">
+										<option value="jurisdiction_none">无权限</option>
+										<option value="jurisdiction_staff">查看权限</option>
+									</select></td>
+								</tr>
 							</table>
 						</form>
 					</div>
@@ -143,7 +171,7 @@
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
-					<h4 class="modal-title">修改用户</h4>
+					<h4 class="modal-title">修改信息</h4>
 				</div>
 				 <div class="modal-body">
 <!-- 					<div id="updateLoadingDiv" class="hideDiv" -->
@@ -171,18 +199,26 @@
 								</tr>
 								<tr>
 									<td><label>管理权限：</label></td>
-									<td><select name="staff_adminPower" id="staff_adminPower"
+									<td><select name="staff_adminPower" id="staff_adminPower_updata"
 										class="form-control">
 										<option value="jurisdiction_none">无权限</option>
-										<option value="jurisdiction_admin">使用权限</option>
+										<option value="jurisdiction_admin">管理权限</option>
 									</select></td>
-									<td><label>使用权限：</label></td>
-									<td><select name="staff_userPower" id="staff_userPower"
+									<td><label>操作权限：</label></td>
+									<td><select name="staff_userPower" id="staff_userPower_updata"
 										class="form-control">
 										<option value="jurisdiction_none">无权限</option>
-										<option value="jurisdiction_user">使用权限</option>
+										<option value="jurisdiction_user">操作权限</option>
 									</select>
 										</td>
+								</tr>
+								<tr>
+									<td><label>查看权限：</label></td>
+									<td><select name="staff_staffPower" id="staff_staffPower_updata"
+										class="form-control">
+										<option value="jurisdiction_none">无权限</option>
+										<option value="jurisdiction_staff">查看权限</option>
+									</select></td>
 								</tr>
 							</table>
 						</form>
@@ -191,7 +227,7 @@
 				<div class="modal-footer">
 					<button onclick="reLoadUser()" type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
 					<button id="updateBtn" onclick="updateUser(this)" type="button"
-						class="btn btn-primary">修改</button>
+						class="btn btn-primary" data-dismiss="modal">修改</button>
 				</div>
 			</div>
 			<!-- /.modal-content -->

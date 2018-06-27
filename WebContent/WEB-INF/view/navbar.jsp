@@ -47,22 +47,22 @@
 		</div>
 		<div id="navbar-menu">
 			<ul style="margin: 0 0 0 20px;" class="nav navbar-nav navbar-left">
-			<template v-if="user_user_manager_power">
+			<template v-if="user_staff_manager_power">
 				<li class="dropdown" style="float: left;"><a
 					href="<%=basePath%>user/user_intoIndex"><span>首页</span> </a></li>
 					</template>
 				<!-- <li class="leader_control dropdown" style="float: left;"> -->
-			<template v-if="user_admin_manager_power">
+			<template v-if="user_user_manager_power">
 				<li class="dropdown" style="float: left;"><a
 					href="<%=basePath%>depaterment/depaterment_toDepatermentlist"><span>机构维护</span>
 				</a></li>
 			</template>
-			<template v-if="user_admin_manager_power">
+			<template v-if="user_user_manager_power">
 				<li class="dropdown" style="float: left;"><a
 					href="<%=basePath%>staff/staff_page_StaffExport"><span>数据导出</span>
 				</a></li>
 			</template>
-			<template v-if="user_admin_manager_power">
+			<template v-if="user_user_manager_power">
 				<li class="dropdown" style="float: left;"><a
 					href="<%=basePath%>staff/staffExport_toDepatermentlist"><span>数据统计</span>
 				</a></li>
@@ -137,8 +137,9 @@
 	</body>	
 		<script type="text/javascript">
 			var userPowerDTO = {
-				'user_admin_manager_power' : false, //用户管理
-				'user_user_manager_power' : false //使用权限
+				'user_admin_manager_power' : false, //管理员权限
+				'user_user_manager_power' : false,//经理权限
+				'user_staff_manager_power' : false,//员工权限
 			}
 
 			var powerNavVue = new Vue({
@@ -170,25 +171,41 @@
 								$("#hideLayer").hide();
 							} else {
 								var result = JSON.parse(data);
+								//管理员权限
 								if (result.staff_adminPower == 'jurisdiction_admin') {
 									userPowerDTO.user_admin_manager_power = true;
 								} else {
 									userPowerDTO.user_admin_manager_power = false;
 								}
+								//经理权限
 								if (result.staff_userPower == 'jurisdiction_user') {
 									userPowerDTO.user_user_manager_power = true;
 								} else {
 									userPowerDTO.user_user_manager_power = false;
 								}
+								//员工权限
+								if (result.staff_userPower == 'jurisdiction_staff') {
+									userPowerDTO.user_staff_manager_power = true;
+								} else {
+									userPowerDTO.user_staff_manager_power = false;
+								}
+								//无管理员权限
+								if (result.staff_adminPower == 'jurisdiction_none') {
+									userPowerDTO.user_admin_manager_power = false;
+								} else {
+									userPowerDTO.user_admin_manager_power = true;
+								}
+								//无经理权限
 								if (result.staff_userPower == 'jurisdiction_none') {
 									userPowerDTO.user_user_manager_power = false;
 								} else {
 									userPowerDTO.user_user_manager_power = true;
 								}
-								if (result.staff_adminPower == 'jurisdiction_none') {
-									userPowerDTO.user_admin_manager_power = false;
+								//无员工权限
+								if (result.staff_staffPower == 'jurisdiction_none') {
+									userPowerDTO.user_staff_manager_power = false;
 								} else {
-									userPowerDTO.user_admin_manager_power = true;
+									userPowerDTO.user_staff_manager_power = true;
 								}
 								$("#hideLayer").hide();
 							}

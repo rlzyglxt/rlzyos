@@ -154,7 +154,7 @@
 				</div>
 				<div class="modal-footer">
 					<button onclick="loadData()" type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-					<button id="updateStaffExpBtn" onclick="updateStaffExp(this)"  type="button" class="btn btn-primary">修改</button>
+					<button id="updateStaffExpBtn" onclick="updateStaffExp(this)"  type="button" class="btn btn-primary" data-dismiss="modal">修改</button>
 				</div>
 			</div>
 			<!-- /.modal-content id="updateBtn" -->
@@ -210,7 +210,7 @@
 				</div>
 				<div class="modal-footer">
 					<button onclick="loadData()" type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-					<button id="addStaffAwardBtn" onclick="addStaffAward()"  type="button" class="btn btn-primary">发放</button>
+					<button id="addStaffAwardBtn" onclick="addStaffAward()"  type="button" class="btn btn-primary" data-dismiss="modal">发放</button>
 				</div>
 			</div>
 			<!-- /.modal-content id="updateBtn" -->

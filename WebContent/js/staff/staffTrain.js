@@ -185,6 +185,14 @@ function addStaffTrain() {
 		},
 		success : function(data) {
 			toastr.success('记录添加成功！');
+			$("#stafftrain_staff").val("");
+			$("#staff_addname").val("");
+			$("#rlzy_train_id").val("");
+			$("#addstafftrain_score").val("");
+			$("#addstafftrain_certificate").val("");
+			$("#addStaffTrainBtn").val("");
+			loadData();
+
 		}
 	});
 }

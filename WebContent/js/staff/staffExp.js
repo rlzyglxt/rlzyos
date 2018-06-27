@@ -57,6 +57,7 @@ var loadData = function() {
 			queryConditionTemp.pageCount = result.pageCount;
 			queryConditionTemp.totalCount = result.totalCount;
 			queryConditionTemp.staffExp_staff = result.staffExp_staff;
+		
 			$('#loadingLayer').hide();
 			$('#mainPanel').show();
 		}
@@ -202,6 +203,15 @@ function addStaffExp(){
 		},
 		success : function(data) {
 			toastr.success('添加成功！');
+			$("#updateLoadingDiv").addClass("hideDiv");
+			$("#updateContent").removeClass("hideDiv");
+			$("#staffExp_addstaff").val("");
+			$("#staff_addname").val("");
+			$("#addstaffExp_address").val("");
+			$("#addstaffExp_startTime").val("");
+			$("#addstaffExp_overTime").val("");
+			$("#addstaffExp_remark").val("");
+			loadData();
 		}
 	});
 }

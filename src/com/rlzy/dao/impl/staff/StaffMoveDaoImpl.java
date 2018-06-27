@@ -47,7 +47,7 @@ public class StaffMoveDaoImpl implements StaffMoveDao {
 	@Override
 	public int getStaffMoveCount(showStaffMoveVO staffMoveVO) {
 		// TODO Auto-generated method stub
-		String hql = "select count(*) from rlzy_staffmove where 1=1";
+		String hql = "select count(*) from rlzy_staffmove,rlzy_staffinfo where 1=1";
 		if(staffMoveVO.getStaff_name() !=null && staffMoveVO.getStaff_name().trim().length() > 0){
 			hql = hql + " and staff_name like '" + "%" + staffMoveVO.getStaff_name() + "%" + "'";
 		}

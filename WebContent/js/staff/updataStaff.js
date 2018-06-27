@@ -586,6 +586,7 @@ function clear_iquery() {
 	console.log("这是清空");
 	$(" input[ type='text' ]").val('');
 	$(" textarea").val('');
+	get_staffDetails(staff_id);
 }
 
 function isBack() {

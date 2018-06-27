@@ -21,7 +21,7 @@
 			<div class="sidebar-scroll" style="height: 100% !important;">
 				<nav>
 				<ul class="nav">
-				<template v-if="user_user_manager_power">
+				<template v-if="user_staff_manager_power">
 					<li><a class=""><i class="lnr lnr-file-add"></i> <span>个人信息</span></a>
 						<ul class="nav" style="background-color: #9E9E9E;">
 						
@@ -30,7 +30,7 @@
 						</ul>
 					</li> <!-- #5CACEE -->
 					</template>
-					<template v-if="user_admin_manager_power">
+					<template v-if="user_user_manager_power">
 					<li><a class=""><i class="lnr lnr-file-add"></i> <span>人员档案</span></a>
 						<ul class="nav" style="background-color: #9E9E9E;">
 							<li><a href="<%=basePath%>staff/staff_page_StaffInfo"><span>人员基本信息</span></a></li>
@@ -41,7 +41,7 @@
 						</ul>
 					</li>
 					</template>
-					<template v-if="user_admin_manager_power">
+					<template v-if="user_user_manager_power">
 					<li><a class=""><i class="lnr lnr-users"></i> <span>人事调动</span></a>
 					<ul class="nav" style="background-color:#9E9E9E;">
 						<li><a
@@ -55,15 +55,15 @@
 			
 					
 				
-							<template v-if="user_admin_manager_power">
+					<template v-if="user_user_manager_power">
 					<li><a class=""><i class="lnr lnr-license"></i> <span>教育培训</span></a>
 					<ul class="nav" style="background-color:#9E9E9E;">
 						<li><a
 							href="<%=basePath%>train/train_page_toTrainList"><span>教育培训类别</span></a></li>
 						<li><a
 							href="<%=basePath%>staff/staff_page_StaffTrain"><span>教育培训记录</span></a></li>
-						<li><a
-							href="<%=basePath%>paper/paper_page_toPaperlist"><span>证书记录</span></a></li>
+						<%-- <li><a
+							href="<%=basePath%>paper/paper_page_toPaperlist"><span>证书记录</span></a></li> --%>
 					</ul></li>
 					</template>
 					</ul>

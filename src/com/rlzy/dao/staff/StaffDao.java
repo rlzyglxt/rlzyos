@@ -8,7 +8,7 @@ import com.rlzy.domain.VO.showStaffVO;
 
 public interface StaffDao {
 	//得到所有员工
-	List<rlzy_staffinfo> getAllStaff(String duty);
+	List<rlzy_staffinfo> getAllStaff();
 	//得到员工数
 	int getStaffCount(showStaffVO showstaffVO);
 	//得到员工bypage

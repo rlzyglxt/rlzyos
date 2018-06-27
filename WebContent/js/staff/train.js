@@ -80,9 +80,17 @@ function addTrain(){
 				$("#addContent").removeClass("hideDiv");
 			} else {
 				toastr.success("添加成功！");
+				$("#updateLoadingDiv").val("");
+				$("#updateContent").val("");
 				$("#addLoadingDiv").addClass("hideDiv");
 				$("#addContent").removeClass("hideDiv");
 				$("#addContent input").val("");
+				$("#train_name").val("");
+				$("#train_startTime").val("");
+				$("#train_overTime").val("");
+				$("#train_pay").val("");
+				$("#train_content").val("");
+				$("#updateTrainBtn").val("");
 				loadData();
 			}
 		}

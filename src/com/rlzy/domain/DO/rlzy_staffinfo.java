@@ -18,10 +18,13 @@ public class rlzy_staffinfo {
 	private String staff_leaveTime;//离职时间
 	private String staff_leaveReason;//离职原因
 	private String staff_password;//用户密码
-	private String staff_adminPower;//用户管理权限
-	private String staff_userPower;//用户使用权限
+	private String staff_adminPower;//管理员权限
+	private String staff_userPower;//经理权限
+	private String staff_staffPower;//员工权限
 	private String staff_gmt_create;//创建时间
 	private String staff_gmt_modified;//修改时间
+	
+	
 	public String getRlzy_staff_id() {
 		return rlzy_staff_id;
 	}
@@ -46,7 +49,6 @@ public class rlzy_staffinfo {
 	public void setStaff_sex(String staff_sex) {
 		this.staff_sex = staff_sex;
 	}
-
 	public String getStaff_cardid() {
 		return staff_cardid;
 	}
@@ -137,6 +139,12 @@ public class rlzy_staffinfo {
 	public void setStaff_userPower(String staff_userPower) {
 		this.staff_userPower = staff_userPower;
 	}
+	public String getStaff_staffPower() {
+		return staff_staffPower;
+	}
+	public void setStaff_staffPower(String staff_staffPower) {
+		this.staff_staffPower = staff_staffPower;
+	}
 	public String getStaff_gmt_create() {
 		return staff_gmt_create;
 	}
@@ -149,8 +157,4 @@ public class rlzy_staffinfo {
 	public void setStaff_gmt_modified(String staff_gmt_modified) {
 		this.staff_gmt_modified = staff_gmt_modified;
 	}
-	
-	
-	
-	
 }

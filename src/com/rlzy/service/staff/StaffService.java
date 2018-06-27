@@ -1,5 +1,7 @@
 package com.rlzy.service.staff;
 
+import java.util.List;
+
 import com.rlzy.domain.DO.rlzy_staffinfo;
 import com.rlzy.domain.VO.showStaffVO;
 
@@ -14,4 +16,6 @@ public interface StaffService {
 	void deleteStaff(rlzy_staffinfo staff);
 	//修改用户
 	void updataStaff(rlzy_staffinfo staff);
+	//得到所有员工
+	List<rlzy_staffinfo> getAllStaff();
 }
