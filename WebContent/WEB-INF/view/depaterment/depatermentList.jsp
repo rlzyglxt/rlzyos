@@ -110,10 +110,6 @@
 					<h4 class="modal-title">修改部门信息</h4>
 				</div>
 				<div class="modal-body">
- 					<%-- <div id="updateLoadingDiv" class="hideDiv" 
-						style="width: 319px; margin: 0 auto;"> 
-						<img alt="" src="<%=basePath%>img/loading.gif">
-				</div>  --%>
 					<div id="updateContent">
 						<form id="updatedepatermentForm">
 							<table class="table" style="margin: 0 auto;">
@@ -121,17 +117,19 @@
 									<td><label>部门名称：</label></td>
 									<td><input id="updatastaffdepartment_name" name="staffdepartment_name" 
 										type="text" class="form-control" placeholder="请输入部门名称"></td>
-									<td><label>部门职务：</label></td>
-									<td><input id="updatastaffdepartment_introduct" name="staffdepartment_introduct"
-										type="text" class="form-control" placeholder="请输入部门职务"></td>
-								</tr>
-								<tr>
 									<td><label>部门电话：</label></td>
 									<td><input id="updatastaffdepartment_tel" name="staffdepartment_tel"
 										type="text" class="form-control" placeholder="请输入部门电话"></td>
+								</tr>
+								<tr>
 									<td><label>部门人数：</label></td>
 									<td><input id="updatastaffdepartment_amount" name="staffdepartment_amount"
 										type="text" class="form-control" placeholder="请输入部门人数"></td>
+									<td><label>部门简介：</label></td>
+									<td colspan="6"><textarea id="updatastaffdepartment_introduct"
+											class="form-control"  name="staffdepartment_introduct"
+											style="width: 465px; border: 1px solid #ccc;"
+											rows="3" cols="62" placeholder="请输入部门简介"></textarea></td>
 								</tr>
 							</table>
 						</form>
@@ -139,7 +137,7 @@
 				</div>
 				<div class="modal-footer">
 					<button onclick="loadData()" type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-					<button id="updateDepatermentBtn" onclick="updateDepaterment(this)"  type="button" class="btn btn-primary">修改</button>
+					<button id="updateDepatermentBtn" onclick="updateDepaterment(this)"  type="button" class="btn btn-primary" data-dismiss="modal">修改</button>
 				</div>
 			</div>
 			<!-- /.modal-content id="updateBtn" -->
@@ -164,19 +162,21 @@
 							<table class="table" style="margin: 0 auto;">
 								<tr>
 									<td><label>部门名称：</label></td>
-									<td><input id="staffdepartment_name" name="staffdepartment_name" 
+									<td><input  id="staffdepartment_name" name="staffdepartment_name" 
 										type="text" class="form-control" placeholder="请输入部门名称"></td>
-									<td><label>部门简介：</label></td>
-									<td><input id="staffdepartment_introduct" name="staffdepartment_introduct"
-										type="text" class="form-control" placeholder="请输入部门职务"></td>
-								</tr>
-								<tr>
 									<td><label>部门电话：</label></td>
 									<td><input id="staffdepartment_tel" name="staffdepartment_tel"
-										type="text" class="form-control" placeholder="请输入部门电话"></td>
+										type="text" class="tel form-control" placeholder="请输入部门电话"></td>
+								</tr>
+								<tr>
 									<td><label>部门人数：</label></td>
 									<td><input id="staffdepartment_amount" name="staffdepartment_amount"
 										type="text" class="form-control" placeholder="请输入部门人数"></td>
+									<td><label>部门简介：</label></td>
+									<td colspan="6"><textarea id="staffdepartment_introduct"
+											class="form-control"  name="staffdepartment_introduct"
+											style="width: 465px; border: 1px solid #ccc;"
+											rows="3" cols="62" placeholder="请输入部门简介"></textarea></td>
 								</tr>
 							</table>
 						</form>
@@ -184,7 +184,7 @@
 				</div>
 				<div class="modal-footer">
 					<button onclick="loadData()" type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-					<button onclick="addDepaterment()"  type="button" class="btn btn-primary">添加</button>
+					<button onclick="SubmitCk()"  type="button" class="btn btn-primary" data-dismiss="modal">添加</button>
 				</div>
 			</div>
 			<!-- /.modal-content id="updateBtn" -->

@@ -93,6 +93,28 @@ function getDepatermentByIdBack() {
 }
 //修改
 function updateDepaterment(event) {
+	 var reg = new RegExp("^[0-9]*$");
+	 var reg2 = new RegExp("^[\u4E00-\u9FA5]{1,5}$");
+	 var obj = document.getElementById("updatastaffdepartment_tel");
+	 var obj1 = document.getElementById("updatastaffdepartment_amount");
+	 var obj2 = document.getElementById("updatastaffdepartment_name");
+	 var obj3 = document.getElementById("updatastaffdepartment_introduct");
+	 if(!reg.test(obj.value) || obj.value.length>11){ 
+		 toastr.error("电话请输入11位数字以内！");
+		 return false;
+	}else if(!reg.test(obj1.value) || obj1.value.length>5){ 
+		 toastr.error("部门人数请输入5位数字以内！");
+		 return false;
+	}else if(obj2.value.length>10){ 
+		 toastr.error("部门名称请输入10位汉字以内！");
+		 return false;
+	}else if(!reg2.test(obj2.value)){
+		 toastr.error("部门名称请输入10位汉字以内！");
+		 return false;
+	}else if(obj3.value.length>50){ 
+		 toastr.error("部门简介请输入50位字数以内！");
+		 return false;
+	}
 	$("#updateLoadingDiv").removeClass("hideDiv");
 	$("#updateContent").addClass("hideDiv");
 	getXmlHttp();
@@ -105,24 +127,100 @@ function updateDepaterment(event) {
 			toastr.success("修改成功！");
 			$("#updateLoadingDiv").addClass("hideDiv");
 			$("#updateContent").removeClass("hideDiv");
+			$("#updateContent input").val("");
 		}
+		loadData();
 	}
 }
 
-//删除
-function createConfirmDelete(event) {
-	getXmlHttp();
-	xmlHttp.open("POST", "/rlzyos/depaterment/depaterment_deleteDepaterment", true);
-	var formData = new FormData();
-	formData.append("rlzy_staffdepartment_id", event.id);
-	xmlHttp.send(formData);
-	xmlHttp.onreadystatechange = function() {
-		if (isBack()) {
-			toastr.success("删除成功");
-			loadData();
+
+//确认删除提示
+var createConfirmDelete= function(event) {
+	$.confirm({
+		title : '真的要删除吗？',
+		content : '',
+		type : 'red',
+		autoClose : 'closeAction|5000',
+		buttons : {
+			deleteAction : {
+				text : '确认',
+				btnClass : 'btn-blue',
+				action : function() {
+					deletedepartment(event);
+					/*alert(event);*/
+					loadData();
+				}
+			},
+			closeAction : {
+				text : '取消',
+				btnClass : 'btn-red',
+				action : function() {
+
+				}
+			}
 		}
-	}
+	})
 }
+
+//删除员工履历
+var deletedepartment = function(event) {
+	//删除员工的基本信息
+	$.ajax({
+		url : '/rlzyos/depaterment/depaterment_deleteDepaterment',
+		type : 'POST',
+		data : {
+			'rlzy_staffdepartment_id' : event.id
+		}
+	});
+}
+
+
+function SubmitCk() {
+	 var reg = new RegExp("^[0-9]*$");
+	 var reg2 = new RegExp("^[\u4E00-\u9FA5]{1,5}$");
+	 var obj = document.getElementById("staffdepartment_tel");
+	 var obj1 = document.getElementById("staffdepartment_amount");
+	 var obj2 = document.getElementById("staffdepartment_name");
+	 var obj3 = document.getElementById("staffdepartment_introduct");
+	 if(!reg.test(obj.value) || obj.value.length>11){ 
+		 toastr.error("电话请输入11位数字以内！");
+		 $("#addLoadingDiv").addClass("hideDiv");
+		 $("#addContent").removeClass("hideDiv");
+		 $("#addContent input").val("");
+		 $("#staffdepartment_introduct").val("");
+		 return false;
+	}else if(!reg.test(obj1.value) || obj1.value.length>5){ 
+		 toastr.error("部门人数请输入5位数字以内！");
+		 $("#addLoadingDiv").addClass("hideDiv");
+		 $("#addContent").removeClass("hideDiv");
+		 $("#addContent input").val("");
+		 $("#staffdepartment_introduct").val("");
+		 return false;
+	}else if(obj2.value.length>10){ 
+		 toastr.error("部门名称请输入10位汉字以内！");
+		 $("#addLoadingDiv").addClass("hideDiv");
+		 $("#addContent").removeClass("hideDiv");
+		 $("#addContent input").val("");
+		 $("#staffdepartment_introduct").val("");
+		 return false;
+	}else if(!reg2.test(obj2.value)){
+		 toastr.error("部门名称请输入10位汉字以内！");
+		 $("#addLoadingDiv").addClass("hideDiv");
+		 $("#addContent").removeClass("hideDiv");
+		 $("#addContent input").val("");
+		 $("#staffdepartment_introduct").val("");
+		 return false;
+	}else if(obj3.value.length>50){ 
+		 toastr.error("部门简介请输入50位字数以内！");
+		 $("#addLoadingDiv").addClass("hideDiv");
+		 $("#addContent").removeClass("hideDiv");
+		 $("#addContent input").val("");
+		 $("#staffdepartment_introduct").val("");
+		 return false;
+	}else{
+		addDepaterment();
+	}
+	}
 
 //添加部门
 function addDepaterment(){
@@ -130,6 +228,10 @@ function addDepaterment(){
 		if (document.adddepatermentForm.elements[i].value == "") {
 			toastr.error("当前表单不能有空项");
 			document.form.elements[i].focus();
+			$("#addLoadingDiv").addClass("hideDiv");
+			$("#addContent").removeClass("hideDiv");
+			$("#addContent input").val("");
+			$("#staffdepartment_introduct").val("");
 			return false;
 		}
 	}
@@ -138,19 +240,23 @@ function addDepaterment(){
 	var formData = new FormData(document.getElementById("adddepatermentForm"));
 	xmlHttp.send(formData);
 	xmlHttp.onreadystatechange = function (){
-		if (isBack()) {
+		 if (isBack()) {
 			var result = xmlHttp.responseText;
 			if (result == "samename") {
 				toastr.error("部门名称已经存在请重新填写！");
 				$("#addLoadingDiv").addClass("hideDiv");
 				$("#addContent").removeClass("hideDiv");
+				$("#addContent input").val("");
+				$("#staffdepartment_introduct").val("");
 			} else {
 				toastr.success("上传成功！");
 				$("#addLoadingDiv").addClass("hideDiv");
 				$("#addContent").removeClass("hideDiv");
 				$("#addContent input").val("");
+				$("#staffdepartment_introduct").val("");
 			}
 		}
+		loadData();
 	}
 }
 
