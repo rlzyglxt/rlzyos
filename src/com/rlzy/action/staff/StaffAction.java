@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.struts2.ServletActionContext;
 import com.google.gson.Gson;
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.rlzy.domain.DO.rlzy_staffinfo;
 import com.rlzy.domain.DTO.Staff.staffListDTO;
@@ -95,6 +96,22 @@ public class StaffAction extends ActionSupport{
 //		List<rlzy_staffinfo> rs = staffService.getAllStaff();
 //		
 //	}
+	public void getStaffData(){
+		showStaffVO staffdata = new showStaffVO();
+		int count = staffService.getStaffData(staffdata);
+		ActionContext.getContext().getSession().put("staffcount", count);
+		System.out.println("员工数为"+count);
+		
+		showStaffVO staffdata1 = new showStaffVO();
+		staffdata1.setStaff_status("在职");
+		int count1 = staffService.getStaffData(staffdata1);
+		ActionContext.getContext().getSession().put("staffcount1", count1);
+		
+		showStaffVO staffdata2 = new showStaffVO();
+		staffdata2.setStaff_status("离职");
+		int count2 = staffService.getStaffData(staffdata2);
+		ActionContext.getContext().getSession().put("staffcount2", count2);
+	}
 	//分页获取所有员工
 	public void getStaffByPage() throws IOException{
 		staffService.getStaffByPage(staffVO);

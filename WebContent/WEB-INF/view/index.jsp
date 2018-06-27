@@ -11,6 +11,16 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>首页</title>
+<link rel="stylesheet" type="text/css" href="<%=basePath%>css/simple-calendar.css">
+<script type="text/javascript" src="<%=basePath%>js/simple-calendar.js"></script>
+<script type="text/javascript" src="<%=basePath%>js/Clock.js"></script>
+
+<!-- 时间 -->
+
+<script type="text/javascript">
+    var clock = new Clock();
+    clock.display(document.getElementById("clock"));
+	</script>
 <style type="text/css">
 .nav li {
 	cursor: pointer;
@@ -59,18 +69,57 @@
 			<!-- MAIN CONTENT -->
 			<div class="main-content">
 				<div class="container-fluid">
+				
+							
 					<!-- OVERVIEW -->
 					<div class="panel panel-headline" >
 					
 						<div class="panel-heading">
-							<h2 class="panel-title">欢迎进入人力资源管理系统</h2>
+							<h2 class="panel-title">欢迎 <%=request.getSession().getAttribute("user_name")%> 进入人力资源管理系统
+								<i id="clock"></i>
+								<script>
+								   var clock = new Clock();
+								   clock.display(document.getElementById("clock"));
+								</script>
+							</h2>
 						</div>
+						<%-- <!-- 日历 -->
+						<div id='container' style="float:left;margin-top:21px" ></div>
+									 <script>
+									 		var myCalendar = new SimpleCalendar('#container');
+									</script> --%>
 						<div class="panel-body">
-							<div style="height: 300px; width: 780px; margin: 20px;">
-								<div style="border: 1px solid #BFBFBF; box-shadow: 0px 0px 10px 5px #aaa; width: 700px; height: 280px; margin-right: 10px;">
+							<div style="height: 300px; width: 450px; margin: 20px;">
+								<%-- <div style="border: 1px solid #BFBFBF; box-shadow: 0px 0px 10px 5px #aaa; width: 700px; height: 280px; margin-right: 10px;">
 									<img alt="" src="<%=basePath%>img/img2.jpg">
-								</div>
-							</div>
+								</div> --%>
+							<span></span>
+							<ul class="nav nav-pills nav-stacked">
+									<li role="presentation" class="active"><a href="#">人员概况</a></li>
+									
+								 	<li role="presentation">
+								 	<a href="#">当前有员工:<%=request.getSession().getAttribute("staffcount")%>  位</a></li>
+  									<li role="presentation">
+  									<a href="#">在职员工有:<%=request.getSession().getAttribute("staffcount1")%> 位</a></li>
+  									<li role="presentation">
+  									<a href="#">离职员工有:<%=request.getSession().getAttribute("staffcount2")%> 位</a></li>
+							</ul>
+							
+							<br>
+							<ul class="nav nav-pills">	
+									<li role="presentation" class="active "><a href="#">快捷入口</a></li>
+									<li role="presentation"><a href="#">个人信息</a></li>
+									<li role="presentation"><a href="#">人员信息管理</a></li>
+									<li role="presentation"><a href="#">培训类别管理</a></li>
+									<li role="presentation"><a href="#">奖金管理</a></li>
+							</ul>
+				</div>
+								
+									
+																			
+								
+						
+							</div>	
 						</div>
 					</div>
 					<!-- END OVERVIEW -->
@@ -88,4 +137,5 @@
 						"position: relative; overflow: hidden; width: auto; height: 100%;");
 	});
 </script> 
+
 </html>

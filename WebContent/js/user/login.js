@@ -7,6 +7,8 @@ window.onload=function() {
 		    var div2=$('.login-right');
 		    div2.animate({opacity:'0.5'},"slow");
 		  });
+	 
+		alert("载入");
 }
 //回车事件
 document.onkeydown = keyLogin;
@@ -47,11 +49,25 @@ function login() {
 			}else if(result=="PasswordError"){
 				toastr.error("密码错误！若忘记密码请联系管理员更改");
 			}else if(result=="loginSuccess"){
+				//得到数据
+				getXmlHttp();
+				xmlHttp.open("POST", "/rlzyos/staff/staff_getStaffData", true);
+				xmlHttp.send();
+				xmlHttp.onreadystatechange = function() {
+					if (isBack()) {
+						console.log("得到数据");
+						alert("xixi");
+						}
+					}
 				toastr.success("登陆成功！");
 				window.location = "/rlzyos/user/user_intoIndex";
+				
+			
 			}
 		}
 	}
+	
+		
 }
 function getXmlHttp() {
 	if (window.XMLHttpRequest) {

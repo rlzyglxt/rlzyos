@@ -78,4 +78,10 @@ public class StaffServiceImpl implements StaffService {
 		// TODO Auto-generated method stub
 		return staffDao.getAllStaff();
 	}
+
+	@Override
+	public int getStaffData(showStaffVO showstaffVO) {
+		// TODO Auto-generated method stub
+		return staffDao.getStaffCount(showstaffVO);
+	}
 }		

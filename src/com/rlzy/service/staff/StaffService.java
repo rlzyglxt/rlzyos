@@ -18,4 +18,6 @@ public interface StaffService {
 	void updataStaff(rlzy_staffinfo staff);
 	//得到所有员工
 	List<rlzy_staffinfo> getAllStaff();
+	//得到员工的数值
+	int getStaffData(showStaffVO showstaffVO);
 }
