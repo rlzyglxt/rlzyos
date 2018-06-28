@@ -10,8 +10,6 @@
 <head>
 <base href="<%=basePath%>">
 <title>教育培训表</title>
-<%-- <link rel="stylesheet" href="<%=basePath%>css/Staff/Staff.css"> --%>
-<%-- <link rel="stylesheet" href="<%=basePath%>css/user/userIndex.css"> --%>
 <script type="text/javascript" src="<%=basePath%>js/staff/train.js"></script>
 <script src="<%=basePath%>js/jquery-3.1.1.min.js"></script>
 <style type="text/css">
@@ -135,8 +133,10 @@
 										type="text" class="staff_OverTime form-control" placeholder="请输入结束时间"></td>
 								</tr>
 								<tr><td><label>培训介绍：</label></td>
-									<td><input id="train_content" name="train_content"
-										type="text" class="form-control" placeholder="请输入培训介绍"></td>
+								<td colspan="6"><textarea id="train_content"
+											class="form-control"  name="train_content"
+											style="width: 273px; border: 1px solid #ccc;"
+											rows="3" cols="62" placeholder="请输入培训介绍"></textarea></td>
 								</tr>
 							</table>
 						</form>
@@ -184,8 +184,10 @@
 										type="text" class="staff_OverTime form-control" placeholder="请输入结束时间"></td>
 								</tr>
 								<tr><td><label>培训介绍：</label></td>
-									<td><input id="train_content" name="train_content"
-										type="text" class="form-control" placeholder="请输入培训介绍"></td>
+									<td colspan="6"><textarea id="train_content"
+											class="form-control"  name="train_content"
+											style="width: 273px; border: 1px solid #ccc;"
+											rows="3" cols="62" placeholder="请输入培训介绍"></textarea></td>
 								</tr>
 							</table>
 						</form>
@@ -193,7 +195,7 @@
 				</div>
 				<div class="modal-footer">
 					<button onclick="loadData()" type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-					<button id="addTrainBtn" onclick="addTrain()"  type="button" class="btn btn-primary" data-dismiss="modal">添加</button>
+					<button onclick="addTrain()"  type="button" class="btn btn-primary" data-dismiss="modal">添加</button>
 				</div>
 			</div>
 			<!-- /.modal-content id="updateBtn" -->
