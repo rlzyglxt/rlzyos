@@ -361,7 +361,7 @@
 					<button type="button" class="btn btn-default"
 						onclick="clear_iquery()" >清空</button><!-- data-dismiss="modal" -->
 					<button type="button" class="btn btn-primary"
-						onclick="add_oneStaffExp()" data-dismiss='modal'>添加</button>
+						onclick="add_oneStaffExp()">添加</button>
 				</div>
 			</div>
 		</div>
@@ -638,7 +638,7 @@
 					<button type="button" class="btn btn-default "
 						onclick="clear_iquery()" data-dismiss="modal">清空</button>
 					<button type="button" class="btn btn-primary"
-						onclick="updata_Exp()" data-dismiss='modal'>修改</button>
+						onclick="updata_Exp()">修改</button>
 				</div>
 			</div>
 		</div>
@@ -695,7 +695,7 @@
 					<button type="button" class="btn btn-default "
 						onclick="clear_iquery()" data-dismiss="modal">清空</button>
 					<button type="button" class="btn btn-primary"
-						onclick="updata_Agreement()" data-dismiss='modal'>修改</button>
+						onclick="updata_Agreement()">修改</button>
 				</div>
 			</div>
 		</div>
@@ -750,7 +750,7 @@
 					<button type="button" class="btn btn-default "
 						onclick="clear_iquery()" data-dismiss="modal">清空</button>
 					<button type="button" class="btn btn-primary"
-						onclick="updata_Award()" data-dismiss='modal'>添加</button>
+						onclick="updata_Award()" >添加</button>
 				</div>
 			</div>
 		</div>
@@ -810,7 +810,7 @@
 					<button type="button" class="btn btn-default "
 						onclick="clear_iquery()" data-dismiss="modal">清空</button>
 					<button type="button" class="btn btn-primary"
-						onclick="updata_Move()" data-dismiss='modal'>添加</button>
+						onclick="updata_Move()">添加</button>
 				</div>
 			</div>
 		</div>
@@ -858,7 +858,7 @@
 					<button type="button" class="btn btn-default "
 						onclick="clear_iquery()" data-dismiss="modal">清空</button>
 					<button type="button" class="btn btn-primary"
-						onclick="updata_Train()" data-dismiss='modal'>添加</button>
+						onclick="updata_Train()">添加</button>
 				</div>
 			</div>
 		</div>

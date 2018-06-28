@@ -41,21 +41,24 @@
 						<table style="width: 100%;">
 							<tr>
 								<td colspan="6" class="staff_info_title">基本信息</td>
+							
 							</tr>
+							<tr style="height: 20px">(注：密码默认六个零;管理员权限默认为：管理权限,操作权限;经理权限默认为：操作权限,查看权限;
+							<br>员工权限默认为:查看权限;如需更改联系管理员更改权限)</tr>
 							<tr style="height: 20px"></tr>
 							<tr>
 								<td><label class="staff_info_label">员工工号</label></td>
-								<td><input name="staff.staff_number" class="form-control" type="text" onblur="getvalue(this)"></td>
+								<td><input placeholder="请输入工号 (必填)" name="staff.staff_number" class="form-control" type="text" onblur="getvalue(this)"></td>
 								
 								<td><label class="staff_info_label">姓名</label></td>
-								<td><input name="staff.staff_name" class="form-control" type="text"></td>
+								<td><input  placeholder="请输入姓名 (必填)" name="staff.staff_name" class="form-control" type="text"></td>
 								
 							</tr>
 							<tr>
 							
 								<td><label class="staff_info_label">身份证</label></td>
 								<td><input name="staff.staff_cardid" id="idNumber" onblur="getAge()"
-									class=" form-control" type="text"></td>
+									class=" form-control" type="text" placeholder="请输入身份证(必填)"></td>
 								<td><label class="staff_info_label">性别</label></td>
 								<%-- <td>
 									<select id="staff_sex" onchange="changeSex(this)"
@@ -79,17 +82,17 @@
 							<tr>
 							<td><label class="staff_info_label">年龄</label></td>
 								<td><input name="staff.staff_age"
-									class="form-control" type="text"></td>
+									class="form-control" type="text" placeholder="请输入年龄(必填)"></td>
 							<td><label class="staff_info_label">出生年月</label></td>
 								<td><input name="staff.staff_birth"
-									class="staff_birth form-control" type="text"></td>
+									class="staff_birth form-control"  placeholder="请输入出生年月(必填)" type="text"></td>
 							</tr>
 							<tr>
 								<td><label class="staff_info_label">联系方式</label></td>
-								<td><input style="font-size: 12px;"
+								<td><input  placeholder="请输入联系方式 (必填)"
 									name="staff.staff_tel" class="form-control" type="text"></td>
 								<td><label class="staff_info_label">家庭住址</label></td>
-								<td><input name="staff.staff_address"
+								<td><input name="staff.staff_address"  placeholder="请输入家庭住址 (必填)"
 									class="form-control" type="text"></td>
 								
 							</tr>
@@ -133,6 +136,7 @@
 									</select>
 								</td>
 							</tr>
+							
 						</table>
 					</form>
 				</div>	
@@ -318,22 +322,22 @@
 							<tbody>
 								<tr>
 									<td><label class="staff_info_label">工作地址</label></td>
-									<td><input style="font-size: 12px;" id="staffExp_address"
+									<td><input style="font-size: 12px;" id="staffExp_address" placeholder="请输入工作地址(必填)"
 										class="staffExp_address" type="text"></td></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">开始时间</label></td>
-									<td><input style="font-size: 12px;" id="staffExp_startTime"
-										class="staffExp_startTime _Time" type="text"></td>
+									<td><input style="font-size: 12px;" id="staffExp_startTime" placeholder="请输入结束时间(必填)"
+										class="staffExp_startTime _Time1" type="text"></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">结束时间</label></td>
-									<td><input style="font-size: 12px;" id="staffExp_overTime"
-										class="staffExp_overTime _Time"></td>
+									<td><input style="font-size: 12px;" id="staffExp_overTime" placeholder="请输入结束时间(必填)"
+										class="staffExp_overTime _Time2"></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">备注</label></td>
-									<td colspan="6"><textarea id="staffExp_remark"
+									<td colspan="6"><textarea id="staffExp_remark" placeholder="请输入备注"
 											class="staffExp_remark"
 											style="width: 480px; border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
 											rows="3" cols="62"></textarea></td>
@@ -346,7 +350,7 @@
 					<button type="button" class="btn btn-default "
 						onclick="clear_iquery()" data-dismiss="modal">清空</button>
 					<button type="button" class="btn btn-primary"
-						onclick="add_staffExp()" data-dismiss='modal'>添加</button>
+						onclick="add_staffExp()">添加</button>
 				</div>
 			</div>
 		</div>
@@ -374,27 +378,27 @@
 								
 								<tr>
 									<td><label class="staff_info_label">开始时间</label></td>
-									<td><input style="font-size: 12px;" id="agreement_startTime"
-										class="agreement_startTime _Time" type="text"></td>
+									<td><input style="font-size: 12px;" id="agreement_startTime" placeholder="请输入时间(必填)"
+										class="agreement_startTime _Time1" type="text"></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">结束时间</label></td>
-									<td><input style="font-size: 12px;" id="agreement_overtTime"
-										class="agreement_overtTime _Time"></td>
+									<td><input style="font-size: 12px;" id="agreement_overtTime" placeholder="请输入时间(必填)"
+										class="agreement_overtTime _Time2" type="text"></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">内容</label></td>
-										<td colspan="6"><textarea id="agreement_content"
-											class="agreement_content"
+										<td colspan="6"><textarea id="staffAgreement_remark" placeholder="请输入内容"
+											class="agreement_content" type="text"
 											style="width: 480px; border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
 											rows="3" cols="62"></textarea></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">备注</label></td>
-									<td colspan="6"><textarea id="agreement_remark"
-											class="agreement_remark"
+									<td colspan="6"><input id="agreement_remark" placeholder="请输入备注"
+											class="agreement_remark" type="text"
 											style="width: 480px; border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
-											rows="2" cols="62"></textarea></td>
+											rows="2" cols="62"></td>
 								</tr>
 							</tbody>
 						</table>
@@ -404,7 +408,7 @@
 					<button type="button" class="btn btn-default "
 						onclick="clear_iquery()" data-dismiss="modal">清空</button>
 					<button type="button" class="btn btn-primary"
-						onclick="add_staffAgreement()" data-dismiss='modal'>添加</button>
+						onclick="add_staffAgreement()">添加</button>
 				</div>
 			</div>
 		</div>
@@ -429,26 +433,26 @@
 							<tbody>
 								<tr>
 									<td><label class="staff_info_label">发放金额</label></td>
-									<td><input style="font-size: 12px;" id="award_amount"
+									<td><input style="font-size: 12px;" id="award_amount" placeholder="请输入金额(必填)"
 										class="award_amount" type="text"></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">发放时间</label></td>
-									<td><input style="font-size: 12px;" id="award_provideTime"
-										class="award_provideTime _Time"></td>
+									<td><input style="font-size: 12px;" id="award_provideTime" placeholder="请输入时间(必填)"
+										class="award_provideTime _Time1"></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">发放部门</label></td>
 									<td><select class="form-control award_provideDepartment" id="staff_qdepaterment">
 										</select></td>
-								<!-- 	<td colspan="6"><textarea id="award_provideDepartment"
+								<!-- 	<td colspan="6"><textarea id="award_provideDepartment" 
 											class="award_provideDepartment"
 											style="width: 480px; border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
 											rows="2" cols="62"></textarea></td>   -->
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">发放原因</label></td>
-										<td colspan="6"><textarea id="award_provideReason"
+										<td colspan="6"><textarea id="award_provideReason" placeholder="请输入原因"
 											class="award_provideReason"
 											style="width: 480px; border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
 											rows="3" cols="62"></textarea></td>
@@ -505,12 +509,12 @@
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">调入时间</label></td>
-									<td><input style="font-size: 12px;" id="staffMove_time"
-										class="staffMove_time _Time"></td>
+									<td><input style="font-size: 12px;" id="staffMove_time" placeholder="请输入时间(必填)"
+										class="staffMove_time _Time1"></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">备注</label></td>
-										<td colspan="6"><textarea id="staffMove_remark"
+										<td colspan="6"><textarea id="staffMove_remark" placeholder="请输入备注"
 											class="staffMove_remark"
 											style="width: 480px; border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
 											rows="3" cols="62"></textarea></td>
@@ -524,7 +528,7 @@
 					<button type="button" class="btn btn-default "
 						onclick="clear_iquery()" data-dismiss="modal">清空</button>
 					<button type="button" class="btn btn-primary"
-						onclick="add_staffMove()" data-dismiss='modal'>添加</button>
+						onclick="add_staffMove()">添加</button>
 				</div>
 			</div>
 		</div>
@@ -556,12 +560,12 @@
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">培训成绩</label></td>
-									<td><input style="font-size: 12px;" id="stafftrain_score"
+									<td><input style="font-size: 12px;" id="stafftrain_score" placeholder="请输入成绩(必填)"
 										class="stafftrain_score"></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">培训证书</label></td>
-									<td><input style="font-size: 12px;" id="stafftrain_certificate"
+									<td><input style="font-size: 12px;" id="stafftrain_certificate" placeholder="请输入证书名称(必填)"
 										class="stafftrain_certificate"></td>
 								</tr>								
 							</tbody>
@@ -572,7 +576,7 @@
 					<button type="button" class="btn btn-default "
 						onclick="clear_iquery()" data-dismiss="modal">清空</button>
 					<button type="button" class="btn btn-primary"
-						onclick="add_staffTrain()" data-dismiss='modal'>添加</button>
+						onclick="add_staffTrain()">添加</button>
 				</div>
 			</div>
 		</div>
@@ -582,7 +586,17 @@
 <!-- 时间javescript -->
 	<script type="text/javascript">
 		$.datetimepicker.setLocale('ch');
-		$('._Time').datetimepicker({
+		$('._Time1').datetimepicker({
+			yearStart : 1900, // 设置最小年份
+			yearEnd : 2100, // 设置最大年份
+			yearOffset : 0, // 年偏差
+			timepicker : false, // 关闭时间选项
+			format : 'Y-m-d', // 格式化日期年-月-日
+			minDate : '1900/01/01', // 设置最小日期
+			maxDate : '2100/01/01', // 设置最大日期
+		});
+		$.datetimepicker.setLocale('ch');
+		$('._Time2').datetimepicker({
 			yearStart : 1900, // 设置最小年份
 			yearEnd : 2100, // 设置最大年份
 			yearOffset : 0, // 年偏差

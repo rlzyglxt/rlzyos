@@ -8,7 +8,22 @@ function add_oneStaffExp() {
 	var staffExp_startTime = $(".staffExp_startTime").val();
 	var staffExp_overTime = $(".staffExp_overTime").val();
 	var staffExp_remark = $(".staffExp_remark").val();
-	
+	//字符验证
+	var time = /[^0-9]/ig;
+	var str1 = staffExp_startTime.replace(time,"");
+	var str2 = staffExp_overTime.replace(time,"");
+	if(staffExp_address.length>10){ 
+		 toastr.error("请输入20个字以内的地址");
+		 document.querySelector(".staffExp_address").val("");
+		 return false;
+	}else if (str1 > str2){//判断起始时间不能大于结束时间
+		toastr.error("请输入时间顺序有误");
+		return false;
+	}else if (staffExp_remark.length > 20){
+		toastr.error("备注不可超过20字");
+		return false;
+	}else{
+		$('#addStaffExp_Modal').modal('hide');
 	$.ajax({
 				type : "POST",
 				url : "/rlzyos/staff/staffExp_addStaffExp?staffExps.staffExp_staff="
@@ -35,6 +50,28 @@ function add_oneStaffAgreement() {
 	var agreement_overtTime = $(".agreement_overtTime").val();
 	var agreement_content = $(".agreement_content").val();
 	var agreement_remark = $(".agreement_remark").val();
+	//js验证
+	var time = /[^0-9]/ig;
+	var str1 = agreement_startTime.replace(time,"");
+	var str2 = agreement_overtTime.replace(time,"");
+	if(agreement_startTime == ""|| agreement_overtTime == "" || agreement_content==""){
+		toastr.error("当前表不能有空");
+	}else if(agreement_content.length>30){ 
+		 toastr.error("请输入30个字以内的内容");
+		 $("#updataagreement_content").val("");
+		 return false;
+	}else if (str1 > str2){//判断起始时间不能大于结束时间
+		$("#updataagreement_startTime").val("");
+		 $("#updataagreement_overtTime").val("");
+		toastr.error("请输入时间顺序有误");
+		
+		return false;
+	}else if (agreement_remark.length > 20){
+		$("#updataagreement_remark").val("");
+		toastr.error("备注不可超过20字");
+		return false;
+	}else {
+	$('#addAgreement_Modal').modal('hide');
 	$.ajax({
 				type : "POST",
 				url : "/rlzyos/staff/staffAgreement_addStaffAgreement?staffagreements.agreement_staff="
@@ -60,6 +97,18 @@ function add_oneStaffAward() {
 	var award_provideTime = $(".award_provideTime").val();
 	var award_provideDepartment = $(".award_provideDepartment").val();
 	var award_provideReason = $(".award_provideReason").val();
+	//js校验
+	var reg = new RegExp("^[0-9]*$");
+	 if(!reg.test(award_amount) || award_amount.value.length>5){ 
+		$("#updataaward_amount").val("");
+		 toastr.error("部门人数请输入5位以内的数字！");
+		 return false;
+	 }else if(award_provideReason.length > 25){
+		 $("#updataaward_provideReason").val("");
+		 toastr.error("输入的字数不可大于25个");
+		 return false;
+	 }else {
+		 $('#addAward_Modal').modal('hide');
 	$.ajax({
 				type : "POST",
 				url : "/rlzyos/staff/staffAward_addStaffAward?staffAwards.award_staff="
@@ -88,6 +137,16 @@ function add_oneStaffMove() {
 	var staffMove_remark = $(".staffMove_remark").val();
 	var staffMove_bfdepartment = $(".staff_depaterment").val();
 	var staffMove_bfduty = $(".staff_duty").val();
+	//js校验
+	if(staffMove_remark.length > 25){
+		$("#staffMove_remark").val("");
+		 toastr.error("输入的字数不可大于25个");
+		 return false;
+	}else if(staffMove_nowdepartment.value==staffMove_bfdepartment.value && staffMove_nowduty.value==staffMove_bfduty.value){
+		toastr.error("调动无效");
+		return false;
+	}else{
+		$('#addMove_Modal').modal('hide');
 	$.ajax({
 				type : "POST",
 				url : "/rlzyos/staff/staffMove_addStaffMove?staffMoves.staffMove_staff="
@@ -119,6 +178,17 @@ function add_oneStaffTrain() {
 	var stafftrain_train = $(".stafftrain_train").val();
 	var stafftrain_score = $(".stafftrain_score").val();
 	var stafftrain_certificate = $(".stafftrain_certificate").val();
+
+	var reg = new RegExp("^[0-9]*$");
+	if(!reg.test(stafftrain_score) || stafftrain_score.length>5){ 
+		 $("#stafftrain_score").val("");
+		 toastr.error("请输入3位数字以内！");
+		return false; 
+	}else if(stafftrain_certificate.length>8){
+		$("#stafftrain_certificate").val("");
+		toastr.error("请输入8个字以内！");
+	}else {
+		$('#updataStaffExp_Modal').modal('hide');
 	$.ajax({
 				type : "POST",
 				url : "/rlzyos/staff/staffTrain_addStaffTrain?stafftrains.stafftrain_staff="

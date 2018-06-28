@@ -154,7 +154,7 @@
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
-					<h4 class="modal-title">新增培训类别</h4>
+					<h4 class="modal-title">新增部门</h4>
 				</div>
 				<div class="modal-body">
 					<div id="addContent">
@@ -184,7 +184,7 @@
 				</div>
 				<div class="modal-footer">
 					<button onclick="loadData()" type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-					<button onclick="SubmitCk()"  type="button" class="btn btn-primary" data-dismiss="modal">添加</button>
+					<button onclick="SubmitCk()"  type="button" class="btn btn-primary">添加</button>
 				</div>
 			</div>
 			<!-- /.modal-content id="updateBtn" -->

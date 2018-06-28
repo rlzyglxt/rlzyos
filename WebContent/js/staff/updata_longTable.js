@@ -19,6 +19,23 @@ function updata_Exp(){
 	var staffExp_startTime=$(".updatastaffExp_startTime").val();
 	var staffExp_overTime=$(".updatastaffExp_overTime").val();
 	var staffExp_remark=$(".updatastaffExp_remark").val();
+	//字符验证
+	var time = /[^0-9]/ig;
+	var str1 = staffExp_startTime.replace(time,"");
+	var str2 = staffExp_overTime.replace(time,"");
+	if(staffExp_address.length>10){ 
+		 toastr.error("请输入20个字以内的地址");
+		 document.querySelector(".staffExp_address").val("");
+		 return false;
+	}else if (str1 > str2){//判断起始时间不能大于结束时间
+		toastr.error("请输入时间顺序有误");
+		return false;
+	}else if (staffExp_remark.length > 20){
+		toastr.error("备注不可超过20字");
+		return false;
+	}else{
+		$('#updataStaffExp_Modal').modal('hide');
+	
 	$.ajax({
 				type : "POST",
 				url : '/rlzyos/staff/staffExp_updataStaffExp?staffExp.rlzy_staffExp_id='+this_trId,
@@ -33,6 +50,7 @@ function updata_Exp(){
 					show_staffExpAjax(staff_id);
 				},
 			});
+	}
 }
 
 //显示当前员工合同在模态框中
@@ -55,6 +73,28 @@ function updata_Agreement(){
 	var agreement_overtTime=$(".updataagreement_overtTime").val();
 	var agreement_content=$(".updataagreement_content").val();
 	var agreement_remark=$(".updataagreement_remark").val();
+	//js验证
+	var time = /[^0-9]/ig;
+	var str1 = agreement_startTime.replace(time,"");
+	var str2 = agreement_overtTime.replace(time,"");
+	if(agreement_startTime == ""|| agreement_overtTime == "" || agreement_content==""){
+		toastr.error("当前表不能有空");
+	}else if(agreement_content.length>30){ 
+		 toastr.error("请输入30个字以内的内容");
+		 $("#updataagreement_content").val("");
+		 return false;
+	}else if (str1 > str2){//判断起始时间不能大于结束时间
+		$("#updataagreement_startTime").val("");
+		 $("#updataagreement_overtTime").val("");
+		toastr.error("请输入时间顺序有误");
+		
+		return false;
+	}else if (agreement_remark.length > 20){
+		$("#updataagreement_remark").val("");
+		toastr.error("备注不可超过20字");
+		return false;
+	}else {
+	$('#updataAgreement_Modal').modal('hide');
 	$.ajax({
 				type : "POST",
 				url : '/rlzyos/staff/staffAgreement_updataStaffAgreement?agreement.rlzy_agreement_id='+this_trId,
@@ -69,6 +109,7 @@ function updata_Agreement(){
 					show_staffAgreeAjax(staff_id);
 				},
 			});
+	}
 }
 
 //显示当前员工奖金在模态框中
@@ -91,7 +132,19 @@ function updata_Award(){
 	var award_provideTime=$(".updataaward_provideTime").val();
 	var award_provideDepartment=$(".updataaward_provideDepartment").val();
 	var award_provideReason=$(".updataaward_provideReason").val();
-	$.ajax({
+	//js校验
+	var reg = new RegExp("^[0-9]*$");
+	 if(!reg.test(award_amount) || award_amount.value.length>5){ 
+		$("#updataaward_amount").val("");
+		 toastr.error("部门人数请输入5位以内的数字！");
+		 return false;
+	 }else if(award_provideReason.length > 25){
+		 $("#updataaward_provideReason").val("");
+		 toastr.error("输入的字数不可大于25个");
+		 return false;
+	 }else {
+		 $('#updataAward_Modal').modal('hide');
+		 $.ajax({
 				type : "POST",
 				url : '/rlzyos/staff/staffAward_updataStaffAward?staffAward.rlzy_staffAward_id='+this_trId,
 				data :{
@@ -105,6 +158,7 @@ function updata_Award(){
 					show_staffAwardAjax(staff_id);
 				},
 			});
+	 }
 }
 
 //显示当前员工调配在模态框中
@@ -129,6 +183,16 @@ function updata_Move(){
 	var staffMove_remark=$(".updatastaffMove_remark").val();
 	var staffMove_bfdepartment = $(".staff_depaterment").val();
 	var staffMove_bfduty = $(".staff_duty").val();
+	//js校验
+	if(staffMove_remark.length > 25){
+		$("#staffMove_remark").val("");
+		 toastr.error("输入的字数不可大于25个");
+		 return false;
+	}else if(staffMove_nowdepartment.value==staffMove_bfdepartment.value && staffMove_nowduty.value==staffMove_bfduty.value){
+		toastr.error("调动无效");
+		return false;
+	}else{
+		$('#updataMove_Modal').modal('hide');
 	$.ajax({
 				type : "POST",
 				url : '/rlzyos/staff/staffMove_updataStaffMove?staffmove.rlzy_staffMove_id='+this_trId,
@@ -145,6 +209,7 @@ function updata_Move(){
 					show_staffMoveAjax(staff_id);
 				},
 			});
+	}
 }
 
 //显示当前员工培训在模态框中
@@ -166,6 +231,16 @@ function updata_Train(){
 	var stafftrain_score=$(".updatastafftrain_score").val();
 	var stafftrain_certificate=$(".updatastafftrain_certificate").val();
 	
+	var reg = new RegExp("^[0-9]*$");
+	if(!reg.test(stafftrain_score) || stafftrain_score.length>5){ 
+		 $("#stafftrain_score").val("");
+		 toastr.error("请输入3位数字以内！");
+		return false; 
+	}else if(stafftrain_certificate.length>8){
+		$("#stafftrain_certificate").val("");
+		toastr.error("请输入8个字以内！");
+	}else {
+		$('#updataTrain_Modal').modal('hide');
 	$.ajax({
 				type : "POST",
 				url : '/rlzyos/staff/staffTrain_updateStaffTrain?rlzy_stafftrain_id='+this_trId,

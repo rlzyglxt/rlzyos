@@ -107,11 +107,13 @@ function Add_Staff() {
 				确定 : {
 					action : function() {
 						// 判断是否为空
-						var number = document.getElementsByName("staff.staff_number")[0].value;
-						var name = document.getElementsByName("staff.staff_name")[0].value;
-						var duty = document.getElementsByName("staff.staff_duty")[0].value;
-						var record = document.getElementsByName("staff.staff_record")[0].value;
-						var cardid = document.getElementsByName("staff.staff_cardid")[0].value;
+						var number = document.getElementsByName("staff.staff_number")[0].value;//工号
+						var name = document.getElementsByName("staff.staff_name")[0].value;//姓名
+						var duty = document.getElementsByName("staff.staff_duty")[0].value;//职务
+						var record = document.getElementsByName("staff.staff_record")[0].value;//学历
+						var cardid = document.getElementsByName("staff.staff_cardid")[0].value;//身份证
+						var tel = document.getElementsByName("staff.staff_tel")[0].value;//电话
+						var address = document.getElementsByName("staff.staff_address")[0].value;//电话
 						$.ajax({
 							type : "POST",
 							url : "/rlzyos/staff/staffMove_getValueByNumber",
@@ -123,8 +125,8 @@ function Add_Staff() {
 								if(number==result[0].staff_number){
 									toastr.error('该工号已存在，不可再添加！');
 									return false;
-								}else if (number == "" || name == "" || duty == "" || record == "" || cardid == "") {
-									toastr.error('工号、姓名、身份证不能为空！');
+								}else if (number == "" || name == "" || duty == "" || record == "" || cardid == "" || tel == "" || address =="") {
+									toastr.error('该表单不可有空项！');
 									return false;
 								}
 								addStaff_Info(url);
@@ -241,7 +243,22 @@ function add_staffExp() {
 	var staffExp_startTime = document.querySelector(".staffExp_startTime").value;
 	var staffExp_overTime = document.querySelector(".staffExp_overTime").value;
 	var staffExp_remark = document.querySelector(".staffExp_remark").value;
-
+	//字符验证
+	var time = /[^0-9]/ig;
+	var str1 = staffExp_startTime.replace(time,"");
+	var str2 = staffExp_overTime.replace(time,"");
+	if(staffExp_address.length>10){ 
+		 toastr.error("请输入20个字以内的地址");
+		 document.querySelector(".staffExp_address").val("");
+		 return false;
+	}else if (str1 > str2){//判断起始时间不能大于结束时间
+		toastr.error("请输入时间顺序有误");
+		return false;
+	}else if (staffExp_remark.length > 20){
+		toastr.error("备注不可超过20字");
+		return false;
+	}else{
+		$('#addStaffExp_Modal').modal('hide');
 	console.log(staffExp_address);
 	newStaff['staffExp_address'] = staffExp_address;
 	newStaff['staffExp_startTime'] = staffExp_startTime;
@@ -294,6 +311,7 @@ function add_staffExp() {
 	exp_tr.appendChild(reviseTd);
 	staffExp_table.children[0].append(exp_tr);
 	w++;
+	}
 }
 
 //员工合同提交
@@ -339,13 +357,37 @@ function staffAgreement_ajax(id){
 //添加合同到表格
 var y = 0;
 function add_staffAgreement() {
-	console.log("add_workExperience start");
 	// 把表格的数据存到json中
 	var staffAgreement_startTime = document.querySelector(".agreement_startTime").value;
 	var staffAgreement_overtTime = document.querySelector(".agreement_overtTime").value;
 	var staffAgreement_content = document.querySelector(".agreement_content").value;
 	var staffAgreement_remark = document.querySelector(".agreement_remark").value;
-
+	console.log("add_workExperience start");
+	//js验证
+	var time = /[^0-9]/ig;
+	var str1 = staffAgreement_startTime.replace(time,"");
+	var str2 = staffAgreement_overtTime.replace(time,"");
+	if(staffAgreement_startTime == ""|| staffAgreement_overtTime == "" || staffAgreement_content==""){
+		toastr.error("当前表不能有空");
+	}else if(staffAgreement_content.length>30){ 
+		 toastr.error("请输入30个字以内的内容");
+		 $("#agreement_content").val("");
+		 return false;
+	}else if (str1 > str2){//判断起始时间不能大于结束时间
+		
+		$("#agreement_startTime").val("");
+		 $("#agreement_overtTime").val("");
+		toastr.error("请输入时间顺序有误");
+		
+		return false;
+	}else if (staffAgreement_remark.length > 20){
+		$("#staffAgreement_remark").val("");
+		toastr.error("备注不可超过20字");
+		
+		return false;
+	}else {
+	$('#addAgreement_Modal').modal('hide');
+	toastr.success("添加成功");
 	console.log(staffAgreement_startTime);
 	newStaff['staffAgreement_startTime'] = staffAgreement_startTime;
 	newStaff['staffAgreement_overtTime'] = staffAgreement_overtTime;
@@ -398,6 +440,7 @@ function add_staffAgreement() {
 	agr_tr.appendChild(reviseTd);
 	staffAgreement_table.children[0].append(agr_tr);
 	y++;
+	}
 }
 
 //员工奖金提交
@@ -447,7 +490,18 @@ function add_staffAward() {
 	var staffAward_provideTime = document.querySelector(".award_provideTime").value;
 	var staffAward_provideDepartment = document.querySelector(".award_provideDepartment").value;
 	var staffAward_provideReason = document.querySelector(".award_provideReason").value;
-
+	//js校验
+	var reg = new RegExp("^[0-9]*$");
+	 if(!reg.test(staffAward_amount) || staffAward_amount.value.length>5){ 
+		$("#staffAward_amount").val("");
+		 toastr.error("部门人数请输入5位以内的数字！");
+		 return false;
+	 }else if(staffAward_provideReason.length > 25){
+		 $("#staffAward_provideReason").val("");
+		 toastr.error("输入的字数不可大于25个");
+		 return false;
+	 }else {
+		 $('#addAward_Modal').modal('hide');
 	console.log(staffAward_provideReason);
 	newStaff['staffAward_amount'] = staffAward_amount;
 	newStaff['staffAward_provideTime'] = staffAward_provideTime;
@@ -500,6 +554,7 @@ function add_staffAward() {
 	awa_tr.appendChild(reviseTd);
 	staffAward_table.children[0].append(awa_tr);
 	x++;
+	}
 }
 
 //员工调动记录提交
@@ -549,6 +604,13 @@ function add_staffMove() {
 	var staffMove_nowduty = document.querySelector(".staffMove_nowduty").value;
 	var staffMove_time = document.querySelector(".staffMove_time").value;
 	var staffMove_remark = document.querySelector(".staffMove_remark").value;
+	//js校验
+	if(staffMove_remark.length > 25){
+		$("#staffMove_remark").val("");
+		 toastr.error("输入的字数不可大于25个");
+		 return false;
+	}else{
+		$('#addMove_Modal').modal('hide');
 
 	console.log(staffMove_nowdepartment);
 	newStaff['staffMove_nowdepartment'] = staffMove_nowdepartment;
@@ -602,6 +664,7 @@ function add_staffMove() {
 	move_tr.appendChild(reviseTd);
 	staffMove_table.children[0].append(move_tr);
 	a++;
+	}
 }
 
 //员工教育培训记录提交
@@ -646,10 +709,20 @@ function staffTrain_ajax(id){
 var b = 0;
 function add_staffTrain() {
 	console.log("add_train start");
+	var reg = new RegExp("^[0-9]*$");
 	// 把表格的数据存到json中
 	var stafftrain_train = document.querySelector(".stafftrain_train").value;
 	var stafftrain_score = document.querySelector(".stafftrain_score").value;
 	var stafftrain_certificate = document.querySelector(".stafftrain_certificate").value;
+	if(!reg.test(stafftrain_score) || stafftrain_score.length>5){ 
+		 $("#stafftrain_score").val("");
+		 toastr.error("请输入3位数字以内！");
+		return false; 
+	}else if(stafftrain_certificate.length>8){
+		$("#stafftrain_certificate").val("");
+		toastr.error("请输入8个字以内！");
+	}else {
+		$('#addTrain_Modal').modal('hide');
 	
 
 	console.log(stafftrain_certificate);
@@ -703,6 +776,7 @@ function add_staffTrain() {
 	tra_tr.appendChild(reviseTd);
 	staffTrain_table.children[0].append(tra_tr);
 	b++;
+	}
 }
 
 

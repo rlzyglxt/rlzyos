@@ -128,6 +128,7 @@ function updateDepaterment(event) {
 			$("#updateLoadingDiv").addClass("hideDiv");
 			$("#updateContent").removeClass("hideDiv");
 			$("#updateContent input").val("");
+			$('#updateDepaterment').modal('hide');
 		}
 		loadData();
 	}
@@ -254,9 +255,12 @@ function addDepaterment(){
 				$("#addContent").removeClass("hideDiv");
 				$("#addContent input").val("");
 				$("#staffdepartment_introduct").val("");
+				$('#addDepaterment').modal('hide');
+				
 			}
 		}
-		loadData();
+		 loadData();
+		
 	}
 }
 
