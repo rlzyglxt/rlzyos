@@ -37,9 +37,9 @@
 					<button style="margin-left: 15px;" type="button" class="btn btn-default" data-toggle='modal' data-target='#addStaffAward'>
 						<i class="fa fa-plus-square"></i>奖金发放
 					</button>
-					<input type="text" id="searchInput" class="form-control"
+					<!-- <input type="text" id="searchInput" class="form-control"
 						style="width: 250px; display: inline-block; float: right;"
-						oninput="changeName(this)" placeholder="请输入搜索内容"/>
+						oninput="changeName(this)" placeholder="请输入搜索内容"/> -->
 				</div>
 				<div class="col-md-12">
 					<div id="loadingLayer" style="margin: 0 auto; width: 45px;">
@@ -201,7 +201,7 @@
 									<td><label>发放原因</label></td>
 										<td colspan="6"><textarea id="award_provideReason"
 											class="form-control"  name="award_provideReason"
-											style="width: 480px; border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
+											style="width: 480px; border: 1px solid #ccc;margin-top: 10px;"
 											rows="3" cols="62" placeholder="请输入发放原因"></textarea></td>
 								</tr>
 							</table>
@@ -210,7 +210,7 @@
 				</div>
 				<div class="modal-footer">
 					<button onclick="loadData()" type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-					<button id="addStaffAwardBtn" onclick="addStaffAward()"  type="button" class="btn btn-primary" data-dismiss="modal">发放</button>
+					<button id="addStaffAwardBtn" onclick="addStaffAward()"  type="button" class="btn btn-primary">发放</button>
 				</div>
 			</div>
 			<!-- /.modal-content id="updateBtn" -->
