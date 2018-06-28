@@ -75,6 +75,12 @@ var loadData = function() {
 			queryConditionTemp.pageCount = result.pageCount;
 			queryConditionTemp.totalCount = result.totalCount;
 			queryConditionTemp.staff_number = result.staff_number;
+			$("#staff_number").val("");
+			$("#staff_addname").val("");
+			$("#award_amount").val("");
+			$("#award_provideTime").val("");
+			$("#staff_nordepaterment").val("");
+			$("#award_provideReason").val("");
 			$('#loadingLayer').hide();
 			$('#mainPanel').show();
 		}
@@ -139,7 +145,7 @@ function getName(event) {
 				var staff_name = $("#staff_addname");
 				var staff_confirm = $("#addStaffAwardBtn");
 				if(result==""){
-					staff_name.val("没有该员工");
+					staff_name.val("该员工不存在的");
 				}else{
 					console.log("姓名为"+result[0].staff_name);
 					staff_name.val(result[0].staff_name);
@@ -162,8 +168,28 @@ function addStaffAward(){
 	var award_provideTime = $("#award_provideTime").val();
 	var award_provideDepartment = $("#staff_nordepaterment").val();
 	var award_provideReason = $("#award_provideReason").val();
+	var staff_number = $("#staff_number").val();
 	
 	var addStaffAwardBtn =  $("#addStaffAwardBtn").val();
+	//js校验
+	var reg = new RegExp("^[0-9]*$");
+	 if(!reg.test(award_amount) || award_amount.length>5){ 
+		$("#award_amount").val("");
+		 toastr.error("金额请输入5位以内的数字！");
+		 return false;
+	}else if(!reg.test(staff_number) || staff_number.length>5){ 
+		 toastr.error("工号请输入5位数字以内！");
+		 $("#staff_number").val("");
+		 return false;
+	}else if($("#staff_addname").val()=="该员工不存在的"){
+		 $("#staff_number").val("");
+		 toastr.error("该员工不存在！");
+	 }else if(award_provideReason.length > 25){
+		 $("#award_provideReason").val("");
+		 toastr.error("输入的字数不可大于25个");
+		 return false;
+	 }else {
+		 $('#addStaffAward').modal('hide');
 	$.ajax({
 		type : "POST",
 		url : "/rlzyos/staff/staffAward_addStaffAward?award_staff="
@@ -186,6 +212,7 @@ function addStaffAward(){
 			loadData();
 		}
 	});
+	 }
 }
 
 

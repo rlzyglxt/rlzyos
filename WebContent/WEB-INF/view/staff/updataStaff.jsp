@@ -313,7 +313,7 @@
 		</div>
 	</div>
 </div>
-<!--添加添加员工履历模态框 start  -->
+<!--添加员工履历模态框 start  -->
 	<div class="modal fade" id="addStaffExp_Modal" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel">
 		<div class="modal-dialog" role="document">
@@ -359,7 +359,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default"
-						onclick="clear_iquery()" >清空</button><!-- data-dismiss="modal" -->
+						onclick="clear_iquery1()" >清空</button><!-- data-dismiss="modal" -->
 					<button type="button" class="btn btn-primary"
 						onclick="add_oneStaffExp()">添加</button>
 				</div>
@@ -415,7 +415,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default "
-						onclick="clear_iquery()" data-dismiss="modal">清空</button>
+						onclick="clear_iquer2()">清空</button>
 					<button type="button" class="btn btn-primary"
 						onclick="add_oneStaffAgreement()" data-dismiss='modal'>添加</button>
 				</div>
@@ -470,7 +470,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default "
-						onclick="clear_iquery()" data-dismiss="modal">清空</button>
+						onclick="clear_iquery3()">清空</button>
 					<button type="button" class="btn btn-primary"
 						onclick="add_oneStaffAward()" data-dismiss='modal'>添加</button>
 				</div>
@@ -496,7 +496,7 @@
 							<tbody>
 								<tr>
 									<td><label class="staff_info_label">调入部门</label></td>
-									<td><select class="form-control staffMove_nowdepartment" id="staff_nowdepaterment">
+									<td><select class="form-control staffMove_nowdepartment" id="staff_wdepaterment">
 										</select></td>
 								<!-- 	<td><input style="font-size: 12px;" id="staffMove_nowdepartment"
 										class="staffMove_nowdepartment" type="text"></td>   -->
@@ -531,7 +531,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default "
-						onclick="clear_iquery()" data-dismiss="modal">清空</button>
+						onclick="clear_iquery4()">清空</button>
 					<button type="button" class="btn btn-primary"
 						onclick="add_oneStaffMove()" data-dismiss='modal'>添加</button>
 				</div>
@@ -579,7 +579,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default "
-						onclick="clear_iquery()" data-dismiss="modal">清空</button>
+						onclick="clear_iquery5()">清空</button>
 					<button type="button" class="btn btn-primary"
 						onclick="add_oneStaffTrain()" data-dismiss='modal'>添加</button>
 				</div>
@@ -636,7 +636,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default "
-						onclick="clear_iquery()" data-dismiss="modal">清空</button>
+						onclick="clear_iquery6()">清空</button>
 					<button type="button" class="btn btn-primary"
 						onclick="updata_Exp()">修改</button>
 				</div>
@@ -693,7 +693,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default "
-						onclick="clear_iquery()" data-dismiss="modal">清空</button>
+						onclick="clear_iquery7()">清空</button>
 					<button type="button" class="btn btn-primary"
 						onclick="updata_Agreement()">修改</button>
 				</div>
@@ -748,7 +748,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default "
-						onclick="clear_iquery()" data-dismiss="modal">清空</button>
+						onclick="clear_iquer8()">清空</button>
 					<button type="button" class="btn btn-primary"
 						onclick="updata_Award()" >添加</button>
 				</div>
@@ -808,7 +808,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default "
-						onclick="clear_iquery()" data-dismiss="modal">清空</button>
+						onclick="clear_iquery9()">清空</button>
 					<button type="button" class="btn btn-primary"
 						onclick="updata_Move()">添加</button>
 				</div>
@@ -856,7 +856,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default "
-						onclick="clear_iquery()" data-dismiss="modal">清空</button>
+						onclick="clear_iquery()">清空</button>
 					<button type="button" class="btn btn-primary"
 						onclick="updata_Train()">添加</button>
 				</div>

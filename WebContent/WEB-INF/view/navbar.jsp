@@ -82,14 +82,15 @@
 						id="USER_NAME"><%=request.getSession().getAttribute("user_name")%></span>
 						<i class="icon-submenu lnr lnr-chevron-down"></i>
 				</a>
-					<ul class="dropdown-menu">
-						<li data-toggle="modal" data-target="#updatePassword"><a
-							href="#"> <i class="lnr lnr-lock"></i> <span>修改密码</span>
-						</a></li>
-						<li><a href="<%=basePath%>user/user_logout"> <i	class="lnr lnr-exit"></i> <span>退出登录</span>
+			<ul class="dropdown-menu">
+				<li data-toggle="modal" data-target="#updatePassword">
+				<a> <i class="lnr lnr-lock"></i> <span>修改密码</span>
+				</a></li>
+				<li><a href="<%=basePath%>user/user_logout"> 
+				<i	class="lnr lnr-exit"></i><span>退出登录</span>
 
-						</a></li>
-					</ul></li>
+				</a></li>
+			</ul></li>
 				<!--  -->
 			</ul>
 		</div>

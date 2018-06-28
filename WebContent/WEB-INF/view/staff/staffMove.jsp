@@ -36,9 +36,9 @@
 					 class="btn btn-default" data-toggle='modal' data-target='#addStaffMove'>
 						<i class="fa fa-plus-square"></i>新增调配
 					</button>
-					<input type="text" id="searchInput" class="form-control"
+					<!-- <input type="text" id="searchInput" class="form-control"
 						style="width: 250px; display: inline-block; float: right;"
-						oninput="changeName(this)" placeholder="请输入搜索内容"/>
+						oninput="changeName(this)" placeholder="请输入搜索内容"/> -->
 				</div>
 				<div class="col-md-12">
 					<div id="loadingLayer" style="margin: 0 auto; width: 45px;">
@@ -132,13 +132,13 @@
 									<td><input id="staffMove_staff" name="staffMove.staffMove_staff" oninput="getValue(this)" 
 									placeholder="请输入工号" type="text" class="form-control"></td>
 									<td><label>姓名：</label></td>
-									<td><input id="staff_addname" name="staffMove.staff_addname" type="text" value="没有该员工" class="form-control"></td>
+									<td><input  readonly="readonly" id="staff_addname" name="staffMove.staff_addname" type="text" value="没有该员工" class="form-control"></td>
 								</tr>
 								<tr><td><label>现部门：</label></td>
-									<td><input id="staffMove_bfdepartment" name="staffMove.staffMove_bfdepartment"
+									<td><input readonly="readonly" id="staffMove_bfdepartment" name="staffMove.staffMove_bfdepartment"
 										type="text" class="staff_OverTime form-control" placeholder="请输入现部门"></td>
 									<td><label>现职务：</label></td>
-									<td><input id="staffMove_bfduty" name="staffMove.staffMove_bfduty"
+									<td><input readonly="readonly" id="staffMove_bfduty" name="staffMove.staffMove_bfduty"
 										type="text" class="form-control" placeholder="请输入现职务"></td>
 								</tr>
 								<tr><td><label>调入部门：</label></td>
@@ -166,7 +166,7 @@
 				</div>
 				<div class="modal-footer">
 					<button onclick="loadData()" type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-					<button id="addStaffMoveBtn" onclick="addStaffMove()"  type="button" class="btn btn-primary" data-dismiss="modal">添加</button>
+					<button id="addStaffMoveBtn" onclick="addStaffMove()"  type="button" class="btn btn-primary">添加</button>
 				</div>
 			</div>
 			<!-- /.modal-content id="updateBtn" -->

@@ -14,13 +14,16 @@ function add_oneStaffExp() {
 	var str2 = staffExp_overTime.replace(time,"");
 	if(staffExp_address.length>10){ 
 		 toastr.error("请输入20个字以内的地址");
-		 document.querySelector(".staffExp_address").val("");
+		 $(".staffExp_address").val("");
 		 return false;
 	}else if (str1 > str2){//判断起始时间不能大于结束时间
 		toastr.error("请输入时间顺序有误");
+		 $(".staffExp_startTime").val("");
+		 $(".staffExp_overTime").val("");
 		return false;
 	}else if (staffExp_remark.length > 20){
 		toastr.error("备注不可超过20字");
+		$(".staffExp_remark").val("");
 		return false;
 	}else{
 		$('#addStaffExp_Modal').modal('hide');
@@ -37,9 +40,14 @@ function add_oneStaffExp() {
 				success : function(data) {
 					/*alert("一条履历添加成功");*/
 					toastr.success('添加学习成功！');
+					$(".staffExp_address").val("");
+					$(".staffExp_startTime").val("");
+					$(".staffExp_overTime").val("");
+					$(".staffExp_remark").val("");
 					show_staffExpAjax(staff_id);
 				}
 			});
+	}
 }
 //长表格添加员工合同一条
 function add_oneStaffAgreement() {
@@ -58,16 +66,16 @@ function add_oneStaffAgreement() {
 		toastr.error("当前表不能有空");
 	}else if(agreement_content.length>30){ 
 		 toastr.error("请输入30个字以内的内容");
-		 $("#updataagreement_content").val("");
+		 $(".agreement_content").val("");
 		 return false;
 	}else if (str1 > str2){//判断起始时间不能大于结束时间
-		$("#updataagreement_startTime").val("");
-		 $("#updataagreement_overtTime").val("");
+		$(".agreement_startTime").val("");
+		$(".agreement_overtTime").val("");
 		toastr.error("请输入时间顺序有误");
 		
 		return false;
 	}else if (agreement_remark.length > 20){
-		$("#updataagreement_remark").val("");
+		$(".agreement_remark").val("");
 		toastr.error("备注不可超过20字");
 		return false;
 	}else {
@@ -84,10 +92,15 @@ function add_oneStaffAgreement() {
 				},
 				success : function(data) {
 					toastr.success('合同添加成功！');
+					$(".agreement_startTime").val("");
+					$(".agreement_overtTime").val("");
+					$(".agreement_content").val("");
+					$(".agreement_remark").val("");
 					show_staffAgreeAjax(staff_id);
 				}
 			});
 }
+	}
 //长表格添加员工奖金记录一条
 function add_oneStaffAward() {
 	console.log("员工奖金添加");
@@ -100,11 +113,11 @@ function add_oneStaffAward() {
 	//js校验
 	var reg = new RegExp("^[0-9]*$");
 	 if(!reg.test(award_amount) || award_amount.value.length>5){ 
-		$("#updataaward_amount").val("");
+		 $(".award_amount").val("");
 		 toastr.error("部门人数请输入5位以内的数字！");
 		 return false;
 	 }else if(award_provideReason.length > 25){
-		 $("#updataaward_provideReason").val("");
+		 $(".award_provideReason").val("");
 		 toastr.error("输入的字数不可大于25个");
 		 return false;
 	 }else {
@@ -121,9 +134,14 @@ function add_oneStaffAward() {
 				},
 				success : function(data) {
 					toastr.success('奖金发放成功！');
+					 $(".award_amount").val("");
+					$(".award_provideTime").val("");
+					$(".award_provideDepartment").val("");
+					$(".award_provideReason").val("");
 					show_staffAwardAjax(staff_id);
 				}
 			});
+	 }
 }
 
 //长表格添加员工调动记录一条
@@ -139,13 +157,16 @@ function add_oneStaffMove() {
 	var staffMove_bfduty = $(".staff_duty").val();
 	//js校验
 	if(staffMove_remark.length > 25){
-		$("#staffMove_remark").val("");
+		$(".staffMove_remark").val("");
 		 toastr.error("输入的字数不可大于25个");
 		 return false;
-	}else if(staffMove_nowdepartment.value==staffMove_bfdepartment.value && staffMove_nowduty.value==staffMove_bfduty.value){
-		toastr.error("调动无效");
-		return false;
-	}else{
+	}else if(staffMove_nowdepartment==staffMove_bfdepartment && staffMove_nowduty==staffMove_bfduty){
+		/*if(staffMove_nowduty==staffMove_bfduty){*/
+			toastr.error("调动无效,请检查前后部门与职位是否变化");
+			$(".staffMove_nowdepartment").val("");
+			$(".staffMove_nowduty").val("");
+			return false;	
+	}else /*if(staffMove_nowduty!=staffMove_bfduty)*/{
 		$('#addMove_Modal').modal('hide');
 	$.ajax({
 				type : "POST",
@@ -165,10 +186,15 @@ function add_oneStaffMove() {
 				},
 				success : function(data) {
 					toastr.success('调动记录成功！');
+					$(".staffMove_nowdepartment").val("");
+					$(".staffMove_nowduty").val("");
+					$(".staffMove_time").val("");
+					$(".staffMove_remark").val("");
 					show_staffMoveAjax(staff_id);
 				}
 			});
-}
+	}
+	}
 
 //长表格添加员工培训记录一条
 function add_oneStaffTrain() {
@@ -181,11 +207,11 @@ function add_oneStaffTrain() {
 
 	var reg = new RegExp("^[0-9]*$");
 	if(!reg.test(stafftrain_score) || stafftrain_score.length>5){ 
-		 $("#stafftrain_score").val("");
+		 $(".stafftrain_score").val("");
 		 toastr.error("请输入3位数字以内！");
 		return false; 
 	}else if(stafftrain_certificate.length>8){
-		$("#stafftrain_certificate").val("");
+		$(".stafftrain_certificate").val("");
 		toastr.error("请输入8个字以内！");
 	}else {
 		$('#updataStaffExp_Modal').modal('hide');
@@ -200,7 +226,11 @@ function add_oneStaffTrain() {
 				},
 				success : function(data) {
 					toastr.success('培训记录添加成功！');
+					$(".stafftrain_train").val("");
+					$(".stafftrain_score").val("");
+					$(".stafftrain_certificate").val("");
 					show_staffTrainAjax(staff_id);
 				}
 			});
+	}
 }

@@ -57,7 +57,12 @@ var loadData = function() {
 			queryConditionTemp.pageCount = result.pageCount;
 			queryConditionTemp.totalCount = result.totalCount;
 			queryConditionTemp.staffExp_staff = result.staffExp_staff;
-		
+			$("#staffExp_addstaff").val("");
+			$("#staff_addname").val("");
+			$("#addstaffExp_address").val("");
+			$("#addstaffExp_startTime").val("");
+			$("#addstaffExp_overTime").val("");
+			$("#addstaffExp_remark").val("");
 			$('#loadingLayer').hide();
 			$('#mainPanel').show();
 		}
@@ -162,6 +167,7 @@ function getName(event){
 	});
 }
 function addStaffExp(){
+	
 	for (var i = 0; i < document.addstaffExpForm.elements.length - 1; i++) {
 		if (document.addstaffExpForm.elements[i].value == "") {
 			toastr.error("当前表单不能有空项");
@@ -186,10 +192,39 @@ function addStaffExp(){
 	var staffExp_startTime = $("#addstaffExp_startTime").val();
 	var staffExp_overTime = $("#addstaffExp_overTime").val();
 	var staffExp_remark = $("#addstaffExp_remark").val();
+	var staffExp_staff = $("#staffExp_addstaff").val();
+	var staffExp_staffname = $("#staff_addname").val();
 	
 	var addStaffExpBtn =  $("#addStaffExpBtn").val();
 	/*alert("员工id"+addStaffExpBtn);*/
 	/*alert("员工结束时间"+staffExp_overTime);*/
+	//字符验证
+	var time = /[^0-9]/ig;
+	var reg = new RegExp("^[0-9]*$");
+	var str1 = staffExp_startTime.replace(time,"");
+	var str2 = staffExp_overTime.replace(time,"");
+	if(!reg.test(staffExp_staff) || staffExp_staff.length>5){ 
+		 toastr.error("工号请输入5位数字以内！");
+		 $("#staffExp_addstaff").val("");
+		 return false;
+	}else if(staffExp_staffname=="没有该员工"){
+		 toastr.error("你输入的工号没有对应的员工,请重新输入！");
+		 $("#staffExp_addstaff").val("");
+		return false;
+	}else if(staffExp_address.length>10){ 
+		 toastr.error("请输入20个字以内的地址");
+		 document.querySelector(".staffExp_address").val("");
+		 return false;
+	}else if (str1 > str2){//判断起始时间不能大于结束时间
+		toastr.error("请输入时间顺序有误");
+		$("#addstaffExp_startTime").val("");
+		$("#addstaffExp_overTime").val("");
+		return false;
+	}else if (staffExp_remark.length > 20){
+		toastr.error("备注不可超过20字");
+		return false;
+	}else{
+		$('#addStaffExp').modal('hide');
 	$.ajax({
 		type : "POST",
 		url : "/rlzyos/staff/staffExp_addStaffExp?staffExp_staff="
@@ -214,6 +249,7 @@ function addStaffExp(){
 			loadData();
 		}
 	});
+	}
 }
 
 

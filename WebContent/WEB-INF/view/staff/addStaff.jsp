@@ -100,7 +100,7 @@
 								<td><label class="staff_info_label">学历</label></td>
 								<td><select class="form-control"
 									name="staff.staff_record">
-										<option></option>
+										
 										<option value="硕士">硕士</option>
 										<option value="本科">本科</option>
 										<option value="专科">专科</option>
@@ -112,7 +112,7 @@
 								<td><label class="staff_info_label">现部门</label></td>
 								<td><select class="form-control" id="staff_depaterment"
 									name="staff.staff_depaterment">
-										<option></option>
+										
 										<!--<option value="一部门">一部门</option>
 										<option value="二部门">二部门</option> -->
 								</select></td>
@@ -129,7 +129,7 @@
 								<td><label class="staff_info_label">职务</label></td>
 								
 								<td><select class="form-control" name="staff.staff_duty">
-										<option></option>
+										
 										<option value="管理员">管理员</option>
 										<option value="经理">经理</option>
 										<option value="员工">员工</option>
@@ -348,7 +348,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default "
-						onclick="clear_iquery()" data-dismiss="modal">清空</button>
+						onclick="clear_iquery1()">清空</button>
 					<button type="button" class="btn btn-primary"
 						onclick="add_staffExp()">添加</button>
 				</div>
@@ -388,7 +388,7 @@
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">内容</label></td>
-										<td colspan="6"><textarea id="staffAgreement_remark" placeholder="请输入内容"
+										<td colspan="6"><textarea id="staffAgreement_content" placeholder="请输入内容"
 											class="agreement_content" type="text"
 											style="width: 480px; border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
 											rows="3" cols="62"></textarea></td>
@@ -406,7 +406,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default "
-						onclick="clear_iquery()" data-dismiss="modal">清空</button>
+						onclick="clear_iquery2()" >清空</button>
 					<button type="button" class="btn btn-primary"
 						onclick="add_staffAgreement()">添加</button>
 				</div>
@@ -464,9 +464,9 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default "
-						onclick="clear_iquery()" data-dismiss="modal">清空</button>
+						onclick="clear_iquer3()">清空</button>
 					<button type="button" class="btn btn-primary"
-						onclick="add_staffAward()" data-dismiss='modal'>添加</button>
+						onclick="add_staffAward()" >添加</button>
 				</div>
 			</div>
 		</div>
@@ -526,7 +526,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default "
-						onclick="clear_iquery()" data-dismiss="modal">清空</button>
+						onclick="clear_iquer4()">清空</button>
 					<button type="button" class="btn btn-primary"
 						onclick="add_staffMove()">添加</button>
 				</div>
@@ -574,7 +574,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default "
-						onclick="clear_iquery()" data-dismiss="modal">清空</button>
+						onclick="clear_iquer5()">清空</button>
 					<button type="button" class="btn btn-primary"
 						onclick="add_staffTrain()">添加</button>
 				</div>

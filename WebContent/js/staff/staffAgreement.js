@@ -89,6 +89,11 @@ var loadData = function() {
 			queryConditionTemp.totalCount = result.totalCount;
 			queryConditionTemp.agreement_startTime = result.agreement_startTime;
 			queryConditionTemp.agreement_overtTime = result.agreement_overtTime;
+			$("#staff_name").val("");
+			$("#staff_number").val("");
+			$("#addstaffAgreement_StartTime").val("");
+			$("#addstaffAgreement_OverTime").val("");
+			$("#addstaff_contactsRemark").val("");
 			$('#loadingLayer').hide();
 			$('#mainPanel').show();
 		}
@@ -210,32 +215,69 @@ function addStaffStaffAgreement(){
 	var staffAgreement_StartTime = $("#addstaffAgreement_StartTime").val();
 	var staffAgreement_OverTime = $("#addstaffAgreement_OverTime").val();
 	var staff_contactsRemark = $("#addstaff_contactsRemark").val();
+	var staff_agreementremark = $("#staff_agreementremark").val();
 	
+	var staff_number = $("#staff_number").val();
+	var staff_name = $("#staff_name").val();
 	var addStaffAgreementBtn =  $("#addStaffStaffAgreementbtn").val();
     /*alert("员工id"+addStaffAgreementBtn);*/
 	/*alert("员工结束时间"+staff_contactsRemark);*/
-	$.ajax({
-		type : "POST",
-		url : "/rlzyos/staff/staffAgreement_addStaffAgreement?agreement_staff="
-				+ addStaffAgreementBtn,
-		data : {
-			"staffagreements[0].agreement_startTime" : staffAgreement_StartTime,
-			"staffagreements[0].agreement_overtTime" : staffAgreement_OverTime,
-			"staffagreements[0].agreement_content" : staff_contactsRemark,
-			"staffagreements[0].agreement_staff" : addStaffAgreementBtn,
-		},
-		success : function(data) {
-			toastr.success('添加成功！');
-			$("#updateLoadingDiv").addClass("hideDiv");
-			$("#updateContent").removeClass("hideDiv");
-			$("#staff_name").val("");
-			$("#staff_number").val("");
-			$("#addstaffAgreement_StartTime").val("");
-			$("#addstaffAgreement_OverTime").val("");
-			$("#addstaff_contactsRemark").val("");
-			loadData();
-		}
-	});
+	var time = /[^0-9]/ig;
+	var reg = new RegExp("^[0-9]*$");
+	var str1 = staffAgreement_StartTime.replace(time,"");
+	var str2 = staffAgreement_OverTime.replace(time,"");
+	if(staffAgreement_StartTime == ""|| staffAgreement_OverTime == "" || staff_contactsRemark==""){
+		toastr.error("当前表不能有空");
+	}else if(!reg.test(staff_number) || staff_number.length>5){ 
+		 toastr.error("工号请输入5位数字以内！");
+		 $("#staff_number").val("");
+		 return false;
+	}else if(staff_name=="没有该员工"){
+		 toastr.error("你输入的工号没有对应的员工,请重新输入！");
+		 $("#staff_number").val("");
+		 $("#staff_name").val("");
+		return false;
+	}else if(staff_contactsRemark.length>40){ 
+		 toastr.error("请输入40个字以内的内容");
+		 $("#addstaff_contactsRemark").val("");
+		 return false;
+	}else if (str1 >= str2){//判断起始时间不能大于结束时间
+		
+		$("#addstaffAgreement_StartTime").val("");
+		 $("#addstaffAgreement_OverTime").val("");
+		toastr.error("请输入时间顺序有误,请重新输入");
+		
+		return false;
+	}else if (staff_agreementremark.length > 20){
+		$("#staff_agreementremark").val("");
+		toastr.error("备注不可超过20字");
+		return false;
+	}else {
+		$('#addAgreement').modal('hide');
+		$.ajax({
+			type : "POST",
+			url : "/rlzyos/staff/staffAgreement_addStaffAgreement?agreement_staff="
+					+ addStaffAgreementBtn,
+			data : {
+				"staffagreements[0].agreement_startTime" : staffAgreement_StartTime,
+				"staffagreements[0].agreement_overtTime" : staffAgreement_OverTime,
+				"staffagreements[0].agreement_content" : staff_contactsRemark,
+				"staffagreements[0].agreement_remark" : staff_agreementremark,
+				"staffagreements[0].agreement_staff" : addStaffAgreementBtn,
+			},
+			success : function(data) {
+				toastr.success('添加成功！');
+				$("#updateLoadingDiv").addClass("hideDiv");
+				$("#updateContent").removeClass("hideDiv");
+				$("#staff_name").val("");
+				$("#staff_number").val("");
+				$("#addstaffAgreement_StartTime").val("");
+				$("#addstaffAgreement_OverTime").val("");
+				$("#addstaff_contactsRemark").val("");
+				loadData();
+			}
+		});
+	}
 }
 
 

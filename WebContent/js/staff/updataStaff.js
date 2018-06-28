@@ -582,12 +582,12 @@ function checkIt(value) {
 }
 
 
-function clear_iquery() {
+/*function clear_iquery() {
 	console.log("这是清空");
 	$(" input[ type='text' ]").val('');
 	$(" textarea").val('');
 	get_staffDetails(staff_id);
-}
+}*/
 
 function isBack() {
 	if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
@@ -595,5 +595,85 @@ function isBack() {
 	} else {
 		return false;
 	}
+}
+function clear_iquery1() {
+	console.log("这是清空1");
+	 $("#staffExp_address").val("");
+	 $("#staffExp_startTime").val("");
+	 $("#staffExp_remark").val("");
+	 $("#staffExp_overTime").val("");
+}
+function clear_iquery2() {
+	console.log("这是清空2");
+	$("#agreement_startTime").val("");
+	 $("#agreement_overtTime").val("");
+	 $("#agreement_content").val("");	
+	 $("#agreement_remark").val("");
+	/* $(" textarea").val('');*/
+}
+function clear_iquery3() {
+	console.log("这是清空3");
+	$("#award_amount").val("");
+	 $("#award_provideTime").val("");
+	 $("#award_provideDepartment").val("");	
+	 $("#award_provideReason").val("");
+}
+function clear_iquery4() {
+	console.log("这是清空4");
+	$("#staff_wdepaterment").val("");
+	$("#staffMove_nowduty").val("");
+	$("#staffMove_time").val("");
+	$("#staffMove_remark").val("");
+}
+function clear_iquery5() {
+console.log("这是清空5");
+	console.log("这是清空6");
+	$(" textarea").val('');
+	$("#stafftrain_train").val("");
+	$("#stafftrain_score").val("");
+	$("#stafftrain_certificate").val("");
+}
+function clear_iquery6() {
+	console.log("这是清空6");
+/*	$(" input[ type='text' ]").val('');
+	$(" textarea").val('');*/
+	$("#updatastaffExp_address").val("");
+	$("#updatastaffExp_startTime").val("");
+	$("#updatastaffExp_overTime").val("");
+	$("#updatastaffExp_remark").val("");
+}
+function clear_iquery7() {
+	console.log("这是清空7");
+/*	$(" input[ type='text' ]").val('');
+	$(" textarea").val('');*/
+	$("#updataagreement_startTime").val("");
+	$("#updataagreement_overtTime").val("");
+	$("#updataagreement_content").val("");
+}
+function clear_iquery8() {
+	console.log("这是清空8");
+/*	$(" input[ type='text' ]").val('');
+	$(" textarea").val('');*/
+	$("#updataaward_amount").val("");
+	$("#updataaward_provideTime").val("");
+	$("#updataaward_provideDepartment").val("");
+	$("#updataaward_provideReason").val("");
+}
+function clear_iquery9() {
+	console.log("这是清空5");
+/*	$(" input[ type='text' ]").val('');
+	$(" textarea").val('');*/
+	$("#updatastaffMove_nowdepartment").val("");
+	$("#updatastaffMove_nowduty").val("");
+	$("#updatastaffMove_time").val("");
+	$("#updatastaffMove_remark").val("");
+}
+function clear_iquery10() {
+	console.log("这是清空5");
+/*	$(" input[ type='text' ]").val('');
+	$(" textarea").val('');*/
+	$("#updatastafftrain_train").val("");
+	$("#updatastafftrain_score").val("");
+	$("#updatastafftrain_certificate").val("");
 }
 

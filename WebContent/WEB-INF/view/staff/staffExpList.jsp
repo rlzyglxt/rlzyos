@@ -39,9 +39,9 @@
 					<button style="margin-left: 15px;" type="button" class="btn btn-default" data-toggle='modal' data-target='#addStaffExp'>
 						<i class="fa fa-plus-square"></i>新增履历
 					</button>
-					<input type="text" id="searchInput" class="form-control"
+					<!-- <input type="text" id="searchInput" class="form-control"
 						style="width: 250px; display: inline-block; float: right;"
-						oninput="changeName(this)" placeholder="请输入搜索内容"/>
+						oninput="changeName(this)" placeholder="请输入搜索内容"/> -->
 				</div>
 				<div class="col-md-12">
 					<div id="loadingLayer" style="margin: 0 auto; width: 45px;">
@@ -130,8 +130,8 @@
 									<td><input id="staffExp_staff" name="staffExp_staff"
 										type="text" class="form-control" readonly="readonly"></td>
 									<td><label>姓名：</label></td>
-									<td><input id="staff_name" name="staff_name"
-										type="text" class="form-control" readonly="readonly"></td>
+									<td><input readonly="readonly" id="staff_name" name="staff_name"
+										type="text" class="form-control" ></td>
 								</tr>
 								<tr>
 									<td><label>工作地点：</label></td>
@@ -186,7 +186,7 @@
 									<td><input id="staffExp_addstaff" name="staffExp.staffExp_staff" oninput="getName(this)" 
 									placeholder="请输入工号" type="text" class="form-control"></td>
 									<td><label>姓名：</label></td>
-									<td><input id="staff_addname" name="staffExp.staff_addname" type="text" value="没有发该员工" class="form-control"></td>
+									<td><input  readonly="readonly" id="staff_addname" name="staffExp.staff_addname" type="text" value="请输入对应的工号" class="form-control"></td>
 								</tr>
 								<tr>
 									<td><label>工作地点：</label></td>
@@ -209,7 +209,7 @@
 				</div>
 				<div class="modal-footer">
 					<button onclick="loadData()" type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-					<button id="addStaffExpBtn" onclick="addStaffExp()"  type="button" class="btn btn-primary" data-dismiss="modal">添加</button>
+					<button id="addStaffExpBtn" onclick="addStaffExp()"  type="button" class="btn btn-primary">添加</button>
 				</div>
 			</div>
 			<!-- /.modal-content id="updateBtn" -->

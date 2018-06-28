@@ -170,7 +170,7 @@
 	
 		<!-- 新建添加合同模态框 start——------------------------------------------ -->
 <div class="modal fade" id="addAgreement" tabindex="-1" role="dialog"	aria-labelledby="myModalLabel">
-		<div class="modal-dialog" role="document" style="width: 800px;">
+		<div class="modal-dialog" role="document" style="width: 700px;">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"
@@ -203,6 +203,7 @@
 								<tr><td><label>合同结束时间：</label></td>
 									<td><input id="addstaffAgreement_OverTime" name="staffAgreement_OverTime"
 										type="text" class="Time form-control" placeholder="请输入开始时间"></td>
+								</tr>
 								<tr>
 									<td><label class="staff_info_label">合同内容</label></td>
 									<td colspan="6"><textarea id="addstaff_contactsRemark"
@@ -210,6 +211,10 @@
 											style="width: 480px; border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
 											name="policeman.staff_contactsRemark" rows="3" cols="62"></textarea>
 									</td>
+									<tr><td><label>备注：</label></td>
+									<td><input id="staff_agreementremark" name="staff_agreementremark"
+										type="text" class="form-control" placeholder="请输入备注"></td>
+								</tr>
 								</tr>
 							</table>
 						</form>
@@ -218,7 +223,7 @@
 				<div class="modal-footer">
 					<button onclick="loadData()" type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
 <!-- 					<button onclick="reset()" type="button" class="btn btn-danger">清空</button> -->
-					<button id="addStaffStaffAgreementbtn" onclick="addStaffStaffAgreement(this)"  type="button" class="btn btn-primary" data-dismiss="modal">添加</button>
+					<button id="addStaffStaffAgreementbtn" onclick="addStaffStaffAgreement(this)"  type="button" class="btn btn-primary">添加</button>
 				</div>
 			</div>
 			<!-- /.modal-content id="updateBtn" -->

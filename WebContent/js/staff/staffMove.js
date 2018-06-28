@@ -38,9 +38,33 @@ function addStaffMove() {
 	var staffMove_nowduty = $("#staffMove_nowduty").val();
 	var staffMove_timee = $("#staffMove_timee").val();
 	var staffMove_remark =  $("#staffMove_remark").val();
+	var staffMove_staff =  $("#staffMove_staff").val();
+	var staff_addname =  $("#staff_addname").val();
 	
 	var addStaffMoveBtn =  $("#addStaffMoveBtn").val();
-	console.log(staffMove_time);
+	var reg = new RegExp("^[0-9]*$");
+	
+	//js校验
+	if(!reg.test(staffMove_staff) || staffMove_staff.length>5){ 
+		 toastr.error("工号请输入5位数字以内！");
+		 $("#staffMove_staff").val("");
+		 return false;
+	}else if(staff_addname=="没有该员工"){
+		 toastr.error("你输入的工号没有对应的员工,请重新输入！");
+		 $("#staff_addname").val("");
+		return false;
+	}else if(staffMove_remark.length > 25){
+		$("#staffMove_remark").val("");
+		 toastr.error("输入的字数不可大于25个");
+		 return false;
+	}else if(staffMove_nowdepartment==staffMove_bfdepartment && staffMove_nowduty==staffMove_bfduty){
+		/*if(staffMove_nowduty==staffMove_bfduty){*/
+			toastr.error("调动无效,请检查前后部门与职位是否变化");
+			return false;	
+	}else {/*if(staffMove_nowdepartment!=staffMove_bfdepartment)
+		if(staffMove_nowduty!=staffMove_bfduty){
+		*/
+		$('#addStaffMove').modal('hide');
 	/*alert("员工id"+addStaffMoveBtn);*/
 	$.ajax({
 		type : "POST",
@@ -62,8 +86,8 @@ function addStaffMove() {
 			loadData();
 		}
 	});
+	}
 }
-
 
 var queryConditionTemp = {
 	"currPage" : "1",

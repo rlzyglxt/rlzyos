@@ -113,7 +113,8 @@ function Add_Staff() {
 						var record = document.getElementsByName("staff.staff_record")[0].value;//学历
 						var cardid = document.getElementsByName("staff.staff_cardid")[0].value;//身份证
 						var tel = document.getElementsByName("staff.staff_tel")[0].value;//电话
-						var address = document.getElementsByName("staff.staff_address")[0].value;//电话
+						var address = document.getElementsByName("staff.staff_address")[0].value;//地址
+						var departement = document.getElementsByName("staff.staff_depaterment")[0].value;//地址
 						$.ajax({
 							type : "POST",
 							url : "/rlzyos/staff/staffMove_getValueByNumber",
@@ -122,14 +123,15 @@ function Add_Staff() {
 							},
 							success : function(data) {
 								var result = JSON.parse(data);
-								if(number==result[0].staff_number){
+								if(number==result.staff_number){
 									toastr.error('该工号已存在，不可再添加！');
 									return false;
-								}else if (number == "" || name == "" || duty == "" || record == "" || cardid == "" || tel == "" || address =="") {
-									toastr.error('该表单不可有空项！');
+								}else if (number == "" || name == "" || duty == "" || record == "" || cardid == "" || tel == "" || address =="" || departement =="") {
+									toastr.error('请把必填项填写完！');
 									return false;
+								}else {
+									addStaff_Info(url);
 								}
-								addStaff_Info(url);
 							}
 					});
 						
@@ -249,13 +251,16 @@ function add_staffExp() {
 	var str2 = staffExp_overTime.replace(time,"");
 	if(staffExp_address.length>10){ 
 		 toastr.error("请输入20个字以内的地址");
-		 document.querySelector(".staffExp_address").val("");
+		 $(".staffExp_address").val("");
 		 return false;
 	}else if (str1 > str2){//判断起始时间不能大于结束时间
 		toastr.error("请输入时间顺序有误");
+		 $(".staffExp_startTime").val("");
+		 $(".staffExp_overTime").val("");
 		return false;
 	}else if (staffExp_remark.length > 20){
 		toastr.error("备注不可超过20字");
+		$(".staffExp_remark").val("");
 		return false;
 	}else{
 		$('#addStaffExp_Modal').modal('hide');
@@ -381,7 +386,7 @@ function add_staffAgreement() {
 		
 		return false;
 	}else if (staffAgreement_remark.length > 20){
-		$("#staffAgreement_remark").val("");
+		$("#agreement_remark").val("");
 		toastr.error("备注不可超过20字");
 		
 		return false;
@@ -494,7 +499,7 @@ function add_staffAward() {
 	var reg = new RegExp("^[0-9]*$");
 	 if(!reg.test(staffAward_amount) || staffAward_amount.value.length>5){ 
 		$("#staffAward_amount").val("");
-		 toastr.error("部门人数请输入5位以内的数字！");
+		 toastr.error("金额请输入5位以内的数字！");
 		 return false;
 	 }else if(staffAward_provideReason.length > 25){
 		 $("#staffAward_provideReason").val("");
@@ -839,10 +844,40 @@ function getAge() {
 	console.log("年龄更新" + age);
 	return age;
 }
-function clear_iquery() {
-	console.log("这是清空");
-	$(" input[ type='text' ]").val('');
-	$(" textarea").val('');
+function clear_iquery1() {
+	console.log("这是清空1");
+	 $(".staffExp_startTime").val("");
+	 $(".staffExp_overTime").val("");
+	 $(".staffExp_address").val("");
+	 $(".staffExp_remark").val("");
 }
-
-
+function clear_iquery2() {
+	console.log("这是清空2");
+	$("#agreement_startTime").val("");
+	 $("#agreement_overtTime").val("");
+	 $("#staffAgreement_content").val("");	
+	 $("#agreement_remark").val("");
+	/* $(" textarea").val('');*/
+}
+function clear_iquery3() {
+	console.log("这是清空3");
+	$(".award_amount").val("");
+	 $(".award_provideTime").val("");
+	 $(".staff_qdepaterment").val("");	
+	 $(".award_provideReason").val("");
+}
+function clear_iquery4() {
+	console.log("这是清空4");
+	$(".staff_nowdepaterment").val("");
+	 $(".staffMove_nowduty").val("");
+	 $(".staffMove_time").val("");	
+	 $(".staffMove_remark").val("");
+}
+function clear_iquery5() {
+	console.log("这是清空5");
+/*	$(" input[ type='text' ]").val('');
+	$(" textarea").val('');*/
+	$(".stafftrain_train").val("");
+	$(".stafftrain_score").val("");
+	$(".stafftrain_certificate").val("");
+}

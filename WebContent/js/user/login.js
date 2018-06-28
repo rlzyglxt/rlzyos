@@ -7,8 +7,6 @@ window.onload=function() {
 		    var div2=$('.login-right');
 		    div2.animate({opacity:'0.5'},"slow");
 		  });
-	 
-		alert("载入");
 }
 //回车事件
 document.onkeydown = keyLogin;
@@ -17,11 +15,41 @@ function keyLogin(event) {
 		login();
 	}
 }
+
+//过滤一些敏感字符函数
+function filterSqlStr(value){
+	
+	var sqlStr=sql_str().split(',');
+	var flag=false;
+	for(var i=0;i<sqlStr.length;i++){
+		
+		if(value.toLowerCase().indexOf(sqlStr[i])!=-1){
+			flag=true;
+			break;			
+		}
+	}
+	return flag;
+}
+
+function sql_str(){
+	var str="and,delete,or,exec,insert,select,union,update,count,*,',join,>,<";
+	return str;
+
+}
 //登录
 function login() {
-	getXmlHttp();
+	
 	var user_username = document.getElementById("login_username").value;
 	var user_password = document.getElementById("login_password").value;
+	//过滤一些敏感字符函数
+	re= /select|update|delete|exec|count|'|"|=|;|>|<|%/i;
+	var str="and,delete,or,exec,insert,select,union,update,count,*,',join,>,<";
+	if ( filterSqlStr(user_username) || filterSqlStr(user_password)){
+		toastr.error("用户名或密码字符中包含了敏感字符"+sql_str()+",请重新输入！");
+		return false;
+	}else{
+		getXmlHttp();
+	
 	xmlHttp.open("POST","/rlzyos/user/user_login",true);
 	var formData = new FormData();
 	formData.append("user_username", user_username);
@@ -66,7 +94,7 @@ function login() {
 			}
 		}
 	}
-	
+}
 		
 }
 function getXmlHttp() {

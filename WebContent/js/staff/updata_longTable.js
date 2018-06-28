@@ -25,10 +25,12 @@ function updata_Exp(){
 	var str2 = staffExp_overTime.replace(time,"");
 	if(staffExp_address.length>10){ 
 		 toastr.error("请输入20个字以内的地址");
-		 document.querySelector(".staffExp_address").val("");
+		 $(".updatastaffExp_address").val("");
 		 return false;
 	}else if (str1 > str2){//判断起始时间不能大于结束时间
 		toastr.error("请输入时间顺序有误");
+		$(".updatastaffExp_startTime").val("");
+		$(".updatastaffExp_overTime").val("");
 		return false;
 	}else if (staffExp_remark.length > 20){
 		toastr.error("备注不可超过20字");
@@ -47,6 +49,10 @@ function updata_Exp(){
 				},
 				success:function(data){
 					toastr.success('修改履历成功！');
+					$(".updatastaffExp_address").val("");
+					$(".updatastaffExp_startTime").val("");
+					$(".updatastaffExp_overTime").val("");
+					$(".updatastaffExp_remark").val("");
 					show_staffExpAjax(staff_id);
 				},
 			});
@@ -79,18 +85,18 @@ function updata_Agreement(){
 	var str2 = agreement_overtTime.replace(time,"");
 	if(agreement_startTime == ""|| agreement_overtTime == "" || agreement_content==""){
 		toastr.error("当前表不能有空");
+		return false;
 	}else if(agreement_content.length>30){ 
 		 toastr.error("请输入30个字以内的内容");
-		 $("#updataagreement_content").val("");
+		 $(".updataagreement_content").val("");
 		 return false;
 	}else if (str1 > str2){//判断起始时间不能大于结束时间
-		$("#updataagreement_startTime").val("");
-		 $("#updataagreement_overtTime").val("");
+		$(".updataagreement_startTime").val("");
+		 $(".updataagreement_overtTime").val("");
 		toastr.error("请输入时间顺序有误");
-		
 		return false;
 	}else if (agreement_remark.length > 20){
-		$("#updataagreement_remark").val("");
+		$(".updataagreement_remark").val("");
 		toastr.error("备注不可超过20字");
 		return false;
 	}else {
@@ -106,6 +112,10 @@ function updata_Agreement(){
 				},
 				success:function(data){
 					toastr.success('修改合同成功！');
+					$(".updataagreement_startTime").val("");
+					$(".updataagreement_overtTime").val("");
+					$(".updataagreement_content").val("");
+					$(".updataagreement_remark").val("");
 					show_staffAgreeAjax(staff_id);
 				},
 			});
@@ -136,10 +146,11 @@ function updata_Award(){
 	var reg = new RegExp("^[0-9]*$");
 	 if(!reg.test(award_amount) || award_amount.value.length>5){ 
 		$("#updataaward_amount").val("");
-		 toastr.error("部门人数请输入5位以内的数字！");
+		 toastr.error("金额请输入5位以内的数字！");
+		 $(".updataaward_amount").val("");
 		 return false;
 	 }else if(award_provideReason.length > 25){
-		 $("#updataaward_provideReason").val("");
+		 $(".updataaward_provideReason").val("");
 		 toastr.error("输入的字数不可大于25个");
 		 return false;
 	 }else {
@@ -155,6 +166,10 @@ function updata_Award(){
 				},
 				success:function(data){
 					toastr.success('修改奖金记录成功！');
+					$(".updataaward_amount").val("");
+					$(".updataaward_provideTime").val("");
+					$(".updataaward_provideDepartment").val("");
+					$(".updataaward_provideReason").val("");
 					show_staffAwardAjax(staff_id);
 				},
 			});
@@ -185,14 +200,18 @@ function updata_Move(){
 	var staffMove_bfduty = $(".staff_duty").val();
 	//js校验
 	if(staffMove_remark.length > 25){
-		$("#staffMove_remark").val("");
+		$(".updatastaffMove_remark").val("");
 		 toastr.error("输入的字数不可大于25个");
 		 return false;
-	}else if(staffMove_nowdepartment.value==staffMove_bfdepartment.value && staffMove_nowduty.value==staffMove_bfduty.value){
-		toastr.error("调动无效");
-		return false;
-	}else{
-		$('#updataMove_Modal').modal('hide');
+	}else if(staffMove_nowdepartment==staffMove_bfdepartment){
+		if(staffMove_nowduty==staffMove_bfduty){
+			toastr.error("调动无效,请检查前后部门与职位是否变化");
+			$(".updatastaffMove_nowdepartment").val("");
+			$(".updatastaffMove_nowduty").val("");
+			return false;	
+	}else if(staffMove_nowduty!=staffMove_bfduty){
+		
+	$('#updataMove_Modal').modal('hide');
 	$.ajax({
 				type : "POST",
 				url : '/rlzyos/staff/staffMove_updataStaffMove?staffmove.rlzy_staffMove_id='+this_trId,
@@ -206,9 +225,13 @@ function updata_Move(){
 				},
 				success:function(data){
 					toastr.success('修改调配记录成功！');
+					$(".updatastaffMove_nowdepartment").val("");
+					$(".updatastaffMove_nowduty").val("");
+					$(".updatastaffMove_time").val("");
 					show_staffMoveAjax(staff_id);
 				},
 			});
+	}
 	}
 }
 
@@ -233,11 +256,11 @@ function updata_Train(){
 	
 	var reg = new RegExp("^[0-9]*$");
 	if(!reg.test(stafftrain_score) || stafftrain_score.length>5){ 
-		 $("#stafftrain_score").val("");
+		 $(".updatastafftrain_score").val("");
 		 toastr.error("请输入3位数字以内！");
 		return false; 
 	}else if(stafftrain_certificate.length>8){
-		$("#stafftrain_certificate").val("");
+		$(".updatastafftrain_certificate").val("");
 		toastr.error("请输入8个字以内！");
 	}else {
 		$('#updataTrain_Modal').modal('hide');
@@ -252,7 +275,11 @@ function updata_Train(){
 				},
 				success:function(data){
 					toastr.success('修改培训记录成功！');
+					$(".updatastafftrain_train").val();
+					$(".updatastafftrain_score").val();
+					$(".updatastafftrain_certificate").val();
 					show_staffTrainAjax(staff_id);
 				},
 			});
+	}
 }
