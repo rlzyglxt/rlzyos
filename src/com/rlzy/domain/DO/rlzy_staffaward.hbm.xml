@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2018-6-26 9:50:47 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.rlzy.domain.DO.rlzy_staffaward" table="RLZY_STAFFAWARD">
+        <id name="rlzy_staffAward_id" type="java.lang.String">
+            <column name="RLZY_STAFFAWARD_ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="award_staff" type="java.lang.String">
+            <column name="AWARD_STAFF" />
+        </property>
+        <property name="award_amount" type="java.lang.String">
+            <column name="AWARD_AMOUNT" />
+        </property>
+        <property name="award_provideTime" type="java.lang.String">
+            <column name="AWARD_PROVIDETIME" />
+        </property>
+        <property name="award_provideReason" type="java.lang.String">
+            <column name="AWARD_PROVIDEREASON" />
+        </property>
+        <property name="award_provideDepartment" type="java.lang.String">
+            <column name="AWARD_PROVIDEDEPARTMENT" />
+        </property>
+        <property name="award_gmt_create" type="java.lang.String">
+            <column name="AWARD_GMT_CREATE" />
+        </property>
+        <property name="award_gmt_modified" type="java.lang.String">
+            <column name="AWARD_GMT_MODIFIED" />
+        </property>
+    </class>
+</hibernate-mapping>

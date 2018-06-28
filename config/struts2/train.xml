@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="train" namespace="/train" extends="struts-default">
+		<action name="train_*" method="{1}" class="com.rlzy.action.staff.TrainAction">
+			<result name="page_toTrainList">/WEB-INF/view/train/trainList.jsp</result>
+			
+			<result name="page_toStaffTrainList">/WEB-INF/view/train/stafftrainList.jsp</result>
+		</action>
+
+		<!-- 培训记录 -->
+		<action name="stafftrain_*" method="{1}" class="com.rlzy.action.train.StaffTrainAction">
+		</action>
+	</package>
+</struts>

@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2018-6-26 9:50:47 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.rlzy.domain.DO.rlzy_staffmove" table="RLZY_STAFFMOVE">
+        <id name="rlzy_staffMove_id" type="java.lang.String">
+            <column name="RLZY_STAFFMOVE_ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="staffMove_staff" type="java.lang.String">
+            <column name="STAFFMOVE_STAFF" />
+        </property>
+        <property name="staffMove_time" type="java.lang.String">
+            <column name="STAFFMOVE_TIME" />
+        </property>
+        <property name="staffMove_bfdepartment" type="java.lang.String">
+            <column name="STAFFMOVE_BFDEPARTMENT" />
+        </property>
+        <property name="staffMove_nowdepartment" type="java.lang.String">
+            <column name="STAFFMOVE_NOWDEPARTMENT" />
+        </property>
+        <property name="staffMove_bfduty" type="java.lang.String">
+            <column name="STAFFMOVE_BFDUTY" />
+        </property>
+        <property name="staffMove_nowduty" type="java.lang.String">
+            <column name="STAFFMOVE_NOWDUTY" />
+        </property>
+        <property name="staffMove_remark" type="java.lang.String">
+            <column name="STAFFMOVE_REMARK" />
+        </property>
+        <property name="staffMove_gmt_create" type="java.lang.String">
+            <column name="STAFFMOVE_GMT_CREATE" />
+        </property>
+        <property name="staffMove_gmt_modified" type="java.lang.String">
+            <column name="STAFFMOVE_GMT_MODIFIED" />
+        </property>
+    </class>
+</hibernate-mapping>

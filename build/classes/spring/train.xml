@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!-- 	<bean id="trainAction" class="com.rlzy.action.train.TrainAction" scope="prototype">
+		<property name="trainService" ref="trainService"></property>
+	</bean>	
+	<bean id="trainService" class="com.rlzy.service.impl.train.TrainServiceImpl">
+		<property name="trainDao" ref="trainDao"></property>
+	</bean>
+	<bean id="trainDao" class="com.rlzy.dao.impl.train.TrainDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean> -->
+</beans>

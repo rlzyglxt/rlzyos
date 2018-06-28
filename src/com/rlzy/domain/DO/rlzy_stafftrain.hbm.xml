@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2018-6-26 9:50:47 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.rlzy.domain.DO.rlzy_stafftrain" table="RLZY_STAFFTRAIN">
+        <id name="rlzy_stafftrain_id" type="java.lang.String">
+            <column name="RLZY_STAFFTRAIN_ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="stafftrain_staff" type="java.lang.String">
+            <column name="STAFFTRAIN_STAFF" />
+        </property>
+        <property name="stafftrain_score" type="java.lang.String">
+            <column name="STAFFTRAIN_SCORE" />
+        </property>
+        <property name="stafftrain_train" type="java.lang.String">
+            <column name="STAFFTRAIN_TRAIN" />
+        </property>
+        <property name="stafftrain_certificate" type="java.lang.String">
+            <column name="STAFFTRAIN_CERTIFICATE" />
+        </property>
+        <property name="stafftrain_gmt_create" type="java.lang.String">
+            <column name="STAFFTRAIN_GMT_CREATE" />
+        </property>
+        <property name="stafftrain_gmt_modified" type="java.lang.String">
+            <column name="STAFFTRAIN_GMT_MODIFIED" />
+        </property>
+    </class>
+</hibernate-mapping>

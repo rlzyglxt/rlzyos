@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2018-6-26 9:50:47 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.rlzy.domain.DO.rlzy_paper" table="RLZY_PAPER">
+        <id name="rlzy_paper_id" type="java.lang.String">
+            <column name="RLZY_PAPER_ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="staff_number" type="java.lang.String">
+            <column name="STAFF_NUMBER" />
+        </property>
+        <property name="staff_name" type="java.lang.String">
+            <column name="STAFF_NAME" />
+        </property>
+        <property name="paper_name" type="java.lang.String">
+            <column name="PAPER_NAME" />
+        </property>
+        <property name="paper_time" type="java.lang.String">
+            <column name="PAPER_TIME" />
+        </property>
+    </class>
+</hibernate-mapping>

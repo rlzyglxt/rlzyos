@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="depatermentAction" class="com.rlzy.action.depaterment.DepatermentAction" scope="prototype">
+		<property name="depatermentService" ref="depatermentService"></property>
+	</bean>	
+
+	<bean id="depatermentService" class="com.rlzy.service.impl.depaterment.DepatermentServiceImpl">
+		<property name="depatermentDao" ref="depatermentDao"></property>
+	</bean>
+
+	<bean id="depatermentDao" class="com.rlzy.dao.impl.depaterment.DepatermentDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+</beans>

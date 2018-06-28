@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2018-6-26 9:50:47 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.rlzy.domain.DO.rlzy_staffinfo" table="RLZY_STAFFINFO">
+        <id name="rlzy_staff_id" type="java.lang.String">
+            <column name="RLZY_STAFF_ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="staff_cardid" type="java.lang.String">
+            <column name="STAFF_CARDID" />
+        </property>
+        <property name="staff_number" type="java.lang.String">
+            <column name="STAFF_NUMBER" />
+        </property>
+        <property name="staff_name" type="java.lang.String">
+            <column name="STAFF_NAME" />
+        </property>
+        <property name="staff_sex" type="java.lang.String">
+            <column name="STAFF_SEX" />
+        </property>
+        <property name="staff_age" type="java.lang.String">
+            <column name="STAFF_AGE" />
+        </property>
+        <property name="staff_birth" type="java.lang.String">
+            <column name="STAFF_BIRTH" />
+        </property>
+        <property name="staff_tel" type="java.lang.String">
+            <column name="STAFF_TEL" />
+        </property>
+        <property name="staff_address" type="java.lang.String">
+            <column name="STAFF_ADDRESS" />
+        </property>
+        <property name="staff_record" type="java.lang.String">
+            <column name="STAFF_RECORD" />
+        </property>
+        <property name="staff_depaterment" type="java.lang.String">
+            <column name="STAFF_DEPATERMENT" />
+        </property>
+        <property name="staff_duty" type="java.lang.String">
+            <column name="STAFF_DUTY" />
+        </property>
+        <property name="staff_status" type="java.lang.String">
+            <column name="STAFF_STATUS" />
+        </property>
+        <property name="staff_inTime" type="java.lang.String">
+            <column name="STAFF_INTIME" />
+        </property>
+        <property name="staff_leaveTime" type="java.lang.String">
+            <column name="STAFF_LEAVETIME" />
+        </property>
+        <property name="staff_leaveReason" type="java.lang.String">
+            <column name="STAFF_LEAVEREASON" />
+        </property>
+        <property name="staff_password" type="java.lang.String">
+            <column name="STAFF_PASSWORD" />
+        </property>
+        <property name="staff_adminPower" type="java.lang.String">
+            <column name="STAFF_ADMINPOWER" />
+        </property>
+        <property name="staff_userPower" type="java.lang.String">
+            <column name="STAFF_USERPOWER" />
+        </property>
+        <property name="staff_staffPower" type="java.lang.String">
+            <column name="STAFF_STAFFPOWER" />
+        </property>
+        <property name="staff_gmt_create" type="java.lang.String">
+            <column name="STAFF_GMT_CREATE" />
+        </property>
+        <property name="staff_gmt_modified" type="java.lang.String">
+            <column name="STAFF_GMT_MODIFIED" />
+        </property>
+    </class>
+</hibernate-mapping>
