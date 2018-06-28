@@ -58,6 +58,64 @@ var loadData = function() {
 		}
 	});
 }
+
+function SubmitCk() {
+//	 var reg = new RegExp("^[0-9]*$");
+//	 var reg2 = new RegExp("^[\u4E00-\u9FA5]{1,5}$");
+	 var obj = document.getElementById("train_name");
+	 alert(obj.value);
+	 var obj1 = document.getElementById("train_startTime");
+	 alert(obj1.value);
+	 var obj2 = document.getElementById("train_pay");
+	 alert(obj2.value);
+	 var obj3 = document.getElementById("train_overTime");
+	 alert(obj3.value);
+	 var obj4 = document.getElementById("train_content");
+	 alert(obj4.value);
+//	 var obj1 = document.getElementById("staffdepartment_amount");
+//	 var obj2 = document.getElementById("staffdepartment_name");
+//	 var obj3 = document.getElementById("staffdepartment_introduct");
+//	 if(!reg.test(obj.value) || obj.value.length>11){ 
+//		 toastr.error("电话请输入11位数字以内！");
+//		 $("#addLoadingDiv").addClass("hideDiv");
+//		 $("#addContent").removeClass("hideDiv");
+//		 $("#addContent input").val("");
+//		 $("#staffdepartment_introduct").val("");
+//		 return false;
+//	}else if(!reg.test(obj1.value) || obj1.value.length>5){ 
+//		 toastr.error("部门人数请输入5位数字以内！");
+//		 $("#addLoadingDiv").addClass("hideDiv");
+//		 $("#addContent").removeClass("hideDiv");
+//		 $("#addContent input").val("");
+//		 $("#staffdepartment_introduct").val("");
+//		 return false;
+//	}else if(obj2.value.length>10){ 
+//		 toastr.error("部门名称请输入10位汉字以内！");
+//		 $("#addLoadingDiv").addClass("hideDiv");
+//		 $("#addContent").removeClass("hideDiv");
+//		 $("#addContent input").val("");
+//		 $("#staffdepartment_introduct").val("");
+//		 return false;
+//	}else if(!reg2.test(obj2.value)){
+//		 toastr.error("部门名称请输入10位汉字以内！");
+//		 $("#addLoadingDiv").addClass("hideDiv");
+//		 $("#addContent").removeClass("hideDiv");
+//		 $("#addContent input").val("");
+//		 $("#staffdepartment_introduct").val("");
+//		 return false;
+//	}else if(obj3.value.length>50){ 
+//		 toastr.error("部门简介请输入50位字数以内！");
+//		 $("#addLoadingDiv").addClass("hideDiv");
+//		 $("#addContent").removeClass("hideDiv");
+//		 $("#addContent input").val("");
+//		 $("#staffdepartment_introduct").val("");
+//		 return false;
+//	}else{
+//		addTrain();
+//	}
+	 addTrain();
+	}
+
 //添加培训类别
 function addTrain(){
 	for (var i = 0; i < document.addtrainForm.elements.length - 1; i++) {
@@ -78,6 +136,7 @@ function addTrain(){
 				toastr.error("培训名称已经存在请重新填写！");
 				$("#addLoadingDiv").addClass("hideDiv");
 				$("#addContent").removeClass("hideDiv");
+				$("#train_name").val("");
 			} else {
 				toastr.success("添加成功！");
 				$("#updateLoadingDiv").val("");
@@ -90,7 +149,8 @@ function addTrain(){
 				$("#train_overTime").val("");
 				$("#train_pay").val("");
 				$("#train_content").val("");
-				$("#updateTrainBtn").val("");
+				$("#addTrainBtn").val("");
+				$('#addTrain').modal('hide');
 				loadData();
 			}
 		}
@@ -164,8 +224,45 @@ function getTrainByIdBack() {
 
 //修改
 function updateTrain(event) {
-	$("#updateLoadingDiv").removeClass("hideDiv");
-	$("#updateContent").addClass("hideDiv");
+	var biaoDa1=/[^0-9]/ig;
+	var obj = document.getElementById("train_startTime").value;
+	var obj1 = document.getElementById("train_overTime").value;
+	var str = obj.replace(biaoDa1,"");
+	var str1 = obj1.replace(biaoDa1,"");
+	if(str > str1){
+		toastr.error("请正确填写时间！");
+		return false;
+	}
+	var reg = new RegExp("^[0-9]*$");
+	var reg2 = new RegExp("^[\u4E00-\u9FA5]{1,5}$");
+	var obj3 = document.getElementById("train_pay");
+	var obj2 = document.getElementById("train_name");
+	var obj4 = document.getElementById("train_content");
+	if(!reg.test(obj3.value) || obj3.value.length>5){ 
+		 toastr.error("培训金额请输入5位数字以内！");
+		 $("#updateLoadingDiv").addClass("hideDiv");
+		 $("#updateContent").removeClass("hideDiv");
+		 $("#train_pay").val("");
+		 return false;
+	}else if(obj2.value.length>10){ 
+		 toastr.error("培训名称请输入10位汉字以内！");
+		 $("#updateLoadingDiv").addClass("hideDiv");
+		 $("#updateContent").removeClass("hideDiv");
+		 $("#train_name").val("");
+		 return false;
+	}else if(!reg2.test(obj2.value)){
+		 toastr.error("培训名称请输入10位汉字以内！");
+		 $("#updateLoadingDiv").addClass("hideDiv");
+		 $("#updateContent").removeClass("hideDiv");
+		 $("#train_name").val("");
+		 return false;
+	}else if(obj4.value.length>50){ 
+		 toastr.error("培训简介请输入50位字数以内！");
+		 $("#updateLoadingDiv").addClass("hideDiv");
+		 $("#updateContent").removeClass("hideDiv");
+		 $("#train_content").val("");
+		 return false;
+	}
 	getXmlHttp();
 	xmlHttp.open("POST", "/rlzyos/train/train_updateTrain", true);
 	var formData = new FormData(updatetrainForm);
@@ -176,8 +273,9 @@ function updateTrain(event) {
 			toastr.success("修改成功！");
 			$("#updateLoadingDiv").addClass("hideDiv");
 			$("#updateContent").removeClass("hideDiv");
-			$("#updateContent input").val("");
+			$('#updateTrain').modal('hide');
 		}
+		loadData();
 	}
 }
 //查询

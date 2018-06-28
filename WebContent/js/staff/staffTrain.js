@@ -166,13 +166,34 @@ $.ajax({
 function addStaffTrain() {
 	console.log("工作调动添加");
 	// 添加数据
+	var reg = new RegExp("^[0-9]*$");
+	var reg1 = new RegExp("^[\u4E00-\u9FA5]{1,5}$");
 	var rlzy_train_id = $("#rlzy_train_id").val();
 	var stafftrain_score = $("#addstafftrain_score").val();
+	var c = stafftrain_score;
 	var stafftrain_certificate = $("#addstafftrain_certificate").val();
-
 	var addStaffTrainBtn =  $("#addStaffTrainBtn").val();
-	
-//	alert("员工id"+addStaffTrainBtn);
+	var a = addStaffTrainBtn.length;
+	var b = a+1;
+	if(!reg.test(c)){
+		toastr.error("1请正确输入成绩(0-100的整数)！");
+		$("#addLoadingDiv").addClass("hideDiv");
+		$("#addContent").removeClass("hideDiv");
+		$("#addstafftrain_score").val("");
+		return false;
+	}else if(c<0 || c>100){
+		toastr.error("2请正确输入成绩(0-100的整数)！");
+		$("#addLoadingDiv").addClass("hideDiv");
+		$("#addContent").removeClass("hideDiv");
+		$("#addstafftrain_score").val("");
+		return false;
+	}else if(!reg1.test(stafftrain_certificate) || stafftrain_certificate.length>10){
+		toastr.error("培训证书请输入10位汉字以内！");
+		$("#addLoadingDiv").addClass("hideDiv");
+		$("#addContent").removeClass("hideDiv");
+		$("#addstafftrain_certificate").val("");
+		return false;
+	}else if(b != 1){
 	$.ajax({
 		type : "POST",
 		url : "/rlzyos/staff/staffTrain_addStaffTrain?stafftrain_staff="
@@ -191,10 +212,14 @@ function addStaffTrain() {
 			$("#addstafftrain_score").val("");
 			$("#addstafftrain_certificate").val("");
 			$("#addStaffTrainBtn").val("");
+			$("#addStaffTrain").modal("hide");
 			loadData();
-
 		}
 	});
+  }else{
+	  toastr.error("请输入正确员工工号!");
+	  return false;
+  }
 }
 //删除
 var deleteStaffTrain = function(event) {
@@ -267,8 +292,30 @@ function getStaffTrainByIdBack() {
 
 //修改
 function updateStaffTrain(event) {
-	$("#updateLoadingDiv").removeClass("hideDiv");
-	$("#updateContent").addClass("hideDiv");
+	var reg = new RegExp("^[0-9]*$");
+	var reg1 = new RegExp("^[\u4E00-\u9FA5]{1,5}$");
+	var stafftrain_score = $("#stafftrain_score").val();
+	var c = stafftrain_score;
+	var stafftrain_certificate = $("#stafftrain_certificate").val();
+	if(!reg.test(c)){
+		toastr.error("1请正确输入成绩(0-100的整数)！");
+		$("#updateLoadingDiv").addClass("hideDiv");
+		$("#updateContent").removeClass("hideDiv");
+		$("#stafftrain_score").val("");
+		return false;
+	}else if(c<0 || c>100){
+		toastr.error("2请正确输入成绩(0-100的整数)！");
+		$("#updateLoadingDiv").addClass("hideDiv");
+		$("#updateContent").removeClass("hideDiv");
+		$("#stafftrain_score").val("");
+		return false;
+	}else if(!reg1.test(stafftrain_certificate) || stafftrain_certificate.length>10){
+		toastr.error("培训证书请输入10位汉字以内！");
+		$("#updateLoadingDiv").addClass("hideDiv");
+		$("#updateContent").removeClass("hideDiv");
+		$("#stafftrain_certificate").val("");
+		return false;
+	}
 	getXmlHttp();
 	xmlHttp.open("POST", "/rlzyos/staff/staffTrain_updateStaffTrain", true);
 	var formData = new FormData(updatestafftrainForm);
@@ -280,7 +327,9 @@ function updateStaffTrain(event) {
 			$("#updateLoadingDiv").addClass("hideDiv");
 			$("#updateContent").removeClass("hideDiv");
 			$("#updateContent input").val("");
+			$("#updateStaffTrain").modal("hide");
 		}
+		loadData();
 	}
 }
 
