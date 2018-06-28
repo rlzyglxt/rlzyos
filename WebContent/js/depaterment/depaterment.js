@@ -105,10 +105,7 @@ function updateDepaterment(event) {
 	}else if(!reg.test(obj1.value) || obj1.value.length>5){ 
 		 toastr.error("部门人数请输入5位数字以内！");
 		 return false;
-	}else if(obj2.value.length>10){ 
-		 toastr.error("部门名称请输入10位汉字以内！");
-		 return false;
-	}else if(!reg2.test(obj2.value)){
+	}else if(!reg2.test(obj2.value) || obj2.value.length>10){
 		 toastr.error("部门名称请输入10位汉字以内！");
 		 return false;
 	}else if(obj3.value.length>50){ 
@@ -187,35 +184,24 @@ function SubmitCk() {
 		 toastr.error("电话请输入11位数字以内！");
 		 $("#addLoadingDiv").addClass("hideDiv");
 		 $("#addContent").removeClass("hideDiv");
-		 $("#addContent input").val("");
-		 $("#staffdepartment_introduct").val("");
+		 $("#staffdepartment_tel").val("");
 		 return false;
 	}else if(!reg.test(obj1.value) || obj1.value.length>5){ 
 		 toastr.error("部门人数请输入5位数字以内！");
 		 $("#addLoadingDiv").addClass("hideDiv");
 		 $("#addContent").removeClass("hideDiv");
-		 $("#addContent input").val("");
-		 $("#staffdepartment_introduct").val("");
+		 $("#staffdepartment_amount").val("");
 		 return false;
-	}else if(obj2.value.length>10){ 
+	}else if(!reg2.test(obj2.value) || obj2.value.length>10){
 		 toastr.error("部门名称请输入10位汉字以内！");
 		 $("#addLoadingDiv").addClass("hideDiv");
 		 $("#addContent").removeClass("hideDiv");
-		 $("#addContent input").val("");
-		 $("#staffdepartment_introduct").val("");
-		 return false;
-	}else if(!reg2.test(obj2.value)){
-		 toastr.error("部门名称请输入10位汉字以内！");
-		 $("#addLoadingDiv").addClass("hideDiv");
-		 $("#addContent").removeClass("hideDiv");
-		 $("#addContent input").val("");
-		 $("#staffdepartment_introduct").val("");
+		 $("#staffdepartment_name").val("");
 		 return false;
 	}else if(obj3.value.length>50){ 
 		 toastr.error("部门简介请输入50位字数以内！");
 		 $("#addLoadingDiv").addClass("hideDiv");
 		 $("#addContent").removeClass("hideDiv");
-		 $("#addContent input").val("");
 		 $("#staffdepartment_introduct").val("");
 		 return false;
 	}else{
@@ -231,8 +217,6 @@ function addDepaterment(){
 			document.form.elements[i].focus();
 			$("#addLoadingDiv").addClass("hideDiv");
 			$("#addContent").removeClass("hideDiv");
-			$("#addContent input").val("");
-			$("#staffdepartment_introduct").val("");
 			return false;
 		}
 	}
@@ -247,16 +231,17 @@ function addDepaterment(){
 				toastr.error("部门名称已经存在请重新填写！");
 				$("#addLoadingDiv").addClass("hideDiv");
 				$("#addContent").removeClass("hideDiv");
-				$("#addContent input").val("");
-				$("#staffdepartment_introduct").val("");
+				$("#staffdepartment_name").val("");
 			} else {
 				toastr.success("上传成功！");
 				$("#addLoadingDiv").addClass("hideDiv");
 				$("#addContent").removeClass("hideDiv");
 				$("#addContent input").val("");
 				$("#staffdepartment_introduct").val("");
+
 				$('#addDepaterment').modal('hide');
 				
+
 			}
 		}
 		 loadData();

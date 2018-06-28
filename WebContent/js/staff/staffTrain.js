@@ -164,7 +164,6 @@ $.ajax({
 
 //一个员工工作调动
 function addStaffTrain() {
-	console.log("工作调动添加");
 	// 添加数据
 	var reg = new RegExp("^[0-9]*$");
 	var reg1 = new RegExp("^[\u4E00-\u9FA5]{1,5}$");

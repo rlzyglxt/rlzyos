@@ -215,7 +215,7 @@ function addStaffExp(){
 		 toastr.error("请输入20个字以内的地址");
 		 document.querySelector(".staffExp_address").val("");
 		 return false;
-	}else if (str1 > str2){//判断起始时间不能大于结束时间
+	}else if (str1 >= str2){//判断起始时间不能大于结束时间
 		toastr.error("请输入时间顺序有误");
 		$("#addstaffExp_startTime").val("");
 		$("#addstaffExp_overTime").val("");

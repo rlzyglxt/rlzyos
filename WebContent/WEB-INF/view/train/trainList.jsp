@@ -169,22 +169,22 @@
 							<table class="table" style="margin: 0 auto;">
 								<tr>
 									<td><label>培训名称：</label></td>
-									<td><input id="train_name" name="train_name"
+									<td><input id="addtrain_name" name="train_name"
 										type="text" class="form-control" placeholder="请输入培训名称"></td>
 									<td><label>开始时间：</label></td>
-									<td><input id="train_startTime" name="train_startTime"
+									<td><input id="addtrain_startTime" name="train_startTime"
 										type="text" class="staff_StartTime form-control" placeholder="请输入开始时间"></td>
 								</tr>
 								<tr>
 									<td><label>培训费用：</label></td>
-									<td><input id="train_pay" name="train_pay"
+									<td><input id="addtrain_pay" name="train_pay"
 										type="text" class="form-control" placeholder="请输入培训费用"></td>
 									<td><label>结束时间：</label></td>
-									<td><input id="train_overTime" name="train_overTime"
+									<td><input id="addtrain_overTime" name="train_overTime"
 										type="text" class="staff_OverTime form-control" placeholder="请输入结束时间"></td>
 								</tr>
 								<tr><td><label>培训介绍：</label></td>
-									<td colspan="6"><textarea id="train_content"
+									<td colspan="6"><textarea id="addtrain_content"
 											class="form-control"  name="train_content"
 											style="width: 273px; border: 1px solid #ccc;"
 											rows="3" cols="62" placeholder="请输入培训介绍"></textarea></td>
@@ -195,7 +195,7 @@
 				</div>
 				<div class="modal-footer">
 					<button onclick="loadData()" type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-					<button onclick="addTrain()"  type="button" class="btn btn-primary" data-dismiss="modal">添加</button>
+					<button onclick="addTrain()"  type="button" class="btn btn-primary">添加</button>
 				</div>
 			</div>
 			<!-- /.modal-content id="updateBtn" -->

@@ -53,6 +53,14 @@ var loadData = function() {
 			queryConditionTemp.pageCount = result.pageCount;
 			queryConditionTemp.totalCount = result.totalCount;
 			queryConditionTemp.train_name = result.train_name;
+			$("#addContent input").val("");
+			$("#addtrain_name").val("");
+			$("#addtrain_startTime").val("");
+			$("#addtrain_pay").val("");
+			$("#addtrain_overTime").val("");
+			$("#addtrain_content").val("");
+			$(" textarea").val('');
+			$("#addTrainBtn").val("");
 			$('#loadingLayer').hide();
 			$('#mainPanel').show();
 		}
@@ -125,7 +133,45 @@ function addTrain(){
 			return false;
 		}
 	}
-	getXmlHttp();
+	var train_name = $("#addtrain_name").val();
+	var train_startTime = $("#addtrain_startTime").val();
+	var train_pay = $("#addtrain_pay").val();
+	var train_overTime = $("#addtrain_overTime").val();
+	var train_content = $("#addtrain_content").val();
+	
+	var biaoDa1=/[^0-9]/ig;
+	var reg = new RegExp("^[0-9]*$");
+	var reg2 = new RegExp("^[\u4E00-\u9FA5]{1,5}$");
+	var str = train_startTime.replace(biaoDa1,"");
+	var str1 = train_overTime.replace(biaoDa1,"");
+	alert(train_name);
+	alert(train_name.length);
+	
+	if(str >= str1){
+		toastr.error("请正确填写时间！");
+		return false;
+	}else if(!reg.test(train_pay) || train_pay.length>5){ 
+		 toastr.error("培训金额请输入5位数字以内！");
+		 $("#updateLoadingDiv").addClass("hideDiv");
+		 $("#updateContent").removeClass("hideDiv");
+		 $("#train_pay").val("");
+		 return false;
+	}else if(train_name.length > 10){ 
+		 $("#train_name").val("");
+		 toastr.error("培训名称请输入10位字以内！");
+		
+		 return false;
+	}else if(!reg2.test(train_name)){
+		 toastr.error("培训名称请输入10位汉字以内！");
+		 $("#train_name").val("");
+		 return false;
+	}else if(train_content.length>50){ 
+		 toastr.error("培训简介请输入50位字数以内！");
+		 $("#train_content").val("");
+		 return false;
+	}else{
+		getXmlHttp();
+		 
 	xmlHttp.open("POST", "/rlzyos/train/train_addTrain", true);
 	var formData = new FormData(document.getElementById("addtrainForm"));
 	xmlHttp.send(formData);
@@ -144,18 +190,20 @@ function addTrain(){
 				$("#addLoadingDiv").addClass("hideDiv");
 				$("#addContent").removeClass("hideDiv");
 				$("#addContent input").val("");
-				$("#train_name").val("");
-				$("#train_startTime").val("");
-				$("#train_overTime").val("");
-				$("#train_pay").val("");
-				$("#train_content").val("");
+				$("#addtrain_name").val("");
+				$("#addtrain_startTime").val("");
+				$("#addtrain_pay").val("");
+				$("#addtrain_overTime").val("");
+				$("#addtrain_content").val("");
 				$("#addTrainBtn").val("");
+				$(" textarea").val('');
 				$('#addTrain').modal('hide');
 				loadData();
 			}
 		}
 	}
 }
+	}
 //删除类别
 var deleteTrain = function(event) {
 	$.ajax({

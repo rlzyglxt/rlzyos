@@ -253,7 +253,7 @@ function add_staffExp() {
 		 toastr.error("请输入20个字以内的地址");
 		 $(".staffExp_address").val("");
 		 return false;
-	}else if (str1 > str2){//判断起始时间不能大于结束时间
+	}else if (str1 >= str2){//判断起始时间不能大于结束时间
 		toastr.error("请输入时间顺序有误");
 		 $(".staffExp_startTime").val("");
 		 $(".staffExp_overTime").val("");
@@ -378,7 +378,7 @@ function add_staffAgreement() {
 		 toastr.error("请输入30个字以内的内容");
 		 $("#agreement_content").val("");
 		 return false;
-	}else if (str1 > str2){//判断起始时间不能大于结束时间
+	}else if (str1 >= str2){//判断起始时间不能大于结束时间
 		
 		$("#agreement_startTime").val("");
 		 $("#agreement_overtTime").val("");
