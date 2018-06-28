@@ -7,7 +7,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import com.rlzy.domain.DO.rlzy_staffinfo;
-import com.rlzy.domain.DO.rlzy_user;
+
 import com.rlzy.dao.user.UserDao;
 
 public class UserDaoImpl implements UserDao{
@@ -38,7 +38,7 @@ public class UserDaoImpl implements UserDao{
 		// TODO Auto-generated method stub
 		String hql = "from rlzy_staffinfo where staff_number='" + user_username + "'";
 		Query query =getSession().createQuery(hql);
-		List<rlzy_user> list=query.list();
+		List<rlzy_staffinfo> list=query.list();
 		if(list.size() <= 0){
 			return false;
 		}else{
@@ -74,11 +74,11 @@ public class UserDaoImpl implements UserDao{
 		// TODO Auto-generated method stub
 		String query = "%" + queryString + "%";
 		String hql = "select count(*) from rlzy_staffinfo where (staff_number like '" + query + "' or staff_gmt_create like '" + query + "' or staff_name like '" + query + "')";
-		System.out.println(hql);
-		System.out.println("hqlcount");
+	/*	System.out.println(hql);
+		System.out.println("hqlcount");*/
 		int count = ((Number) getSession().createQuery(hql).uniqueResult()).intValue();
-		System.out.println(count);
-		System.out.println("getusercount");
+/*		System.out.println(count);
+		System.out.println("getusercount");*/
 		return count;
 	}
 
@@ -87,7 +87,7 @@ public class UserDaoImpl implements UserDao{
 		// TODO Auto-generated method stub
 		String query = "%" + queryString + "%";
 		String hql = "from rlzy_staffinfo where (staff_number like '" + query + "' or staff_name like '" + query + "'or staff_tel like '" + query + "') ";
-		System.out.println(hql+"page");
+		/*System.out.println(hql+"page");*/
 		List<rlzy_staffinfo> list = getSession().createQuery(hql).setFirstResult((currPage - 1) * 10).setMaxResults(10).list();
 		return list;
 	}

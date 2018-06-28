@@ -202,6 +202,8 @@ var deleteStaffMove = function(event) {
 		url : '/rlzyos/staff/staffMove_deleteStaffMove?staffmove.rlzy_staffMove_id='+event.id,
 		type : 'POST',
 		success:function(data){
+			toastr.success('删除成功！');
+			loadData();
 		},
 	});
 }
@@ -219,8 +221,7 @@ function createConfirmDeleteMove(event) {
 				action : function() {
 					deleteStaffMove(event);
 					console.log("删除全部信息"+event);
-					toastr.success('删除成功！');
-					loadData();
+					
 				}
 			},
 			closeAction : {

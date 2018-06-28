@@ -66,19 +66,19 @@ public class UserServiceImpl implements UserService{
 	public showUserVO getUserByPage(String queryString, int currPage) {
 		// TODO Auto-generated method stub
 		showUserVO suv = new showUserVO();
-		System.out.println("跳转到userserviceimpl");
+	/*	System.out.println("跳转到userserviceimpl");*/
 		suv.setCurrPage(currPage);
 		suv.setQueryString(queryString);
 		suv.setPageSize(10);
 		int count = userDao.getUserCount(queryString, currPage);
 		suv.setCount(count);
-		System.out.println("userservice,"+count);
+		/*System.out.println("userservice,"+count);*/
 		double c = count;
 		int totalPage = (int) Math.ceil(c / 10);
 		suv.setTotalPage(totalPage);
 		List<rlzy_staffinfo> list = userDao.getUserByPage(queryString, currPage);
 		suv.setList(list);
-		System.out.println(suv);
+		/*System.out.println(suv);*/
 		return suv;
 	}
 }

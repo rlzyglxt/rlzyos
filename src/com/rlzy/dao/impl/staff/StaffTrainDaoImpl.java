@@ -31,7 +31,7 @@ public class StaffTrainDaoImpl implements StaffTrainDao{
 	@Override
 	public List<staffTrainDTO> getStaffTrainByPage(showStaffTrainVO staffTrainVO) {
 		// TODO Auto-generated method stub
-		System.out.println("3");
+		/*System.out.println("3");*/
 		String hql = "select new com.rlzy.domain.DTO.Staff.staffTrainDTO(train.rlzy_stafftrain_id as rlzy_stafftrain_id,"
 				+ "staff.staff_number as staff_number,"
 				+ "staff.staff_name as staff_name,"
@@ -55,14 +55,14 @@ public class StaffTrainDaoImpl implements StaffTrainDao{
 		List<staffTrainDTO> list = session.createQuery(hql)
 				.setFirstResult((staffTrainVO.getCurrPage() - 1) * staffTrainVO.getPageCount())
 				.setMaxResults(staffTrainVO.getPageCount()).list();
-		System.out.println(list);
+		/*System.out.println(list);*/
 		return list;
 	}
 
 	@Override
 	public int getStaffTrainCount(showStaffTrainVO staffTrainVO) {
 		// TODO Auto-generated method stub
-		System.out.println("count");
+	/*	System.out.println("count");*/
 		String hql="select count(*) from rlzy_stafftrain where 1=1";
 	/*	if(staffTrainVO.getStaff_number() !=null && staffTrainVO.getStaff_number().trim().length() > 0){
 			hql = hql + " and staff_number like '" + "%" + staffTrainVO.getStaff_number() + "%" + "'";
@@ -74,7 +74,7 @@ public class StaffTrainDaoImpl implements StaffTrainDao{
 			hql = hql + " and stafftrain_train like '" + "%" + staffTrainVO.getTrain_name() + "%" + "'";
 		}
 		long count = (long) getSession().createQuery(hql).uniqueResult();
-		System.out.println("2sss"+count);
+		/*System.out.println("2sss"+count);*/
 		return (int) count;
 	}
 
@@ -132,8 +132,8 @@ public class StaffTrainDaoImpl implements StaffTrainDao{
 	public List<rlzy_staffinfo> getValueByNumber(String staff_number) {
 		// TODO Auto-generated method stub
 		String hql = "from rlzy_staffinfo where staff_number= '" + staff_number + "'";
-		System.out.println(getSession().createQuery(hql).list());
-		System.out.println("人员调动");
+		/*System.out.println(getSession().createQuery(hql).list());
+		System.out.println("人员调动");*/
 		return getSession().createQuery(hql).list();
 	}
 

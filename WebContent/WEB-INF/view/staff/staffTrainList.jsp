@@ -39,9 +39,9 @@
 					<button style="margin-left: 5px;" type="button" class="btn btn-default" data-toggle='modal' data-target='#addStaffTrain'>
 						<i class="fa fa-plus-square"></i>新增记录
 					</button>
-					<input type="text" id="searchInput" class="form-control"
+					<!-- <input type="text" id="searchInput" class="form-control"
 						style="width: 250px; display: inline-block; float: right;"
-						oninput="changeName(this)" placeholder="请输入员工工号"/>
+						oninput="changeName(this)" placeholder="请输入员工工号"/> -->
 				</div>
 				<div class="col-md-12">
 					<div id="loadingLayer" style="margin: 0 auto; width: 45px;">

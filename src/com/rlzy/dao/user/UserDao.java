@@ -3,7 +3,6 @@ package com.rlzy.dao.user;
 import java.util.List;
 
 import com.rlzy.domain.DO.rlzy_staffinfo;
-import com.rlzy.domain.DO.rlzy_user;
 
 public interface UserDao {
 	//判断用户是否存在

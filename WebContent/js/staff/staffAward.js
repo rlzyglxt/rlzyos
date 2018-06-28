@@ -230,7 +230,7 @@ var createConfirmDeleteaward= function(event) {
 				action : function() {
 					deleteStaffAward(event);
 					/*alert(event);*/
-					loadData();
+					
 				}
 			},
 			closeAction : {
@@ -252,7 +252,11 @@ var deleteStaffAward = function(event) {
 		type : 'POST',
 		data : {
 			'staffAward.rlzy_staffAward_id' : event.id
-		}
+		},
+	success:function(data){
+		toastr.success('删除成功！');
+		loadData();
+	}
 	});
 }
 //相应分页响应

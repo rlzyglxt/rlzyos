@@ -175,13 +175,13 @@ function addStaffTrain() {
 	var a = addStaffTrainBtn.length;
 	var b = a+1;
 	if(!reg.test(c)){
-		toastr.error("1请正确输入成绩(0-100的整数)！");
+		toastr.error("请正确输入成绩(0-100的整数)！");
 		$("#addLoadingDiv").addClass("hideDiv");
 		$("#addContent").removeClass("hideDiv");
 		$("#addstafftrain_score").val("");
 		return false;
 	}else if(c<0 || c>100){
-		toastr.error("2请正确输入成绩(0-100的整数)！");
+		toastr.error("请正确输入成绩(0-100的整数)！");
 		$("#addLoadingDiv").addClass("hideDiv");
 		$("#addContent").removeClass("hideDiv");
 		$("#addstafftrain_score").val("");
@@ -227,6 +227,9 @@ var deleteStaffTrain = function(event) {
 		type : 'POST',
 		data : {
 			'stafftrain.rlzy_stafftrain_id' : event.id
+		},	success:function(data){
+			toastr.success('删除成功！');
+			loadData();
 		}
 	});
 }
@@ -245,7 +248,7 @@ function createConfirmDeleteStaffTrain(event) {
 				action : function() {
 					deleteStaffTrain(event);
 					console.log("删除全部信息"+event);
-					loadData();
+					
 				}
 			},
 			closeAction : {
@@ -297,13 +300,13 @@ function updateStaffTrain(event) {
 	var c = stafftrain_score;
 	var stafftrain_certificate = $("#stafftrain_certificate").val();
 	if(!reg.test(c)){
-		toastr.error("1请正确输入成绩(0-100的整数)！");
+		toastr.error("请正确输入成绩(0-100的整数)！");
 		$("#updateLoadingDiv").addClass("hideDiv");
 		$("#updateContent").removeClass("hideDiv");
 		$("#stafftrain_score").val("");
 		return false;
 	}else if(c<0 || c>100){
-		toastr.error("2请正确输入成绩(0-100的整数)！");
+		toastr.error("请正确输入成绩(0-100的整数)！");
 		$("#updateLoadingDiv").addClass("hideDiv");
 		$("#updateContent").removeClass("hideDiv");
 		$("#stafftrain_score").val("");

@@ -184,11 +184,9 @@
 				</div>
 				<div class="modal-footer">
 					<button onclick="loadData()" type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-<<<<<<< HEAD
+
 					<button onclick="SubmitCk()"  type="button" class="btn btn-primary">添加</button>
-=======
-					<button onclick="SubmitCk()"  type="button" class="btn btn-primary" >添加</button>
->>>>>>> zhj
+
 				</div>
 			</div>
 			<!-- /.modal-content id="updateBtn" -->

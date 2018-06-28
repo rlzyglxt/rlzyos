@@ -54,9 +54,9 @@ public class TrainServiceImpl implements TrainService{
 	@Override
 	public void getTrainByPage(showTrainVO trainVO) {
 		// TODO Auto-generated method stub
-		System.out.println("getpage");
+	/*	System.out.println("getpage");*/
 		int count =trainDao.getTrainCount(trainVO);
-		System.out.println("staffserviceimp::"+count);
+	/*	System.out.println("staffserviceimp::"+count);*/
 		trainVO.setTotalPage((int) Math.ceil((double) count / (double) trainVO.getPageCount()));
 		trainVO.setTotalCount(count);
 		List<rlzy_train> trains = trainDao.getTrainByPage(trainVO);

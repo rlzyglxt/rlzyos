@@ -47,7 +47,7 @@ public class DepatermentAction extends ActionSupport{
 			ru.setStaffdepartment_amount(staffdepartment_amount);
 			if(depatermentService.judgeDepatermentByDepatermentname(staffdepartment_name)){
 				pw.write("samename");
-				System.out.print("培训名称存在");
+				/*System.out.print("培训名称存在");*/
 			}
 			else{
 				ru.setStaffdepartment_name(staffdepartment_name);
@@ -90,7 +90,7 @@ public class DepatermentAction extends ActionSupport{
 			ru.setStaffdepartment_introduct(staffdepartment_introduct);
 			ru.setStaffdepartment_tel(staffdepartment_tel);
 			ru.setStaffdepartment_amount(staffdepartment_amount);
-			System.out.println(ru.getStaffdepartment_name());
+/*			System.out.println(ru.getStaffdepartment_name());*/
 			depatermentService.updateDeapterment(ru);
 			HttpServletResponse response = ServletActionContext.getResponse();
 			response.setContentType("text/html;charset=utf-8");
@@ -106,7 +106,7 @@ public class DepatermentAction extends ActionSupport{
 			response.setContentType("text/html;charset=utf-8");
 			PrintWriter pw = response.getWriter();
 			Gson gson = new Gson();
-			System.out.println("得到所有");
+			/*System.out.println("得到所有");*/
 			String result = gson.toJson(rd);
 			pw.write(result);
 			pw.flush();

@@ -39,11 +39,11 @@ public class StaffAwardAction extends ActionSupport{
 			result = "null";
 		}else{
 			Gson gson = new Gson();
-			System.out.println("得到合同");
+			/*System.out.println("得到合同");*/
 			result = gson.toJson(rs);
 		}
 		Gson gson = new Gson();
-		System.out.println("得到奖金记录");
+		/*System.out.println("得到奖金记录");*/
 		result = gson.toJson(rs);
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setContentType("text/html;charset=utf-8");
@@ -54,9 +54,9 @@ public class StaffAwardAction extends ActionSupport{
 	}
 	//修改奖金记录
 	public void updataStaffAward() throws IOException{
-		System.out.println("修改一下奖金记录 ");
+		/*System.out.println("修改一下奖金记录 ");*/
 		staffAwardService.updataStaffAward(staffAward);
-		System.out.println(staffAward.getAward_provideTime());
+		/*System.out.println(staffAward.getAward_provideTime());*/
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter pw = response.getWriter();
@@ -78,7 +78,7 @@ public class StaffAwardAction extends ActionSupport{
 	public void deleteStaffAwards() throws IOException{
 		staffAwardService.deleteStaffAwards(staffAward.getAward_staff());
 		HttpServletResponse response = ServletActionContext.getResponse();
-		System.out.println(staffAward.getAward_staff());
+		/*System.out.println(staffAward.getAward_staff());*/
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter pw = response.getWriter();
 		pw.write("deleteSuccess删除奖金合同");

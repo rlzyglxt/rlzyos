@@ -44,7 +44,7 @@ public class StaffAgreementAction extends ActionSupport{
 			String result = gson.toJson(showagreementVO);
 			HttpServletResponse response = ServletActionContext.getResponse();
 			response.setContentType("text/html;charset=utf-8");
-			System.out.println(result);
+			/*System.out.println(result);*/
 			PrintWriter pw =response.getWriter();
 			pw.write(result);
 			pw.flush();
@@ -58,7 +58,7 @@ public class StaffAgreementAction extends ActionSupport{
 				result = "null";
 			}else{
 				Gson gson = new Gson();
-				System.out.println("得到合同");
+				/*System.out.println("得到合同");*/
 				result = gson.toJson(rs);
 			}
 			HttpServletResponse response = ServletActionContext.getResponse();
@@ -70,8 +70,8 @@ public class StaffAgreementAction extends ActionSupport{
 		}
 	//修改合同
 		public void updataStaffAgreement() throws IOException{
-			System.out.println(agreement.getRlzy_agreement_id());
-			System.out.println("修改一下合同");
+			/*System.out.println(agreement.getRlzy_agreement_id());*/
+			/*System.out.println("修改一下合同");*/
 			staffAgreementService.updataStaffAgreement(agreement);
 			HttpServletResponse response = ServletActionContext.getResponse();
 			response.setContentType("text/html;charset=utf-8");
@@ -117,8 +117,8 @@ public class StaffAgreementAction extends ActionSupport{
 //					.getIntroduceLetterByIdObject(letter.getXsjsglxt_introduce_letter_id());
 			rlzy_staffagreement agreement1 = staffAgreementService.
 					getStaffAgreementById(agreement.getRlzy_agreement_id());
-			System.out.println("导出合同id"+agreement.getRlzy_agreement_id());
-			System.out.println("导出员工id"+agreement1.getAgreement_staff());
+			/*System.out.println("导出合同id"+agreement.getRlzy_agreement_id());
+			System.out.println("导出员工id"+agreement1.getAgreement_staff());*/
 			rlzy_staffinfo rs = staffService.getStaffById(agreement1.getAgreement_staff());
 			Map<String, String> map = new HashMap<String, String>();
 			

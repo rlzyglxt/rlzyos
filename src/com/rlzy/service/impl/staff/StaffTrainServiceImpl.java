@@ -27,13 +27,13 @@ public class StaffTrainServiceImpl implements StaffTrainService {
 	@Override
 	public void getStaffTrainByPage(showStaffTrainVO staffTrainVO) {
 		// TODO Auto-generated method stub
-		System.out.println("getpage");
+	/*	System.out.println("getpage");*/
 		int count =staffTrainDao.getStaffTrainCount(staffTrainVO);
-		System.out.println("staffTrainserviceimp::"+count);
+	/*	System.out.println("staffTrainserviceimp::"+count);*/
 		staffTrainVO.setTotalPage((int) Math.ceil((double) count / (double) staffTrainVO.getPageCount()));
 		staffTrainVO.setTotalCount(count);
 		List<staffTrainDTO> staffTrains = staffTrainDao.getStaffTrainByPage(staffTrainVO);
-		System.out.println("4");
+	/*	System.out.println("4");*/
 		staffTrainVO.setStaffTrains(staffTrains);
 	}
 	

@@ -40,7 +40,7 @@ public class StaffMoveDaoImpl implements StaffMoveDao {
 	public List<rlzy_staffinfo> getValueByNumber(String staff_number) {
 		// TODO Auto-generated method stub
 		String hql = "from rlzy_staffinfo where staff_number= '" + staff_number + "'";
-		System.out.println(getSession().createQuery(hql).list());
+	/*	System.out.println(getSession().createQuery(hql).list());*/
 		return getSession().createQuery(hql).list();
 	}
 	//得到总数
@@ -56,7 +56,7 @@ public class StaffMoveDaoImpl implements StaffMoveDao {
 		}
 		Session session=this.getSession();
 		long count =(long) session.createQuery(hql).uniqueResult();
-		System.out.println("count"+(int) count);
+		/*System.out.println("count"+(int) count);*/
 		return (int) count;
 	}
 	@Override

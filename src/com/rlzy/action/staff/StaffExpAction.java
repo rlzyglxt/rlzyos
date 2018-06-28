@@ -76,7 +76,7 @@ public class StaffExpAction extends ActionSupport{
 	public void getStaffExpByExpId() throws IOException{
 		rlzy_staffexp rs = staffExpService.getStaffExpById(rlzy_staffExp_id);
 		HttpServletResponse response = ServletActionContext.getResponse();
-		System.out.println(rlzy_staffExp_id);
+		/*System.out.println(rlzy_staffExp_id);*/
 		response.setContentType("text/html;charset=utf-8");
 		Gson gson = new Gson();
 		String result = gson.toJson(rs);
@@ -110,7 +110,7 @@ public class StaffExpAction extends ActionSupport{
 		String result = gson.toJson(staffExpVO);
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setContentType("text/html;charset=utf-8");
-		System.out.println("分页得到履历"+result);
+		/*System.out.println("分页得到履历"+result);*/
 		PrintWriter pw =response.getWriter();
 		pw.write(result);
 		pw.flush();

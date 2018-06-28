@@ -333,22 +333,22 @@
 							<tbody>
 								<tr>
 									<td><label class="staff_info_label">工作地址</label></td>
-									<td><input type="text" style="font-size: 12px;"
+									<td><input type="text" style="font-size: 12px;" id="staffExp_address"
 										class="staffExp_address" ></td></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">开始时间</label></td>
-									<td><input type="text" style="font-size: 12px;"
+									<td><input type="text" style="font-size: 12px;" id="staffExp_startTime"
 										class="staffExp_startTime staff_Time" ></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">结束时间</label></td>
-									<td><input style="font-size: 12px;" type="text"
+									<td><input style="font-size: 12px;" type="text" id="staffExp_overTime"
 										class=" staffExp_overTime staff_Time"></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">备注</label></td>
-									<td colspan="6"><textarea id="staffExp_remark"
+									<td colspan="6"><textarea id="staffExp_remark" id="staffExp_remark"
 											class="staffExp_remark"
 											style="width: 480px; border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
 											rows="3" cols="62"></textarea></td>
@@ -388,21 +388,21 @@
 								<tr>
 									<td><label class="staff_info_label">合同开始时间</label></td>
 									<td><input style="font-size: 12px;" class="agreement_startTime staff_Time"
-										type="text"></td>
+									id="agreement_startTime"	type="text"></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">合同结束时间</label></td>
-									<td><input style="font-size: 12px;"
+									<td><input style="font-size: 12px;" id="agreement_overtTime"
 										class="agreement_overtTime staff_Time"></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">合同内容</label></td>
-									<td><input type="text" class="agreement_content time" /></td>
+									<td><input type="text" class="agreement_content time"  id="agreement_content"/></td>
 								</tr>
 
 								<tr>
 									<td><label class="staff_info_label">备注</label></td>
-									<td colspan="6"><textarea id="staff_contactsRemark"
+									<td colspan="6"><textarea id="staff_contactsRemark" id="agreement_remark"
 											class="agreement_remark"
 											style="width: 480px; border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
 											rows="3" cols="62"></textarea></td>
@@ -415,7 +415,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default "
-						onclick="clear_iquer2()">清空</button>
+						onclick="clear_iquery2()">清空</button>
 					<button type="button" class="btn btn-primary"
 						onclick="add_oneStaffAgreement()" data-dismiss='modal'>添加</button>
 				</div>
@@ -496,7 +496,7 @@
 							<tbody>
 								<tr>
 									<td><label class="staff_info_label">调入部门</label></td>
-									<td><select class="form-control staffMove_nowdepartment" id="staff_wdepaterment">
+									<td><select class="form-control staffMove_nowdepartment" id="staff_nowdepaterment">
 										</select></td>
 								<!-- 	<td><input style="font-size: 12px;" id="staffMove_nowdepartment"
 										class="staffMove_nowdepartment" type="text"></td>   -->
@@ -678,8 +678,6 @@
 											class="updataagreement_content"
 											style="width: 480px; border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
 											rows="3" cols="62"></textarea></td>
-								
-									
 								</tr>
 
 								<tr>
@@ -748,7 +746,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default "
-						onclick="clear_iquer8()">清空</button>
+						onclick="clear_iquery8()">清空</button>
 					<button type="button" class="btn btn-primary"
 						onclick="updata_Award()" >添加</button>
 				</div>
@@ -856,7 +854,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default "
-						onclick="clear_iquery()">清空</button>
+						onclick="clear_iquery10()">清空</button>
 					<button type="button" class="btn btn-primary"
 						onclick="updata_Train()">添加</button>
 				</div>

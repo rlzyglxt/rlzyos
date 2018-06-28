@@ -23,7 +23,9 @@ function updata_Exp(){
 	var time = /[^0-9]/ig;
 	var str1 = staffExp_startTime.replace(time,"");
 	var str2 = staffExp_overTime.replace(time,"");
-	if(staffExp_address.length>10){ 
+	if(staffExp_address == ""|| staffExp_startTime ==""|| staffExp_overTime==""){
+		 toastr.error("请把空项填写完整");
+	}else if(staffExp_address.length>10){ 
 		 toastr.error("请输入20个字以内的地址");
 		 $(".updatastaffExp_address").val("");
 		 return false;
@@ -144,7 +146,9 @@ function updata_Award(){
 	var award_provideReason=$(".updataaward_provideReason").val();
 	//js校验
 	var reg = new RegExp("^[0-9]*$");
-	 if(!reg.test(award_amount) || award_amount.value.length>5){ 
+	if(award_amount == ""|| award_provideTime ==""|| award_provideDepartment==""){
+		 toastr.error("请把空项填写完整");
+	}else if(!reg.test(award_amount) || award_amount.length>5){ 
 		$("#updataaward_amount").val("");
 		 toastr.error("金额请输入5位以内的数字！");
 		 $(".updataaward_amount").val("");
@@ -199,7 +203,9 @@ function updata_Move(){
 	var staffMove_bfdepartment = $(".staff_depaterment").val();
 	var staffMove_bfduty = $(".staff_duty").val();
 	//js校验
-	if(staffMove_remark.length > 25){
+	if(staffMove_nowdepartment == ""|| staffMove_nowduty ==""|| staffMove_time==""){
+		 toastr.error("请把空项填写完整");
+	}else if(staffMove_remark.length > 25){
 		$(".updatastaffMove_remark").val("");
 		 toastr.error("输入的字数不可大于25个");
 		 return false;
@@ -255,9 +261,11 @@ function updata_Train(){
 	var stafftrain_certificate=$(".updatastafftrain_certificate").val();
 	
 	var reg = new RegExp("^[0-9]*$");
-	if(!reg.test(stafftrain_score) || stafftrain_score.length>5){ 
+	if(stafftrain_train == ""|| stafftrain_score ==""|| stafftrain_certificate==""){
+		 toastr.error("请把空项填写完整");
+	}else if(!reg.test(stafftrain_score) || stafftrain_score>100 || stafftrain_score<0){ 
 		 $(".updatastafftrain_score").val("");
-		 toastr.error("请输入3位数字以内！");
+		 toastr.error("请输入100以内的数字！");
 		return false; 
 	}else if(stafftrain_certificate.length>8){
 		$(".updatastafftrain_certificate").val("");

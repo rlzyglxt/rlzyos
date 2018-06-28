@@ -69,7 +69,7 @@ public class StaffExpServiceImpl implements StaffExpService {
 	@Override
 	public void getStaffExpByPage(showStaffExpVO staffExpVO) {
 		// TODO Auto-generated method stub
-		System.out.println("getpage");
+	/*	System.out.println("getpage");*/
 		int count =staffExpDao.getStaffExpCount(staffExpVO);
 		staffExpVO.setTotalPage((int) Math.ceil((double) count / (double) staffExpVO.getPageCount()));
 		staffExpVO.setTotalCount(count);

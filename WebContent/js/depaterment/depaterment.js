@@ -145,8 +145,10 @@ var createConfirmDelete= function(event) {
 				btnClass : 'btn-blue',
 				action : function() {
 					deletedepartment(event);
+					 toastr.success("删除成功！");
+					
 					/*alert(event);*/
-					loadData();
+					
 				}
 			},
 			closeAction : {
@@ -168,6 +170,9 @@ var deletedepartment = function(event) {
 		type : 'POST',
 		data : {
 			'rlzy_staffdepartment_id' : event.id
+		},	success:function(data){
+			toastr.success('删除成功！');
+			loadData();
 		}
 	});
 }

@@ -65,10 +65,10 @@
 							<table class="table table-hover table-condensed staff_table_info">
 								<thead>
 									<tr>
-										<th><label>
+										<!-- <th><label>
 												<input onclick="selectAllbox(this)" type="checkbox"> 全选
 											</label>
-										</th>
+										</th> -->
 										<th>工号</th>
 										<th>姓名</th>
 										<th><select id="staff_sex" onchange="changeSex(this)"
@@ -105,8 +105,8 @@
 								</thead>
 								<tbody>
 									 <tr v-for="staffListDTO in staffs.staffs" style="text-align: center;"> 
-									 	<td><label><input type="checkbox" name="chooseCheckBox"
-									:value="staffListDTO.rlzy_staff_id"><span></span></label></td>
+									 	<%-- <td><label><input type="checkbox" name="chooseCheckBox"
+									:value="staffListDTO.rlzy_staff_id"><span></span></label></td> --%>
 										<td>
 										<a :id="staffListDTO.rlzy_staff_id" onclick="skipToDetail(this)">
 										<span v-html="staffListDTO.staff_number"></span></a>
@@ -130,8 +130,8 @@
 										<!-- <td>{{ staff.staff_theStaffTime }}</td>入职时间 -->
 										<td><button onclick="createConfirmUpdata(this)"
 												:id="staffListDTO.rlzy_staff_id" class="btn btn-info"><i class="fa fa-pencil-square-o"></i>修改</button>
-											<button onclick="exportCurrPage()"
-												:id="staffListDTO.rlzy_staff_id" class="btn btn-success"><i class="fa fa-code"></i>导出</button></td>
+											<!-- <button onclick="exportCurrPage()"
+												:id="staffListDTO.rlzy_staff_id" class="btn btn-success"><i class="fa fa-code"></i>导出</button></td> -->
 									</tr>
 								</tbody>
 							</table>

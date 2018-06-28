@@ -147,6 +147,9 @@ var deleteStaff = function(event) {
 		type : 'POST',
 		data : {
 			'staffAward.award_staff' : event.id
+		},	success:function(data){
+			toastr.success('删除成功！');
+			loadData();
 		}
 	});
 	
@@ -167,7 +170,7 @@ function createConfirmDelete(event) {
 					deleteStaff(event);
 					/*alert(event);*/
 					console.log("删除全部信息"+event);
-					loadData();
+					
 				}
 			},
 			closeAction : {

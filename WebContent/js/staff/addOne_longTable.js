@@ -12,7 +12,9 @@ function add_oneStaffExp() {
 	var time = /[^0-9]/ig;
 	var str1 = staffExp_startTime.replace(time,"");
 	var str2 = staffExp_overTime.replace(time,"");
-	if(staffExp_address.length>10){ 
+	if(staffExp_address==""|| staffExp_startTime==""||staffExp_overTime==""){
+		 toastr.error("当前表单的必填项为空");
+	}else if(staffExp_address.length>10){ 
 		 toastr.error("请输入20个字以内的地址");
 		 $(".staffExp_address").val("");
 		 return false;
@@ -112,9 +114,11 @@ function add_oneStaffAward() {
 	var award_provideReason = $(".award_provideReason").val();
 	//js校验
 	var reg = new RegExp("^[0-9]*$");
-	 if(!reg.test(award_amount) || award_amount.value.length>5){ 
+	if(award_amount==""|| award_provideTime==""||award_provideDepartment==""){
+		 toastr.error("当前表单的必填项为空");
+	}else if(!reg.test(award_amount) || award_amount.length>5){ 
 		 $(".award_amount").val("");
-		 toastr.error("部门人数请输入5位以内的数字！");
+		 toastr.error("请输入5位以内的数字！");
 		 return false;
 	 }else if(award_provideReason.length > 25){
 		 $(".award_provideReason").val("");
@@ -156,7 +160,9 @@ function add_oneStaffMove() {
 	var staffMove_bfdepartment = $(".staff_depaterment").val();
 	var staffMove_bfduty = $(".staff_duty").val();
 	//js校验
-	if(staffMove_remark.length > 25){
+	if(staffMove_nowdepartment==""|| staffMove_nowduty==""||staffMove_time==""){
+		 toastr.error("当前表单的必填项为空");
+	}else if(staffMove_remark.length > 25){
 		$(".staffMove_remark").val("");
 		 toastr.error("输入的字数不可大于25个");
 		 return false;
@@ -206,9 +212,11 @@ function add_oneStaffTrain() {
 	var stafftrain_certificate = $(".stafftrain_certificate").val();
 
 	var reg = new RegExp("^[0-9]*$");
-	if(!reg.test(stafftrain_score) || stafftrain_score.length>5){ 
+	if(stafftrain_train==""|| stafftrain_score==""||stafftrain_certificate==""){
+		 toastr.error("当前表单的必填项为空");
+	}else if(!reg.test(stafftrain_score) || stafftrain_score>100 || stafftrain_score<0){ 
 		 $(".stafftrain_score").val("");
-		 toastr.error("请输入3位数字以内！");
+		 toastr.error("请输入100以内的数字！");
 		return false; 
 	}else if(stafftrain_certificate.length>8){
 		$(".stafftrain_certificate").val("");

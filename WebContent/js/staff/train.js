@@ -211,6 +211,9 @@ var deleteTrain = function(event) {
 		type : 'POST',
 		data : {
 			'rlzy_train_id' : event.id
+		},	success:function(data){
+			toastr.success('删除成功！');
+			loadData();
 		}
 	});
 }
@@ -228,7 +231,7 @@ function createConfirmDelete(event) {
 				action : function() {
 					deleteTrain(event);
 					console.log("删除信息"+event);
-					loadData();
+					
 				}
 			},
 			closeAction : {

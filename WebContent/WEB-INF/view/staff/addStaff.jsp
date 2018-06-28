@@ -48,7 +48,7 @@
 							<tr style="height: 20px"></tr>
 							<tr>
 								<td><label class="staff_info_label">员工工号</label></td>
-								<td><input placeholder="请输入工号 (必填)" name="staff.staff_number" class="form-control" type="text" onblur="getvalue(this)"></td>
+								<td><input id="staff_number" placeholder="请输入工号 (必填)" name="staff.staff_number" class="form-control" type="text" onblur="getvalue(this)"></td>
 								
 								<td><label class="staff_info_label">姓名</label></td>
 								<td><input  placeholder="请输入姓名 (必填)" name="staff.staff_name" class="form-control" type="text"></td>
@@ -92,7 +92,7 @@
 								<td><input  placeholder="请输入联系方式 (必填)"
 									name="staff.staff_tel" class="form-control" type="text"></td>
 								<td><label class="staff_info_label">家庭住址</label></td>
-								<td><input name="staff.staff_address"  placeholder="请输入家庭住址 (必填)"
+								<td><input name="staff.staff_address"  placeholder="请输入家庭住址 (必填)" id="staff_address"
 									class="form-control" type="text"></td>
 								
 							</tr>
@@ -464,7 +464,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default "
-						onclick="clear_iquer3()">清空</button>
+						onclick="clear_iquery3()">清空</button>
 					<button type="button" class="btn btn-primary"
 						onclick="add_staffAward()" >添加</button>
 				</div>
@@ -526,7 +526,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default "
-						onclick="clear_iquer4()">清空</button>
+						onclick="clear_iquery4()">清空</button>
 					<button type="button" class="btn btn-primary"
 						onclick="add_staffMove()">添加</button>
 				</div>
@@ -574,7 +574,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default "
-						onclick="clear_iquer5()">清空</button>
+						onclick="clear_iquery5()">清空</button>
 					<button type="button" class="btn btn-primary"
 						onclick="add_staffTrain()">添加</button>
 				</div>

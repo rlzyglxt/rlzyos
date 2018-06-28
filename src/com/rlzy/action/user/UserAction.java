@@ -49,8 +49,8 @@ public class UserAction extends ActionSupport{
 						rlzy_staffinfo user = userService.getUserByUsername(user_username);
 						String password = md5.GetMD5Code(user_password);
 //						String password=user_password;
-						System.out.println(password.equals(user.getStaff_password()));
-						if (user.getStaff_password().equals(password)) {
+						/*System.out.println(password.equals(user.getStaff_password()));
+*/						if (user.getStaff_password().equals(password)) {
 							pw.write("loginSuccess");
 							ActionContext.getContext().getSession().put("rlzy_user_id", user.getRlzy_staff_id());
 							ActionContext.getContext().getSession().put("user_name", user.getStaff_name());	
@@ -84,7 +84,7 @@ public class UserAction extends ActionSupport{
 		
 			//删除用户
 			public void deleteUser() throws IOException{
-				System.out.println(user_id);
+			/*	System.out.println(user_id);*/
 				HttpServletResponse response=ServletActionContext.getResponse();
 				response.setContentType("text/html;charset=utf-8");
 				PrintWriter pw=response.getWriter();
@@ -95,7 +95,7 @@ public class UserAction extends ActionSupport{
 			}
 			//添加用户
 			public void addUser() throws IOException{
-				System.out.println("1");
+			/*	System.out.println("1");*/
 				HttpServletResponse response=ServletActionContext.getResponse();
 				response.setContentType("text/html;charset=utf-8");
 				PrintWriter pw=response.getWriter();
@@ -110,12 +110,12 @@ public class UserAction extends ActionSupport{
 				/*md5.GetMD5Code(user_password)*/
 				if(userService.judgeUserByUsername(user_username)){
 					pw.write("用户名存在");
-					System.out.println("用户名存在");
-				}
+					/*System.out.println("用户名存在");
+*/				}
 				else{
 					ru.setStaff_number(user_username);
 					userService.addUser(ru);
-					System.out.println("添加成功");
+					/*System.out.println("添加成功");*/
 					pw.write("添加成功");
 				}
 				pw.flush();
@@ -130,7 +130,7 @@ public class UserAction extends ActionSupport{
 				if (rlzy_user_id != null || rlzy_user_id != "") {
 					rlzy_staffinfo ru = userService.getUserById(rlzy_user_id);
 					if (ru.getStaff_password().equals(md5.GetMD5Code(oldPassword))) {
-						System.out.println(rlzy_user_id);
+					/*	System.out.println(rlzy_user_id);*/
 						userService.updatePassword(rlzy_user_id, md5.GetMD5Code(newPassword));
 						pw.write("updateSuccess");
 					} else {
@@ -156,7 +156,7 @@ public class UserAction extends ActionSupport{
 			public void getUser() throws IOException{
 				showUserVO suv = userService.getUserByPage(queryString, currPage);
 				Gson gson = new Gson();
-				System.out.println("queryString的值"+queryString);
+			/*	System.out.println("queryString的值"+queryString);*/
 				String result = gson.toJson(suv);
 				HttpServletResponse response = ServletActionContext.getResponse();
 				response.setContentType("text/html;charset=utf-8");
@@ -191,7 +191,7 @@ public class UserAction extends ActionSupport{
 				ru.setStaff_status(ruGet.getStaff_status());
 				ru.setStaff_duty(ruGet.getStaff_duty());
 				
-				System.out.println("身份证为"+ruGet.getStaff_cardid());
+				/*System.out.println("身份证为"+ruGet.getStaff_cardid());*/
 				if (user_password == "" || user_password.equals("")) {
 					ru.setStaff_password(ruGet.getStaff_password());
 				} else {

@@ -33,16 +33,16 @@ public class StaffTrainAction extends ActionSupport{
 	
 	//得到所有
 	public void getAllStaffTrainByPage() throws IOException{
-		System.out.println("1");
-		System.out.println("页数"+staffTrainVO.getCurrPage());
-		System.out.println(staffTrainVO.getPageCount());
+		/*System.out.println("1");
+		System.out.println("页数"+staffTrainVO.getCurrPage());*/
+		/*System.out.println(staffTrainVO.getPageCount());*/
 		staffTrainService.getStaffTrainByPage(staffTrainVO);
-		System.out.println("分页得到培训记录");
+		/*System.out.println("分页得到培训记录");*/
 		Gson gson = new Gson();
 		String result = gson.toJson(staffTrainVO);
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setContentType("text/html;charset=utf-8");
-		System.out.println("分页得到培训记录"+result);
+		/*System.out.println("分页得到培训记录"+result);*/
 		PrintWriter pw =response.getWriter();
 		pw.write(result);
 		pw.flush();
@@ -96,8 +96,8 @@ public class StaffTrainAction extends ActionSupport{
 	//删除全部信息
 	public void deleteStaffTrains() throws IOException{
 			staffTrainService.deleteStaffTrains(stafftrain.getStafftrain_staff());
-			System.out.println("得到id"+stafftrain.getStafftrain_staff());
-			System.out.println("删除多个履历");
+			/*System.out.println("得到id"+stafftrain.getStafftrain_staff());
+			System.out.println("删除多个履历");*/
 			HttpServletResponse response = ServletActionContext.getResponse();
 			response.setContentType("text/html;charset=utf-8");
 			PrintWriter pw = response.getWriter();
@@ -126,7 +126,7 @@ public class StaffTrainAction extends ActionSupport{
 	public void getStaffTrainById() throws IOException{
 		rlzy_stafftrain rs = staffTrainService.getStaffTrainById(rlzy_stafftrain_id);
 		HttpServletResponse response = ServletActionContext.getResponse();
-		System.out.println(rlzy_stafftrain_id);
+		/*System.out.println(rlzy_stafftrain_id);*/
 		response.setContentType("text/html;charset=utf-8");
 		Gson gson = new Gson();
 		String result = gson.toJson(rs);

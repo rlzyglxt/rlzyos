@@ -177,7 +177,7 @@
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
-					<h4 class="modal-title">添加员工履历</h4>
+					<h4 class="modal-title">添加员工合同</h4>
 				</div>
 				<div class="modal-body">
  					<%-- <div id="updateLoadingDiv" class="hideDiv" 

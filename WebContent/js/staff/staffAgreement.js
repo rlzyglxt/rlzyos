@@ -289,6 +289,10 @@ var deleteStaffAgreement = function(event) {
 		type : 'POST',
 		data : {
 			'agreement.rlzy_agreement_id' : event.id
+		},
+		success:function(data){
+			toastr.success('删除成功！');
+			loadData();
 		}
 	});
 }
@@ -309,7 +313,7 @@ var createConfirmDeleteAgreement = function(event) {
 				action : function() {
 					deleteStaffAgreement(event);
 					/*alert(event);*/
-					loadData();
+					
 				}
 			},
 			closeAction : {

@@ -66,7 +66,7 @@ public class TrainDaoImpl implements TrainDao {
 			hql = hql + " and train_name like '" + "%" + trainVO.getTrain_name() + "%" + "'";
 		}
 		long count = (long) getSession().createQuery(hql).uniqueResult();
-		System.out.println(count);
+		/*System.out.println(count);*/
 		return (int) count;
 	}
 

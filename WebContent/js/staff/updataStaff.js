@@ -605,10 +605,11 @@ function clear_iquery1() {
 }
 function clear_iquery2() {
 	console.log("这是清空2");
-	$("#agreement_startTime").val("");
+	 $("#agreement_startTime").val("");
 	 $("#agreement_overtTime").val("");
 	 $("#agreement_content").val("");	
 	 $("#agreement_remark").val("");
+	 $(" textarea").val('');
 	/* $(" textarea").val('');*/
 }
 function clear_iquery3() {
@@ -649,6 +650,8 @@ function clear_iquery7() {
 	$("#updataagreement_startTime").val("");
 	$("#updataagreement_overtTime").val("");
 	$("#updataagreement_content").val("");
+	$("#updataagreement_remark").val("");
+	
 }
 function clear_iquery8() {
 	console.log("这是清空8");
@@ -660,7 +663,7 @@ function clear_iquery8() {
 	$("#updataaward_provideReason").val("");
 }
 function clear_iquery9() {
-	console.log("这是清空5");
+	console.log("这是清空9");
 /*	$(" input[ type='text' ]").val('');
 	$(" textarea").val('');*/
 	$("#updatastaffMove_nowdepartment").val("");

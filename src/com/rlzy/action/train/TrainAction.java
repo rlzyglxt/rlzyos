@@ -26,13 +26,13 @@ public class TrainAction extends ActionSupport{
 	
 	//得到信息
 	public void getAllByPage() throws IOException{
-		System.out.println("1");
+	/*	System.out.println("1");*/
 		trainService.getTrainByPage(trainVO);
 		Gson gson = new Gson();
 		String result = gson.toJson(trainVO);
 		HttpServletResponse response = ServletActionContext.getResponse();	
 		response.setContentType("text/html;charset=utf-8");
-		System.out.println("分页得到履历"+result);
+	/*	System.out.println("分页得到履历"+result);*/
 		PrintWriter pw =response.getWriter();
 		pw.write(result);
 		pw.flush();
@@ -56,7 +56,7 @@ public class TrainAction extends ActionSupport{
 		ru.setTrain_gmt_modified(TeamUtil.getStringSecond());
 		if(trainService.judgeTrainByTrainname(train_name)){
 			pw.write("samename");
-			System.out.print("培训名称存在");
+			/*System.out.print("培训名称存在");*/
 		}
 		else{
 			ru.setTrain_name(train_name);
@@ -83,7 +83,7 @@ public class TrainAction extends ActionSupport{
 	public void getTrainById() throws IOException{
 		rlzy_train rs = trainService.getTrainById(rlzy_train_id);
 		HttpServletResponse response = ServletActionContext.getResponse();
-		System.out.println(rlzy_train_id);
+		/*System.out.println(rlzy_train_id);*/
 		response.setContentType("text/html;charset=utf-8");
 		Gson gson = new Gson();
 		String result = gson.toJson(rs);

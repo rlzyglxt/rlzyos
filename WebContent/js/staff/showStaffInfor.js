@@ -130,6 +130,9 @@ var deleteStaff = function(event) {
 					type : 'POST',
 					data : {
 						'rlzy_staff_id' : event.id
+					},success:function(data){
+						toastr.success('删除成功！');
+						loadData();
 					}
 				});
 				console.log("删除员工履历");
@@ -183,6 +186,7 @@ var deleteStaff = function(event) {
 //		}
 //	}
 	//删除员工的基本信息
+				
 	
 	
 }
@@ -214,7 +218,7 @@ function createConfirmDelete(event) {
 									/*alert(event);*/
 									console.log("删除全部信息"+event);
 									
-									loadData();
+									
 								}
 							},
 							closeAction : {

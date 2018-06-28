@@ -100,7 +100,7 @@ public class StaffAction extends ActionSupport{
 		showStaffVO staffdata = new showStaffVO();
 		int count = staffService.getStaffData(staffdata);
 		ActionContext.getContext().getSession().put("staffcount", count);
-		System.out.println("员工数为"+count);
+		/*System.out.println("员工数为"+count);*/
 		
 		showStaffVO staffdata1 = new showStaffVO();
 		staffdata1.setStaff_status("在职");
@@ -119,7 +119,7 @@ public class StaffAction extends ActionSupport{
 		String result = gson.toJson(staffVO);
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setContentType("text/html;charset=utf-8");
-		System.out.println(result);
+		/*System.out.println(result);*/
 		PrintWriter pw =response.getWriter();
 		pw.write(result);
 		pw.flush();
@@ -138,9 +138,9 @@ public class StaffAction extends ActionSupport{
 	}
 	//修改员工信息
 	public void updataStaff() throws IOException{
-		System.out.println("修改员工信息"+rlzy_staff_id);
+		/*System.out.println("修改员工信息"+rlzy_staff_id);*/
 		rlzy_staffinfo ruGet=staffService.getStaffById(rlzy_staff_id);
-		System.out.println(staff);
+		/*System.out.println(staff);*/
 		staff.setRlzy_staff_id(ruGet.getRlzy_staff_id());
 		staff.setStaff_password(ruGet.getStaff_password());
 		staff.setStaff_inTime(ruGet.getStaff_inTime());
@@ -153,7 +153,7 @@ public class StaffAction extends ActionSupport{
 		String powerstaff="jurisdiction_staff";//员工权限
 		String nonepower="jurisdiction_none";//无权限
 		if(staff.getStaff_duty().equals("管理员")){
-			System.out.println("管理员权限");
+			/*System.out.println("管理员权限");*/
 			staff.setStaff_adminPower(poweradmin);
 			staff.setStaff_userPower(poweruser);
 			staff.setStaff_staffPower(powerstaff);
@@ -187,7 +187,7 @@ public class StaffAction extends ActionSupport{
 	}
 	//增加员工
 	public void addStaff() throws IOException{
-		System.out.println("添加员工"+staff.getStaff_duty());
+		/*System.out.println("添加员工"+staff.getStaff_duty());*/
 		//如果从员工添加页面添加
 		String poweradmin="jurisdiction_admin";//管理员权限
 		String poweruser="jurisdiction_user";//经理权限
@@ -196,7 +196,7 @@ public class StaffAction extends ActionSupport{
 		String str="000000";
 		String password=md5.GetMD5Code(str);
 		if(staff.getStaff_duty().equals("管理员")){
-			System.out.println("管理员权限");
+			/*System.out.println("管理员权限");*/
 			staff.setStaff_adminPower(poweradmin);
 			staff.setStaff_userPower(poweruser);
 			staff.setStaff_staffPower(powerstaff);
@@ -248,9 +248,9 @@ public class StaffAction extends ActionSupport{
 					"职业状态","入职时间","离职时间","离职原因" };
 			staffService.getStaffByPage(staffVO);
 			List<staffListDTO> dtoList = staffVO.getStaffs();
-			System.out.println("dto"+dtoList);
+			/*System.out.println("dto"+dtoList);*/
 			List<Map<String, String>> dataList = new ArrayList<Map<String, String>>();
-			System.out.println("测试条——————————");
+			/*System.out.println("测试条——————————");*/
 			for(staffListDTO staffListDTO : dtoList) {
 				
 				Map<String, String> map = new HashMap<String, String>();

@@ -107,6 +107,7 @@ function Add_Staff() {
 				确定 : {
 					action : function() {
 						// 判断是否为空
+						var reg = new RegExp("^[0-9]*$");
 						var number = document.getElementsByName("staff.staff_number")[0].value;//工号
 						var name = document.getElementsByName("staff.staff_name")[0].value;//姓名
 						var duty = document.getElementsByName("staff.staff_duty")[0].value;//职务
@@ -115,6 +116,16 @@ function Add_Staff() {
 						var tel = document.getElementsByName("staff.staff_tel")[0].value;//电话
 						var address = document.getElementsByName("staff.staff_address")[0].value;//地址
 						var departement = document.getElementsByName("staff.staff_depaterment")[0].value;//地址
+						if(!reg.test(tel) || tel.length>11){ 
+							 toastr.error("电话请输入11位数字以内！");
+							 return false;
+						}else if(address.length>18){
+							 toastr.error("地址需在18个字符以内！");
+							return false;
+						}else if(name.length>8){
+							toastr.error("姓名需在8个字以内！");
+							return false;
+						}
 						$.ajax({
 							type : "POST",
 							url : "/rlzyos/staff/staffMove_getValueByNumber",
@@ -151,7 +162,12 @@ function getvalue(event) {
 			success : function(data) {
 				var result = JSON.parse(data);
 				var number = document.getElementsByName("staff.staff_number")[0].value;
-				if(number==""){
+				var reg = new RegExp("^[0-9]*$");
+				if(!reg.test(number) || number.length>5){ 
+					 toastr.error("工号请输入5位数字以内！");
+					 $("#staff_number").val("");
+					 return false;
+				}else if(number==""){
 					toastr.error("工号不能为空");
 				}else if(result==""){
 					toastr.success("该工号可用");
@@ -249,7 +265,9 @@ function add_staffExp() {
 	var time = /[^0-9]/ig;
 	var str1 = staffExp_startTime.replace(time,"");
 	var str2 = staffExp_overTime.replace(time,"");
-	if(staffExp_address.length>10){ 
+	if(staffExp_address=="" || staffExp_startTime == "" || staffExp_overTime == ""){
+		 toastr.error("当前表单不可为空");
+	}else if(staffExp_address.length>10){ 
 		 toastr.error("请输入20个字以内的地址");
 		 $(".staffExp_address").val("");
 		 return false;
@@ -497,7 +515,9 @@ function add_staffAward() {
 	var staffAward_provideReason = document.querySelector(".award_provideReason").value;
 	//js校验
 	var reg = new RegExp("^[0-9]*$");
-	 if(!reg.test(staffAward_amount) || staffAward_amount.value.length>5){ 
+	if(staffAward_amount == "" || staffAward_provideTime == "" ||  staffAward_provideDepartment==""){
+		 toastr.error("请把空项填写完整！");
+	}else if(!reg.test(staffAward_amount) || staffAward_amount.length>5){ 
 		$("#staffAward_amount").val("");
 		 toastr.error("金额请输入5位以内的数字！");
 		 return false;
@@ -610,7 +630,9 @@ function add_staffMove() {
 	var staffMove_time = document.querySelector(".staffMove_time").value;
 	var staffMove_remark = document.querySelector(".staffMove_remark").value;
 	//js校验
-	if(staffMove_remark.length > 25){
+	if(staffMove_nowdepartment == "" || staffMove_nowduty == "" ||  staffMove_time==""){
+		 toastr.error("请把空项填写完整！");
+	}else if(staffMove_remark.length > 25){
 		$("#staffMove_remark").val("");
 		 toastr.error("输入的字数不可大于25个");
 		 return false;
@@ -719,9 +741,11 @@ function add_staffTrain() {
 	var stafftrain_train = document.querySelector(".stafftrain_train").value;
 	var stafftrain_score = document.querySelector(".stafftrain_score").value;
 	var stafftrain_certificate = document.querySelector(".stafftrain_certificate").value;
-	if(!reg.test(stafftrain_score) || stafftrain_score.length>5){ 
+	if(stafftrain_train == "" || stafftrain_score == "" ||  stafftrain_certificate==""){
+		 toastr.error("请把空项填写完整！");
+	}else if(!reg.test(stafftrain_score) || stafftrain_score>100 || stafftrain_score<0){ 
 		 $("#stafftrain_score").val("");
-		 toastr.error("请输入3位数字以内！");
+		 toastr.error("请输入100以内的数字！");
 		return false; 
 	}else if(stafftrain_certificate.length>8){
 		$("#stafftrain_certificate").val("");

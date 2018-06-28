@@ -267,8 +267,7 @@ var createConfirmDeleteExp = function(event) {
 				action : function() {
 					deleteStaffExp(event);
 					/*alert(event);*/
-					toastr.success('删除成功！');
-					loadData();
+					
 				}
 			},
 			closeAction : {
@@ -290,7 +289,11 @@ var deleteStaffExp = function(event) {
 		type : 'POST',
 		data : {
 			'staffExp.rlzy_staffExp_id' : event.id
-		}
+		},
+	success:function(data){
+		toastr.success('删除成功！');
+		loadData();
+	}
 	});
 }
 //相应分页响应
